@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<h1>Cliente</h1>
+<p> 
+  <strong>Name:</strong>
+  <%= @client.name %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @client.lastname %>
+</p>
+<div>
+<h3>Accounts Receivables</h3>
+<%=render "accountreceivables/form"%>
+<ul>
+	<% @client.accountreceivables.each do |accountreceivable|%>
+     <li>
+     	<%= accountreceivable.descripcion%> - <%= accountreceivable.total%>
+     	<%= link_to "Edit this Account", edit_client_accountreceivable_path(@client, accountreceivable) %>
+     	<%= link_to 'Destroy Account', [accountreceivable.client, accountreceivable],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+     </li>
+	<%end%>
+</ul>
+</div>
+<%= link_to 'Edit', edit_client_path(@client) %> 
+<%= link_to 'Back', clients_path %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @accountreceivable.client %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @accountreceivable.descripcion %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @accountreceivable.total %>
+</p>
+ 
+ <%# link_to 'Edit', edit_accountreceivable_path(@accountreceivable) %> 
+
+<%= link_to 'Back', clients_path %>

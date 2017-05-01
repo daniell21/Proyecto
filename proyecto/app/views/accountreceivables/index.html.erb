@@ -1,0 +1,32 @@
+esta vista no sirve de nada
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Accountreceivables</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>Descripcion</th>
+      <th>Total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accountreceivables.each do |accountreceivable| %>
+      <tr>
+        <td><%= accountreceivable.client %></td>
+        <td><%= accountreceivable.descripcion %></td>
+        <td><%= accountreceivable.total %></td>
+        <td><%= link_to 'Show', accountreceivable %></td>
+        <td><%= link_to 'Edit', edit_accountreceivable_path(accountreceivable) %></td>
+        <td><%= link_to 'Destroy', accountreceivable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Accountreceivable', new_accountreceivable_path %>
