@@ -60,7 +60,7 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
+      format.html { redirect_to clients_url, notice: 'Client was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -73,6 +73,6 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:name, :lastname)
+      params.require(:client).permit(:name, :lastname, :email)
     end
 end

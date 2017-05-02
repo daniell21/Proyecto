@@ -58,7 +58,7 @@ class AccountreceivablesController < ApplicationController
   def destroy
     @accountreceivable.destroy
     respond_to do |format|
-      format.html { redirect_to @client, notice: 'Accountreceivable was successfully destroyed.' }
+      format.html { redirect_to @client, notice: 'Accountreceivable was successfully deleted.' }
       format.json { head :no_content }
     end
   end

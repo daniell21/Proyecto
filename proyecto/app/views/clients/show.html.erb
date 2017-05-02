@@ -9,6 +9,10 @@
   <strong>Lastname:</strong>
   <%= @client.lastname %>
 </p>
+<p>
+  <strong>Email:</strong>
+  <%= @client.email %>
+</p>
 <div>
 <h3>Accounts Receivables</h3>
 <%=render "accountreceivables/form"%>
@@ -17,7 +21,7 @@
      <li>
      	<%= accountreceivable.descripcion%> - <%= accountreceivable.total%>
      	<%= link_to "Edit this Account", edit_client_accountreceivable_path(@client, accountreceivable) %>
-     	<%= link_to 'Destroy Account', [accountreceivable.client, accountreceivable],
+     	<%= link_to 'Delete Account', [accountreceivable.client, accountreceivable],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
      </li>
