@@ -69,7 +69,10 @@ class ClientsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def import
+    Client.import(params[:file])
+    redirect_to clients_path, notice: "Clients imported."
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client

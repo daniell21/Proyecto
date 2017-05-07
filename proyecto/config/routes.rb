@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   resources :accountpayables
   resources :suppliers
-  resources :clients
+  resources :clients do
+    collection { post :import }
+  end
   resources :accountreceivables
   
   devise_for :users, {registrations: "registrations"}
