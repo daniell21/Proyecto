@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<%=wicked_pdf_stylesheet_link_tag 'pdf'%>
+		<meta charset="Utf-8">
+	</head>
+	<body>
+	<h1>Clientes en el Sistema</h1>
+		<table>
+		<thead>
+			<tr>
+			    <th style="width: 200;">Nombre</th>
+				<th style="width: 200;">Apellido</th>
+				<th style="width: 200;">Correo</th>
+			</tr>
+		</thead>
+		<tbody>
+		  <% @clients.each do |client|%>
+			<tr>
+				 <td><%=client.name%></td>
+				 <td><%=client.lastname%></td>
+				 <td><%=client.email%></td>
+			</tr>
+		  <%end%>
+		</tbody>
+		</table>
+	</body>
+</html>

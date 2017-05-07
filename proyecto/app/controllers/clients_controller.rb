@@ -7,6 +7,11 @@ class ClientsController < ApplicationController
   def index
     #obtiene todos los registros de la tabla client
     @clients = Client.all
+    respond_to do |format|
+    format.html
+    format.json
+    format.pdf {render template: 'clients/reporte', pdf: 'Reporte'}
+    end
   end
 
   # GET /clients/1

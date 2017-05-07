@@ -1,0 +1,14 @@
+tr{
+	border-bottom: solid;
+	border-bottom:3px;
+}
+td,th{
+	text-align:left;
+}
+th{
+	background-color:#000;
+	color:white;
+}
+table, tr, td, th, tbody, thead, tfood {
+	page-break-inside; avoid !important;
+}

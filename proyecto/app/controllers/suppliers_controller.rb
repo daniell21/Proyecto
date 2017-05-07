@@ -5,6 +5,11 @@ class SuppliersController < ApplicationController
   # GET /suppliers.json
   def index
     @suppliers = Supplier.all
+    respond_to do |format|
+    format.html
+    format.json
+    format.pdf {render template: 'suppliers/reporte', pdf: 'Reporte'}
+    end
   end
 
   # GET /suppliers/1
