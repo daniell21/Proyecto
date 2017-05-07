@@ -1,4 +1,3 @@
-esta vista no sirve de nada
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Accountreceivables</h1>
@@ -6,7 +5,7 @@ esta vista no sirve de nada
 <table>
   <thead>
     <tr>
-      <th>Client</th>
+      <th>Cliente</th>
       <th>Descripcion</th>
       <th>Total</th>
       <th colspan="3"></th>
@@ -16,12 +15,12 @@ esta vista no sirve de nada
   <tbody>
     <% @accountreceivables.each do |accountreceivable| %>
       <tr>
-        <td><%= accountreceivable.client %></td>
+        <td><%= accountreceivable.client.name %></td>
         <td><%= accountreceivable.descripcion %></td>
         <td><%= accountreceivable.total %></td>
-        <td><%= link_to 'Show', accountreceivable %></td>
-        <td><%= link_to 'Edit', edit_accountreceivable_path(accountreceivable) %></td>
-        <td><%= link_to 'Delete', accountreceivable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', accountreceivable %></td>
+        <td><%= link_to 'Editar', edit_accountreceivable_path(accountreceivable) %></td>
+        <td><%= link_to 'Eliminar', accountreceivable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,4 +28,5 @@ esta vista no sirve de nada
 
 <br>
 
-<%= link_to 'New Accountreceivable', new_accountreceivable_path %>
+<%= link_to 'Nueva Cuenta', new_accountreceivable_path %>
+<%= link_to 'Menú Principal', controller: 'principal' %>

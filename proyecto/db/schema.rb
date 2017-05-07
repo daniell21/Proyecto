@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502051900) do
+ActiveRecord::Schema.define(version: 20170507024030) do
+
+  create_table "accountpayables", force: :cascade do |t|
+    t.string   "descripcion"
+    t.integer  "total"
+    t.integer  "supplier_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "accountpayables", ["supplier_id"], name: "index_accountpayables_on_supplier_id"
 
   create_table "accountreceivables", force: :cascade do |t|
     t.integer  "client_id"
@@ -29,6 +39,14 @@ ActiveRecord::Schema.define(version: 20170502051900) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "email"
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

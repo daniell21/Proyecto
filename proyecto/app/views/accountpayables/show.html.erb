@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Proveedor:</strong>
+  <%= @accountpayable.supplier.name %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @accountpayable.descripcion %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @accountpayable.total %>
+</p>
+
+
+<%= link_to 'Editar', edit_accountpayable_path(@accountpayable) %> |
+<%= link_to 'Atrás', accountpayables_path %>

@@ -1,7 +1,5 @@
 class AccountreceivablesController < ApplicationController
   before_action :set_accountreceivable, only: [:show, :edit, :update, :destroy]
-  before_action :set_client
-  before_action :authenticate_user!
 
   # GET /accountreceivables
   # GET /accountreceivables.json
@@ -27,10 +25,9 @@ class AccountreceivablesController < ApplicationController
   # POST /accountreceivables.json
   def create
     @accountreceivable = Accountreceivable.new(accountreceivable_params)
-    @accountreceivable.client = @client
     respond_to do |format|
       if @accountreceivable.save
-        format.html { redirect_to @accountreceivable.client, notice: 'Accountreceivable was successfully created.' }
+        format.html { redirect_to accountreceivables_url, notice: 'La cuenta ha sido creada exitosamente.' }
         format.json { render :show, status: :created, location: @accountreceivable }
       else
         format.html { render :new }
@@ -44,7 +41,7 @@ class AccountreceivablesController < ApplicationController
   def update
     respond_to do |format|
       if @accountreceivable.update(accountreceivable_params)
-        format.html { redirect_to @accountreceivable.client, notice: 'Accountreceivable was successfully updated.' }
+        format.html { redirect_to accountreceivables_url, notice: 'La cuenta ha sido actualizada exitosamente.' }
         format.json { render :show, status: :ok, location: @accountreceivable }
       else
         format.html { render :edit }
@@ -58,7 +55,7 @@ class AccountreceivablesController < ApplicationController
   def destroy
     @accountreceivable.destroy
     respond_to do |format|
-      format.html { redirect_to @client, notice: 'Accountreceivable was successfully deleted.' }
+      format.html { redirect_to accountreceivables_url, notice: 'ALa cuenta fue borrada exitosamente.' }
       format.json { head :no_content }
     end
   end

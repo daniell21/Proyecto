@@ -25,8 +25,8 @@ module Proyecto
   :address =>             'smtp.gmail.com',
   :domain  =>             'mail.google.com',
   :port    =>              587,
-  :user_name=>            'daniellorente20@gmail.com',
-  :password=>             'Inginformaticoc',
+  :user_name=>            'danieltestrails4@gmail.com',
+  :password=>             'Probando',
   :authentication=>       'login',
   enable_starttls_auto: true
 }

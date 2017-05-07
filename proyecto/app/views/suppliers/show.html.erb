@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @supplier.name %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @supplier.lastname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @supplier.email %>
+</p>
+
+<%= link_to 'Editar', edit_supplier_path(@supplier) %> |
+<%= link_to 'Atrás', suppliers_path %>
