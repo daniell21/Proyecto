@@ -65,7 +65,10 @@ class SuppliersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def import
+    Supplier.import(params[:file])
+    redirect_to suppliers_path, notice: "Suppliers imported."
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_supplier
