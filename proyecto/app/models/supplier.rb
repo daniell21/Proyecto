@@ -1,5 +1,5 @@
 class Supplier < ActiveRecord::Base
-	has_many :accountpayables
+	has_many :accountpayables, :dependent => :delete_all
 	validates :name, presence: true #uniqueness: true
     validates :lastname, presence: true #length: {minimum: 20}
    #validates :username, format: { with: /regex/ }
