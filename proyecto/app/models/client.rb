@@ -1,5 +1,6 @@
 class Client < ActiveRecord::Base
 	has_many :accountreceivables, :dependent => :delete_all
+  has_many :clientmails
     validates :name, presence: true #uniqueness: true
     validates :lastname, presence: true #length: {minimum: 20}
    #validates :username, format: { with: /regex/ }

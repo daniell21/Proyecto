@@ -1,0 +1,26 @@
+<%= form_for([@client, @clientmail]) do |f| %>
+  <% if @clientmail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@clientmail.errors.count, "error") %> prohibited this clientmail from being saved:</h2>
+
+      <ul>
+      <% @clientmail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Título %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :Mensaje %><br>
+    <%= f.text_area :body %>
+  </div>
+ 
+  <div class="actions">
+    <%= f.submit 'Enviar Correo'%>
+  </div>
+<% end %>

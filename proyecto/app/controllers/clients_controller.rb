@@ -19,6 +19,7 @@ class ClientsController < ApplicationController
   def show
     #encontrar un registro por su id
     @accountreceivable = Accountreceivable.new
+    @clientmail = Clientmail.new
   end
 
   # GET /clients/new

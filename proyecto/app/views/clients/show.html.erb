@@ -13,5 +13,16 @@
   <strong>Email:</strong>
   <%= @client.email %>
 </p>
+<div class="field">
+    <h3>Correos</h3>
+	<%=render "clientmails/form"%> 
+	<ul>
+		<% @client.clientmails.each do |clientmail| %>
+		<li>
+		  <%= clientmail.title%>	
+		</li>
+		<%end%>
+	</ul>
+</div>
 <%= link_to 'Editar', edit_client_path(@client) %> |
 <%= link_to 'Atrás', clients_path %>
