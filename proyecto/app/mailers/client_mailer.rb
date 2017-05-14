@@ -3,7 +3,7 @@ class ClientMailer < ApplicationMailer
 		@client = client
 
 		User.all.each do |user|
-			mail(to: client.email, subject: "Has sido registrado por el administrador en el sistema")
+			mail(to: client.email, subject: "Administracion Elemétrica")
         end			
 	end
 end

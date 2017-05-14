@@ -4,10 +4,9 @@
 		
 	</head>
 	<body>
-	<h1>Felicitaciones <%=@client.name%> has sido añadida a lista de Elemétrica</h1>
-	<p>
-		<%=truncate(@client.email, length: 30)%>
-	</p>
+	<%c = @client.id%>
+	<h1><%=Clientmail.where(:client_id => c).last.body%>o</h1>
+	
 		<p>
 			<a href="https://www.youtube.com/watch?v=71sly5UgNTA"></a>
 		</p>

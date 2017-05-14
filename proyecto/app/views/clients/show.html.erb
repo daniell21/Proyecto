@@ -19,8 +19,9 @@
 	<ul>
 		<% @client.clientmails.each do |clientmail| %>
 		<li>
-		  <%= clientmail.title%>	
+		  <%= clientmail.title%> 
 		</li>
+		<p>- <%=clientmail.body%>	</p>
 		<%end%>
 	</ul>
 </div>
