@@ -1,10 +1,10 @@
+<div ALIGN=center>
 <p id="notice"><%= notice %></p>
 
 <h1>Proveedores</h1>
-<h2>Import Products</h2>
 <%= form_tag import_suppliers_path, multipart: true do %>
   <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
+  <%= submit_tag "Importar" %>
 <% end %>
 <table>
   <thead>
@@ -35,4 +35,4 @@
 <%= link_to 'Nuevo Proveedor', new_supplier_path %>
 <%= link_to 'Menú Principal', controller: 'principal' %>
 <%= link_to "Generar pdf", "/suppliers.pdf", :format => 'pdf', target: :_blank %>
-
+</div>

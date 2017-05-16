@@ -1,6 +1,7 @@
+<div ALIGN=center>
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Accountreceivables</h1>
+<h1>Cuentas por Cobrar</h1>
 
 <table>
   <thead>
@@ -20,7 +21,7 @@
         <td><%= accountreceivable.total %></td>
         <td><%= link_to 'Mostrar', accountreceivable %></td>
         <td><%= link_to 'Editar', edit_accountreceivable_path(accountreceivable) %></td>
-        <td><%= link_to 'Eliminar', accountreceivable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Eliminar', accountreceivable, method: :delete, data: { confirm: '¿Estas Seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,3 +31,4 @@
 
 <%= link_to 'Nueva Cuenta', new_accountreceivable_path %>
 <%= link_to 'Menú Principal', controller: 'principal' %>
+</div>

@@ -1,10 +1,10 @@
+<div ALIGN=center>
 <p id="notice"><%= notice %></p>
 
 <h1>Clientes</h1>
-<h2>Import Products</h2>
 <%= form_tag import_clients_path, multipart: true do %>
   <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
+  <%= submit_tag "Importar" %>
 <% end %>
 <table>
   <thead>
@@ -27,7 +27,11 @@
         <td><%= link_to 'Editar', edit_client_path(client) %></td>
         <td><%= link_to 'Borrar', client, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
       </tr>
+      
     <% end %>
+    <%if @clients.size == 0%>
+         <td>No Hay Clientes</td>
+      <%end%>
   </tbody>
 </table>
 
@@ -36,3 +40,4 @@
 <%= link_to 'Nuevo Cliente', new_client_path %>
 <%= link_to 'Menú Principal', controller: 'principal' %>
 <%= link_to "Generar pdf", "/clients.pdf", :format => 'pdf', target: :_blank %>
+</div>

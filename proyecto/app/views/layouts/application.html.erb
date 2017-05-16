@@ -8,15 +8,19 @@
 </head>
 <body>
 <p class="alert"><%= alert %></p>
-<%if user_signed_in? %>
-  <li class="col-md">
-  	<%= link_to "Log Out", destroy_user_session_path , method: :delete%>
-  </li>
- 
-<%end%>
+
 
 
 <%= yield %>
+
+<%if user_signed_in? %>
+<br>
+  <div ALIGN=center>
+  <p class="col-md">
+  	<%= link_to "Log Out", destroy_user_session_path , method: :delete%>
+  </p> 
+  </div>
+<%end%>
 
 </body>
 </html>

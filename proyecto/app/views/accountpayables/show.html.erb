@@ -1,9 +1,12 @@
+
+<div ALIGN=center>
 <p id="notice"><%= notice %></p>
+<h1>Cuenta por Pagar</h1>
+<br>
 <p>
-  <strong>Proveedor:</strong>
+  <strong>Cuenta:</strong>
   <%= @accountpayable.supplier.name %>
 </p>
-
 <p>
   <strong>Descripcion:</strong>
   <%= @accountpayable.descripcion %>
@@ -17,3 +20,4 @@
 
 <%= link_to 'Editar', edit_accountpayable_path(@accountpayable) %> |
 <%= link_to 'Atrás', accountpayables_path %>
+</div>

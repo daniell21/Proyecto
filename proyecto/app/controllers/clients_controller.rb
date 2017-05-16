@@ -66,13 +66,13 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Client was successfully deleted.' }
+      format.html { redirect_to clients_url, notice: 'El cliente fue eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end
   def import
     Client.import(params[:file])
-    redirect_to clients_path, notice: "Clients imported."
+    redirect_to clients_path, notice: "Clientes importados."
   end
   private
     # Use callbacks to share common setup or constraints between actions.

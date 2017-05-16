@@ -1,3 +1,4 @@
+<div ALIGN=center>
 <%= form_for(@accountreceivable) do |f| %>
   <% if @accountreceivable.errors.any? %>
     <div id="error_explanation">
@@ -10,6 +11,7 @@
       </ul>
     </div>
   <% end %>
+  <br>
   <div class="field">
   <%= f.label :"Seleccione Cliente" %><br>
   <%= f.collection_select :client_id, Client.all, :id, :name %>
@@ -23,6 +25,7 @@
     <%= f.number_field :total %>
   </div>
   <div class="actions">
-    <%= f.submit "Crear Cliente"%>
+    <%= f.submit "Crear Cuenta"%>
   </div>
 <% end %>
+<div ALIGN=center>
