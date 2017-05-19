@@ -30,7 +30,7 @@ end
   end
    private
    def send_mail
-   	ClientMailer.new_client(self).deliver_later
+   	ClientMailer.delay.new_client(self)
    end
 
 end

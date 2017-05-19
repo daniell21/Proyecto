@@ -5,6 +5,6 @@ class Clientmail < ActiveRecord::Base
    validates :body, presence: true #length: {minimum: 20}
   private
   def send_mail
-  	Sendclientmail.new_sendclientmail(client).deliver_later
+  	Sendclientmail.delay.new_sendclientmail(client)
   end
 end
