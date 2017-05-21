@@ -1,4 +1,6 @@
 class AccountpayablesController < ApplicationController
+  load_and_authorize_resource 
+   skip_load_and_authorize_resource
   before_action :set_accountpayable, only: [:show, :edit, :update, :destroy]
   
   # GET /accountpayables

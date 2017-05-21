@@ -1,0 +1,29 @@
+<div ALIGN=center>
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <br>
+  <div class="field">
+    <%= f.label :Correo %><br>
+    <%= @user.email %>
+  </div>
+  <div class="field">
+    <%@roles = {"admin": "Administrador", "limited": "Limitado", "restricted": "Restringido" }%>
+    <%= f.label :Rol %><br>
+    <%= f.select :role, options_for_select(@roles.map { |k, v| [v, k] }) %>
+
+  </div>
+  <div class="actions">
+    <%= f.submit "Modificar Rol"%>
+  </div>
+<% end %>
+<div ALIGN=center>

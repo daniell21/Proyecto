@@ -23,9 +23,15 @@
         <td><%= client.name %></td>
         <td><%= client.lastname %></td>
         <td><%= client.email%></td>
+        <% if can? :show, client %>
         <td><%= link_to 'Mostrar', client %></td>
+        <%end%>
+        <% if can? :edit, client %>
         <td><%= link_to 'Editar', edit_client_path(client) %></td>
+        <%end%>
+        <% if can? :destroy, client %>
         <td><%= link_to 'Borrar', client, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <%end%>
       </tr>
       
     <% end %>

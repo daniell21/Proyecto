@@ -1,0 +1,29 @@
+<div ALIGN=center>
+<p id="notice"><%= notice %></p>
+
+<h1>Cuentas por Cobrar</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Correo</th>
+      <th>Rol</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td><%= link_to 'Editar', edit_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Menú Principal', controller: 'principal' %>
+</div>

@@ -27,6 +27,13 @@
 
 <li style="list-style:none;">
 <%= link_to 'Cuentas por Pagar', controller: 'accountpayables' %>
+</li>
 
-
+<% if can? :index, :users %>
+<br>
+<li style="list-style:none;">
+<%= link_to 'Gestión de Roles', controller: 'users' %>
+</li>
+<%end%>
+<%%>
 </div>
