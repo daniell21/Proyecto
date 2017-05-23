@@ -28,6 +28,10 @@
 <li style="list-style:none;">
 <%= link_to 'Cuentas por Pagar', controller: 'accountpayables' %>
 </li>
+<br>
+<li style="list-style:none;">
+<%= link_to 'Recordatorios', controller: 'mailreminders' %>
+</li>
 
 <% if can? :index, :users %>
 <br>

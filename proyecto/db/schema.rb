@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521004511) do
+ActiveRecord::Schema.define(version: 20170523120623) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -66,6 +66,13 @@ ActiveRecord::Schema.define(version: 20170521004511) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+
+  create_table "mailreminders", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "suppliers", force: :cascade do |t|
     t.string   "name"

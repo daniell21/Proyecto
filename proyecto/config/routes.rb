@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
 
   
+  resources :mailreminders
   resources :accountpayables
   resources :suppliers do
     collection { post :import }

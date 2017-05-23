@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Mailreminders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mailreminders.each do |mailreminder| %>
+      <tr>
+        <td><%= mailreminder.title %></td>
+        <td><%= mailreminder.body %></td>
+        <td><%= link_to 'Show', mailreminder %></td>
+        <td><%= link_to 'Edit', edit_mailreminder_path(mailreminder) %></td>
+        <td><%= link_to 'Destroy', mailreminder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mailreminder', new_mailreminder_path %>
