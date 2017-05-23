@@ -17,6 +17,7 @@
       <tr>
         <td><%= user.email %></td>
         <td><%= user.role %></td>
+        <td><%= link_to 'Mostrar', user %></td>
         <td><%= link_to 'Editar', edit_user_path(user) %></td>
       </tr>
     <% end %>
