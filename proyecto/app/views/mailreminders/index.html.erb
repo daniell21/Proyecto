@@ -1,3 +1,4 @@
+<div ALIGN=center>
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Mailreminders</h1>
@@ -16,9 +17,9 @@
       <tr>
         <td><%= mailreminder.title %></td>
         <td><%= mailreminder.body %></td>
-        <td><%= link_to 'Show', mailreminder %></td>
-        <td><%= link_to 'Edit', edit_mailreminder_path(mailreminder) %></td>
-        <td><%= link_to 'Destroy', mailreminder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', mailreminder %></td>
+        <td><%= link_to 'Editar', edit_mailreminder_path(mailreminder) %></td>
+        <td><%= link_to 'Eliminar', mailreminder, method: :delete, data: { confirm: '¿Estás Seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +27,6 @@
 
 <br>
 
-<%= link_to 'New Mailreminder', new_mailreminder_path %>
+<%= link_to 'Nuevo Recordatorio', new_mailreminder_path %>
+<%= link_to 'Menú Principal', controller: 'principal' %>
+</div>

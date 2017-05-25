@@ -1,5 +1,6 @@
+<div ALIGN=center>
 <p id="notice"><%= notice %></p>
-
+<h1>Recordatorio</h1>
 <p>
   <strong>Title:</strong>
   <%= @mailreminder.title %>
@@ -10,5 +11,6 @@
   <%= @mailreminder.body %>
 </p>
 
-<%= link_to 'Edit', edit_mailreminder_path(@mailreminder) %> |
-<%= link_to 'Back', mailreminders_path %>
+<%= link_to 'Editar', edit_mailreminder_path(@mailreminder) %> |
+<%= link_to 'Atrás', mailreminders_path %>
+</div>

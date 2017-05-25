@@ -24,6 +24,9 @@
         <td><%= link_to 'Eliminar', accountreceivable, method: :delete, data: { confirm: '¿Estas Seguro?' } %></td>
       </tr>
     <% end %>
+    <%if @accountreceivables.size == 0%>
+         <td>No Hay Cuentas por Cobrar</td>
+      <%end%>
   </tbody>
 </table>
 
