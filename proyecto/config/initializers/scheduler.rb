@@ -2,6 +2,6 @@ require 'rufus-scheduler'
 
 scheduler = Rufus::Scheduler::singleton
 
-scheduler.every '5s' do
-  puts "Recordatorio "
+scheduler.every '1h' do
+  Mailreminder.send_mail
 end
