@@ -1,9 +1,9 @@
 class ClientsController < ApplicationController
    load_and_authorize_resource 
    skip_load_and_authorize_resource
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-
+   before_action :set_client, only: [:show, :edit, :update, :destroy]
+   before_action :authenticate_user!
+  
 
   # GET /clients
   # GET /clients.json

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  
-  
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   
   resources :mailreminders
@@ -9,7 +8,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
   resources :clients do
-  	resources :clientmails
+    resources :clientmails
     collection { post :import }
   end
   resources :accountreceivables
@@ -18,4 +17,6 @@ Rails.application.routes.draw do
   #root 'clients#index'
   resources :users
   root 'principal#index'
+
+
 end
