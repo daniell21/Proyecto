@@ -7,6 +7,7 @@ gem 'devise'
 gem 'cancan'
 gem 'pdf-reader'
 gem 'pdftotext'
+gem 'carrierwave'
 gem 'rufus-scheduler'
 gem 'delayed_job_active_record'
 # Use sqlite3 as the database for Active Record
