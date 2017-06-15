@@ -61,7 +61,10 @@ class AccountreceivablesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def import
+     Accountreceivable.import(params[:file])
+     redirect_to accountreceivables_path, notice: "Pago importado."
+   end
   private
     def set_client
       @client = Client.find(params[:client_id])

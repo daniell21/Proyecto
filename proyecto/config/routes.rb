@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
 
   
+  resources :payments
   resources :mailreminders
   resources :accountpayables
   resources :suppliers do
@@ -12,7 +13,9 @@ Rails.application.routes.draw do
   	resources :clientmails
     collection { post :import }
   end
-  resources :accountreceivables
+  resources :accountreceivables do
+      collection { post :import }
+   end
   
   devise_for :users, {registrations: "registrations"}
   #root 'clients#index'

@@ -2,11 +2,13 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.4'
 gem 'devise'
 gem 'cancan'
 gem 'pdf-reader'
 gem 'pdftotext'
+gem 'carrierwave'
+gem 'fog'
 gem 'rufus-scheduler'
 gem 'delayed_job_active_record'
 # Use sqlite3 as the database for Active Record

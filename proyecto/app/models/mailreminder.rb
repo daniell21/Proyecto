@@ -6,7 +6,7 @@ after_create :send_mail
   private
   def send_mail
   	Client.all.each do |client|
-  	    ReminderMailer.delay.new_sendreminder(client)
+  	    #ReminderMailer.delay.new_sendreminder(client)
      
     end
   end
