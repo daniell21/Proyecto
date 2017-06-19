@@ -16,9 +16,21 @@
   <%= f.label :"Seleccione Cliente" %><br>
   <%= f.collection_select :client_id, Client.all, :id, :name %>
 </div>
+<div class="field">
+    <%= f.label :NúmeroFactura %><br>
+    <%= f.number_field :invoicenumber %>
+  </div>
   <div class="field">
     <%= f.label :Descripción %><br>
     <%= f.text_area :descripcion %>
+  </div>
+  <div class="field">
+    <%= f.label :Iva %><br>
+    <%= f.number_field :retentioniva %>
+  </div>
+  <div class="field">
+    <%= f.label :Isrl %><br>
+    <%= f.number_field :retentionisrl %>
   </div>
   <div class="field">
     <%= f.label :Total %><br>

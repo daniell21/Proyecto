@@ -10,7 +10,10 @@
   <thead>
     <tr>
       <th>Cliente</th>
+      <th>Numero de Factura</th>
       <th>Descripcion</th>
+      <th>Retencion de IVA</th>
+      <th>Retencion de ISRL</th>
       <th>Total</th>
       <th colspan="3"></th>
     </tr>
@@ -20,7 +23,10 @@
     <% @accountreceivables.each do |accountreceivable| %>
       <tr>
         <td><%= accountreceivable.client.name %></td>
+        <td><%= accountreceivable.invoicenumber %></td>
         <td><%= accountreceivable.descripcion %></td>
+        <td><%= accountreceivable.retentioniva %></td>
+        <td><%= accountreceivable.retentionisrl %></td>
         <td><%= accountreceivable.total %></td>
         <td><%= link_to 'Mostrar', accountreceivable %></td>
         <td><%= link_to 'Editar', edit_accountreceivable_path(accountreceivable) %></td>

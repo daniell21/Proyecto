@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612072120) do
+ActiveRecord::Schema.define(version: 20170619072018) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -27,8 +27,11 @@ ActiveRecord::Schema.define(version: 20170612072120) do
     t.integer  "client_id"
     t.text     "descripcion"
     t.integer  "total"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "invoicenumber"
+    t.integer  "retentioniva"
+    t.integer  "retentionisrl"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
@@ -46,9 +49,10 @@ ActiveRecord::Schema.define(version: 20170612072120) do
   create_table "clients", force: :cascade do |t|
     t.string   "name"
     t.string   "lastname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "email"
+    t.boolean  "specialcontributor"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -66,6 +70,23 @@ ActiveRecord::Schema.define(version: 20170612072120) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+
+  create_table "discounts", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "percentage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "has_discounts", force: :cascade do |t|
+    t.integer  "client_id"
+    t.integer  "discount_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "has_discounts", ["client_id"], name: "index_has_discounts_on_client_id"
+  add_index "has_discounts", ["discount_id"], name: "index_has_discounts_on_discount_id"
 
   create_table "mailreminders", force: :cascade do |t|
     t.string   "title"

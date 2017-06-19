@@ -43,12 +43,12 @@ class ProofUploader < CarrierWave::Uploader::Base
      %w(jpg jpeg gif png pdf)
    end
  def store_dir
-    'app'
+    'api'
   end
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
    def filename
-     "#{Time.now.strftime('%Y%m%d%H%M%S')}.jpg"
+     "holaa.jpg"
    end
 
 end

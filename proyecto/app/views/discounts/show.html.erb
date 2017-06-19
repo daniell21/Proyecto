@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @discount.name %>
+</p>
+
+<p>
+  <strong>Percentage:</strong>
+  <%= @discount.percentage %>
+</p>
+<p>
+<strong>Clientes con este Descuento:</strong>
+<% @discount.clients.each do |client| %>
+<div>
+	<%= client.name %>
+</div>
+<%end%>
+</p>
+<%= link_to 'Edit', edit_discount_path(@discount) %> |
+<%= link_to 'Back', discounts_path %>

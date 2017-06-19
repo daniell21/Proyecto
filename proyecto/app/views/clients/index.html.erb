@@ -12,6 +12,7 @@
       <th>Nombre</th>
       <th>Apellido</th>
       <th>Email</th>
+      <th>Contribuyente Especial</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
         <td><%= client.name %></td>
         <td><%= client.lastname %></td>
         <td><%= client.email%></td>
+        <td><%= client.specialcontributor%></td>
         <% if can? :show, client %>
         <td><%= link_to 'Mostrar', client %></td>
         <%end%>

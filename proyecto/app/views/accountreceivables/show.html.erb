@@ -6,12 +6,24 @@
   <strong>Cuenta por Cobrar:</strong>
   <%= @accountreceivable.client.name %>
 </p>
+<p>
+  <strong>Descripcion:</strong>
+  <%= @accountreceivable.invoicenumber %>
+</p>
 
 <p>
   <strong>Descripcion:</strong>
   <%= @accountreceivable.descripcion %>
 </p>
-
+<p>
+  <strong>Retención de IVA:</strong>
+  <%= @accountreceivable.retentioniva %>
+</p>
+ <p>
+  <strong>Retención de ISRL:</strong>
+  <%= @accountreceivable.retentionisrl %>
+</p>
+ 
 <p>
   <strong>Total:</strong>
   <%= @accountreceivable.total %>

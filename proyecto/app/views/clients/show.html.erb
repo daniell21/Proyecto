@@ -14,6 +14,16 @@
   <strong>Email:</strong>
   <%= @client.email %>
 </p>
+<p>
+  <strong>Contribuyente Especial:</strong>
+  <%= @client.specialcontributor %>
+</p>
+<strong>Descuentos:</strong>
+<% @client.discounts.each do |discount| %>
+<div>
+	<%= discount.name %> 
+</div>
+<%end%>
 <div class="field">
     <h3>Correos</h3>
 	<%=render "clientmails/form"%> 

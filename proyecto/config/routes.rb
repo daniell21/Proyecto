@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
 
   
+  resources :discounts
   resources :payments
   resources :mailreminders
   resources :accountpayables

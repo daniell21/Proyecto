@@ -1,13 +1,18 @@
 class Client < ActiveRecord::Base
 	has_many :accountreceivables, :dependent => :delete_all
   has_many :clientmails
+  has_many :has_discounts
+  has_many :discounts, through: :has_discounts
     validates :name, presence: true #uniqueness: true
     validates :lastname, presence: true #length: {minimum: 20}
     validates :email, uniqueness: true
    #validates :username, format: { with: /regex/ }
    after_create :send_mail
-
-  
+   #after_create :save_discounts
+#custon setter
+  def discounts=(value)
+     @discounts = value
+  end
     
     def self.import(file)
    spreadsheet = open_spreadsheet(file)
@@ -30,6 +35,11 @@ end
     end
   end
    private
+   def save_discounts
+     @discounts.each do |discount_id|
+       HasDiscount.create(discount_id: discount_id, client_id: self.id ) 
+     end
+  end
    def send_mail
    	ClientMailer.delay.new_client(self)
    end
