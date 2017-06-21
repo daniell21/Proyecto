@@ -13,9 +13,14 @@
   <% end %>
   <br>
   <div class="field">
+    <%= f.label :Fecha %><br>
+    <%= f.date_field :date %>
+  </div>
+  <div class="field">
   <%= f.label :"Seleccione Cliente" %><br>
-  <%= f.collection_select :client_id, Client.all, :id, :name %>
+  <%= f.collection_select :client_id, Client.all, :id, :rif %>
 </div>
+
 <div class="field">
     <%= f.label :NúmeroFactura %><br>
     <%= f.number_field :invoicenumber %>

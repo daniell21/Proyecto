@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Payments</h1>
-
+<%= form_tag import_accountreceivables_path, multipart: true do %>
+   <%= file_field_tag :file %>
+   <%= submit_tag "Importar" %>
+ <% end %>
 <table>
   <thead>
     <tr>

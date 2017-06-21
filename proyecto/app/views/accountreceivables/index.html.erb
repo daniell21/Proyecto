@@ -2,13 +2,11 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Cuentas por Cobrar</h1>
-<%= form_tag import_accountreceivables_path, multipart: true do %>
-   <%= file_field_tag :file %>
-   <%= submit_tag "Importar" %>
- <% end %>
+
 <table>
   <thead>
     <tr>
+    <th>Fecha</th>
       <th>Cliente</th>
       <th>Numero de Factura</th>
       <th>Descripcion</th>
@@ -22,6 +20,7 @@
   <tbody>
     <% @accountreceivables.each do |accountreceivable| %>
       <tr>
+      <td><%= accountreceivable.date %></td>
         <td><%= accountreceivable.client.name %></td>
         <td><%= accountreceivable.invoicenumber %></td>
         <td><%= accountreceivable.descripcion %></td>

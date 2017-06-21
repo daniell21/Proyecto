@@ -28,6 +28,8 @@ class AccountreceivablesController < ApplicationController
   def create
     @accountreceivable = Accountreceivable.new(accountreceivable_params)
     respond_to do |format|
+      print accountreceivable_params
+      print "hola"
       if @accountreceivable.save
         format.html { redirect_to accountreceivables_url, notice: 'La cuenta ha sido creada exitosamente.' }
         format.json { render :show, status: :created, location: @accountreceivable }
@@ -76,6 +78,6 @@ class AccountreceivablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accountreceivable_params
-      params.require(:accountreceivable).permit(:client_id, :descripcion, :total)
+      params.require(:accountreceivable).permit(:date, :client_id, :invoicenumber, :descripcion, :retentioniva, :retentionisrl, :total)
     end
 end

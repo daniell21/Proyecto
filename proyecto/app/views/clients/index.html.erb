@@ -9,6 +9,7 @@
 <table>
   <thead>
     <tr>
+      <th>RIF</th>
       <th>Nombre</th>
       <th>Apellido</th>
       <th>Email</th>
@@ -20,7 +21,7 @@
   <tbody>
     <% @clients.each do |client| %>
       <tr>
-        
+        <td><%= client.rif %></td>
         <td><%= client.name %></td>
         <td><%= client.lastname %></td>
         <td><%= client.email%></td>
