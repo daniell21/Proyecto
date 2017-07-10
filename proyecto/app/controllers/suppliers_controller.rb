@@ -6,7 +6,8 @@ class SuppliersController < ApplicationController
   # GET /suppliers
   # GET /suppliers.json
   def index
-    @suppliers = Supplier.all
+    #@suppliers = Supplier.all
+    @suppliers =  Supplier.order(:name).paginate(:per_page => 5, :page => params[:page])
     respond_to do |format|
     format.html
     format.json
@@ -35,7 +36,7 @@ class SuppliersController < ApplicationController
 
     respond_to do |format|
       if @supplier.save
-        format.html { redirect_to @supplier, notice: 'Supplier was successfully created.' }
+        format.html { redirect_to suppliers_url, notice: 'Supplier was successfully created.' }
         format.json { render :show, status: :created, location: @supplier }
       else
         format.html { render :new }

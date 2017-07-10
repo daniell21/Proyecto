@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Payments</h1>
+<div ALIGN=center>
 <%= form_tag import_accountreceivables_path, multipart: true do %>
    <%= file_field_tag :file %>
    <%= submit_tag "Importar" %>
  <% end %>
 <table>
-  <thead>
+  <table class="table table-striped">
     <tr>
       <th>Name</th>
       <th>Description</th>
@@ -28,7 +29,7 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 
 <%= link_to 'New Payment', new_payment_path %>

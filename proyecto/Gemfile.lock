@@ -48,6 +48,8 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-will_paginate (1.0.0)
+      will_paginate
     builder (3.2.3)
     byebug (9.0.6)
     cancan (1.6.10)
@@ -347,6 +349,7 @@ GEM
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
     wicked_pdf (1.1.0)
+    will_paginate (3.1.6)
     wkhtmltopdf-binary (0.12.3.1)
     xml-simple (1.1.5)
 
@@ -355,6 +358,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  bootstrap-will_paginate
   byebug
   cancan
   carrierwave

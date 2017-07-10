@@ -1,31 +1,28 @@
-<div ALIGN=center>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Usuarios</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Correo</th>
-      <th>Rol</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+<div ALIGN=center>
+  <table>
+    <table class="table table-striped">
       <tr>
-        <td><%= user.email %></td>
-        <td><%= user.role %></td>
-        <td><%= link_to 'Mostrar', user %></td>
-        <td><%= link_to 'Editar', edit_user_path(user) %></td>
-        <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: '¿Estás Seguro?' }%></td>
+        <th>Correo</th>
+        <th>Rol</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+          <td><%= link_to 'Mostrar', user %></td>
+          <td><%= link_to 'Editar', edit_user_path(user) %></td>
+          <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: '¿Estás Seguro?' }%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'Menú Principal', controller: 'principal' %>
 </div>

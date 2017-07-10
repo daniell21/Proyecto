@@ -19,7 +19,7 @@ Rails.application.routes.draw do
    end
   
   devise_for :users, {registrations: "registrations"}
-  #root 'clients#index'
+  root 'clients#index'
   resources :users
-  root 'principal#index'
+  #root 'principal#index'
 end

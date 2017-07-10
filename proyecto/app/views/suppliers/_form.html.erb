@@ -1,5 +1,5 @@
 <div ALIGN=center>
-<%= form_for(@supplier) do |f| %>
+<%= form_for(@supplier, remote: true) do |f| %>
   <% if @supplier.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@supplier.errors.count, "error") %> prohibited this supplier from being saved:</h2>
@@ -25,7 +25,8 @@
     <%= f.text_field :email %>
   </div>
   <div class="actions">
-    <%= f.submit 'Crear Proveedor'%>
+    <%= f.submit 'Crear Poveedor', :class => 'btn btn-primary btn' %>
   </div>
+  
 <% end %>
 </div>

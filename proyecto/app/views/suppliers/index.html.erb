@@ -1,12 +1,14 @@
-<div ALIGN=center>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Proveedores</h1>
+<div ALIGN=center>
 <%= form_tag import_suppliers_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Importar" %>
 <% end %>
-<table>
+<table class="table table-striped">
+
   <thead>
     <tr>
       <th>Naombre</th>
@@ -22,20 +24,23 @@
         <td><%= supplier.name %></td>
         <td><%= supplier.lastname %></td>
         <td><%= supplier.email %></td>
-        <td><%= link_to 'Mostrar', supplier %></td>
-        <td><%= link_to 'Editar', edit_supplier_path(supplier) %></td>
-        <td><%= link_to 'Eliminar', supplier, method: :delete, data: { confirm: '¿Estás Seguro?' } %></td>
+        <td><%= link_to 'Mostrar', supplier, :class => 'btn btn-success btn'  %></td>
+        <td><%= link_to 'Editar', edit_supplier_path(supplier), :class => 'btn btn-primary btn' %></td>
+
+        <td><%= link_to 'Eliminar', supplier, method: :delete, data: { confirm: '¿Estás Seguro?' },:class => 'btn btn-danger btn' %></td>
       </tr>
     <% end %>
     <%if @suppliers.size == 0%>
          <td>No Hay proveedores</td>
       <%end%>
   </tbody>
+
 </table>
 
 <br>
+<%= will_paginate %>
 
-<%= link_to 'Nuevo Proveedor', new_supplier_path %>
-<%= link_to 'Menú Principal', controller: 'principal' %>
-<%= link_to "Generar pdf", "/suppliers.pdf", :format => 'pdf', target: :_blank %>
+<%= button_to "Nuevo Proveedor", { :action => "new" }, :method => :get %>
+
+
 </div>

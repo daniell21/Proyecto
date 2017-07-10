@@ -1,52 +1,59 @@
-<div ALIGN=center>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Clientes</h1>
+<div ALIGN=center>
 <%= form_tag import_clients_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Importar" %>
 <% end %>
-<table>
-  <thead>
-    <tr>
-      <th>RIF</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Email</th>
-      <th>Contribuyente Especial</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+       <div class="row">
+      <div class="col-md-4">
+        <input type="text" id="search" class="form-control" ng-model="search" placeholder="Cliente" />
+      </div>
+    </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="col-md-1">RIF</th>
+            <th class="col-md-2">Nombre</th>
+            <th class="col-md-2">Email</th>
+            <th class="col-md-2">Contribuyente</th>
+            <th class="col-md-2">País</th>
+          </tr>
+        </thead>
+        <tbody>
     <% @clients.each do |client| %>
       <tr>
         <td><%= client.rif %></td>
         <td><%= client.name %></td>
-        <td><%= client.lastname %></td>
         <td><%= client.email%></td>
+        <td><%= client.country%></td>
         <td><%= client.specialcontributor%></td>
         <% if can? :show, client %>
-        <td><%= link_to 'Mostrar', client %></td>
+        <td><%= link_to 'Mostrar', client, :class => 'btn btn-success btn'  %></td>
         <%end%>
         <% if can? :edit, client %>
-        <td><%= link_to 'Editar', edit_client_path(client) %></td>
+        <td><%= link_to 'Editar', edit_client_path(client), :class => 'btn btn-primary btn'  %></td>
         <%end%>
         <% if can? :destroy, client %>
-        <td><%= link_to 'Borrar', client, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <td><%= link_to 'Borrar', client, method: :delete, data: { confirm: '¿Estas seguro?' },:class => 'btn btn-danger btn' %></td>
         <%end%>
       </tr>
       
     <% end %>
-    <%if @clients.size == 0%>
-         <td>No Hay Clientes</td>
-      <%end%>
   </tbody>
-</table>
+      </table>
+    
+  </div>
 
 <br>
 
 <%= link_to 'Nuevo Cliente', new_client_path %>
-<%= link_to 'Menú Principal', controller: 'principal' %>
 <%= link_to "Generar pdf", "/clients.pdf", :format => 'pdf', target: :_blank %>
 </div>
+
+
+
+
+

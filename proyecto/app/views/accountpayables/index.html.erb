@@ -1,38 +1,38 @@
 
-<div ALIGN=center><p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
 <h1>Cuentas por Pagar</h1>
-<br>
-<table>
-  <thead>
-    <tr>
-    </tr>
-      <th>Proveedor</th>
-      <th>Descripcion</th>
-      <th>Total</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div ALIGN=center>
 
-  <tbody>
-    <% @accountpayables.each do |accountpayable| %>
+<table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= accountpayable.supplier.name %></td>
-        <td><%= accountpayable.descripcion %></td>
-        <td><%= accountpayable.total %></td>
-        <td><%= link_to 'Mostrar', accountpayable %></td>
-        <td><%= link_to 'Editar', edit_accountpayable_path(accountpayable) %></td>
-        <td><%= link_to 'Eliminar', accountpayable, method: :delete, data: { confirm: '¿Estás Seguro?' } %></td>
       </tr>
-    <% end %>
-    <%if @accountpayables.size == 0%>
-         <td>No Hay Cuentas por Pagar</td>
+        <th>Proveedor</th>
+        <th>Descripcion</th>
+        <th>Total</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @accountpayables.each do |accountpayable| %>
+          <tr>
+            <td><%= accountpayable.supplier.name %></td>
+            <td><%= accountpayable.descripcion %></td>
+            <td><%= accountpayable.total %></td>
+            <td><%= link_to 'Mostrar', accountpayable %></td>
+            <td><%= link_to 'Editar', edit_accountpayable_path(accountpayable) %></td>
+            <td><%= link_to 'Eliminar', accountpayable, method: :delete, data: { confirm: '¿Estás Seguro?' } %></td>
+          </tr>
+      <% end %>
+      <%if @accountpayables.size == 0%>
+           <td>No Hay Cuentas por Pagar</td>
       <%end%>
-  </tbody>
+    </tbody>
 </table>
 
 <br>
 
 <%= link_to 'Nueva Cuenta', new_accountpayable_path %>
-<%= link_to 'Menú Principal', controller: 'principal' %>
 </div>

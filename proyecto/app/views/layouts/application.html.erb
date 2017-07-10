@@ -1,26 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Proyecto</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<p class="alert"><%= alert %></p>
+  <head>
+    <meta charset="utf-8">
+    <title>Elemétrica - Admin</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	  <link rel="stylesheet" href="s//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+  </head>
+  <body>
+<%= favicon_link_tag 'favicon.ico' %>
+     <div class="navbar-default sidebar navbar-fixed" role="navigation">
+		 <img class="logo img-responsive" src="/assets/logo_data.png" />
+	     <div class="sidebar-nav navbar-collapse">
+		        
+	    </div>
+   </div>
+
+	<div class="container-fluid" id="view">
+		<div class="col-md-12">
+			<%= yield %>
+		</div>
+	<p class="alert"><%= alert %></p>
+
+</div>
 
 
 
-<%= yield %>
 
-<%if user_signed_in? %>
-<br>
-  <div ALIGN=center>
-  <p class="col-md">
-  	<%= link_to "Log Out", destroy_user_session_path , method: :delete%>
-  </p> 
-  </div>
-<%end%>
 
 </body>
 </html>
