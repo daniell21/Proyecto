@@ -1,7 +1,13 @@
 class Accountreceivable < ActiveRecord::Base
   belongs_to :client
-validates :descripcion, presence: true #uniqueness: true
-validates :total, presence: true #length: {minimum: 20}
+  before_create :calculate
+
 #validates :username, format: { with: /regex/ }
+
+private
+def calculate
+	print Accountreceivable.find(1)
+	print "HE CALCULADOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+end
 
 end

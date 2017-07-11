@@ -20,6 +20,8 @@
             <th class="col-md-2">Email</th>
             <th class="col-md-2">Contribuyente</th>
             <th class="col-md-2">País</th>
+            <th class="col-md-2">Estado</th>
+            <th class="col-md-2">Razón Social</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +32,8 @@
         <td><%= client.email%></td>
         <td><%= client.country%></td>
         <td><%= client.specialcontributor%></td>
+        <td><%= client.state%></td>
+        td><%= client.socialReason%></td>
         <% if can? :show, client %>
         <td><%= link_to 'Mostrar', client, :class => 'btn btn-success btn'  %></td>
         <%end%>

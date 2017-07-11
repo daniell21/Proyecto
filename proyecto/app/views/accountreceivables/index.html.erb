@@ -6,10 +6,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
+    <th>Código</th>
     <th>Fecha</th>
       <th>Cliente</th>
-      <th>Numero de Factura</th>
-      <th>Descripcion</th>
+      <th>Concepto</th>
       <th>Retencion de IVA</th>
       <th>Retencion de ISRL</th>
       <th>Total</th>
@@ -20,10 +20,10 @@
   <tbody>
     <% @accountreceivables.each do |accountreceivable| %>
       <tr>
-      <td><%= accountreceivable.date %></td>
+      <td><%= accountreceivable.code %></td>
+        <td><%= accountreceivable.date %></td>
         <td><%= accountreceivable.client.name %></td>
-        <td><%= accountreceivable.invoicenumber %></td>
-        <td><%= accountreceivable.descripcion %></td>
+        <td><%= accountreceivable.concept %></td>
         <td><%= accountreceivable.retentioniva %></td>
         <td><%= accountreceivable.retentionisrl %></td>
         <td><%= accountreceivable.total %></td>

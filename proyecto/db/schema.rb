@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710025943) do
+ActiveRecord::Schema.define(version: 20170710072156) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(version: 20170710025943) do
 
   create_table "accountreceivables", force: :cascade do |t|
     t.integer  "client_id"
-    t.text     "descripcion"
     t.integer  "total"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "invoicenumber"
     t.integer  "retentioniva"
     t.integer  "retentionisrl"
     t.date     "date"
+    t.string   "concept"
+    t.string   "code"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170710025943) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
+    t.string   "lastname"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "email"
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170710025943) do
     t.integer  "rif"
     t.string   "country"
     t.text     "socialReason"
+    t.string   "state"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -104,6 +106,12 @@ ActiveRecord::Schema.define(version: 20170710025943) do
     t.string   "proof"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "setups", force: :cascade do |t|
+    t.float    "mount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "suppliers", force: :cascade do |t|

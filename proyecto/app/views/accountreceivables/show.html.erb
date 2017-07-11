@@ -3,6 +3,11 @@
 <h1>Cuenta por Cobrar</h1>
 <br>
 <p>
+  <strong>Código:</strong>
+  <%= @accountreceivable.code %>
+</p>
+
+<p>
   <strong>Fecha:</strong>
   <%= @accountreceivable.date %>
 </p>
@@ -10,21 +15,17 @@
   <strong>Cuenta por Cobrar:</strong>
   <%= @accountreceivable.client.name %>
 </p>
-<p>
-  <strong>Descripcion:</strong>
-  <%= @accountreceivable.invoicenumber %>
-</p>
 
 <p>
-  <strong>Descripcion:</strong>
-  <%= @accountreceivable.descripcion %>
+  <strong>Concepto:</strong>
+  <%= @accountreceivable.concept %>
 </p>
 <p>
-  <strong>Retención de IVA:</strong>
+  <strong>Retención IVA:</strong>
   <%= @accountreceivable.retentioniva %>
 </p>
  <p>
-  <strong>Retención de ISRL:</strong>
+  <strong>Retención ISRL:</strong>
   <%= @accountreceivable.retentionisrl %>
 </p>
  

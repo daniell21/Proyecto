@@ -78,6 +78,6 @@ class AccountreceivablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accountreceivable_params
-      params.require(:accountreceivable).permit(:date, :client_id, :invoicenumber, :descripcion, :retentioniva, :retentionisrl, :total)
+      params.require(:accountreceivable).permit(:date, :client_id, :code, :concept, :retentioniva, :retentionisrl, :total)
     end
 end

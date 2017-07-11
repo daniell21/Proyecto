@@ -13,6 +13,10 @@
   <% end %>
   <br>
   <div class="field">
+  <div class="field">
+    <%= f.label :"Código" %><br>
+    <%= f.text_field :code %>
+  </div>
     <%= f.label :Fecha %><br>
     <%= f.date_field :date %>
   </div>
@@ -20,16 +24,11 @@
   <%= f.label :"Seleccione Cliente" %><br>
   <%= f.collection_select :client_id, Client.all, :id, :rif, options ={:prompt => "Select a user"} %>
 </div>
-chao
- <%=params[:client_id]%>
-hola
-<div class="field">
-    <%= f.label :"Número Factura" %><br>
-    <%= f.number_field :invoicenumber %>
-  </div>
+
+
   <div class="field">
-    <%= f.label :Descripción %><br>
-    <%= f.text_area :descripcion %>
+    <%= f.label :Concepto %><br>
+    <%= f.text_field :concept %>
   </div>
   <div class="field">
     <%= f.label :Iva %><br>
