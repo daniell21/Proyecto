@@ -6,8 +6,8 @@ class Accountreceivable < ActiveRecord::Base
 
 private
 def calculate
-	print Accountreceivable.find(1)
-	print "HE CALCULADOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+	
+	self.total = Settings.monthlyPayment + retentioniva
 end
 
 end

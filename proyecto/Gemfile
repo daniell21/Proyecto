@@ -13,7 +13,7 @@ gem 'rufus-scheduler'
 gem 'bootstrap-will_paginate'
 gem 'delayed_job_active_record'
 gem 'bootstrap-sass'
-
+gem 'config'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   
 
   
-  resources :setups
+  get 'setup/index'
+
   resources :discounts
   resources :payments
   resources :mailreminders
