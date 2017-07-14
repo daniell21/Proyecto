@@ -2,18 +2,18 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Elemétrica - Admin</title>
+    <title>Elemétrica - Sistema Cobranza</title>
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	  <%= csrf_meta_tags %>
-	  <link rel="stylesheet" href="/z/netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
   </head>
   <body>
 <%= favicon_link_tag 'favicon.ico' %>
      <div class="navbar-default sidebar navbar-fixed" role="navigation">
 		 <img class="logo img-responsive" src="/assets/logo_data.png" />
 	     <div class="sidebar-nav navbar-collapse">
-		        <ul class="nav in" id="side-menu">
+		     <ul class="nav in" id="side-menu">
 		        	<li style="list-style:none;">
 					<%= link_to 'Registrar Pago', controller: 'payments' %>
 					</li>
@@ -40,16 +40,16 @@
 		        </ul>
 		        <ul class="nav in" id="bottom-menu">
 		        	<li>
-		        		<!--<%if user_signed_in? %>
+		        		<%if user_signed_in? %>
 						  <br>
 						  <div ALIGN=center>
 							  <p class="col-md">
 							  	<%= link_to "Salir", destroy_user_session_path , method: :delete%>
 							  </p> 
 						  </div>
-						<%end%>-->
+						<%end%>
 		        	</li>
-		        </ul>
+		        </ul>   
 	    </div>
    </div>
 

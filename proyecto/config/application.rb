@@ -22,6 +22,13 @@ module Proyecto
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.to_prepare do
+    Devise::SessionsController.layout "devise.html.erb"
+    Devise::RegistrationsController.layout "devise.html.erb"
+    Devise::ConfirmationsController.layout "devise.html.erb"
+    Devise::UnlocksController.layout "devise.html.erb"
+    Devise::PasswordsController.layout "devise.html.erb"
+end
     ActionMailer::Base.smtp_settings = {
   :address =>             'smtp.gmail.com',
   :domain  =>             'mail.google.com',

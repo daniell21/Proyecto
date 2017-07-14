@@ -5,14 +5,18 @@ class Client < ActiveRecord::Base
   has_many :discounts, through: :has_discounts
     validates :name, presence: true #uniqueness: true
     validates :country, presence: true #length: {minimum: 20}
-    validates :email, uniqueness: true
+    validates :email, uniqueness: true, presence: true
+    validates :socialReason, presence: true
+    validates :discounts, presence: true
    #validates :username, format: { with: /regex/ }
    after_create :send_mail
-   #after_create :save_discounts
+      after_create :save_discounts
 #custon setter
   def discounts=(value)
      @discounts = value
   end
+#custon setter
+
     
     def self.import(file)
    spreadsheet = open_spreadsheet(file)
@@ -34,14 +38,19 @@ end
       raise "Unknown file type: #{file.original_filename}"
     end
   end
+  
+   
+
    private
    def save_discounts
+
      @discounts.each do |discount_id|
-       HasDiscount.create(discount_id: discount_id, client_id: self.id ) 
-     end
-  end
+      Has_discounts.create(discount_id: discount_id, client_id: self.id)
+    end
+   end
+
    def send_mail
-   	ClientMailer.delay.new_client(self)
+    ClientMailer.delay.new_client(self)
    end
 
 end

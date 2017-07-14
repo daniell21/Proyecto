@@ -1,5 +1,5 @@
 <div ALIGN=center>
-<%= form_for(@accountreceivable) do |f| %>
+<%= simple_form_for(@accountreceivable, html: { class: 'form-inline' }) do |f| %>
   <% if @accountreceivable.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@accountreceivable.errors.count, "error") %> prohibited this accountreceivable from being saved:</h2>
@@ -14,18 +14,16 @@
   <br>
   <div class="field">
   <div class="field">
-    <%= f.label :"Código" %><br>
-    <%= f.text_field :code %>
+    <%= f.label :"Código Profit", placeholder: 'Código Profit', label: 'Código Profit' %><br>
+    <%= f.input :profitCode %>
   </div>
-    <%= f.label :Fecha %><br>
-    <%= f.date_field :date %>
+    
+    <%= f.input :date, placeholder: 'Fecha', label: 'Fecha' %>
   </div>
   <div class="field">
   <%= f.label :"Seleccione Cliente" %><br>
   <%= f.collection_select :client_id, Client.all, :id, :rif, options ={:prompt => "Select a user"} %>
 </div>
-
-
   <div class="field">
     <%= f.label :Concepto %><br>
     <%= f.text_field :concept %>

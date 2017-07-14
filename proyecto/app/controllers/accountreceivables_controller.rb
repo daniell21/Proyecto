@@ -28,8 +28,7 @@ class AccountreceivablesController < ApplicationController
   def create
     @accountreceivable = Accountreceivable.new(accountreceivable_params)
     respond_to do |format|
-      print accountreceivable_params
-      print "hola"
+    
       if @accountreceivable.save
         format.html { redirect_to accountreceivables_url, notice: 'La cuenta ha sido creada exitosamente.' }
         format.json { render :show, status: :created, location: @accountreceivable }
@@ -67,6 +66,7 @@ class AccountreceivablesController < ApplicationController
      Accountreceivable.import(params[:file])
      redirect_to accountreceivables_path, notice: "Pago importado."
    end
+
   private
     def set_client
       @client = Client.find(params[:client_id])
@@ -78,6 +78,6 @@ class AccountreceivablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accountreceivable_params
-      params.require(:accountreceivable).permit(:date, :client_id, :code, :concept, :retentioniva, :retentionisrl, :total)
+      params.require(:accountreceivable).permit(:date, :client_id, :code, :concept, :retentioniva, :retentionisrl, :total, :profitCode)
     end
 end

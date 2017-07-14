@@ -1,50 +1,62 @@
 <div ALIGN=center>
-<%= form_for(@client) do |f| %>
+<%= simple_form_for(@client, html: { class: 'form-inline' }) do |f| %>
+
   <% if @client.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+      <h2> Faltaron <%=@client.errors.count %> datos por rellenar:</h2>
 
       <ul>
-      <% @client.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+      
       </ul>
     </div>
   <% end %>
    <div class="field">
-    <%= f.label :Rif %><br>
-    <%= f.number_field :rif %>
+    <%= f.input :rif, placeholder: 'RIF', label: 'RIF'%>
+
   </div>
   <div class="field">
-    <%= f.label :Nombre %><br>
-    <%= f.text_field :name %>
+   
+    <%= f.input :name, placeholder: 'Nombre', label: 'Nombre' %>
   </div>
   <div class="field">
-    <%= f.label :Email %><br>
-    <%= f.text_field :email %>
+  
+    <%= f.input :email, placeholder: 'Correo', label: 'Correo' %>
   </div>
   <div class="field">
-    <%= f.label :País %><br>
-    <%= f.text_field :country %>
+    <%= f.input :country, required: true, placeholder: 'Venezuela', label: 'Pais' %>
   </div>
    <div class="field">
-    <%= f.label :Estado %><br>
-    <%= f.text_field :state %>
+  
+    <%= f.input :state, placeholder: 'Estado' %>
   </div>
   <div class="field">
-    <%= f.label :Razón %><br>
-    <%= f.text_field :socialReason %>
+    <%= f.input :socialReason, placeholder: 'Razón Social' %>
   </div>
   <div class="field">
-  <%= f.label :"ontribuyente Especial" %><br>
+    <%= f.label :"ontribuyente Especial" %><br>
     <select name="client[specialcontributor]">
-  <option value="" selected="selected">Seleccione</option>
-  <option value="true">Si</option>
-  <option value="false">No</option>
-</select>
+      <option value="" selected="selected">Seleccione</option>
+      <option value="true">Si</option>
+      <option value="false">No</option>
+  </select>
   </div>
+      
+  <br>
   <div class="actions">
-    <%= f.submit 'Crear Cliente'%>
+    <%= f.association :discounts, 
+                     as: :check_boxes, 
+                     label_method: :name, 
+                     value_method: :id,
+                     label: 'Descuentos' %>
+  </div>
+  <div class="field">
+
+  <%= f.association :discounts,   as: :check_boxes %>
+  </div>
+
+  <br>
+  <div class="actions">
+    <%= f.button :submit, "Crear Ciente"%>
   </div>
 <% end %>
 <div>
