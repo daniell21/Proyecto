@@ -31,7 +31,11 @@
   <strong>Contribuyente Especial:</strong>
   <%= @client.specialcontributor %>
 </p>
-
+<p>
+  <p>
+    Descuentos: <%= @client.discounts.map(&:name).join(',') %>
+</p>
+</p>
 <div class="field">
     <h3>Correos</h3>
 	<%=render "clientmails/form"%> 

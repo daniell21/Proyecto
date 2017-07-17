@@ -42,18 +42,17 @@
   </div>
       
   <br>
-  <div class="actions">
-    <%= f.association :discounts, 
-                     as: :check_boxes, 
-                     label_method: :name, 
-                     value_method: :id,
-                     label: 'Descuentos' %>
-  </div>
+
   <div class="field">
 
-  <%= f.association :discounts,   as: :check_boxes %>
-  </div>
+  
+  <%=f.collection_check_boxes :discount_ids, Discount.all, :id, :name %>
 
+</div>
+
+
+
+  
   <br>
   <div class="actions">
     <%= f.button :submit, "Crear Ciente"%>

@@ -33,7 +33,8 @@ class SuppliersController < ApplicationController
   # POST /suppliers.json
   def create
     @supplier = Supplier.new(supplier_params)
-
+   
+    @supplier.tops << @tops
     respond_to do |format|
       if @supplier.save
         format.html { redirect_to suppliers_url, notice: 'Supplier was successfully created.' }
@@ -48,6 +49,7 @@ class SuppliersController < ApplicationController
   # PATCH/PUT /suppliers/1
   # PATCH/PUT /suppliers/1.json
   def update
+    params[:supplier][:top_ids] ||=[]
     respond_to do |format|
       if @supplier.update(supplier_params)
         format.html { redirect_to @supplier, notice: 'Supplier was successfully updated.' }
@@ -80,6 +82,6 @@ class SuppliersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supplier_params
-      params.require(:supplier).permit(:name, :lastname, :email)
+      params.require(:supplier).permit!
     end
 end

@@ -1,4 +1,3 @@
 class Discount < ActiveRecord::Base
-	has_many :has_discounts
-	has_many :clients, through: :has_discounts
+	 has_and_belongs_to_many :clients
 end

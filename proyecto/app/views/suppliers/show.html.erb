@@ -15,6 +15,10 @@
   <strong>Email:</strong>
   <%= @supplier.email %>
 </p>
+<p>
+  <strong>Tops:</strong>
+  <%= @supplier.tops.map(&:name).join(',') %>
+</p>
 
 <%= link_to 'Editar', edit_supplier_path(@supplier) %> |
 <%= link_to 'Atrás', suppliers_path %>

@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   
 
   
+  resources :tops
+  resources :groups
+  resources :groups
   get 'setup/index'
 
   resources :discounts

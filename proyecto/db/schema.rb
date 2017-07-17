@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713204158) do
+ActiveRecord::Schema.define(version: 20170717053143) do
+
+  create_table "Groups_Suppliers", id: false, force: :cascade do |t|
+    t.integer "supplier_id", null: false
+    t.integer "group_id",    null: false
+  end
+
+  add_index "Groups_Suppliers", ["group_id", "supplier_id"], name: "index_Groups_Suppliers_on_group_id_and_supplier_id"
+  add_index "Groups_Suppliers", ["supplier_id", "group_id"], name: "index_Groups_Suppliers_on_supplier_id_and_group_id"
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -61,6 +69,11 @@ ActiveRecord::Schema.define(version: 20170713204158) do
     t.string   "state"
   end
 
+  create_table "clients_discounts", force: :cascade do |t|
+    t.integer "client_id"
+    t.integer "discount_id"
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
@@ -101,6 +114,16 @@ ActiveRecord::Schema.define(version: 20170713204158) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "Supplier_id"
+    t.integer  "Group_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "memberships", ["Group_id"], name: "index_memberships_on_Group_id"
+  add_index "memberships", ["Supplier_id"], name: "index_memberships_on_Supplier_id"
+
   create_table "payments", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -109,16 +132,16 @@ ActiveRecord::Schema.define(version: 20170713204158) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "setups", force: :cascade do |t|
-    t.float    "mount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "suppliers", force: :cascade do |t|
     t.string   "name"
     t.string   "lastname"
     t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tops", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
