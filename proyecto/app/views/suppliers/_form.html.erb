@@ -23,15 +23,7 @@
   <div class="field">
     <%= f.input :email, placeholder: 'Correo', label: 'Correo' %>
   </div>
-<div class="field">
- 
-<% for top in Top.all %>
-<div>
-  <%= check_box_tag "client[discount_ids][]", discount.id, @client.categories.include?(discount), {:id => dom_id(discount, dom_id(@client)) } %>
-</div>
-<% end %>
 
-  </div>
 
  
  

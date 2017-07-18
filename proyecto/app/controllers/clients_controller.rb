@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
   # GET /clients.json
   def index
     #obtiene todos los registros de la tabla client
-    @clients = Client.all
+    @clients = Client.search(params[:search]).order(:name).paginate(:per_page => 5, :page => params[:page])
     respond_to do |format|
     format.html
     format.json

@@ -2,12 +2,12 @@
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-inline' }) do |f| %>
   <div class="field">
-    <%= f.input :email, autofocus: true, placeholder: 'Correo' %>
+    <%= f.input :email, autofocus: true, placeholder: 'Correo Electrónico', :label => "Correo Electrónico", label: false  %>
   </div>
 <br>
-  <div class="field">
+  <div class="row-fluid">
 
-    <%= f.input :password, autocomplete: "off" %>
+    <%= f.input :password, autocomplete: "off", placeholder: 'Contraseña', label: false%>
   </div>
 
   <% if devise_mapping.rememberable? -%>

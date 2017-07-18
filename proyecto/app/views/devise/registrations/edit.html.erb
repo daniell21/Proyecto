@@ -5,16 +5,16 @@
 
   <div class="field">
 
-    <%= f.input :email, autofocus: true %>
+    <%= f.input :email, autofocus: true, placeholder: 'Correo Electrónico', label: false  %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <div>Esperando Confirmación: <%= resource.unconfirmed_email %></div>
   <% end %>
 
   <div class="field">
  
-    <%= f.input :password, autocomplete: "off" %>
+    <%= f.input :password, autocomplete: "off", placeholder: 'Contraseña', label: false %>
     <% if @minimum_password_length %>
       <br />
       <em><%= @minimum_password_length %> characters minimum</em>
@@ -23,12 +23,12 @@
 
   <div class="field">
 
-    <%= f.input :password_confirmation, autocomplete: "off" %>
+    <%= f.input :password_confirmation, autocomplete: "off", placeholder: 'Confirmacion Contraseña', label: false, label: false %>
   </div>
 
   <div class="field">
 
-    <%= f.input :current_password, autocomplete: "off" %>
+    <%= f.input :current_password, autocomplete: "off", placeholder: 'Contraseña Anterior', label: false %>
   </div>
 
   <div class="actions">

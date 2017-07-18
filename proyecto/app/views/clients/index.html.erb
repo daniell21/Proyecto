@@ -3,14 +3,20 @@
 
 <h1>Clientes</h1>
 <div ALIGN=center>
+
+
+
 <%= form_tag import_clients_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Importar" %>
 <% end %>
        <div class="row">
-      <div class="col-md-4">
-        <input type="text" id="search" class="form-control" ng-model="search" placeholder="Cliente" />
-      </div>
+      <%= form_tag clients_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
     </div>
       <table class="table table-striped">
         <thead>
@@ -49,7 +55,7 @@
     <% end %>
   </tbody>
       </table>
-    
+    <%= will_paginate %>
   </div>
 
 <br>
