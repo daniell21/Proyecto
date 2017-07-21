@@ -3,34 +3,38 @@
 
   
    <div class="field">
-    <%= f.input :rif, placeholder: 'RIF', label: 'RIF'%>
+   <label>RIF</label>
+    <%= f.input :rif, placeholder: 'RIF', label: false, error: 'Debe ingresar el RIF del Cliente'%>
 
   </div>
   
   <div class="field">
-    <%= f.input :profitCode, placeholder: 'Código Profit', label: 'Profit'%>
+  <label>Código Profit</label>
+    <%= f.input :profitCode, placeholder: 'Código Profit', label: false, error: 'Debe ingresar el Código Profit'%>
 
   </div>
   <div class="field">
-   
-    <%= f.input :name, placeholder: 'Nombre', label: 'Nombre' %>
+   <label>Nombre</label>
+    <%= f.input :name, placeholder: 'Nombre', label: false, error: 'Debe ingresar el nombre del Cliente' %>
   </div>
   <div class="field">
-  
-    <%= f.input :email, placeholder: 'Correo', label: 'Correo' %>
+  <label>Correo</label>
+    <%= f.input :email, placeholder: 'Correo', label: false, error: 'Debe ingresar el Correo del Cliente' %>
   </div>
   <div class="field">
-    <%= f.input :country, required: true, placeholder: 'Venezuela', label: 'Pais' %>
+  <label>País</label>
+    <%= f.input :country, required: true, placeholder: 'Venezuela', label: false, error: 'Debe ingresar el país del Cliente' %>
   </div>
    <div class="field">
-  
-    <%= f.input :state, placeholder: 'Estado' %>
+    <label>Estado</label>
+    <%= f.input :state, placeholder: 'Estado', label: false, error: 'Debe ingresar el Estado del CLiente' %>
   </div>
   <div class="field">
-    <%= f.input :socialReason, placeholder: 'Razón Social' %>
+  <label>Razón Social</label>
+    <%= f.input :socialReason, placeholder: 'Razón Social', label: false, error: 'Debe ingresar la Razón Social del Cliente' %>
   </div>
   <div class="field">
-    <%= f.label :"ontribuyente Especial" %><br>
+    <label>Contribuyente Especial</label>
     <select name="client[specialcontributor]">
       <option value="" selected="selected">Seleccione</option>
       <option value="true">Si</option>

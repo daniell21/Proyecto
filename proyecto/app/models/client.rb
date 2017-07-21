@@ -7,6 +7,11 @@ class Client < ActiveRecord::Base
     validates :email, uniqueness: true, presence: true
     validates :socialReason, presence: true
     validates_presence_of :name
+    validates :state, presence: true
+    validates :rif, presence: true
+    validates :profitCode, presence: true
+    validates :specialcontributor, presence: true
+    
    #validates :username, format: { with: /regex/ }
    #after_create :send_mail
   

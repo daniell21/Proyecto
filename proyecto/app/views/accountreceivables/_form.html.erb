@@ -1,102 +1,113 @@
 <div ALIGN=center>
   <%= simple_form_for(@accountreceivable, html: { class: 'form-inline' }) do |f| %>
-    
+       
+          <br>
           <div class="row">
-            <div class="col-xs-4">
-              <label>Cliente</label>
+            <div class="col-xs-6">
+              
               <%= f.collection_select :client_id, Client.all, :id, :rif, options ={:prompt => "Seleccionar Cliente"} %>
             </div>
-            <div class="col-xs-4">
-              <label>Fecha</label>
+            <div class="col-xs-6">
+              
               <%= f.input :date, label: false%>
+            </div>
+            
+            
+          </div>
+          <br>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              
+              <%= f.input :concept, presence: true, :collection => [['Mensualidad','mensualidad'],['Instalación','instalacion'],['Instalación y Mensualidad','instalacionMensualidad'],['Reactivación','reactivacion']], label: false,
+                  include_blank: "Concepto de la Cuenta", error: 'Debe ingresar el concepto de la Cuenta' %>
+            </div>
+
+            
+
+            <div class="col-md-6"> 
+              
+                <%= f.input :status, :collection => [['Facturada','facturada'],['Anulada','anulada'],['Incobrable','incobrable']], label: false,
+                  include_blank: "Status de la Cuenta", error: 'Debe seleccionar el Status de la Cuenta' %>
             </div>
           </div>
           <br>
           <br>
           <div class="row">
-            <div class="col-md-3">
-            <label>Concepto</label>
-              <%= f.input :concept, presence: true, :collection => [['Mensualidad','mensualidad'],['Instalación','instalacion'],['Instalación y Mensualidad','instalacionMensualidad'],['Reactivación','reactivacion']], label: false, error: 'Debe ingresar el concepto de la Cuenta' %>
-            </div>
-
-            
-
-            <div class="col-md-3"> 
-              <label>Status</label>
-                <%= f.input :status, :collection => [['Facturada','facturada'],['Anulada','anulada'],['Incobrable','incobrable']], label: false, error: 'Debe seleccionar el Status de la Cuenta' %>
-            </div>
-
-           
-            
-            <div class="col-md-3">
-              <label>Tipo de pago</label>
-                  <%= f.input :paymentType, :collection => [['Transferencia','transferencia'],['Deposito','deposito']], label: false, error: 'Debe seleccionar el tipo de pago' %>
+            <div class="col-md-6">
+              
+                  <%= f.input :paymentType, :collection => [['Transferencia','transferencia'],['Deposito','deposito']], label: false, 
+                  include_blank: "Tipo de Pago",error: 'Debe seleccionar el tipo de pago' %>
             </div>
 
         
         
-            <div class="col-md-3">
-              <label>Retenciones</label>
+            <div class="col-md-6">
+              
                 <%= f.input :retentionIva, as: :boolean, checked_value: true, unchecked_value: false, label: "Retención Iva" %>
                 <%= f.input :retentionIsrl, as: :boolean, checked_value: true, unchecked_value: false, label: "Retención Isrl" %>
             </div>
           </div>
-            <br>
-            <br>
+          <br>
+          <br>
           <div class="row">
+            <div class="col-md-6">
+              
+                <%= f.input :month, :collection => [['enero','enero'],['febrero','febrero'],['marzo','marzo'],['abril','abril'],['mayo','mayo'],['junio','junio'],['julio','julio'],['agosto','agosto'],['septiembre','septiembre'],['octubre','octubre'],['noviembre','noviembre'],['diciembre','diciembre']], label: false, 
+                  include_blank: "Mes de Pago",error: 'Debe seleccionar el mes de pago' %>
+            </div>  
+            <div class="col-md-6">
+              
+                <%= f.input :paid, :collection => [['Si','si'],['No','no']], label: false, error: 'Debe indicar si la cuenta fue pagada o no', 
+                  include_blank: "Status de la Factura" %>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+          <div class="col-md-6"> 
+              <%= f.input :bank, :collection => [["100%BANCO",'100%banco'],['Mercantil','mercantil'],['Banco Provincial','provincial'],['Banesco','banesco'],['Banco Banplus','banplus'],['Banco Bicentenario','bicentenario']], label: false, 
+                  include_blank: "Banco" %>
+            </div>
             
+          
             
-            <div class="col-md-3">
-              <label>Mes de Pago</label>
-                <%= f.input :month, :collection => [['enero','enero'],['febrero','febrero'],['marzo','marzo'],['abril','abril'],['mayo','mayo'],['junio','junio'],['julio','julio'],['agosto','agosto'],['septiembre','septiembre'],['octubre','octubre'],['noviembre','noviembre'],['diciembre','diciembre']], label: false, error: 'Debe seleccionar el mes de pago' %>
+            <div class="col-md-6"> 
+              
+                <%= f.input :transferNumber, placeholder: 'Número Transferencia', label: false %>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+            <div class="col-md-6"> 
+              
+                <%= f.input :paymentComment, placeholder: 'Comentarios', label: false %>
             </div>
           
-           
           
-            <div class="col-md-2">
-              <label>Pagado</label>
-                <%= f.input :paid, :collection => [['Si','si'],['No','no']], label: false, error: 'Debe indicar si la cuenta fue pagada o no' %>
+             
+            <div class="col-md-6"> 
+              <%= f.input :accountNumber, placeholder: 'Número Cuenta Cliente', label: false%>
             </div>
-        
-        
-          <div class="col-md-3"> 
-            <label>Comentarios</label> 
-              <%= f.input :paymentComment, placeholder: 'Comentarios', label: false %>
           </div>
+          <br>
+          <br>  
+          <div class="row">
         
-          
-          <div class="col-md-3"> 
-            <label>#Transferencia</label> 
-              <%= f.input :transferNumber, placeholder: 'Número Transferencia', label: false %>
-          </div>
+            <div class="col-md-6">  
+              <%= f.input :profitNumber, placeholder: 'Número de Profit', label: false%>
+            </div>
+
+            
+
+            <div class="col-md-6"> 
+              <%= f.input :profitCode, placeholder: 'Código Profit', label: false%>
+            </div>  
         </div>
         <br>
         <br>
-         <div class="row"> 
-          <div class="col-md-3"> 
-            <%= f.input :accountNumber, placeholder: 'Número Cuenta Cliente', label: "Cuenta Cliente" %>
-          </div>
 
-          
-
-        
-          <div class="col-md-3">  
-            <%= f.input :profitNumber, placeholder: 'Número de Profit', label: "Numero" %>
-          </div>
-
-          
-
-          <div class="col-md-3"> 
-            <%= f.input :profitCode, placeholder: 'Código Profit', label: "Código" %>
-          </div>
-         
-          
-          <div class="col-md-3"> 
-            <%= f.input :bank, :collection => [["100%BANCO",'100%banco'],['Mercantil','mercantil'],['Banco Provincial','provincial'],['Banesco','banesco'],['Banco Banplus','banplus'],['Banco Bicentenario','bicentenario']], label: "Mes", placeholder: 'Código Profit' %>
-          </div>
-        </div>
-
-        <br>
 </div>
 <div ALIGN=right>
         <div class="actions">
