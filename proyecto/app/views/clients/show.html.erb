@@ -1,9 +1,15 @@
-<div ALIGN=center>
+
 <p id="notice"><%= notice %></p>
 <h1>Cliente</h1>
+<div ALIGN=center>
 <p> 
   <strong>RIF:</strong>
   <%= @client.rif %>
+</p>
+
+<p> 
+  <strong>Código Profit:</strong>
+  <%= @client.profitCode %>
 </p>
 <p> 
   <strong>Nombre:</strong>
@@ -48,6 +54,8 @@
 		<%end%>
 	</ul>
 </div>
-<%= link_to 'Editar', edit_client_path(@client) %> |
-<%= link_to 'Atrás', clients_path %>
+</div>
+<div ALIGN=right>
+
+<%= link_to 'Atrás', clients_path, :class => 'btn btn-default btn' %>
 </div>

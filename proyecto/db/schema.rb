@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717053143) do
+ActiveRecord::Schema.define(version: 20170721034423) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -31,20 +31,8 @@ ActiveRecord::Schema.define(version: 20170717053143) do
 
   add_index "accountpayables", ["supplier_id"], name: "index_accountpayables_on_supplier_id"
 
-  create_table "accountreceivables", force: :cascade do |t|
-    t.integer  "client_id"
-    t.integer  "total"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "retentioniva"
-    t.integer  "retentionisrl"
-    t.date     "date"
-    t.string   "concept"
-    t.string   "code"
-    t.string   "profitCode"
-  end
-
-  add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
+# Could not dump table "accountreceivables" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "clientmails", force: :cascade do |t|
     t.string   "title"
@@ -58,7 +46,6 @@ ActiveRecord::Schema.define(version: 20170717053143) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
-    t.string   "lastname"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "email"
@@ -67,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170717053143) do
     t.string   "country"
     t.text     "socialReason"
     t.string   "state"
+    t.string   "profitCode"
   end
 
   create_table "clients_discounts", force: :cascade do |t|

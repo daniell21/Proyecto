@@ -26,13 +26,12 @@
             <td><%= link_to 'Eliminar', accountpayable, method: :delete, data: { confirm: '¿Estás Seguro?' } %></td>
           </tr>
       <% end %>
-      <%if @accountpayables.size == 0%>
-           <td>No Hay Cuentas por Pagar</td>
-      <%end%>
+      
     </tbody>
 </table>
 
 <br>
-
-<%= link_to 'Nueva Cuenta', new_accountpayable_path %>
+</div>
+<div ALIGN=right>
+<%= link_to 'Nueva Cuenta', new_accountpayable_path, :class => 'btn btn-default btn'  %>
 </div>

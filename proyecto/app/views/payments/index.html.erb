@@ -2,9 +2,9 @@
 
 <h1>Pagos</h1>
 <div ALIGN=center>
-<%= form_tag import_accountreceivables_path, multipart: true do %>
+<!--<%= form_tag import_accountreceivables_path, multipart: true do %>
    <%= file_field_tag :file %>
-   <%= submit_tag "Importar" %>
+   <%= submit_tag "Importar" %>-->
  <% end %>
 <table>
   <table class="table table-striped">
@@ -22,14 +22,15 @@
         <td><%= payment.name %></td>
         <td><%= payment.description %></td>
         <td><a href="<%= payment.proof %>">Download</a></td>
-        <td><%= link_to 'Show', payment %></td>
-        <td><%= link_to 'Edit', edit_payment_path(payment) %></td>
-        <td><%= link_to 'Destroy', payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', payment, :class => 'btn btn-success btn'  %></td>
+        <td><%= link_to 'Edit', edit_payment_path(payment), :class => 'btn btn-warning btn' %></td>
+        <td><%= link_to 'Destroy', payment, method: :delete, data: { confirm: 'Are you sure?' },:class => 'btn btn-danger btn'  %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
 <br>
-
-<%= link_to 'New Payment', new_payment_path %>
+<div align=right>
+<%= link_to 'Nuevo Pago', new_payment_path, :class => 'btn btn-default btn'  %>
+</div>

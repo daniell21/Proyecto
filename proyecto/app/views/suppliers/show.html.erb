@@ -14,12 +14,9 @@
 <p>
   <strong>Email:</strong>
   <%= @supplier.email %>
-</p>
-<p>
-  <strong>Tops:</strong>
-  <%= @supplier.tops.map(&:name).join(',') %>
-</p>
 
-<%= link_to 'Editar', edit_supplier_path(@supplier) %> |
-<%= link_to 'Atrás', suppliers_path %>
+</div>
+<div ALIGN=right>
+
+<%= link_to 'Atrás', suppliers_path, :class => 'btn btn-default btn' %>
 </div>

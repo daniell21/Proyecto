@@ -1,15 +1,13 @@
-<div ALIGN=center>
+
 <p id="notice"><%= notice %></p>
 <h1>Cuenta por Cobrar</h1>
 <br>
+<div ALIGN=center>
 <p>
   <strong>Código:</strong>
   <%= @accountreceivable.code %>
 </p>
-<p>
-  <strong>Código Profit:</strong>
-  <%= @accountreceivable.profitCode %>
-</p>
+
 <p>
   <strong>Fecha:</strong>
   <%= @accountreceivable.date %>
@@ -20,23 +18,72 @@
 </p>
 
 <p>
+  <strong>Monto Base:</strong>
+  <%= @accountreceivable.baseAmount %>
+</p>
+<p>
   <strong>Concepto:</strong>
   <%= @accountreceivable.concept %>
 </p>
 <p>
   <strong>Retención IVA:</strong>
-  <%= @accountreceivable.retentioniva %>
+  <%= @accountreceivable.retentionIva %>
 </p>
  <p>
   <strong>Retención ISRL:</strong>
-  <%= @accountreceivable.retentionisrl %>
+  <%= @accountreceivable.retentionIsrl %>
 </p>
  
 <p>
-  <strong>Total:</strong>
-  <%= @accountreceivable.total %>
+  <strong>Monto sin Iva:</strong>
+  <%= @accountreceivable.amountWithoutTax %>
 </p>
- 
+
+<p>
+  <strong>Monto con Iva:</strong>
+  <%= @accountreceivable.amountWithtTax %>
+</p>
+ <p>
+  <strong>Total Retenciones:</strong>
+  <%= @accountreceivable.totalRetentions %>
+</p>
+<p>
+  <strong>Total Retenciones:</strong>
+  <%= @accountreceivable.totalAmountPerceive %>
+</p>
+<p>
+  <strong>Estado de Pago:</strong>
+  <%= @accountreceivable.status %>
+</p>
+<p>
+  <strong>Tipo de Pago:</strong>
+  <%= @accountreceivable.paymentType %>
+</p>
+<p>
+  <strong>Comentarios:</strong>
+  <%= @accountreceivable.paymentComment %>
+</p>
+<p>
+  <strong>Numero de Transferencia:</strong>
+  <%= @accountreceivable.transferNumber %>
+</p>
+<p>
+  <strong>Numero de Cuenta:</strong>
+  <%= @accountreceivable.accountNumber %>
+</p>
+<p>
+  <strong>Numero de transferencia:</strong>
+  <%= @accountreceivable.profitNumber %>
+</p>
+<p>
+  <strong>Numero de transferencia:</strong>
+  <%= @accountreceivable.profitCode %>
+</p>
+<p>
+  <strong>Numero de transferencia:</strong>
+  <%= @accountreceivable.bank %>
+</p>
+
  <%# link_to 'Edit', edit_accountreceivable_path(@accountreceivable) %> 
 
 <%= link_to 'Atrás', accountreceivables_path %>

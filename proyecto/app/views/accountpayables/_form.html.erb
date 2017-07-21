@@ -1,31 +1,26 @@
 <div ALIGN=center>
-<%= form_for(@accountpayable) do |f| %>
-  <% if @accountpayable.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@accountpayable.errors.count, "error") %> prohibited this accountpayable from being saved:</h2>
-
-      <ul>
-      <% @accountpayable.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for(@accountpayable, html: { class: 'form-inline' }) do |f| %>
+  
   <div class="field">
-  <%= f.label :"Seleccione Proveedor" %><br>
+  <label>Proveedor</label>
   <%= f.collection_select :supplier_id, Supplier.all, :id, :name %>
 </div>
+<br>
   <div class="field">
-    <%= f.label :descripcion %><br>
-    <%= f.text_field :descripcion %>
+    <label>Descripción</label>
+    <%= f.input :descripcion, label: false %>
   </div>
+  <br>
   <div class="field">
-    <%= f.label :total %><br>
-    <%= f.number_field :total %>
+    <label>Total</label>
+    <%= f.input :total, label: false %>
   </div>
-  
+  <br>
+  </div>
+  <div ALIGN=right>
   <div class="actions">
-    <%= f.submit 'Crear Cuenta'%>
+    <%= f.button :submit, "Crear Cuenta"%>  
+    <%= link_to 'Atrás', accountpayables_path, :class => 'btn btn-default btn'  %>
   </div>
 <% end %>
 </div>

@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
-
+<h1>Descuento</h1>
+<div ALIGN=center>
 <p>
   <strong>Name:</strong>
   <%= @discount.name %>
@@ -15,7 +16,10 @@
 <div>
 	<%= client.name %>
 </div>
+</div>
 <%end%>
 </p>
-<%= link_to 'Edit', edit_discount_path(@discount) %> |
-<%= link_to 'Back', discounts_path %>
+<div ALIGN=right>
+
+<%= link_to 'Atrás', discounts_path, :class => 'btn btn-default btn' %>
+</div>

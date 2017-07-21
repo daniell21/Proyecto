@@ -3,8 +3,7 @@ class Supplier < ActiveRecord::Base
 	validates :name, presence: true #uniqueness: true
     validates :lastname, presence: true #length: {minimum: 20}
     validates :email, uniqueness: true
-    has_and_belongs_to_many :tops
-    validates_presence_of :name
+
    #validates :username, format: { with: /regex/ }
    def self.import(file)
    spreadsheet = open_spreadsheet(file)

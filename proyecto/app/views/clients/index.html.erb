@@ -34,7 +34,8 @@
         </thead>
         <tbody>
     <% @clients.each do |client| %>
-      <tr>
+      <!--<tr data-link="<%= edit_client_path(client) %>">-->
+       <tr link="<%= edit_client_path(client) %>">
         <td><%= client.rif %></td>
         <td><%= client.name %></td>
         <td><%= client.email%></td>
@@ -45,7 +46,7 @@
         <td><%= link_to 'Mostrar', client, :class => 'btn btn-success btn'  %></td>
         <%end%>
         <% if can? :edit, client %>
-        <td><%= link_to 'Editar', edit_client_path(client), :class => 'btn btn-primary btn'  %></td>
+        <td><%= link_to 'Editar', edit_client_path(client), :class => 'btn btn-warning btn'  %></td>
         <%end%>
         <% if can? :destroy, client %>
         <td><%= link_to 'Borrar', client, method: :delete, data: { confirm: '¿Estas seguro?' },:class => 'btn btn-danger btn' %></td>
@@ -59,9 +60,10 @@
   </div>
 
 <br>
-
-<%= link_to 'Nuevo Cliente', new_client_path %>
-<%= link_to "Generar pdf", "/clients.pdf", :format => 'pdf', target: :_blank %>
+<div ALIGN=right>
+  <%= link_to 'Nuevo Cliente', new_client_path, :class => 'btn btn-default btn'  %>
+  <%= link_to "Generar pdf", "/clients.pdf", :format => 'pdf', target: :_blank, :class => 'btn btn-default btn'  %>
+</div>
 </div>
 
 

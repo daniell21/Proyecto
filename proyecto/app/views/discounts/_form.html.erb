@@ -1,25 +1,23 @@
-<%= form_for(@discount) do |f| %>
-  <% if @discount.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@discount.errors.count, "error") %> prohibited this discount from being saved:</h2>
-
-      <ul>
-      <% @discount.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div ALIGN=center>
+<%= simple_form_for(@discount, html: { class: 'form-inline' }) do |f| %>
+ 
+    
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+   <label>Nombre</label>
+    <%= f.input :name, placeholder: 'Nombre', label: false, error: 'Debe ingresar el nombre del Descuento'  %>
   </div>
+  <br>
   <div class="field">
-    <%= f.label :percentage %><br>
-    <%= f.number_field :percentage %>
+    <label>Porcentaje</label>
+    <%= f.input :percentage, placeholder: 'Porcentaje', label: false %>
   </div>
+  <br>
+  </div>
+  <div ALIGN=right>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit, "Crear Descuento"%>  
+    <%= link_to 'Atrás', discounts_path, :class => 'btn btn-default btn'  %>
+  </div>
   </div>
 <% end %>

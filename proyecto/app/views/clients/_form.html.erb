@@ -1,17 +1,14 @@
 <div ALIGN=center>
 <%= simple_form_for(@client, html: { class: 'form-inline' }) do |f| %>
 
-  <% if @client.errors.any? %>
-    <div id="error_explanation">
-      <h2> Faltaron <%=@client.errors.count %> datos por rellenar:</h2>
-
-      <ul>
-      
-      </ul>
-    </div>
-  <% end %>
+  
    <div class="field">
     <%= f.input :rif, placeholder: 'RIF', label: 'RIF'%>
+
+  </div>
+  
+  <div class="field">
+    <%= f.input :profitCode, placeholder: 'Código Profit', label: 'Profit'%>
 
   </div>
   <div class="field">
@@ -43,18 +40,20 @@
       
   <br>
 
-<div class="field">
+  <div class="field">
 
-  
-  <%=f.collection_check_boxes :discount_ids, Discount.all, :id, :name %>
+    
+    <%=f.collection_check_boxes :discount_ids, Discount.all, :id, :name %>
 
-</div>
+  </div>
 
-
-  
+<div>
+<br>
+<div ALIGN=right>  
   <br>
   <div class="actions">
-    <%= f.button :submit, "Crear Ciente"%>
+    <%= f.button :submit, "Crear Ciente"%>  
+    <%= link_to 'Atrás', clients_path, :class => 'btn btn-default btn'  %>
   </div>
 <% end %>
 <div>

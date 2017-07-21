@@ -1,6 +1,7 @@
-<div ALIGN=center>
+
 <p id="notice"><%= notice %></p>
 <h1>Usuario</h1>
+<div ALIGN=center>
 <p>
   <strong>Correo:</strong>
   <%= @user.email %>
@@ -9,6 +10,9 @@
   <strong>Rol:</strong>
   <%= @user.role%>
 </p>
-<%= link_to 'Editar', edit_user_path(@user) %> |
-<%= link_to 'Atrás', users_path %>
+
+
+</div>
+<div ALIGN=right>
+<%= link_to 'Atrás', users_path, :class => 'btn btn-default btn' %>
 </div>
