@@ -7,8 +7,8 @@ class Accountreceivable < ActiveRecord::Base
   validates :paymentType, presence: true
   #validates :monthlyPayment, presence: true	
   validates :paid, presence: true
-  before_create :calculateCode
-  before_create :calculateBaseAmount
+  before_save :calculateCode
+  before_save :calculateBaseAmount
   before_save :calculateBasicAmount
   before_save :calculateAmountWithTax
   before_save :calculateRetentions
