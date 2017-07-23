@@ -5,14 +5,12 @@
           <div class="row">
             <div class="col-xs-6">
               
-            <label>*Seleccionar Cliente</label>
-              <%= f.association :client, label: false, 
-                  include_blank: "Seleccionar Cliente"  %>
+              <%= f.association :client, label: "Cliente", 
+                  include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Ciente"  %>
 
             </div>
             <div class="col-xs-6">
-              <label>*Fecha de Pago</label>
-              <%= f.input :date, label: false%>
+              <%= f.input :date, label: "Fecha Pago"%>
             </div>
             
             
@@ -21,16 +19,14 @@
           <br>
           <div class="row">
             <div class="col-md-6">
-              <label>*Conceto de la Cuenta</label>
-              <%= f.input :concept, presence: true, :collection => [['Mensualidad','mensualidad'],['Instalación','instalacion'],['Instalación y Mensualidad','instalacionMensualidad'],['Reactivación','reactivacion']], label: false,
+              <%= f.input :concept, presence: true, :collection => [['Mensualidad','mensualidad'],['Instalación','instalacion'],['Instalación y Mensualidad','instalacionMensualidad'],['Reactivación','reactivacion']], label: "Concepto Cuenta",
                   include_blank: "Seleccionar Concepto ", error: 'Debe ingresar el concepto de la Cuenta' %>
             </div>
 
             
 
             <div class="col-md-6"> 
-              <label>*Status de la cuenta</label>
-                <%= f.input :status, :collection => [['Facturada','facturada'],['Anulada','anulada'],['Incobrable','incobrable']], label: false,
+                <%= f.input :status, :collection => [['Facturada','facturada'],['Anulada','anulada'],['Incobrable','incobrable']], label: "Status Cuenta",
                   include_blank: "Seleccionar Status ", error: 'Debe seleccionar el Status de la Cuenta' %>
             </div>
           </div>
@@ -38,14 +34,12 @@
           <br>
           <div class="row">
             <div class="col-md-6">
-              <label>*Tipo de Pago</label>
-                  <%= f.input :paymentType, :collection => [['Transferencia','transferencia'],['Deposito','deposito']], label: false, 
+                  <%= f.input :paymentType, :collection => [['Transferencia','transferencia'],['Deposito','deposito']], label: "Tipo de Pago", 
                   include_blank: "Seleccionar Tipo",error: 'Debe seleccionar el tipo de pago' %>
             </div>
             <div class="col-md-6">
-              <label>*Pagado</label>
-                <%= f.input :paid, :collection => [['Si','si'],['No','no']], label: false,
-                  include_blank: "Seleccionar" %>
+                <%= f.input :paid, :collection => [['Si','si'],['No','no']], label: "Cuenta Pagada",
+                  include_blank: "Seleccionar",error: 'Debe indicar si la factura fue pagada o no' %>
             </div>
         
         
@@ -55,13 +49,11 @@
           <br>
           <div class="row">
             <div class="col-md-6">
-              <label>Mes de Pago</label>
-                <%= f.input :month, :collection => [['enero','enero'],['febrero','febrero'],['marzo','marzo'],['abril','abril'],['mayo','mayo'],['junio','junio'],['julio','julio'],['agosto','agosto'],['septiembre','septiembre'],['octubre','octubre'],['noviembre','noviembre'],['diciembre','diciembre']], label: false, 
+                <%= f.input :month, :collection => [['enero','enero'],['febrero','febrero'],['marzo','marzo'],['abril','abril'],['mayo','mayo'],['junio','junio'],['julio','julio'],['agosto','agosto'],['septiembre','septiembre'],['octubre','octubre'],['noviembre','noviembre'],['diciembre','diciembre']], label: "Mes a Pagar ", 
                   include_blank: "Seleccionar Mes",error: 'Debe seleccionar el mes de pago' %>
             </div>  
             <div class="col-md-6"> 
-              <label>Banco</label>
-              <%= f.input :bank, :collection => [["100%BANCO",'100%banco'],['Mercantil','mercantil'],['Banco Provincial','provincial'],['Banesco','banesco'],['Banco Banplus','banplus'],['Banco Bicentenario','bicentenario']], label: false, 
+              <%= f.input :bank, :collection => [["100%BANCO",'100%banco'],['Mercantil','mercantil'],['Banco Provincial','provincial'],['Banesco','banesco'],['Banco Banplus','banplus'],['Banco Bicentenario','bicentenario']], label: 'Banco', 
                   include_blank: "Seleccionar Banco" %>
             </div>
             
@@ -73,30 +65,26 @@
 
 
           <div class="col-md-6"> 
-              <label>Comentarios</label>
-                <%= f.input :paymentComment, placeholder: 'Agregar Comentarios', label: false %>
+                <%= f.input :paymentComment, placeholder: 'Agregar Comentarios', label: 'Comentarios' %>
             </div>
             
           
             
             <div class="col-md-6"> 
-              <label>Número de Transferencia</label>
-                <%= f.input :transferNumber,  as: :string,  input_html: {value: 0}, placeholder: 'Número Transferencia', label: false, error: 'Debe ser Númerico' %>
+                <%= f.input :transferNumber,  as: :string,  input_html: {value: 0}, placeholder: 'Número Transferencia', label: "Número Transferencia", error: 'Debe ser Númerico' %>
             </div>
           </div>
           <br>
           <br>
           <div class="row">
             <div class="col-md-6"> 
-            <label>Número Cuenta Cliente</label>
-              <%= f.input :accountNumber,  as: :string,  input_html: {value: 0} , placeholder: 'Cuenta Cliente', label: false, error: 'Debe ser Númerico'%>
+              <%= f.input :accountNumber,  as: :string,  input_html: {value: 0} , placeholder: 'Cuenta Cliente', label: "Cuenta Cliente", error: 'Debe ser Númerico'%>
             </div>
 
 
 
             <div class="col-md-6">  
-              <label>Número Factura Profit</label>
-                <%= f.input :profitNumber,  input_html: {value: 0}, placeholder: 'Número  Profit', label: false%>
+                <%= f.input :profitNumber,  input_html: {value: 0}, placeholder: 'Número  Profit', label: "Número Factura Profit"%>
             </div>
             
           </div>
@@ -104,8 +92,7 @@
           <br>  
           <div class="row">
             <div class="col-md-6"> 
-            <label>Número Control Profit</label>
-              <%= f.input :profitCode,  input_html: {value: 0}, placeholder: 'Código Profit', label: false%>
+              <%= f.input :profitCode,  input_html: {value: 0}, placeholder: 'Código Profit', label: "Número Control Profit"%>
             </div>  
           </div>
           <br>

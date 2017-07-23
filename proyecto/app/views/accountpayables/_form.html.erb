@@ -1,26 +1,30 @@
-<div ALIGN=center>
+
 <%= simple_form_for(@accountpayable, html: { class: 'form-inline' }) do |f| %>
   
-  <div class="field">
-  <label>Proveedor</label>
-  <%= f.collection_select :supplier_id, Supplier.all, :id, :name %>
-</div>
-<br>
-  <div class="field">
-    <label>Descripción</label>
-    <%= f.input :descripcion, label: false %>
+  <div class="row">
+    <div class="col-md-6"> 
+      <%= f.association :supplier, label: "Proveedor", 
+                      include_blank: "Seleccionar Proveedor", error: 'Debe seleccionar un Proveedor' %>
+    </div>
+    
+    <div class="col-md-6">
+      <%= f.input :descripcion, label: 'Descripción' %>
+    </div>
+  </div>
+    <br>
+    <br>
+  <div class="row">
+    <div class="col-md-6"> 
+      <%= f.input :total,  as: :string,  input_html: {value: 0}, label: 'Total', error: 'Debe ser Númerico' %>
+    </div>
   </div>
   <br>
-  <div class="field">
-    <label>Total</label>
-    <%= f.input :total, label: false %>
-  </div>
-  <br>
-  </div>
+ 
   <div ALIGN=right>
-  <div class="actions">
-    <%= f.button :submit, "Crear Cuenta"%>  
-    <%= link_to 'Atrás', accountpayables_path, :class => 'btn btn-default btn'  %>
+    <div class="actions">
+      <%= f.button :submit, "Crear Cuenta"%>  
+      <%= link_to 'Atrás', accountpayables_path, :class => 'btn btn-default btn'  %>
+    </div>
   </div>
 <% end %>
-</div>
+

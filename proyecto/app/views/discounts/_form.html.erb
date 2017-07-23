@@ -4,13 +4,11 @@
     
   <div class="row">
     <div class="col-md-6">
-     <label>Nombre</label>
-      <%= f.input :name, placeholder: 'Nombre', label: false, error: 'Debe ingresar el nombre del Descuento'  %>
+      <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', error: 'Debe ingresar el nombre del Descuento '  %>
     </div>
  
     <div class="col-md-6">
-      <label>Porcentaje</label>
-      <%= f.input :percentage, placeholder: 'Porcentaje', label: false, error: 'Debe ingresar el porcentaje de Descuento' %>
+      <%= f.input :percentage,  as: :string,  input_html: {value: 0} , placeholder: 'Porcentaje', label: 'Porcentaje', error: 'Debe ingresar el porcentaje de Descuento o este debe ser Numérico' %>
     </div>
     
   </div>

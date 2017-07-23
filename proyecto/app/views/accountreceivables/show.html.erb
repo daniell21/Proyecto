@@ -13,23 +13,30 @@
   <%= @accountreceivable.client.name %>
 </p>
 
-<p>
-  <strong>Monto Base:</strong>
-  <%= @accountreceivable.baseAmount %>
-</p>
-<p>
-  <strong>Concepto:</strong>
-  <%= @accountreceivable.concept %>
-</p>
 
+<p>
+<strong>Descuentos que posee el Cliente:</strong><br>
+<%client = Client.find(@accountreceivable.client_id)%>
+
+ <%client.discounts.each do |discount|%>
+  <%=discount.name %>: <%= discount.percentage%>%
+  <br>
+
+  <%end%>
+
+ </p>
+ <p>
+  <strong>Concepto:</strong>
+  <%= @accountreceivable.concept %>: <%= @accountreceivable.baseAmount %>
+</p>
  
 <p>
-  <strong>Monto sin Iva:</strong>
+  <strong>Monto con Descuento sin Iva:</strong>
   <%= @accountreceivable.amountWithoutTax %>
 </p>
 
 <p>
-  <strong>Monto con Iva:</strong>
+  <strong>Monto con Descuento con Iva:</strong>
   <%= @accountreceivable.amountWithtTax %>
 </p>
  <p>
@@ -37,7 +44,7 @@
   <%= @accountreceivable.totalRetentions %>
 </p>
 <p>
-  <strong>Total Retenciones:</strong>
+  <strong>Total a Percibir:</strong>
   <%= @accountreceivable.totalAmountPerceive %>
 </p>
 <p>

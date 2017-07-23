@@ -4,25 +4,21 @@
   
        <div class="row">
         <div class="col-xs-6">
-         <label>*RIF</label>
-          <%= f.input :rif, as: :string,  input_html: {value: 0} , type: "number", placeholder: 'RIF', label: false, error: 'Debe ingresar el RIF del Cliente o este debe ser Numérico'%>
+          <%= f.input :rif, as: :string,  input_html: {value: 0} , type: "number", placeholder: 'RIF', label: 'RIF', error: 'Debe ingresar el RIF del Cliente o este debe ser Numérico'%>
         </div>
       
         <div class="col-xs-6">
-          <label>*Código Profit</label>
-            <%= f.input :profitCode, placeholder: 'Código Profit', label: false, error: 'Debe ingresar el Código Profit'%>
+            <%= f.input :profitCode, placeholder: 'Código Profit', label: 'Código Profit', error: 'Debe ingresar el Código Profit'%>
         </div>
       </div>
       <br>
       <br>
       <div class="row">
         <div class="col-xs-6">
-         <label>*Nombre</label>
-          <%= f.input :name, placeholder: 'Nombre', label: false, error: 'Debe ingresar el nombre del Cliente' %>
+          <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', error: 'Debe ingresar el nombre del Cliente' %>
         </div>
         <div class="col-xs-6">
-          <label>*Correo</label>
-            <%= f.input :email, placeholder: 'Correo', label: false, error: 'Debe ingresar el Correo del Cliente' %>
+            <%= f.input :email, placeholder: 'Correo Electrónico', label: 'Correo', error: 'Debe ingresar el Correo del Cliente' %>
         </div>
       </div>
       <br>
@@ -30,22 +26,18 @@
       <div class="row">
         
         <div class="col-md-6">
-          <label>*Pagado</label>
-            <%= f.input :specialcontributor, :collection => [['Si','si'],['No','no']], label: false,
-              include_blank: "Seleccionar" %>
+            <%= f.input :specialcontributor, as: :boolean, checked_value: true, unchecked_value: false, label: "Contribuyente Especial" %>
         </div>
 
         <div class="field">
-          <label>*Estado</label>
-          <%= f.input :state, placeholder: 'Estado', label: false, error: 'Debe ingresar el Estado del CLiente' %>
+          <%= f.input :state, placeholder: 'Estado', label: 'Estado', error: 'Debe ingresar el Estado del Cliente' %>
         </div>
       </div>
       <br>
       <br>
       <div class="row">
         <div class="col-xs-6">
-          <label>*Razón Social</label>
-            <%= f.input :socialReason, placeholder: 'Razón Social', label: false, error: 'Debe ingresar la Razón Social del Cliente' %>
+            <%= f.input :socialReason, placeholder: 'Razón Social', label: 'Razón Social', error: 'Debe ingresar la Razón Social del Cliente' %>
         </div>
         <div class="col-xs-6">
           <label>Descuentos</label>
@@ -54,7 +46,7 @@
         </div>
 
 
-        
+
       </div>
       <br>
       <br>

@@ -63,13 +63,12 @@ end
 def calculateRetentions
 	retention = 0
 	#raise retentionIva.to_yaml
-	if retentionIva
+	
+	if client.specialcontributor
 		retention = amountWithoutTax * 0.02
 	end
-	#raise (retention).to_yaml
-	if retentionIsrl
 		retention = retention + amountWithoutTax * Settings.tax * 1
-	end
+	
 	self.totalRetentions = retention
 	
 end
