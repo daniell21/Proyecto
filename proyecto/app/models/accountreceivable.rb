@@ -7,6 +7,10 @@ class Accountreceivable < ActiveRecord::Base
   validates :paymentType, presence: true
   validates_numericality_of :transferNumber
   validates_numericality_of :accountNumber
+    validates_numericality_of :amountPaid, acceptance: { message: 'No es Numérico' }
+    validates_numericality_of :accountNumber, acceptance: { message: 'No es Numérico' }
+    validates_numericality_of :transferNumber, acceptance: { message: 'No es Numérico' }
+
   #validates :monthlyPayment, presence: true	
   validates :paid, presence: true
   

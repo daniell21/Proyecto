@@ -71,20 +71,20 @@
           
             
             <div class="col-md-6"> 
-                <%= f.input :transferNumber,  as: :string,  input_html: {value: 0}, placeholder: 'Número Transferencia', label: "Número Transferencia", error: 'Debe ser Númerico' %>
+                <%= f.input :transferNumber,  as: :string, placeholder: 'Número Transferencia', label: "Número Transferencia", error: 'Debe ser Númerico' %>
             </div>
           </div>
           <br>
           <br>
           <div class="row">
             <div class="col-md-6"> 
-              <%= f.input :accountNumber,  as: :string,  input_html: {value: 0} , placeholder: 'Cuenta Cliente', label: "Cuenta Cliente", error: 'Debe ser Númerico'%>
+              <%= f.input :accountNumber,  as: :string, placeholder: 'Cuenta Cliente', label: "Cuenta Cliente", error: 'Debe ser Númerico'%>
             </div>
 
 
 
             <div class="col-md-6">  
-                <%= f.input :profitNumber,  input_html: {value: 0}, placeholder: 'Número  Profit', label: "Número Factura Profit"%>
+                <%= f.input :profitNumber, placeholder: 'Número  Profit', label: "Número Factura Profit"%>
             </div>
             
           </div>
@@ -92,8 +92,12 @@
           <br>  
           <div class="row">
             <div class="col-md-6"> 
-              <%= f.input :profitCode,  input_html: {value: 0}, placeholder: 'Código Profit', label: "Número Control Profit"%>
-            </div>  
+              <%= f.input :profitCode, placeholder: 'Código Profit', label: "Número Control Profit"%>
+            </div> 
+            <div class="col-md-6"> 
+              <%= f.input :amountPaid,  as: :string, placeholder: 'Monto Pagado', label: "Monto Pagado", error: 'Debe ser Numérico'%>
+            </div> 
+
           </div>
           <br>
           <br>

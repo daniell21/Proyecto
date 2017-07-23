@@ -2,15 +2,15 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Cuentas por Cobrar</h1>
-<div ALIGN=center>
+
 <table class="table table-striped">
   <thead>
     <tr>
     
-  
-    <th>Fecha</th>
-      <th>Cliente</th>
-      <th>Concepto</th>
+    <th>Cliente</th>
+    <th><%= sortable "date", "Fecha"%></th>
+      
+      <th><%= sortable "concept", "Concepto"%></th>
       
 
       <th colspan="3"></th>
@@ -22,9 +22,9 @@
       <tr>
       
       
-      
-        <td><%= accountreceivable.date %></td>
         <td><%= accountreceivable.client.name %></td>
+        <td><%= accountreceivable.date %></td>
+        
         <td><%= accountreceivable.concept %></td>
         
         <td><%= link_to 'Mostrar', accountreceivable, :class => 'btn btn-success btn'  %></td>
@@ -38,7 +38,6 @@
 
 <br>
 
-</div>
 <div ALIGN=right>
 <%= link_to 'Nueva Cuenta', new_accountreceivable_path, :class => 'btn btn-default btn'  %>
 </div>

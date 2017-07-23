@@ -13,6 +13,7 @@ class Client < ActiveRecord::Base
     validates :specialcontributor, presence: true
     before_save :calculateCode
     validates_numericality_of :rif
+    before_save :country_name
    #validates :username, format: { with: /regex/ }
    #after_create :send_mail
   
@@ -58,5 +59,11 @@ end
    def send_mail
     ClientMailer.delay.new_client(self)
    end
+   def country_name
+
+    country = ISO3166::Country[self.country]
+    country.translations[I18n.locale.to_s] || country.name
+    self.completeCountry = country
+  end
 
 end

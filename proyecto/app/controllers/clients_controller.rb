@@ -3,13 +3,13 @@ class ClientsController < ApplicationController
    skip_load_and_authorize_resource
   before_action :set_client, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
+ helper_method :sort_column, :sort_diection
 
   # GET /clients
   # GET /clients.json
   def index
     #obtiene todos los registros de la tabla client
-    @clients = Client.search(params[:search]).order(:name).paginate(:per_page => 5, :page => params[:page])
+    @clients = Client.order(sort_column + " " + sort_diection).search(params[:search]).order(:name).paginate(:per_page => 5, :page => params[:page])
     respond_to do |format|
     format.html
     format.json
@@ -91,5 +91,12 @@ class ClientsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
       params.require(:client).permit!
+    end
+    def sort_column
+      Client.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_diection
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

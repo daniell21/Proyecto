@@ -21,13 +21,14 @@
       <table class="table table-striped">
         <thead>
           <tr>
-          <th>Código</th>
-            <th>RIF</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>País</th>
-             <th>Estado</th>
-            
+          <th><%=  sortable "code", "Código"%></th>
+          <th><%=  sortable "rif", "RIF"%></th>
+          <th><%=  sortable "name", "Nombre"%></th>
+          <th><%=  sortable "socialReason", "Razón Social"%></th> 
+          <th><%=  sortable "email", "Email"%></th>
+          <th><%=  sortable "country", "País"%></th>
+          <th><%=  sortable "state", "Estado"%></th>
+           
             
            
             
@@ -40,9 +41,11 @@
        <td><%= client.code %></td>
         <td><%= client.rif %></td>
         <td><%= client.name %></td>
+        <td><%= client.socialReason%></td>
         <td><%= client.email%></td>
         <td><%= client.country%></td>
         <td><%= client.state%></td>
+        
         
         <% if can? :show, client %>
         <td><%= link_to 'Mostrar', client, :class => 'btn btn-success btn'  %></td>

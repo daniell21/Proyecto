@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723003418) do
+ActiveRecord::Schema.define(version: 20170723064500) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170723003418) do
     t.string   "paymentComment"
     t.float    "baseAmount"
     t.string   "profitNumber"
+    t.float    "amountPaid"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170723003418) do
     t.string   "state"
     t.string   "profitCode"
     t.string   "code"
+    t.string   "completeCountry"
   end
 
   create_table "clients_discounts", force: :cascade do |t|

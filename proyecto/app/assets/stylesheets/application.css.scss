@@ -219,3 +219,17 @@ th {
 //.table > tbody > tr.warning > td {
   //background-color: darken(@state-warning-bg, 10%);
 //}
+.pretty th .current {
+padding-right: 12px;
+background-repeat: no-repeat;
+background-position: right center;
+}
+
+
+.pretty th .asc {
+  background-image: url(/images/up_arrow.png);
+}
+
+.pretty th .asc {
+  background-image: url(/images/down_arrow.gift);
+}

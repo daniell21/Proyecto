@@ -2,11 +2,11 @@ class AccountreceivablesController < ApplicationController
   load_and_authorize_resource 
    skip_load_and_authorize_resource
   before_action :set_accountreceivable, only: [:show, :edit, :update, :destroy]
-
+helper_method :sort_column, :sort_diection
   # GET /accountreceivables
   # GET /accountreceivables.json
   def index
-    @accountreceivables = Accountreceivable.all
+    @accountreceivables = Accountreceivable.order(sort_column + " " + sort_diection)
   end
 
   # GET /accountreceivables/1
@@ -78,6 +78,13 @@ class AccountreceivablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accountreceivable_params
-      params.require(:accountreceivable).permit(:date, :client_id, :code, :concept, :retentionIva, :retentionIsrl, :amountWithoutTax, :profitCode, :profitNumber, :amountWithtTax, :transferNumber, :accountNumber, :month, :bank, :paymentType, :status, :paid, :paymentComment)
+      params.require(:accountreceivable).permit(:date, :client_id, :code, :concept, :retentionIva, :retentionIsrl, :amountWithoutTax, :profitCode, :profitNumber, :amountWithtTax, :transferNumber, :accountNumber, :month, :bank, :paymentType, :status, :paid, :paymentComment, :amountPaid)
+    end
+    def sort_column
+      Accountreceivable.column_names.include?(params[:sort]) ? params[:sort] : "concept"
+    end
+
+    def sort_diection
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
