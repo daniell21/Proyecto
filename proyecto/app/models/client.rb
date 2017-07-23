@@ -11,7 +11,8 @@ class Client < ActiveRecord::Base
     validates :rif, presence: true
     validates :profitCode, presence: true
     validates :specialcontributor, presence: true
-    
+    before_save :calculateCode
+    validates_numericality_of :rif
    #validates :username, format: { with: /regex/ }
    #after_create :send_mail
   
@@ -48,7 +49,10 @@ end
 end
 
    private
-
+def calculateCode
+  #self.total = Settings.monthlyPayment + retentioniva
+  self.code = country + state + profitCode
+end
   
 
    def send_mail

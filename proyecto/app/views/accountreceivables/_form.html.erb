@@ -5,13 +5,13 @@
           <div class="row">
             <div class="col-xs-6">
               
-            <label> * Seleccionar Cliente</label>
+            <label>*Seleccionar Cliente</label>
               <%= f.association :client, label: false, 
                   include_blank: "Seleccionar Cliente"  %>
 
             </div>
             <div class="col-xs-6">
-              <label>* Fecha de Pago</label>
+              <label>*Fecha de Pago</label>
               <%= f.input :date, label: false%>
             </div>
             
@@ -21,7 +21,7 @@
           <br>
           <div class="row">
             <div class="col-md-6">
-              <label>* Conceto de la Cuenta</label>
+              <label>*Conceto de la Cuenta</label>
               <%= f.input :concept, presence: true, :collection => [['Mensualidad','mensualidad'],['Instalación','instalacion'],['Instalación y Mensualidad','instalacionMensualidad'],['Reactivación','reactivacion']], label: false,
                   include_blank: "Seleccionar Concepto ", error: 'Debe ingresar el concepto de la Cuenta' %>
             </div>
@@ -29,7 +29,7 @@
             
 
             <div class="col-md-6"> 
-              <label>* tatus de la cuenta</label>
+              <label>*Status de la cuenta</label>
                 <%= f.input :status, :collection => [['Facturada','facturada'],['Anulada','anulada'],['Incobrable','incobrable']], label: false,
                   include_blank: "Seleccionar Status ", error: 'Debe seleccionar el Status de la Cuenta' %>
             </div>
@@ -38,18 +38,18 @@
           <br>
           <div class="row">
             <div class="col-md-6">
-              <label>* Tipo de Pago</label>
+              <label>*Tipo de Pago</label>
                   <%= f.input :paymentType, :collection => [['Transferencia','transferencia'],['Deposito','deposito']], label: false, 
                   include_blank: "Seleccionar Tipo",error: 'Debe seleccionar el tipo de pago' %>
             </div>
-
-        
-        
             <div class="col-md-6">
-              <label>Retenciones</label>
-                <%= f.input :retentionIva, as: :boolean, checked_value: true, unchecked_value: false, label: "Retención Iva" %>
-                <%= f.input :retentionIsrl, as: :boolean, checked_value: true, unchecked_value: false, label: "Retención Isrl" %>
+              <label>*Pagado</label>
+                <%= f.input :paid, :collection => [['Si','si'],['No','no']], label: false,
+                  include_blank: "Seleccionar" %>
             </div>
+        
+        
+            
           </div>
           <br>
           <br>
@@ -59,56 +59,53 @@
                 <%= f.input :month, :collection => [['enero','enero'],['febrero','febrero'],['marzo','marzo'],['abril','abril'],['mayo','mayo'],['junio','junio'],['julio','julio'],['agosto','agosto'],['septiembre','septiembre'],['octubre','octubre'],['noviembre','noviembre'],['diciembre','diciembre']], label: false, 
                   include_blank: "Seleccionar Mes",error: 'Debe seleccionar el mes de pago' %>
             </div>  
-            <div class="col-md-6">
-              <label>* Pagado</label>
-                <%= f.input :paid, :collection => [['Si','si'],['No','no']], label: false,
-                  include_blank: "Seleccionar" %>
-            </div>
-          </div>
-          <br>
-          <br>
-          <div class="row">
             <div class="col-md-6"> 
               <label>Banco</label>
               <%= f.input :bank, :collection => [["100%BANCO",'100%banco'],['Mercantil','mercantil'],['Banco Provincial','provincial'],['Banesco','banesco'],['Banco Banplus','banplus'],['Banco Bicentenario','bicentenario']], label: false, 
                   include_blank: "Seleccionar Banco" %>
             </div>
             
+          </div>
+         
+          <br>
+          <br>
+          <div class="row">
+
+
+          <div class="col-md-6"> 
+              <label>Comentarios</label>
+                <%= f.input :paymentComment, placeholder: 'Agregar Comentarios', label: false %>
+            </div>
+            
           
             
             <div class="col-md-6"> 
               <label>Número de Transferencia</label>
-                <%= f.input :transferNumber, placeholder: 'Número Transferencia', label: false %>
+                <%= f.input :transferNumber,  as: :string,  input_html: {value: 0}, placeholder: 'Número Transferencia', label: false, error: 'Debe ser Númerico' %>
             </div>
           </div>
           <br>
           <br>
           <div class="row">
             <div class="col-md-6"> 
-              <label>Comentarios</label>
-                <%= f.input :paymentComment, placeholder: 'Agregar Comentarios', label: false %>
+            <label>Número Cuenta Cliente</label>
+              <%= f.input :accountNumber,  as: :string,  input_html: {value: 0} , placeholder: 'Cuenta Cliente', label: false, error: 'Debe ser Númerico'%>
             </div>
-          
-          
-             
-            <div class="col-md-6"> 
-            <label>Número Cuuenta Cliente</label>
-              <%= f.input :accountNumber, placeholder: 'Cuenta Cliente', label: false%>
+
+
+
+            <div class="col-md-6">  
+              <label>Número Factura Profit</label>
+                <%= f.input :profitNumber,  input_html: {value: 0}, placeholder: 'Número  Profit', label: false%>
             </div>
+            
           </div>
           <br>
           <br>  
           <div class="row">
-            <div class="col-md-6">  
-            <label>Número Factura Profit</label>
-              <%= f.input :profitNumber, placeholder: 'Número  Profit', label: false%>
-            </div>
-
-            
-
             <div class="col-md-6"> 
             <label>Número Control Profit</label>
-              <%= f.input :profitCode, placeholder: 'Código Profit', label: false%>
+              <%= f.input :profitCode,  input_html: {value: 0}, placeholder: 'Código Profit', label: false%>
             </div>  
           </div>
           <br>
@@ -120,7 +117,7 @@
           <%= link_to 'Atrás', accountreceivables_path, :class => 'btn btn-default btn'  %>
         </div>
 </div>
-
+<br>
 
   <% end %>
 

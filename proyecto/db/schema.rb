@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721034423) do
+ActiveRecord::Schema.define(version: 20170723003418) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -31,8 +31,32 @@ ActiveRecord::Schema.define(version: 20170721034423) do
 
   add_index "accountpayables", ["supplier_id"], name: "index_accountpayables_on_supplier_id"
 
-# Could not dump table "accountreceivables" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "accountreceivables", force: :cascade do |t|
+    t.integer  "client_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.date     "date"
+    t.string   "concept"
+    t.string   "profitCode"
+    t.float    "amountWithoutTax"
+    t.float    "amountWithtTax"
+    t.string   "status"
+    t.string   "bank"
+    t.string   "month"
+    t.integer  "accountNumber"
+    t.integer  "transferNumber"
+    t.boolean  "retentionIva"
+    t.boolean  "retentionIsrl"
+    t.float    "totalRetentions"
+    t.float    "totalAmountPerceive"
+    t.string   "paymentType"
+    t.string   "paid"
+    t.string   "paymentComment"
+    t.float    "baseAmount"
+    t.string   "profitNumber"
+  end
+
+  add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
 
   create_table "clientmails", force: :cascade do |t|
     t.string   "title"
@@ -46,8 +70,8 @@ ActiveRecord::Schema.define(version: 20170721034423) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "email"
     t.boolean  "specialcontributor"
     t.integer  "rif"
@@ -55,6 +79,7 @@ ActiveRecord::Schema.define(version: 20170721034423) do
     t.text     "socialReason"
     t.string   "state"
     t.string   "profitCode"
+    t.string   "code"
   end
 
   create_table "clients_discounts", force: :cascade do |t|
@@ -85,6 +110,12 @@ ActiveRecord::Schema.define(version: 20170721034423) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "has_discounts", force: :cascade do |t|
     t.integer  "client_id"
     t.integer  "discount_id"
@@ -101,16 +132,6 @@ ActiveRecord::Schema.define(version: 20170721034423) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "memberships", force: :cascade do |t|
-    t.integer  "Supplier_id"
-    t.integer  "Group_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "memberships", ["Group_id"], name: "index_memberships_on_Group_id"
-  add_index "memberships", ["Supplier_id"], name: "index_memberships_on_Supplier_id"
 
   create_table "payments", force: :cascade do |t|
     t.string   "name"
@@ -130,8 +151,8 @@ ActiveRecord::Schema.define(version: 20170721034423) do
 
   create_table "tops", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|

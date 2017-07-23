@@ -5,9 +5,11 @@ class Accountreceivable < ActiveRecord::Base
   validates :concept, presence: true
   validates :status, presence: true
   validates :paymentType, presence: true
+  validates_numericality_of :transferNumber
+  validates_numericality_of :accountNumber
   #validates :monthlyPayment, presence: true	
   validates :paid, presence: true
-  before_save :calculateCode
+  
   before_save :calculateBaseAmount
   before_save :calculateBasicAmount
   before_save :calculateAmountWithTax
@@ -17,25 +19,23 @@ class Accountreceivable < ActiveRecord::Base
 #validates :username, format: { with: /regex/ }
 
 private
-def calculateCode
-	#self.total = Settings.monthlyPayment + retentioniva
-	self.code = client.country + client.state + client.profitCode
-end
+
 def calculateBaseAmount
 	
-	if concept == "mensualidad"
-     self.baseAmount  = Settings.monthlyPayment
+	if !self.baseAmount
+		if concept == "mensualidad"
+	     self.baseAmount  = Settings.monthlyPayment
+	 	end
+	 	if concept == "instalacion"
+	 		self.baseAmount  = Settings.installPayment
+	 	end
+	 	if concept == "instalacionMensualidad"
+	 		self.baseAmount = Settings.completePayment
+	 	end
+	 	if concept == "reactivacion"
+	 		self.baseAmount  = Settings.reactivationPayment
+	 	end
  	end
- 	if concept == "instalacion"
- 		self.baseAmount  = Settings.installPayment
- 	end
- 	if concept == "instalacionMensualidad"
- 		self.baseAmount = Settings.completePayment
- 	end
- 	if concept == "reactivacion"
- 		self.baseAmount  = Settings.reactivationPayment
- 	end
- 
  
 end
 def calculateBasicAmount
@@ -68,7 +68,7 @@ def calculateRetentions
 	end
 	#raise (retention).to_yaml
 	if retentionIsrl
-		retention = retention + amountWithoutTax * 0.12 * 1
+		retention = retention + amountWithoutTax * Settings.tax * 1
 	end
 	self.totalRetentions = retention
 	

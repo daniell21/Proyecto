@@ -21,11 +21,12 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th class="col-md-1">RIF</th>
-            <th class="col-md-2">Nombre</th>
-            <th class="col-md-2">Email</th>
-            <th class="col-md-2">País</th>
-             <th class="col-md-2">Estado</th>
+          <th>Código</th>
+            <th>RIF</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>País</th>
+             <th>Estado</th>
             
             
            
@@ -36,6 +37,7 @@
     <% @clients.each do |client| %>
       <!--<tr data-link="<%= edit_client_path(client) %>">-->
        <tr link="<%= edit_client_path(client) %>">
+       <td><%= client.code %></td>
         <td><%= client.rif %></td>
         <td><%= client.name %></td>
         <td><%= client.email%></td>

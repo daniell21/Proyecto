@@ -1,23 +1,25 @@
-<div ALIGN=center>
+
 <%= simple_form_for(@discount, html: { class: 'form-inline' }) do |f| %>
  
     
-
-  <div class="field">
-   <label>Nombre</label>
-    <%= f.input :name, placeholder: 'Nombre', label: false, error: 'Debe ingresar el nombre del Descuento'  %>
+  <div class="row">
+    <div class="col-md-6">
+     <label>Nombre</label>
+      <%= f.input :name, placeholder: 'Nombre', label: false, error: 'Debe ingresar el nombre del Descuento'  %>
+    </div>
+ 
+    <div class="col-md-6">
+      <label>Porcentaje</label>
+      <%= f.input :percentage, placeholder: 'Porcentaje', label: false, error: 'Debe ingresar el porcentaje de Descuento' %>
+    </div>
+    
   </div>
   <br>
-  <div class="field">
-    <label>Porcentaje</label>
-    <%= f.input :percentage, placeholder: 'Porcentaje', label: false %>
-  </div>
   <br>
-  </div>
   <div ALIGN=right>
-  <div class="actions">
-    <%= f.button :submit, "Crear Descuento"%>  
-    <%= link_to 'Atrás', discounts_path, :class => 'btn btn-default btn'  %>
-  </div>
+    <div class="actions">
+      <%= f.button :submit, "Crear Descuento"%>  
+      <%= link_to 'Atrás', discounts_path, :class => 'btn btn-default btn'  %>
+    </div>
   </div>
 <% end %>

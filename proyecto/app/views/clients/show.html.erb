@@ -2,6 +2,11 @@
 <p id="notice"><%= notice %></p>
 <h1>Cliente</h1>
 <div ALIGN=center>
+
+<p>
+  <strong>Código:</strong>
+  <%= @client.code %>
+</p>
 <p> 
   <strong>RIF:</strong>
   <%= @client.rif %>
@@ -59,3 +64,5 @@
 
 <%= link_to 'Atrás', clients_path, :class => 'btn btn-default btn' %>
 </div>
+<br>
+<br>

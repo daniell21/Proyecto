@@ -6,7 +6,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-    <th>Código</th>
+    
   
     <th>Fecha</th>
       <th>Cliente</th>
@@ -20,7 +20,7 @@
   <tbody>
     <% @accountreceivables.each do |accountreceivable| %>
       <tr>
-      <td><%= accountreceivable.code %></td>
+      
       
       
         <td><%= accountreceivable.date %></td>
@@ -42,3 +42,4 @@
 <div ALIGN=right>
 <%= link_to 'Nueva Cuenta', new_accountreceivable_path, :class => 'btn btn-default btn'  %>
 </div>
+<br>

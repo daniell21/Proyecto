@@ -3,10 +3,6 @@
 <h1>Cuenta por Cobrar</h1>
 <br>
 <div ALIGN=center>
-<p>
-  <strong>Código:</strong>
-  <%= @accountreceivable.code %>
-</p>
 
 <p>
   <strong>Fecha:</strong>
@@ -25,14 +21,7 @@
   <strong>Concepto:</strong>
   <%= @accountreceivable.concept %>
 </p>
-<p>
-  <strong>Retención IVA:</strong>
-  <%= @accountreceivable.retentionIva %>
-</p>
- <p>
-  <strong>Retención ISRL:</strong>
-  <%= @accountreceivable.retentionIsrl %>
-</p>
+
  
 <p>
   <strong>Monto sin Iva:</strong>
@@ -50,6 +39,10 @@
 <p>
   <strong>Total Retenciones:</strong>
   <%= @accountreceivable.totalAmountPerceive %>
+</p>
+<p>
+  <strong>Factura Pagada:</strong>
+  <%= @accountreceivable.paid %>
 </p>
 <p>
   <strong>Estado de Pago:</strong>
@@ -86,5 +79,7 @@
 
  <%# link_to 'Edit', edit_accountreceivable_path(@accountreceivable) %> 
 
-<%= link_to 'Atrás', accountreceivables_path %>
-<div ALIGN=center>
+<div ALIGN=right>
+<%= link_to 'Atrás', accountreceivables_path, :class => 'btn btn-default btn' %>
+</div>
+
