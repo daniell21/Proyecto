@@ -3,4 +3,12 @@ class Discount < ActiveRecord::Base
 	 validates :name, presence: true
 	 validates :percentage, presence: true
 	 validates_numericality_of :percentage
+	 #simple search name
+	 def self.search(search)
+  if search
+  where('name LIKE ?', "%#{search}%")
+  else
+    all
+  end
+end
 end

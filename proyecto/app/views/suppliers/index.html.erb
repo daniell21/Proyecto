@@ -2,7 +2,20 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Proveedores</h1>
-<div ALIGN=center>
+<div class="row">
+<div class="col-xs-4">
+        <!--Busqueda de clientes por nombre-->
+        <%= hidden_field_tag :direction, params[:search]%>
+        <%= hidden_field_tag :sort, params[:sort]%>
+        <label>Nombre</label>
+        <%= form_tag suppliers_path, :method => 'get' do %>
+          <p>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Buscar Proveedor", :name => nil %>
+          </p>
+        <% end %>
+      </div>    
+    </div> 
 <%= form_tag import_suppliers_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Importar" %>
@@ -11,9 +24,9 @@
 
   <thead>
     <tr>
-      <th>Naombre</th>
-      <th>Apellido</th>
-      <th>Email</th>
+      <th><%=  sortable "name", "Nombre"%></th>
+        <th><%=  sortable "lastname", "Apellido"%></th>
+        <th><%=  sortable "email", "Email"%></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -37,7 +50,7 @@
 
 <br>
 <%= will_paginate %>
-</div>
+
 <div ALIGN=right>
 <%= link_to 'Nuevo Proveedor', new_supplier_path, :class => 'btn btn-default btn'  %>
 

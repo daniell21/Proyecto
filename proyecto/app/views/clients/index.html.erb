@@ -2,22 +2,30 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Clientes</h1>
-<div ALIGN=center>
 
 
 
-<%= form_tag import_clients_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Importar" %>
-<% end %>
-       <div class="row">
-      <%= form_tag clients_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
-    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <!--Busqueda de clientes por nombre-->
+        <%= hidden_field_tag :direction, params[:search]%>
+        <%= hidden_field_tag :sort, params[:sort]%>
+        <label>Nombre</label>
+        <%= form_tag clients_path, :method => 'get' do %>
+          <p>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Buscar Cliente", :name => nil %>
+          </p>
+        <% end %>
+      </div>    
+
+      <div class="col-xs-6">
+        <%= form_tag import_clients_path, multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "Importar" %>
+        <% end %>
+      </div>
+    
       <table class="table table-striped">
         <thead>
           <tr>

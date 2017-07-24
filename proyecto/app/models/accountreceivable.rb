@@ -80,6 +80,15 @@ end
 def calculateTotalAmountPerceive
 	self.totalAmountPerceive = amountWithtTax - totalRetentions
 end
+#simple search rif
+def self.search(search)
+  if search
+  where('rif LIKE ?', "%#{search}%")
+  else
+    all
+  end
+end
+
 
 
 end

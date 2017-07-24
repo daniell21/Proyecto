@@ -6,7 +6,7 @@ helper_method :sort_column, :sort_diection
   # GET /accountreceivables
   # GET /accountreceivables.json
   def index
-    @accountreceivables = Accountreceivable.order(sort_column + " " + sort_diection)
+    @accountreceivables = Accountreceivable.order(sort_column + " " + sort_diection).search(params[:search]).paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /accountreceivables/1

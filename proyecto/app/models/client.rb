@@ -41,6 +41,7 @@ end
       raise "Unknown file type: #{file.original_filename}"
     end
   end
+  #simple search name
  def self.search(search)
   if search
   where('name LIKE ?', "%#{search}%")

@@ -2,12 +2,12 @@ class SuppliersController < ApplicationController
   load_and_authorize_resource 
    skip_load_and_authorize_resource
   before_action :set_supplier, only: [:show, :edit, :update, :destroy]
-
+  helper_method :sort_column, :sort_diection
   # GET /suppliers
   # GET /suppliers.json
   def index
     #@suppliers = Supplier.all
-    @suppliers =  Supplier.order(:name).paginate(:per_page => 5, :page => params[:page])
+    @suppliers =  Supplier.order(sort_column + " " + sort_diection).order(:name).search(params[:search]).paginate(:per_page => 5, :page => params[:page]).paginate(:per_page => 5, :page => params[:page])
     respond_to do |format|
     format.html
     format.json
@@ -83,5 +83,12 @@ class SuppliersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def supplier_params
       params.require(:supplier).permit!
+    end
+    def sort_column
+      Supplier.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_diection
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

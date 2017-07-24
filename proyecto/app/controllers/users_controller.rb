@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /accountreceivables
   # GET /accountreceivables.json
   def index
-    @users = User.all
+    @users = User.all.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
 
   end
 

@@ -4,4 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable,
          :timeoutable
+         #simple search name
+         def self.search(search)
+  if search
+  where('email LIKE ?', "%#{search}%")
+  else
+    all
+  end
+end
 end
