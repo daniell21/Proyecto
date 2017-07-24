@@ -4,9 +4,11 @@ Rails.application.routes.draw do
 
   
   resources :groups
-  resources :groups
+  
   get 'setup/index'
   resources :search_suppliers
+  resources :search_discounts
+  resources :search_clients
   resources :discounts
   resources :payments
   resources :mailreminders

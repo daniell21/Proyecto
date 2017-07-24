@@ -17,6 +17,7 @@
             <%= submit_tag "Buscar Cliente", :name => nil, :class => 'btn btn-default btn'   %>
           </p>
         <% end %>
+        <p><%= link_to "Busqueda Avanzada", new_search_client_path %></p> 
       </div>    
 
       <div class="col-xs-6">
@@ -25,6 +26,8 @@
           <%= submit_tag "Importar", :class => 'btn btn-default btn'   %>
         <% end %>
       </div>
+    </div>
+
     
       <table class="table table-striped">
         <thead>

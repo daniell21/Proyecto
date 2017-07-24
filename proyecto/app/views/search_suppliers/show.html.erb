@@ -1,8 +1,8 @@
 <h1>Resultados</h1>
 
 
-<% if !@search_supplier %>
-<p> No hubo resultados </p>
+<% if @search_supplier.search_suppliers.empty? %>
+<p> No se encontraron proveedores </p>
 <%else%>
 
 <%@search_supplier.search_suppliers.each do |c|%>
@@ -15,4 +15,5 @@
 </div>
 <%end%>
 <%end%>
-<p><%=link_to 'Atrás', new_search_supplier_path%></p>
+
+<%= link_to 'Atrás', new_search_supplier_path, :class => 'btn btn-default btn'  %>

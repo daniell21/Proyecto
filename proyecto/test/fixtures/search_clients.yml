@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  keywords: MyString
+  rif: 1
+  profitCode: MyString
+  email: MyString
+  specialcontributor: MyString
+  state: MyString
+  socialReason: MyString
+  discounts: MyString
+  country: MyString
+
+two:
+  keywords: MyString
+  rif: 1
+  profitCode: MyString
+  email: MyString
+  specialcontributor: MyString
+  state: MyString
+  socialReason: MyString
+  discounts: MyString
+  country: MyString

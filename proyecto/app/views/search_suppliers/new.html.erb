@@ -1,19 +1,26 @@
 <h1>Busqueda Avanzada</h1>
 <%= simple_form_for(@search_supplier, html: { class: 'form-inline' }) do |s| %>
 
-	<div class="field">
-
-		<%=s.input :keywords%>
-	</div>
-	<div class="field">
+	<div class="row">
+    	<div class="col-xs-6">
+			<%=s.input :keywords, label: "Nombre"%>
+		</div>
 	
-		<%=s.input :lastname%>
+        <div class="col-xs-6">
+			<%=s.input :lastname, label: "Apellido"%>
+		</div>
 	</div>
-	<div class="field">
-		
-		<%=s.input :email%>
+	<br>
+	<br>
+	<div class="row">
+        <div class="col-xs-6">
+			<%=s.input :email, label: "Correo"%>
+		</div>
 	</div>
+	<div ALIGN=right>  
+    <br>
 	<%= s.button :submit, "Buscar Proveedor"%>  
-
+	<%= link_to 'Atrás', suppliers_path, :class => 'btn btn-default btn'  %>
+	</div>
 <%end%>
-<p><%=link_to 'Atrás', suppliers_path%></p>
+

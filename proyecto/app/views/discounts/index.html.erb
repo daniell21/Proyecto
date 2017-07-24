@@ -1,20 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Descuentos</h1>
-<div ng-class="row">
-<div class="col-xs-4">
-        <!--Busqueda de clientes por nombre-->
-        <%= hidden_field_tag :direction, params[:search]%>
-        <%= hidden_field_tag :sort, params[:sort]%>
-        <label>Nombre</label>
-        <%= form_tag discounts_path, :method => 'get' do %>
-          <p>
-            <%= text_field_tag :search, params[:search] %>
-            <%= submit_tag "Buscar Descuento", :name => nil, :class => 'btn btn-default btn'   %>
-          </p>
-        <% end %>
+    <div ng-class="row">
+      <div class="col-xs-6">
+            <!--Busqueda de clientes por nombre-->
+            <%= hidden_field_tag :direction, params[:search]%>
+            <%= hidden_field_tag :sort, params[:sort]%>
+            <label>Nombre</label>
+            <%= form_tag discounts_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search, params[:search] %>
+                <%= submit_tag "Buscar Descuento", :name => nil, :class => 'btn btn-default btn'   %>
+              </p>
+            <% end %>
+            <!--<p><%= link_to "Busqueda Avanzada", new_search_discount_path %></p> -->
       </div>    
     </div> 
+    
 <table class="table table-striped">
   <thead>
     <tr>

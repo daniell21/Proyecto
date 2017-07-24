@@ -1,0 +1,24 @@
+<h1>Resultados</h1>
+
+
+<% if @search_client.search_clients.empty? %>
+<p> No se encontraron Clientes </p>
+<%else%>
+
+<%@search_client.search_clients.each do |c|%>
+<br>
+<div class="div">
+		<h1><%=c.name%></h1>
+		<p>RIF: <%=c.rif%></p>
+		<p>Codigo Profit: <%=c.profitCode%></p>
+		<p>Correo: <%=c.email%></p>
+		<p>Contribuyente Especial: <%=c.specialcontributor%></p>
+		<p>Estado: <%=c.state%></p>
+		<p>Razón Social: <%=c.socialReason%></p>
+		<p>País: <%=c.country%></p>
+
+</div>
+<%end%>
+<%end%>
+
+<%= link_to 'Atrás', new_search_client_path, :class => 'btn btn-default btn'  %>

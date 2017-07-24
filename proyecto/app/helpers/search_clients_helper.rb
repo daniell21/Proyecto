@@ -1,0 +1,2 @@
+module SearchClientsHelper
+end

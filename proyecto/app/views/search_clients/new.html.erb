@@ -1,0 +1,49 @@
+<h1>Busqueda Avanzada</h1>
+<%= simple_form_for(@search_client, html: { class: 'form-inline' }) do |s| %>
+
+	<div class="row">
+    	<div class="col-xs-6">
+			<%=s.input :rif, label: "RIF"%>
+		</div>
+	
+        <div class="col-xs-6">
+			<%=s.input :profitCode, label: "Código Profit"%>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row">
+    	<div class="col-xs-6">
+			<%=s.input :keywords, label: "Nombre"%>
+		</div>
+	
+        <div class="col-xs-6">
+			<%=s.input :email, label: "Correo"%>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row">
+    	<div class="col-xs-6">
+			<%=s.input :specialcontributor, label: "Contribuyente Especial"%>
+		</div>
+	
+        <div class="col-xs-6">
+			<%=s.input :state, label: "Estado"%>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row">
+    	<div class="col-xs-6">
+			<%=s.input :socialReason, label: "Razón Social"%>
+		</div>
+	
+	</div>
+	
+	<div ALIGN=right>  
+    <br>
+	<%= s.button :submit, "Buscar Cliente"%>  
+	<%= link_to 'Atrás', clients_path, :class => 'btn btn-default btn'  %>
+	</div>
+<%end%>

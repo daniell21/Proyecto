@@ -1,0 +1,17 @@
+<h1>Resultado10s</h1>
+
+
+<% if @search_discount.search_discounts.empty? %>
+<p> No se encontraron descuentos </p>
+<%else%>
+
+<%@search_discount.search_discounts.each do |c|%>
+<br>
+<div class="div">
+		<h1><%=c.name%></h1>
+		<p>Porcentage: <%=c.percentage%></p>
+</div>
+<%end%>
+<%end%>
+
+<%= link_to 'Atrás', new_search_discount_path, :class => 'btn btn-default btn'  %>
