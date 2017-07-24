@@ -11,14 +11,15 @@
         <%= form_tag suppliers_path, :method => 'get' do %>
           <p>
             <%= text_field_tag :search, params[:search] %>
-            <%= submit_tag "Buscar Proveedor", :name => nil %>
+            <%= submit_tag "Buscar Proveedor", :name => nil, :class => 'btn btn-default btn'   %>
           </p>
         <% end %>
       </div>    
-    </div> 
+    </div>
+    <p><%= link_to "Busqueda Avanzada", new_search_supplier_path %></p> 
 <%= form_tag import_suppliers_path, multipart: true do %>
   <%= file_field_tag :file %>
-  <%= submit_tag "Importar" %>
+  <%= submit_tag "Importar", :class => 'btn btn-default btn'   %>
 <% end %>
 <table class="table table-striped">
 

@@ -1,0 +1,18 @@
+<h1>Resultados</h1>
+
+
+<% if !@search_supplier %>
+<p> No hubo resultados </p>
+<%else%>
+
+<%@search_supplier.search_suppliers.each do |c|%>
+<br>
+<div class="div">
+		<h1><%=c.name%></h1>
+		<p>Apellido: <%=c.lastname%></p>
+		<p>Correo: <%=c.email%></p>
+
+</div>
+<%end%>
+<%end%>
+<p><%=link_to 'Atrás', new_search_supplier_path%></p>

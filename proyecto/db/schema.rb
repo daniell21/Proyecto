@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723064500) do
+ActiveRecord::Schema.define(version: 20170724192947) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -143,7 +143,24 @@ ActiveRecord::Schema.define(version: 20170723064500) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "search_suppliers", force: :cascade do |t|
+    t.string   "keywords"
+    t.string   "lastname"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "suppliers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "suppliersearches", force: :cascade do |t|
+    t.string   "keywords"
     t.string   "name"
     t.string   "lastname"
     t.string   "email"

@@ -3,11 +3,10 @@ Rails.application.routes.draw do
   
 
   
-  resources :tops
   resources :groups
   resources :groups
   get 'setup/index'
-
+  resources :search_suppliers
   resources :discounts
   resources :payments
   resources :mailreminders
