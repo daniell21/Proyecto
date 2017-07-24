@@ -1,32 +1,56 @@
 Notas reunión Yuzmhar
 
 -1- Cambiar campo de entrada de numeros, ya que el input contiene a la derecha unas flechas para aumentar y disminuir numeros que no se ve bien
+Resp: listo
+
 -2- Colocar los campos necesarios con asteriscos
+Resp: listo
+
 3- El campo país en crear cliente debe tener los paises en Español
+Resp: Pendiente
+
 -4- Al mostrar un cliente mostrar el pais bien
-5- En cuentas por cobrar. al crear una cuenta. colocar un buscador de clientes para ubicar facilmente el cliente al que pertenece la cuenta
-negado por ahora6- Poder agregar en el futuro otros conceptos de pago a parte de  mensualidad, instalacion...
+Resp: listo
+
+-/-5- En cuentas por cobrar. al crear una cuenta. colocar un buscador de clientes para ubicar facilmente el cliente al que pertenece la cuenta
+Resp: No realizare por ahora, ya que el cron debe crear las cuentas a principios de mes haciendo match con el respectivo cliente, por lo que el departamento administrativo no deberia tener por que hacer el match manual. y si fuese el caso, al desplegar la lista, batsta con teclear la primera letra del cliente y el input te ubica lo escrito
+
+6- Poder agregar en el futuro otros conceptos de pago a parte de  mensualidad, instalacion...
+Resp:No hare por ahora.
+
 -7- Al crear una cuenta. Al mostrarla, indicar los descuentos que posee el clinte al que pertenece la cuenta junto a su porcentaje
+Resp: listo
+
 -8- Eliminar lo de retenciones en crear cuenta ya que al crear cliente se le asigna si es contribuyente especial o no lo es
+Resp: listo 
+
 -9-  Los contribuyentes especiales retienen iva e isrl. Los contribuyente no especiales solo retienen isrl
-Elemetrica retiene 100% de iva y 2% de isrl
+Resp: listo
+
+
+
 -10- Agregar el monto pagado por el cliente en las cuentas por cobrar
+Resp: listo
+
 11-Analizar que se pueda modificar campos de las cuentas por cobrar por lotes
+Resp: Este analisis se realizara a futuro. la prioridad ahorita es cubrir el alcance principal del proyecto
+
 12- Colocar filtros multiples en los campos de las cuentas por cobrar
+Resp. En desarrollo
+
 13- Colocar como un módulo el envio de correos, quitarlo de los clientes
+Resp: pendiente
 
 
 Notas personales.
-
+Elemetrica retiene 100% de iva y 2% de isrl
 -1- Debo acomodar la Fecha de pago, ya que si no se selecciona una fecha en espesifico se asigna la facha del dia en que se crea la cuenta. y eso no debe ser asi
 -2- Arreglar form de clientes
 3- Agregar la validacion de los 3 descuentos que necesita el departamento administrativo
 4- Validar los rif que tienen numero despues del guion
 5- Falta cambiar a integer o numero. Numero factura profit y Numero codigo Profit
 
-contador
-yuzmhar restantes: 6
-Yo restantes 2
+
 
 
 Pregunta para Claudia.
