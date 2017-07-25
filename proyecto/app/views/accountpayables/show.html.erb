@@ -1,9 +1,10 @@
 
-<div ALIGN=center>
 <p id="notice"><%= notice %></p>
 <h1>Cuenta por Pagar</h1>
 <br>
+<div ALIGN=center>
 <p>
+
   <strong>Cuenta:</strong>
   <%= @accountpayable.supplier.name %>
 </p>
@@ -16,8 +17,8 @@
   <strong>Total:</strong>
   <%= @accountpayable.total %>
 </p>
-
-
-<%= link_to 'Editar', edit_accountpayable_path(@accountpayable) %> |
-<%= link_to 'Atrás', accountpayables_path %>
+</div>
+<div align="right">
+<%= link_to 'Editar', edit_accountpayable_path(@accountpayable), :class => 'btn btn-default btn'  %> 
+<%= link_to 'Atrás', accountpayables_path, :class => 'btn btn-default btn'  %>
 </div>

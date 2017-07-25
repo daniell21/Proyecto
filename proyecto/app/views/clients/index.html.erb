@@ -72,7 +72,9 @@
     <% end %>
   </tbody>
       </table>
+      <div ALIGN=center>
     <%= will_paginate %>
+    </div>
   </div>
 
 <br>
@@ -80,6 +82,8 @@
   <%= link_to 'Nuevo Cliente', new_client_path, :class => 'btn btn-default btn'  %>
   <%= link_to "Generar pdf", "/clients.pdf", :format => 'pdf', target: :_blank, :class => 'btn btn-default btn'  %>
 </div>
+<br>
+<br>
 </div>
 
 

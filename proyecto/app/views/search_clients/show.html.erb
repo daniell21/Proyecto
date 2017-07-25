@@ -12,7 +12,7 @@
 		<p>RIF: <%=c.rif%></p>
 		<p>Codigo Profit: <%=c.profitCode%></p>
 		<p>Correo: <%=c.email%></p>
-		<p>Contribuyente Especial: <%=c.specialcontributor%></p>
+		<p>Contribuyente Especial: <%="Si" if c.specialcontributor%> <%="No" if !c.specialcontributor%></p>
 		<p>Estado: <%=c.state%></p>
 		<p>Razón Social: <%=c.socialReason%></p>
 		<p>País: <%=c.country%></p>
@@ -20,5 +20,7 @@
 </div>
 <%end%>
 <%end%>
-
+<div align="right">
 <%= link_to 'Atrás', new_search_client_path, :class => 'btn btn-default btn'  %>
+</div>
+<br> <br>

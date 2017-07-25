@@ -26,8 +26,8 @@
       <div class="row">
         
         <div class="col-md-6">
-          <label>*Contribuyente Especial</label>
-              <%= f.input :specialcontributor, as: :boolean, checked_value: true, unchecked_value: false, label: false %>
+              <%= f.input :specialcontributor, :collection => [['Si','true'],['No','false']], label: "Contribuyente Especial",
+                  include_blank: "Seleccionar"%>
         </div>
 
         <div class="field">

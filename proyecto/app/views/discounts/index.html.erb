@@ -30,16 +30,19 @@
       <tr>
         <td><%= discount.name %></td>
         <td><%= discount.percentage %></td>
-        <td><%= link_to 'Show', discount, :class => 'btn btn-success btn' %></td>
-        <td><%= link_to 'Edit', edit_discount_path(discount), :class => 'btn btn-warning btn' %></td>
-        <td><%= link_to 'Destroy', discount, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn' %></td>
+        <td><%= link_to 'Mostrar', discount, :class => 'btn btn-success btn' %></td>
+        <td><%= link_to 'Editar', edit_discount_path(discount), :class => 'btn btn-warning btn' %></td>
+        <td><%= link_to 'Eliminar', discount, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<div align="center">
 <%= will_paginate %>
+</div>
 <br>
 
-
+<div align="right">
   <%= link_to 'Nuevo Descuento', new_discount_path, :class => 'btn btn-default btn'  %>
+  </div>
   

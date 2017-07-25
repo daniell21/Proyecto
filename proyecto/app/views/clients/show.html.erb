@@ -40,7 +40,7 @@
 </p>
 <p>
   <strong>Contribuyente Especial:</strong>
-  <%= @client.specialcontributor %>
+  <%="Si" if @client.specialcontributor%> <%="No" if !@client.specialcontributor%>
 </p>
 <p>
   <p>

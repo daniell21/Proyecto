@@ -30,7 +30,7 @@ helper_method :sort_column, :sort_diection
     respond_to do |format|
     
       if @accountreceivable.save
-        format.html { redirect_to accountreceivables_url, notice: 'La cuenta ha sido creada exitosamente.' }
+        format.html { redirect_to accountreceivables_url}
         format.json { render :show, status: :created, location: @accountreceivable }
       else
         format.html { render :new }

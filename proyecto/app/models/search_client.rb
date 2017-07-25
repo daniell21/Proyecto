@@ -1,4 +1,5 @@
 class SearchClient < ActiveRecord::Base
+
 	def search_clients
 		clients = Client.all
 
@@ -11,4 +12,5 @@ class SearchClient < ActiveRecord::Base
 		clients = clients.where(["socialReason LIKE ?",socialReason]) if socialReason.present?
 		return clients
 	end
+	
 end

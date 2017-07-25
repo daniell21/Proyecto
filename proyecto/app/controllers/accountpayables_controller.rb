@@ -30,7 +30,7 @@ class AccountpayablesController < ApplicationController
 
     respond_to do |format|
       if @accountpayable.save
-        format.html { redirect_to @accountpayable, notice: 'Accountpayable was successfully created.' }
+        format.html { redirect_to @accountpayable}
         format.json { render :show, status: :created, location: @accountpayable }
       else
         format.html { render :new }

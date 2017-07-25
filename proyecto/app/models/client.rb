@@ -10,7 +10,7 @@ class Client < ActiveRecord::Base
     validates :state, presence: true
     validates :rif, presence: true
     validates :profitCode, presence: true
-    validates :specialcontributor, presence: true
+    
     before_save :calculateCode
     validates_numericality_of :rif
     before_save :country_name
@@ -65,6 +65,12 @@ end
     country = ISO3166::Country[self.country]
     country.translations[I18n.locale.to_s] || country.name
     self.completeCountry = country
+    
+    if self.completeCountry == "Venezuela (Bolivarian Republic of)"
+      
+      self.completeCountry = "Venezuela"
+      
+    end
   end
 
 end

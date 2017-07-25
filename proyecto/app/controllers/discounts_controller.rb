@@ -29,7 +29,7 @@ class DiscountsController < ApplicationController
 
     respond_to do |format|
       if @discount.save
-        format.html { redirect_to @discount, notice: 'Discount was successfully created.' }
+        format.html { redirect_to @discount}
         format.json { render :show, status: :created, location: @discount }
       else
         format.html { render :new }

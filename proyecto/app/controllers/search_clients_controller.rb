@@ -16,3 +16,5 @@ class SearchClientsController < ApplicationController
 		params.require(:search_client).permit!
 	end
 end
+
+

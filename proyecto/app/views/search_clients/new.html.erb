@@ -25,7 +25,9 @@
 	<br>
 	<div class="row">
     	<div class="col-xs-6">
-			<%=s.input :specialcontributor, label: "Contribuyente Especial"%>
+			
+			<%= s.input :specialcontributor, :collection => [['Si','t'],['No','f']], label: "Contribuyente Especial",
+                  include_blank: "Seleccionar"%>
 		</div>
 	
         <div class="col-xs-6">
