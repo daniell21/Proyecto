@@ -1,9 +1,7 @@
 class ClientMailer < ApplicationMailer
-	def new_client(client)
-		@client = client
-
-		User.all.each do |user|
-			mail(to: client.email, subject: "Administracion Elemétrica")
-        end			
-	end
+	default from: "danieltestrails4@gmail.com"
+	def client_mail(client_mail)
+    @client_mail = client_mail
+    mail(to: @client_mail.destinatary, subject: @client_mail.title)
+  end
 end

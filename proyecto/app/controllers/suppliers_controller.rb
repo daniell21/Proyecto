@@ -52,7 +52,7 @@ class SuppliersController < ApplicationController
     params[:supplier][:top_ids] ||=[]
     respond_to do |format|
       if @supplier.update(supplier_params)
-        format.html { redirect_to @supplier, notice: 'Supplier was successfully updated.' }
+        format.html { redirect_to @supplier}
         format.json { render :show, status: :ok, location: @supplier }
       else
         format.html { render :edit }
@@ -66,7 +66,7 @@ class SuppliersController < ApplicationController
   def destroy
     @supplier.destroy
     respond_to do |format|
-      format.html { redirect_to suppliers_url, notice: 'Supplier was successfully destroyed.' }
+      format.html { redirect_to suppliers_url}
       format.json { head :no_content }
     end
   end

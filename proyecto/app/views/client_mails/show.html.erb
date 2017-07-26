@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<h1>Correo</h1>
+<p>
+<div align="center">
+  <strong>Título:</strong>
+  <%= @client_mail.title %>
+</p>
+
+<p>
+  <strong>Mensaje:</strong>
+  <%= @client_mail.body %>
+</p>
+
+<p>
+  <strong>Destinatario:</strong>
+  <%= @client_mail.destinatary %>
+</p>
+</div>
+
+<div align="right">
+<%= link_to 'Atrás', client_mails_path, :class => 'btn btn-default btn' %>
+</div>

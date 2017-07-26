@@ -28,7 +28,7 @@ class MailremindersController < ApplicationController
 
     respond_to do |format|
       if @mailreminder.save
-        format.html { redirect_to @mailreminder, notice: 'Mailreminder was successfully created.' }
+        format.html { redirect_to @mailreminder}
         format.json { render :show, status: :created, location: @mailreminder }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class MailremindersController < ApplicationController
   def update
     respond_to do |format|
       if @mailreminder.update(mailreminder_params)
-        format.html { redirect_to @mailreminder, notice: 'Mailreminder was successfully updated.' }
+        format.html { redirect_to @mailreminder}
         format.json { render :show, status: :ok, location: @mailreminder }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class MailremindersController < ApplicationController
   def destroy
     @mailreminder.destroy
     respond_to do |format|
-      format.html { redirect_to mailreminders_url, notice: 'Mailreminder was successfully destroyed.' }
+      format.html { redirect_to mailreminders_url}
       format.json { head :no_content }
     end
   end

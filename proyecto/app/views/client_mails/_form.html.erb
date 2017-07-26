@@ -1,0 +1,16 @@
+<%= simple_form_for(@client_mail, html: { class: 'form-inline' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :body %>
+    <%= f.input :destinatary %>
+  </div>
+<br><br>
+<div align="right">
+  <div class="form-actions">
+    <%= f.button :submit %>
+     <%= link_to 'Atrás', client_mails_path, :class => 'btn btn-default btn'  %>
+  </div>
+
+<% end %>

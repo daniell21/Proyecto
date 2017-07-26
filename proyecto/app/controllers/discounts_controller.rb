@@ -43,7 +43,7 @@ class DiscountsController < ApplicationController
   def update
     respond_to do |format|
       if @discount.update(discount_params)
-        format.html { redirect_to @discount, notice: 'Discount was successfully updated.' }
+        format.html { redirect_to @discount}
         format.json { render :show, status: :ok, location: @discount }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class DiscountsController < ApplicationController
   def destroy
     @discount.destroy
     respond_to do |format|
-      format.html { redirect_to discounts_url, notice: 'Discount was successfully destroyed.' }
+      format.html { redirect_to discounts_url}
       format.json { head :no_content }
     end
   end

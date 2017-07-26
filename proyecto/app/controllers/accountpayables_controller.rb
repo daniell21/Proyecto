@@ -44,7 +44,7 @@ class AccountpayablesController < ApplicationController
   def update
     respond_to do |format|
       if @accountpayable.update(accountpayable_params)
-        format.html { redirect_to @accountpayable, notice: 'Accountpayable was successfully updated.' }
+        format.html { redirect_to @accountpayable}
         format.json { render :show, status: :ok, location: @accountpayable }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class AccountpayablesController < ApplicationController
   def destroy
     @accountpayable.destroy
     respond_to do |format|
-      format.html { redirect_to accountpayables_url, notice: 'Accountpayable was successfully destroyed.' }
+      format.html { redirect_to accountpayables_url}
       format.json { head :no_content }
     end
   end

@@ -57,9 +57,9 @@ def calculateCode
 end
   
 
-   def send_mail
-    ClientMailer.delay.new_client(self)
-   end
+   #def send_mail
+    #ClientMailer.delay.new_client(self)
+   #end
    def country_name
 
     country = ISO3166::Country[self.country]

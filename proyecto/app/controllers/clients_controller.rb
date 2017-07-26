@@ -23,7 +23,7 @@ class ClientsController < ApplicationController
   def show
     #encontrar un registro por su id
     @accountreceivable = Accountreceivable.new
-    @clientmail = Clientmail.new
+    #@clientmail = Clientmail.new
   end
 
   # GET /clients/new
@@ -60,7 +60,7 @@ class ClientsController < ApplicationController
     params[:client][:discount_ids] ||=[]
     respond_to do |format|
       if @client.update(client_params)
-        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
+        format.html { redirect_to @client}
         format.json { render :show, status: :ok, location: @client }
       else
         format.html { render :edit }
@@ -74,7 +74,7 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'El cliente fue eliminado exitosamente.' }
+      format.html { redirect_to clients_url}
       format.json { head :no_content }
     end
   end

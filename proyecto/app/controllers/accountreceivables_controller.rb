@@ -44,7 +44,7 @@ helper_method :sort_column, :sort_diection
   def update
     respond_to do |format|
       if @accountreceivable.update(accountreceivable_params)
-        format.html { redirect_to accountreceivables_url, notice: 'La cuenta ha sido actualizada exitosamente.' }
+        format.html { redirect_to accountreceivables_url}
         format.json { render :show, status: :ok, location: @accountreceivable }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ helper_method :sort_column, :sort_diection
   def destroy
     @accountreceivable.destroy
     respond_to do |format|
-      format.html { redirect_to accountreceivables_url, notice: 'ALa cuenta fue borrada exitosamente.' }
+      format.html { redirect_to accountreceivables_url}
       format.json { head :no_content }
     end
   end

@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "danieltestrails4@gmail.com"
-  #layout 'nil'
+  default from: "from@example.com"
+  layout 'mailer'
 end

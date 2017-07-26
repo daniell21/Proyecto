@@ -47,18 +47,7 @@
     Descuentos: <%= @client.discounts.map(&:name).join(',') %>
 </p>
 </p>
-<div class="field">
-    <h3>Correos</h3>
-	<%=render "clientmails/form"%> 
-	<ul>
-		<% @client.clientmails.each do |clientmail| %>
-		<li>
-		  <%= clientmail.title%> 
-		</li>
-		<p>- <%=clientmail.body%>	</p>
-		<%end%>
-	</ul>
-</div>
+
 </div>
 <div ALIGN=right>
 

@@ -30,6 +30,9 @@
 					<li style="list-style:none;">
 					<%= link_to 'Descuentos', controller: 'discounts' %>
 					</li>
+					<li style="list-style:none;">
+					<%= link_to 'Enviar Correo', controller: 'client_mails' %>
+					</li>
 					<% if can? :index, :users %>
 						<li style="list-style:none;">
 						<%= link_to 'Gestión de Roles', controller: 'users' %>
