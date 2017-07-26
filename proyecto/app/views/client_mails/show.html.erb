@@ -2,6 +2,15 @@
 <h1>Correo</h1>
 <p>
 <div align="center">
+<p>
+  <strong>Fecha:</strong>
+  <%= @client_mail.date %>
+</p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= raise (@client_mail.client).to_yaml %>
+</p>
   <strong>Título:</strong>
   <%= @client_mail.title %>
 </p>
@@ -11,12 +20,9 @@
   <%= @client_mail.body %>
 </p>
 
-<p>
-  <strong>Destinatario:</strong>
-  <%= @client_mail.destinatary %>
-</p>
-</div>
 
+</div>
 <div align="right">
 <%= link_to 'Atrás', client_mails_path, :class => 'btn btn-default btn' %>
 </div>
+

@@ -18,7 +18,7 @@ class ClientMailsControllerTest < ActionController::TestCase
 
   test "should create client_mail" do
     assert_difference('ClientMail.count') do
-      post :create, client_mail: { body: @client_mail.body, destinatary: @client_mail.destinatary, title: @client_mail.title }
+      post :create, client_mail: { body: @client_mail.body, client_id: @client_mail.client_id, date: @client_mail.date, title: @client_mail.title }
     end
 
     assert_redirected_to client_mail_path(assigns(:client_mail))
@@ -35,7 +35,7 @@ class ClientMailsControllerTest < ActionController::TestCase
   end
 
   test "should update client_mail" do
-    patch :update, id: @client_mail, client_mail: { body: @client_mail.body, destinatary: @client_mail.destinatary, title: @client_mail.title }
+    patch :update, id: @client_mail, client_mail: { body: @client_mail.body, client_id: @client_mail.client_id, date: @client_mail.date, title: @client_mail.title }
     assert_redirected_to client_mail_path(assigns(:client_mail))
   end
 

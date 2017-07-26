@@ -5,7 +5,7 @@ class Sendclientmail < ApplicationMailer
 		id = client_mail.id
 		#User.all.each do |user|
 			raise client_mail.destinatary.to_yaml
-			mail(to: client_mail.destinatary, subject: "Hola")
+			#mail(to: client_mail.destinatary, subject: "Hola")
 		#end
 	end
 end

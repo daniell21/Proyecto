@@ -1,12 +1,13 @@
 class ClientMail < ActiveRecord::Base
-	after_save :send_mail
+  belongs_to :client
+
+	after_create :send_mail
 
 	private	
-	def send_mail
 	
+	def send_mail
+		
 		ClientMailer.delay.client_mail(self)
 
 	end
 end
-
-

@@ -3,9 +3,11 @@
 one:
   title: MyString
   body: MyString
-  destinatary: MyString
+  date: 2017-07-25
+  client_id: 
 
 two:
   title: MyString
   body: MyString
-  destinatary: MyString
+  date: 2017-07-25
+  client_id: 

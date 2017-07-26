@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725035305) do
+ActiveRecord::Schema.define(version: 20170726035614) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -62,20 +62,13 @@ ActiveRecord::Schema.define(version: 20170725035305) do
   create_table "client_mails", force: :cascade do |t|
     t.string   "title"
     t.string   "body"
-    t.string   "destinatary"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "clientmails", force: :cascade do |t|
-    t.string   "title"
-    t.text     "body"
+    t.date     "date"
     t.integer  "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "clientmails", ["client_id"], name: "index_clientmails_on_client_id"
+  add_index "client_mails", ["client_id"], name: "index_client_mails_on_client_id"
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -195,12 +188,6 @@ ActiveRecord::Schema.define(version: 20170725035305) do
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "tops", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|

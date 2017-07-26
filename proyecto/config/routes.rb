@@ -19,7 +19,6 @@ Rails.application.routes.draw do
     collection { post :import }
   end
   resources :clients do
-  	
     collection { post :import }
   end
   resources :accountreceivables do

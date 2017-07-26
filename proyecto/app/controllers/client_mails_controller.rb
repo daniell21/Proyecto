@@ -28,9 +28,7 @@ class ClientMailsController < ApplicationController
 
     respond_to do |format|
       if @client_mail.save
-
-        
-        format.html { redirect_to @client_mail}
+        format.html { redirect_to @client_mail, notice: 'Client mail was successfully created.' }
         format.json { render :show, status: :created, location: @client_mail }
       else
         format.html { render :new }
@@ -44,7 +42,7 @@ class ClientMailsController < ApplicationController
   def update
     respond_to do |format|
       if @client_mail.update(client_mail_params)
-        format.html { redirect_to @client_mail}
+        format.html { redirect_to @client_mail, notice: 'Client mail was successfully updated.' }
         format.json { render :show, status: :ok, location: @client_mail }
       else
         format.html { render :edit }
@@ -58,7 +56,7 @@ class ClientMailsController < ApplicationController
   def destroy
     @client_mail.destroy
     respond_to do |format|
-      format.html { redirect_to client_mails_url}
+      format.html { redirect_to client_mails_url, notice: 'Client mail was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,6 +69,6 @@ class ClientMailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_mail_params
-      params.require(:client_mail).permit(:title, :body, :destinatary)
+      params.require(:client_mail).permit(:title, :body, :date, :client_id)
     end
 end
