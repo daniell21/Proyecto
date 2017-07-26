@@ -6,7 +6,7 @@ class ClientMail < ActiveRecord::Base
 	private	
 	
 	def send_mail
-		
+		#raise self.client.to_yaml
 		ClientMailer.delay.client_mail(self)
 
 	end
