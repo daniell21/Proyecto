@@ -14,28 +14,45 @@
 		 <img class="logo img-responsive" src="/assets/logo_data.png" />
 	     <div class="sidebar-nav navbar-collapse">
 		     <ul class="nav in" id="side-menu">
-		        	
+		        	<%if (current_user.role != "client") %>
 					<li style="list-style:none;">
 					<%= link_to 'Clientes', controller: 'clients' %>
 					</li>
+					<%end%>
+					<%if (current_user.role != "client") %>
 					<li style="list-style:none;">
 					<%= link_to 'Proveedores', controller: 'suppliers' %>
 					</li>
+					<%end%>
+					<%if (current_user.role != "client")%>
 					<li style="list-style:none;">
 					<%= link_to 'Cuentas por Cobrar', controller: 'accountreceivables' %>
 					</li>
+					<%end%>
+					<%if (current_user.role != "client") %>
 					<li style="list-style:none;">
 					<%= link_to 'Cuentas por Pagar', controller: 'accountpayables' %>
 					</li>
+					<%end%>
+					<%if (current_user.role != "client" and current_user.role != "limited" and current_user.role != "restricted")  %>
 					<li style="list-style:none;">
 					<%= link_to 'Descuentos', controller: 'discounts' %>
 					</li>
+					<%end%>
+					<%if (current_user.role != "client" 	 and current_user.role != "restricted")  %>
 					<li style="list-style:none;">
-					<%= link_to 'Enviar Correo', controller: 'client_mails' %>
+					<%= link_to 'Correos Electrónicos', controller: 'client_mails' %>
 					</li>
-					<% if can? :index, :users %>
+					<%end%>
+					<%if (current_user.role != "client" and current_user.role != "limited" and current_user.role != "restricted")  %>
+					
 						<li style="list-style:none;">
 						<%= link_to 'Gestión de Roles', controller: 'users' %>
+						</li>
+					<%end%>
+					<%if current_user.role == "client"%>
+					<li style="list-style:none;">
+						<%= link_to 'Registro de Pagos', controller: 'payments' %>
 						</li>
 					<%end%>
 		        </ul>

@@ -1,18 +1,22 @@
 class Ability
   include CanCan::Ability
-  include CanCan::Ability
+  
   def initialize(user)
     user ||= User.new
  if user.role == "admin"
    can :manage, :all
- elsif user.role == "slimited"
+ elsif user.role == "limited"
    alias_action :create, :read, :update, :to => :cru
    can :cru, Client
    can :cru, Supplier
+   can :cru, Accountreceivable
+   can :cru, Accountpayable
 elsif user.role == "restricted"
-   alias_action :create, :read, :update, :to => :cru
-   can :cru, Client
-   can :cru, Supplier
+   alias_action :read,  :to => :r
+   can :r, Client
+   can :r, Supplier
+   can :r, Accountreceivable
+   can :r, Accountpayable
 end
     # Define abilities for the passed in user here. For example:
     #

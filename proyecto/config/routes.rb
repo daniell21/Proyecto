@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   
 
   
-  devise_for :client_sessions
   resources :client_mails
   resources :groups
   
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
    end
   
   devise_for :users, {registrations: "registrations"}
-  root 'clients#index'
+  root 'principal#index'
   resources :users
   #root 'principal#index'
 end
