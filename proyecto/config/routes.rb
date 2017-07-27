@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
 
   
+  devise_for :client_sessions
   resources :client_mails
   resources :groups
   
