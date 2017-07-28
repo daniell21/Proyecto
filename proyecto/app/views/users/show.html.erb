@@ -8,7 +8,18 @@
 </p>
 <p>
   <strong>Rol:</strong>
-  <%= @user.role%>
+  <%if @user.role == "admin"%>
+  Administrador
+  <%end%>
+  <%if @user.role == "limited"%>
+  Limitado
+  <%end%>
+  <%if @user.role == "restricted"%>
+  Restringido
+  <%end%>
+  <%if @user.role == "client"%>
+  Cliente
+  <%end%>
 </p>
 
 

@@ -1,0 +1,15 @@
+<h1>Busqueda Cliente</h1>
+<%= simple_form_for(@search_client_payment, html: { class: 'form-inline' }) do |s| %>
+
+	<div class="row">
+    	<div class="col-xs-6">
+			<%=s.input :keywords,   as: :string, label: "RIF", type: "number", placeholder: 'RIF', error: 'Debe ingresar el RIF del Cliente o este debe ser Numérico'%>
+		</div>
+	</div>
+	
+	<div ALIGN=right>  
+    <br>
+	<%= s.button :submit, "Buscar Cliente"%>  
+	<%= link_to 'Atrás', payments_path, :class => 'btn btn-default btn'  %>
+	</div>
+<%end%>

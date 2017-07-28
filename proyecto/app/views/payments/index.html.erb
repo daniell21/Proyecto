@@ -6,15 +6,16 @@
    <%= file_field_tag :file %>
    <%= submit_tag "Importar" %>-->
  <% end %>
-<table>
-  <table class="table table-striped">
+ <p><%= link_to "Buscar Cliente", new_search_client_payment_path %></p> 
+
+  <!--<table class="table table-striped">
     <tr>
       <th>Name</th>
       <th>Description</th>
       <th>Proof</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+  
 
   <tbody>
     <% @payments.each do |payment| %>
@@ -28,9 +29,9 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+</table>-->
 </div>
-<br>
+<br><!--
 <div align=right>
 <%= link_to 'Nuevo Pago', new_payment_path, :class => 'btn btn-default btn'  %>
-</div>
+</div>-->

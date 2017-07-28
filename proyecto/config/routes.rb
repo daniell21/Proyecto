@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   
 
   
+  
+
   resources :client_mails
   resources :groups
   
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
   resources :search_suppliers
   resources :search_discounts
   resources :search_clients
- 
+  resources :search_client_payments
   resources :discounts
   resources :payments
   resources :mailreminders

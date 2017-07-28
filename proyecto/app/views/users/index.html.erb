@@ -29,7 +29,18 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.email %></td>
-          <td><%= user.role %></td>
+          <%if user.role == "admin"%>
+          <td>Administrador</td>
+          <%end%>
+          <%if user.role == "limited"%>
+          <td>Limitado</td>
+          <%end%>
+          <%if user.role == "restricted"%>
+          <td>Restringido</td>
+          <%end%>
+          <%if user.role == "client"%>
+          <td>Cliente</td>
+          <%end%>
           <td><%= link_to 'Mostrar', user, :class => 'btn btn-success btn' %></td>
           <td><%= link_to 'Editar', edit_user_path(user), :class => 'btn btn-warning btn' %></td>
           <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: '¿Estás Seguro?' }, :class => 'btn btn-danger btn'%></td>
