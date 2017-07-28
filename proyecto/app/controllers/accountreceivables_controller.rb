@@ -44,8 +44,11 @@ helper_method :sort_column, :sort_diection
   def update
     respond_to do |format|
       if @accountreceivable.update(accountreceivable_params)
-        format.html { redirect_to accountreceivables_url}
-        format.json { render :show, status: :ok, location: @accountreceivable }
+        if current_user.role == "client"
+          format.html { redirect_to search_client_payments_url}
+        else
+          format.json { render :show, status: :ok, location: @accountreceivable }
+        end
       else
         format.html { render :edit }
         format.json { render json: @accountreceivable.errors, status: :unprocessable_entity }
