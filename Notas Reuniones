@@ -35,11 +35,11 @@ Resp: listo
 11-Analizar que se pueda modificar campos de las cuentas por cobrar por lotes
 Resp: Este analisis se realizara a futuro. la prioridad ahorita es cubrir el alcance principal del proyecto
 
-12- Colocar filtros multiples en los campos de las cuentas por cobrar
-Resp. En desarrollo
+-12- Colocar filtros multiples en los campos de las cuentas por cobrar
+Resp: listo
 
-13- Colocar como un módulo el envio de correos, quitarlo de los clientes
-Resp: pendiente
+-13- Colocar como un módulo el envio de correos, quitarlo de los clientes
+Resp: listo
 
 
 Notas personales.
@@ -55,4 +55,4 @@ Elemetrica retiene 100% de iva y 2% de isrl
 
 Pregunta para Claudia.
 
-Por que guardan especial + Fidelidad y especial + Volumen. NO les sirve que sea solo especial y que este descuento incluya todo?
+Por que guardan especial + Fidelidad y especial + Volumen. No les sirve que sea solo especial y que este descuento incluya todo?
