@@ -3,7 +3,7 @@
 
 	<div class="row">
     	<div class="col-xs-6">
-			<%=s.input :keywords,   as: :string, label: "RIF", type: "number", placeholder: 'RIF', error: 'Debe ingresar el RIF del Cliente o este debe ser Numérico'	%>
+			<%=s.input :keywords,   as: :string, label: "RIF", type: "number", placeholder: 'RIF', input_html: { required: true }	%>
 		</div>
 	</div>
 	

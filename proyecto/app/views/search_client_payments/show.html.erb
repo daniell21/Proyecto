@@ -31,15 +31,18 @@
 
 				<tbody>
 				    <% c.accountreceivables.each do |accountreceivable| %>
-				      <tr>
-				        <td><%= accountreceivable.client.name %></td>
-				        <td><%= accountreceivable.date %></td>
-				        <td><%= accountreceivable.concept %></td>
+					    <% if accountreceivable.paid == "no"%>
+					      <tr>
+					        <td><%= accountreceivable.client.name %></td>
+					        <td><%= accountreceivable.date %></td>
+					        <td><%= accountreceivable.concept %></td>
+					        
+					        <td><%= link_to 'Mostrar', accountreceivable, :class => 'btn btn-success btn'  %></td>
+					        <td><%= link_to 'Editar', edit_accountreceivable_path(accountreceivable), :class => 'btn btn-warning btn'  %></td>
 				        
-				        <td><%= link_to 'Mostrar', accountreceivable, :class => 'btn btn-success btn'  %></td>
-				        <td><%= link_to 'Editar', edit_accountreceivable_path(accountreceivable), :class => 'btn btn-warning btn'  %></td>
-				        
-				      </tr>
+				      		</tr>
+				      	<%end%>
+
 				    <% end %>
 				</tbody>
 			</table>
