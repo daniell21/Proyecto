@@ -27,6 +27,7 @@ helper_method :sort_column, :sort_diection
   # POST /accountreceivables.json
   def create
     @accountreceivable = Accountreceivable.new(accountreceivable_params)
+    #@accountreceivable.proofPayment = params[:proofPayment]
     respond_to do |format|
     
       if @accountreceivable.save
@@ -81,7 +82,7 @@ helper_method :sort_column, :sort_diection
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accountreceivable_params
-      params.require(:accountreceivable).permit(:date, :client_id, :code, :concept, :retentionIva, :retentionIsrl, :amountWithoutTax, :profitCode, :profitNumber, :amountWithtTax, :transferNumber, :accountNumber, :month, :bank, :paymentType, :status, :paid, :paymentComment, :amountPaid)
+      params.require(:accountreceivable).permit(:date, :client_id, :code, :concept, :retentionIva, :retentionIsrl, :amountWithoutTax, :profitCode, :profitNumber, :amountWithtTax, :transferNumber,  :month, :bank, :paymentType, :status, :paid, :paymentComment, :amountPaid, :document, :elemetricaAccount, :clientAccount)
     end
     def sort_column
       Accountreceivable.column_names.include?(params[:sort]) ? params[:sort] : "concept"

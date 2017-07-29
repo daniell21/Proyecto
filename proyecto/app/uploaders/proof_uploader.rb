@@ -40,7 +40,7 @@ class ProofUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
    def extension_whitelist
-     %w(jpg jpeg gif png pdf)
+     %w(jpg jpeg png pdf)
    end
  def store_dir
     'api'
@@ -48,7 +48,7 @@ class ProofUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
    def filename
-     "holaa.jpg"
-   end
+    "#{model.type}_#{model.user_id}.xls" if original_filename
+  end
 
 end

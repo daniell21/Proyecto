@@ -1,18 +1,22 @@
 class Accountreceivable < ActiveRecord::Base
+  #Hasta Ahora los comprobantes de 100% banco no funcionan. No se pueden leer
+   #Hasta Ahora los comprobantes de Benplus no funcionan. No se pueden leer
+   #Resta por hacer validaciones de fecha y numero de cuenta a acreditar. MOnto tambien
   belongs_to :client
   validates :client_id, presence: true
   validates :date, presence: true
   validates :concept, presence: true
   validates :status, presence: true
   validates :paymentType, presence: true
-  validates_numericality_of :transferNumber
-  validates_numericality_of :accountNumber
-    validates_numericality_of :amountPaid, acceptance: { message: 'No es Numérico' }
-    validates_numericality_of :accountNumber, acceptance: { message: 'No es Numérico' }
-    validates_numericality_of :transferNumber, acceptance: { message: 'No es Numérico' }
-
-  #validates :monthlyPayment, presence: true	
-  validates :paid, presence: true
+  validates :month, presence: true
+  #validates_numericality_of :transferNumber
+  #validates_numericality_of :accountNumber
+  #validates_numericality_of :amountPaid, acceptance: { message: 'No es Numérico' }
+  #validates_numericality_of :accountNumber, acceptance: { message: 'No es Numérico' }
+  #validates_numericality_of :transferNumber, acceptance: { message: 'No es Numérico' }
+mount_uploader :document, DocumentUploader
+  before_save :importProof
+  #validates :paid, presence: true
   
   before_save :calculateBaseAmount
   before_save :calculateBasicAmount
@@ -20,7 +24,139 @@ class Accountreceivable < ActiveRecord::Base
   before_save :calculateRetentions
   before_save :calculateTotalAmountPerceive
 
-#validates :username, format: { with: /regex/ }
+  def self.import(file)
+  spreadsheet = open_spreadsheet(file)
+  header = spreadsheet.row(1)
+  (2..spreadsheet.last_row).each do |i|
+    row = Hash[[header, spreadsheet.row(i)].transpose]
+    product = find_by_id(row["id"]) || new
+    product.attributes = row.to_hash.slice(*accessible_attributes)
+    product.save!
+  end
+end
+def self.open_spreadsheet(file)
+  case File.extname(file.original_filename)
+  when '.csv' then Csv.new(file.path, nil, :ignore)
+  when '.xls' then Excel.new(file.path, nil, :ignore)
+  when '.xlsx' then Excelx.new(file.path, nil, :ignore)
+  else raise "Unknown file type: #{file.original_filename}"
+  end
+end
+def importProof
+    #raise ((document.filename.to_s).length).to_yaml
+    reader = PDF::Reader.new(Rails.root.join('/home/daniel/Documentos/Proyecto/proyecto/public/uploads/Banesco.pdf'))
+    #if ((document.filename.to_s).length) > 0
+   	  #reader = PDF::Reader.new(document.filename)
+       
+
+        reader.pages.each do |page|
+     	    texto = page.text
+     	    #raise texto.to_yaml
+          linea = texto.delete(' ')
+          linea.gsub!(/\s+/, ' ').split(" ")
+          
+           
+
+          if linea.include? "MercantilenLínea"
+            raise linea.to_yaml
+            puts "El comprobante es del Banco Mercantil"
+            lineaFecha = linea.gsub!(/\s+/, ' ').split(" ")[0]
+            lineaCuentaAcreditada = linea.gsub!(/\s+/, ' ').split(" ")[4]
+            lineaMonto = linea.gsub!(/\s+/, ' ').split(" ")[5]
+            fecha = lineaFecha[0..8]
+            puts "Fecha #{fecha}"
+            if lineaCuentaAcreditada.include? "001008892270"
+              puts "La transferencia fue realizada a Elemétrica"
+            else
+              puts "trsnaferencia incorrecta"
+            end
+            finalMonto = lineaMonto.length
+            monto = lineaMonto[8..finalMonto]
+            puts "Monto: #{monto}"
+           
+           
+          else if linea.include? "J­07013380"
+             
+            lineaFecha = linea.gsub!(/\s+/, ' ').split(" ")[3]
+            finalFecha = lineaFecha.length
+            fecha = lineaFecha[7..finalFecha]
+            fecha = Date.parse(fecha).strftime("%Y-%m-%d")
+            self.date = fecha
+            lineaCuentaAcreditada = linea.gsub!(/\s+/, ' ').split(" ")[6]
+            finalCuenta = lineaCuentaAcreditada.length
+            cuentaElemetrica = lineaCuentaAcreditada[34..finalCuenta]
+            self.elemetricaAccount =  cuentaElemetrica
+            lineaCuentaDebitada = linea.gsub!(/\s+/, ' ').split(" ")[5]
+            finalCuentaDebitada = lineaCuentaDebitada.length
+            cuentaCliente = lineaCuentaDebitada[31..finalCuentaDebitada]
+            self.clientAccount = cuentaCliente
+            
+            lineaMonto = linea.gsub!(/\s+/, ' ').split(" ")[7]
+            finalMonto = lineaMonto.length
+            monto = lineaMonto[6..finalMonto]
+             monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
+            self.amountPaid = monto
+            
+          else if linea.include? "Gracias por utilizar Provinet"
+          
+         	 
+         	  lineaFecha = linea.gsub!(/\s+/, ' ').split(" ")[6]
+            finalFecha = lineaFecha.length
+            fecha = lineaFecha[6..finalFecha]
+            fecha = Date.parse(fecha).strftime("%Y-%m-%d")
+            self.date = fecha
+            lineaCuentaAcreditada = linea.gsub!(/\s+/, ' ').split(" ")[10]
+            finalCuenta = lineaCuentaAcreditada.length
+            cuentaElemetrica = lineaCuentaAcreditada[15..finalCuenta]
+            self.elemetricaAccount =  cuentaElemetrica
+            
+            lineaMonto = linea.gsub!(/\s+/, ' ').split(" ")[8]
+            finalMonto = lineaMonto.length
+            monto = lineaMonto[14..finalMonto]
+            monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
+            
+            self.amountPaid = monto
+            #raise (monto).to_yaml
+          else if linea.include? "BicentenarioBancoUniversal"
+            
+            lineaFecha = linea.gsub!(/\s+/, ' ').split(" ")[0]
+            
+            finalFecha = lineaFecha.length
+            fecha = lineaFecha[0..7]
+            fecha = Date.parse(fecha).strftime("%Y-%m-%d")
+            self.date = fecha
+            lineaCuentaAcreditada = linea.gsub!(/\s+/, ' ').split(" ")[15]
+            
+            finalCuenta = lineaCuentaAcreditada.length
+            cuentaElemetrica = lineaCuentaAcreditada[15..finalCuenta]
+            self.elemetricaAccount =  cuentaElemetrica
+
+            lineaCuentaDebitada = linea.gsub!(/\s+/, ' ').split(" ")[13]
+            
+            finalCuentaDebitada = lineaCuentaDebitada.length
+            cuentaCliente = lineaCuentaDebitada[14..finalCuentaDebitada]
+            self.clientAccount = cuentaCliente
+            
+            
+            lineaMonto = linea.gsub!(/\s+/, ' ').split(" ")[16]  
+
+            finalMonto = lineaMonto.length
+            monto = lineaMonto[10..finalMonto]
+             
+            monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
+            
+            self.amountPaid = monto
+            
+          end
+          end
+        #end
+      end
+    
+    end
+  #else
+   # raise (4+3).to_yaml  #No se adjunto comprobante bancario
+  end
+end
 
 private
 

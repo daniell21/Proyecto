@@ -3,13 +3,20 @@
 <h1>Cuenta por Cobrar</h1>
 <br>
 <div ALIGN=center>
-
+<p>
+<div id="accountreceivables">
+  <strong>Comprobante:</strong>
+  
+  
+  <%= image_tag(@accountreceivable.document_url.to_s) %>
+  </div>
+</p>
 <p>
   <strong>Fecha:</strong>
   <%= @accountreceivable.date %>
 </p>
 <p>
-  <strong>Cuenta por Cobrar:</strong>
+  <strong>Cuenta por Cobrar a:</strong>
   <%= @accountreceivable.client.name %>
 </p>
 
@@ -73,19 +80,24 @@
   <%= @accountreceivable.transferNumber %>
 </p>
 <p>
-  <strong>Numero de Cuenta:</strong>
-  <%= @accountreceivable.accountNumber %>
+  <strong>Cuenta Debitada:</strong>
+  <%= @accountreceivable.clientAccount %>
 </p>
 <p>
-  <strong>Numero de transferencia:</strong>
+<p>
+  <strong>Cuenta a Transferir:</strong>
+  <%= @accountreceivable.elemetricaAccount %>
+</p>
+<p>
+  <strong>Número Profit:</strong>
   <%= @accountreceivable.profitNumber %>
 </p>
 <p>
-  <strong>Numero de transferencia:</strong>
+  <strong>Código Profit:</strong>
   <%= @accountreceivable.profitCode %>
 </p>
 <p>
-  <strong>Numero de transferencia:</strong>
+  <strong>Banco:</strong>
   <%= @accountreceivable.bank %>
 </p>
 

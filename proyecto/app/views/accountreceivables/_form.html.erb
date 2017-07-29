@@ -1,6 +1,18 @@
 
-  <%= simple_form_for(@accountreceivable, html: { class: 'form-inline' }) do |f| %>
+  <%= simple_form_for(@accountreceivable, html: { class: 'form-inline'}) do |f| %>
        
+          <br>
+          <div align="center">
+          <div class="row">
+             <div class="col-xs-12">
+              <div class="field">
+                Adjuntar Comprobante....
+                <%= f.file_field :document %>
+              </div>
+          </div>
+            
+          </div>
+          <br>
           <br>
           <div class="row">
             <div class="col-xs-6">
@@ -12,7 +24,7 @@
             <div class="col-xs-6">
               <%= f.input :date, label: "Fecha Pago"%>
             </div>
-            
+           
             
           </div>
           <br>
@@ -77,10 +89,10 @@
           <br>
           <br>
           <div class="row">
+            
             <div class="col-md-6"> 
-              <%= f.input :accountNumber,  as: :string, placeholder: 'Cuenta Cliente', label: "Cuenta Cliente", error: 'Debe ser Númerico'%>
-            </div>
-
+              <%= f.input :profitCode, placeholder: 'Código Profit', label: "Número Control Profit"%>
+            </div> 
 
 
             <div class="col-md-6">  
@@ -91,9 +103,7 @@
           <br>
           <br>  
           <div class="row">
-            <div class="col-md-6"> 
-              <%= f.input :profitCode, placeholder: 'Código Profit', label: "Número Control Profit"%>
-            </div> 
+            
             <div class="col-md-6"> 
               <%= f.input :amountPaid,  as: :string, placeholder: 'Monto Pagado', label: "Monto Pagado", error: 'Debe ser Numérico'%>
             </div> 
