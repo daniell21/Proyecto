@@ -11,9 +11,9 @@ class DocumentUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    #raise (model.date).to_yaml
+    #raise ((model.client.rif).to_s + model.client.name).to_yaml
     #raise (model.month+(model.id.to_s)).to_yaml
-    "uploads/Comprobantes Bancarios/#{model.month}/#{model.date}/#{model.client.name}"
+    "uploads/#{model.month}/#{((model.client.rif).to_s + model.client.name)}"
     #Uploads/accountreceivable/document/id/
     #{}"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end

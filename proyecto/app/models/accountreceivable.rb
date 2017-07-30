@@ -15,7 +15,8 @@ class Accountreceivable < ActiveRecord::Base
   #validates_numericality_of :accountNumber, acceptance: { message: 'No es Numérico' }
   #validates_numericality_of :transferNumber, acceptance: { message: 'No es Numérico' }
 mount_uploader :document, DocumentUploader
-  before_save :importProof
+
+  after_save :importProof
   #validates :paid, presence: true
   
   before_save :calculateBaseAmount
@@ -42,10 +43,17 @@ def self.open_spreadsheet(file)
   else raise "Unknown file type: #{file.original_filename}"
   end
 end
+
 def importProof
     #raise ((document.filename.to_s).length).to_yaml
-    reader = PDF::Reader.new(Rails.root.join('/home/daniel/Documentos/Proyecto/proyecto/public/uploads/Banesco.pdf'))
-    #if ((document.filename.to_s).length) > 0
+    if ((document.filename.to_s).length) > 0
+    path = '/home/daniel/Documentos/Proyecto/proyecto/public/uploads/'+month+'/'+((client.rif).to_s + client.name)+'/'+document.filename
+    #path = '/home/daniel/Documentos/Proyecto/proyecto/public/uploads/Banesco.pdf'
+    patch = path.tr("'", '"') 
+    #raise patch.to_yaml
+    reader = PDF::Reader.new(Rails.root.join(patch))
+    end
+    if ((document.filename.to_s).length) > 0
    	  #reader = PDF::Reader.new(document.filename)
        
 
@@ -56,47 +64,51 @@ def importProof
           linea.gsub!(/\s+/, ' ').split(" ")
           
            
-
+            #MERCANTIL
           if linea.include? "MercantilenLínea"
             raise linea.to_yaml
-            puts "El comprobante es del Banco Mercantil"
+            
             lineaFecha = linea.gsub!(/\s+/, ' ').split(" ")[0]
             lineaCuentaAcreditada = linea.gsub!(/\s+/, ' ').split(" ")[4]
             lineaMonto = linea.gsub!(/\s+/, ' ').split(" ")[5]
             fecha = lineaFecha[0..8]
-            puts "Fecha #{fecha}"
-            if lineaCuentaAcreditada.include? "001008892270"
-              puts "La transferencia fue realizada a Elemétrica"
-            else
-              puts "trsnaferencia incorrecta"
-            end
+            
+            
             finalMonto = lineaMonto.length
             monto = lineaMonto[8..finalMonto]
-            puts "Monto: #{monto}"
+            
            
-           
+           #BANESCO
           else if linea.include? "J­07013380"
              
             lineaFecha = linea.gsub!(/\s+/, ' ').split(" ")[3]
             finalFecha = lineaFecha.length
             fecha = lineaFecha[7..finalFecha]
             fecha = Date.parse(fecha).strftime("%Y-%m-%d")
-            self.date = fecha
+          
+            self.update_column(:date, fecha)
+            
             lineaCuentaAcreditada = linea.gsub!(/\s+/, ' ').split(" ")[6]
             finalCuenta = lineaCuentaAcreditada.length
             cuentaElemetrica = lineaCuentaAcreditada[34..finalCuenta]
-            self.elemetricaAccount =  cuentaElemetrica
+            
+            self.update_column(:elemetricaAccount, cuentaElemetrica)
+            
             lineaCuentaDebitada = linea.gsub!(/\s+/, ' ').split(" ")[5]
             finalCuentaDebitada = lineaCuentaDebitada.length
             cuentaCliente = lineaCuentaDebitada[31..finalCuentaDebitada]
-            self.clientAccount = cuentaCliente
+            
+            self.update_column(:clientAccount, cuentaCliente)
             
             lineaMonto = linea.gsub!(/\s+/, ' ').split(" ")[7]
             finalMonto = lineaMonto.length
             monto = lineaMonto[6..finalMonto]
              monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
-            self.amountPaid = monto
             
+            self.update_column(:amountPaid, monto)
+
+
+            #PROVINCIAL
           else if linea.include? "Gracias por utilizar Provinet"
           
          	 
@@ -104,19 +116,24 @@ def importProof
             finalFecha = lineaFecha.length
             fecha = lineaFecha[6..finalFecha]
             fecha = Date.parse(fecha).strftime("%Y-%m-%d")
-            self.date = fecha
+            
+            self.update_column(:date, fecha)
+            
             lineaCuentaAcreditada = linea.gsub!(/\s+/, ' ').split(" ")[10]
             finalCuenta = lineaCuentaAcreditada.length
             cuentaElemetrica = lineaCuentaAcreditada[15..finalCuenta]
-            self.elemetricaAccount =  cuentaElemetrica
+            
+            self.update_column(:elemetricaAccount, cuentaElemetrica)
             
             lineaMonto = linea.gsub!(/\s+/, ' ').split(" ")[8]
             finalMonto = lineaMonto.length
             monto = lineaMonto[14..finalMonto]
             monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
             
-            self.amountPaid = monto
-            #raise (monto).to_yaml
+            
+            self.update_column(:amountPaid, monto)
+
+            #BICENTENARIO
           else if linea.include? "BicentenarioBancoUniversal"
             
             lineaFecha = linea.gsub!(/\s+/, ' ').split(" ")[0]
@@ -124,32 +141,30 @@ def importProof
             finalFecha = lineaFecha.length
             fecha = lineaFecha[0..7]
             fecha = Date.parse(fecha).strftime("%Y-%m-%d")
-            self.date = fecha
-            lineaCuentaAcreditada = linea.gsub!(/\s+/, ' ').split(" ")[15]
             
+            self.update_column(:date, fecha)
+
+            lineaCuentaAcreditada = linea.gsub!(/\s+/, ' ').split(" ")[15]
             finalCuenta = lineaCuentaAcreditada.length
             cuentaElemetrica = lineaCuentaAcreditada[15..finalCuenta]
-            self.elemetricaAccount =  cuentaElemetrica
-
-            lineaCuentaDebitada = linea.gsub!(/\s+/, ' ').split(" ")[13]
             
+            self.update_column(:elemetricaAccount, cuentaElemetrica)
+            
+            lineaCuentaDebitada = linea.gsub!(/\s+/, ' ').split(" ")[13]
             finalCuentaDebitada = lineaCuentaDebitada.length
             cuentaCliente = lineaCuentaDebitada[14..finalCuentaDebitada]
-            self.clientAccount = cuentaCliente
             
-            
-            lineaMonto = linea.gsub!(/\s+/, ' ').split(" ")[16]  
+            self.update_column(:clientAccount, cuentaCliente)
 
+            lineaMonto = linea.gsub!(/\s+/, ' ').split(" ")[16]  
             finalMonto = lineaMonto.length
             monto = lineaMonto[10..finalMonto]
-             
             monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
             
-            self.amountPaid = monto
-            
+            self.update_column(:amountPaid, monto)
           end
           end
-        #end
+        end
       end
     
     end

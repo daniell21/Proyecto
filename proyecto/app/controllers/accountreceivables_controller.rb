@@ -6,7 +6,7 @@ helper_method :sort_column, :sort_diection
   # GET /accountreceivables
   # GET /accountreceivables.json
   def index
-    @accountreceivables = Accountreceivable.order(sort_column + " " + sort_diection).search(params[:search]).paginate(:per_page => 5, :page => params[:page])
+    @accountreceivables = Accountreceivable.order(sort_column + " " + sort_diection).search(params[:search]).paginate(:per_page => 30, :page => params[:page])
   end
 
   # GET /accountreceivables/1
@@ -47,7 +47,9 @@ helper_method :sort_column, :sort_diection
       if @accountreceivable.update(accountreceivable_params)
         if current_user.role == "client"
           format.html { redirect_to search_client_payments_url}
+          format.json { render :show, status: :ok, location: @accountreceivable }
         else
+          format.html { redirect_to accountreceivables_url}
           format.json { render :show, status: :ok, location: @accountreceivable }
         end
       else

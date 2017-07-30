@@ -10,7 +10,7 @@ class Client < ActiveRecord::Base
     validates :state, presence: true
     validates :rif, presence: true
     validates :profitCode, presence: true
-    
+    validates :rif, uniqueness: true
     before_save :calculateCode
     validates_numericality_of :rif
     before_save :country_name
