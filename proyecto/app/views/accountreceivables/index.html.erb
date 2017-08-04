@@ -31,7 +31,7 @@
       
       <th><%= sortable "concept", "Concepto"%></th>
       
-
+      <th>Cuenta Elemetrica</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -45,6 +45,7 @@
         <td><%= accountreceivable.date %></td>
         
         <td><%= accountreceivable.concept %></td>
+        <td><%= accountreceivable.elemetricaAccount %></td>
         
         <td><%= link_to 'Mostrar', accountreceivable, :class => 'btn btn-success btn'  %></td>
         <td><%= link_to 'Editar', edit_accountreceivable_path(accountreceivable), :class => 'btn btn-warning btn'  %></td>

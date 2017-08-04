@@ -6,10 +6,10 @@
   <strong>Fecha:</strong>
   <%= @client_mail.date %>
 </p>
-
+<%@client = Client.find(1)%>
 <p>
   <strong>Cliente:</strong>
-  <%= @client_mail %>
+  <%= @client.name %>
 </p>
   <strong>Título:</strong>
   <%= @client_mail.title %>

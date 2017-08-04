@@ -48,7 +48,8 @@
 
   <tbody>
     <% @suppliers.each do |supplier| %>
-      <tr>
+     <tr data-href="<%= edit_supplier_path(supplier) %>">
+      
         <td><%= supplier.name %></td>
         <td><%= supplier.lastname %></td>
         <td><%= supplier.email %></td>
@@ -56,6 +57,7 @@
         <td><%= link_to 'Editar', edit_supplier_path(supplier), :class => 'btn btn-primary btn' %></td>
 
         <td><%= link_to 'Eliminar', supplier, method: :delete, data: { confirm: '¿Estás Seguro?' },:class => 'btn btn-danger btn' %></td>
+
       </tr>
     <% end %>
     

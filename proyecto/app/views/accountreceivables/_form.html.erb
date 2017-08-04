@@ -6,8 +6,8 @@
           <div class="row">
              <div class="col-xs-12">
               <div class="field">
-                Adjuntar Comprobante....
-                <%= f.file_field :document %>
+                <%= f.input :document, as: :file, label: false, :class => 'btn btn-default btn' %>
+
               </div>
           </div>
             
@@ -83,7 +83,7 @@
           
             
             <div class="col-md-6"> 
-                <%= f.input :transferNumber,  as: :string, placeholder: 'Número Transferencia', label: "Número Transferencia", error: 'Debe ser Númerico' %>
+                <%= f.input :transferNumber,  as: :string, placeholder: 'Nro Mercantil', label: "Número Transferencia", error: 'Debe ser Númerico' %>
             </div>
           </div>
           <br>
