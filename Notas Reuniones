@@ -41,6 +41,14 @@ Resp: listo
 -13- Colocar como un módulo el envio de correos, quitarlo de los clientes
 Resp: listo
 
+14- Acomodar los campos que vera el cliente cuando deba registrar un pago
+Resp: Ya acomode los datos que vera el cliente en la parte del mostrar el pago. Falta en el registro de la cuenta
+
+15- Crear el cron que genere las cuentas por cobrar a principios de mes
+
+16-La cuenta leida de elemetrica debe ser string para que no elimine el 0 del principio
+
+17-Hacer alertas de pago excesivo o menor al monto adeudado
 
 Notas personales.
 Elemetrica retiene 100% de iva y 2% de isrl
