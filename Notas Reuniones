@@ -41,14 +41,28 @@ Resp: listo
 -13- Colocar como un módulo el envio de correos, quitarlo de los clientes
 Resp: listo
 
-14- Acomodar los campos que vera el cliente cuando deba registrar un pago
-Resp: Ya acomode los datos que vera el cliente en la parte del mostrar el pago. Falta en el registro de la cuenta
+-14- Acomodar los campos que vera el cliente cuando deba registrar un pago
+Resp: listo
 
-15- Crear el cron que genere las cuentas por cobrar a principios de mes
+-15- Crear el cron que genere las cuentas por cobrar a principios de mes
+Resp: listo
 
 16-La cuenta leida de elemetrica debe ser string para que no elimine el 0 del principio
 
 17-Hacer alertas de pago excesivo o menor al monto adeudado
+
+18-Validar lo del descuento especial
+
+19-Cambiar la base de datos sqlite3
+
+20-Correos recordatorios
+
+21-Validaciones registro de pago
+
+22-agregar cantidad de locales por clientes
+
+23-Cambiar la manera en que se registran los pagos. el cliente al acceder debe ver sus locales
+
 
 Notas personales.
 Elemetrica retiene 100% de iva y 2% de isrl
@@ -64,3 +78,22 @@ Elemetrica retiene 100% de iva y 2% de isrl
 Pregunta para Claudia.
 
 Por que guardan especial + Fidelidad y especial + Volumen. No les sirve que sea solo especial y que este descuento incluya todo?
+
+
+
+a. id = 18
+a.client_id = 2
+a.concept = "mensualidad"
+a.status = "facturada"
+a.paid = "no"
+a.month = "enero"
+
+
+
+
+
+
+
+
+
+
