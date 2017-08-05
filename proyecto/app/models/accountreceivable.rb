@@ -98,16 +98,16 @@ class Accountreceivable < ActiveRecord::Base
   	 @constant = Constant.last
   	if !self.baseAmount
   		if concept == "mensualidad"
-  	     self.baseAmount  = @constant.monthlyPayment
+  	     self.baseAmount  = @constant.monthlyPayment * client.localAmount
   	 	end
   	 	if concept == "instalacion"
-  	 		self.baseAmount  = @constant.installPayment
+  	 		self.baseAmount  = @constant.installPayment * client.localAmount
   	 	end
   	 	if concept == "instalacionMensualidad"
-  	 		self.baseAmount = @constant.completePayment
+  	 		self.baseAmount = @constant.completePayment * client.localAmount
   	 	end
   	 	if concept == "reactivacion"
-  	 		self.baseAmount  = @constant.reactivationPayment
+  	 		self.baseAmount  = @constant.reactivationPayment * client.localAmount
   	 	end
    	end
    
@@ -122,7 +122,7 @@ class Accountreceivable < ActiveRecord::Base
   	end
   	
   	
-  	self.amountWithoutTax = (baseAmount * ( 1 - (resultado.to_f/100)))
+  	self.amountWithoutTax = ((baseAmount * ( 1 - (resultado.to_f/100))) * client.localAmount)
   	
   	#raise (Settings.monthlyPayment * ( 1 - (client.discounts.find(1).percentage.to_f/100))).to_yaml
   	

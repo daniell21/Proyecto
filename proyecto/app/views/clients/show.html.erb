@@ -39,6 +39,11 @@
   <%= @client.socialReason %>
 </p>
 <p>
+  <strong>Número de locales:</strong>
+  <%= @client.localAmount %>
+</p>
+
+<p>
   <strong>Contribuyente Especial:</strong>
   <%="Si" if @client.specialcontributor%> <%="No" if !@client.specialcontributor%>
 </p>

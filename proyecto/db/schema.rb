@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170805145907) do
+ActiveRecord::Schema.define(version: 20170805203436) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20170805145907) do
     t.string   "profitCode"
     t.string   "code"
     t.string   "completeCountry"
+    t.integer  "localAmount"
   end
 
   create_table "clients_discounts", force: :cascade do |t|
