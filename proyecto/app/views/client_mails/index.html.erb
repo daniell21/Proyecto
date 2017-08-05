@@ -21,7 +21,7 @@
       <tr>
       
         <td><%= client_mail.date %></td>
-        <td><%= client_mail.client.name %></td>
+        <td><%= (client_mail.client.name) %></td>
         <td><%= client_mail.title %></td>
         <td><%= link_to 'Mostrar', client_mail, :class => 'btn btn-success btn'  %></td>
         <td><%= link_to 'Editar', edit_client_mail_path(client_mail), :class => 'btn btn-warning btn'  %></td>

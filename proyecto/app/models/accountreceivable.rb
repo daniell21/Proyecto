@@ -3,14 +3,15 @@ class Accountreceivable < ActiveRecord::Base
    #Hasta Ahora los comprobantes de Benplus no funcionan. No se pueden leer
    #Resta por hacer validaciones de fecha y numero de cuenta a acreditar. MOnto tambien
   belongs_to :client
+  mount_uploader :document, DocumentUploader
   validates :client_id, presence: true
-  validates :date, presence: true
-  validates :concept, presence: true
-  validates :status, presence: true
-  validates :paymentType, presence: true
+  validates :date, presence: true, on: :update
+  validates :concept, presence: true, on: :create
+  validates :status, presence: true, on: :create
+  validates :paymentType, presence: true, on: :update
   validates :month, presence: true
   validates :paid, presence: true
-  mount_uploader :document, DocumentUploader
+  
 
   #validates_numericality_of :transferNumber
   #validates_numericality_of :accountNumber
@@ -20,16 +21,13 @@ class Accountreceivable < ActiveRecord::Base
 
   after_save :importProof
   
-  before_save :initialize
   before_save :calculateBaseAmount
   before_save :calculateBasicAmount
   before_save :calculateAmountWithTax
   before_save :calculateRetentions
   before_save :calculateTotalAmountPerceive
 
-  def initialize
-    @constant = Constant.last
-  end
+  
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
@@ -87,16 +85,17 @@ class Accountreceivable < ActiveRecord::Base
         end
       
       end
-    #else
-     # raise (4+3).to_yaml  #No se adjunto comprobante bancario
+      #else
+      # raise (4+3).to_yaml  #No se adjunto comprobante bancario
      
     end
   end
 
   private
 
+ 
   def calculateBaseAmount
-  	
+  	 @constant = Constant.last
   	if !self.baseAmount
   		if concept == "mensualidad"
   	     self.baseAmount  = @constant.monthlyPayment
@@ -138,11 +137,11 @@ class Accountreceivable < ActiveRecord::Base
   def calculateRetentions
   	retention = 0
   	#raise retentionIva.to_yaml
-  	
+  	@constant = Constant.last
   	if client.specialcontributor
   		retention = amountWithoutTax * 0.02
   	end
-  		retention = retention + amountWithoutTax * Settings.tax * 1
+  		retention = retention + amountWithoutTax * @constant.tax * 1
   	
   	self.totalRetentions = retention
   	
@@ -182,6 +181,8 @@ end
      monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
     self.update_column(:amountPaid, monto)
     self.update_column(:bank, "Banesco")
+    balance = monto.to_f - amountWithtTax 
+    self.update_column(:accountBalance, balance)
   end
   def provincial(linea)
     lineaFecha = linea.gsub!(/\s+/, ' ').split(" ")[6]
@@ -201,6 +202,8 @@ end
     monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
     self.update_column(:amountPaid, monto)
     self.update_column(:bank, "Provincial")
+    balance = monto.to_f - amountWithtTax 
+    self.update_column(:accountBalance, balance)
   end
   #FALTA
   def mercantil(linea)
@@ -214,7 +217,7 @@ end
     finalMonto = lineaMonto.length
     monto = lineaMonto[8..finalMonto]
   end
-  def bicentenario
+  def bicentenario(linea)
     lineaFecha = linea.gsub!(/\s+/, ' ').split(" ")[0]        
     finalFecha = lineaFecha.length
     fecha = lineaFecha[0..7]
@@ -234,6 +237,8 @@ end
     monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
     self.update_column(:amountPaid, monto)
      self.update_column(:bank, "Bicentenario")
+     balance = monto.to_f - amountWithtTax 
+    self.update_column(:accountBalance, balance)
   end
 
 

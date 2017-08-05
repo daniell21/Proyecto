@@ -8,7 +8,7 @@ class Client < ActiveRecord::Base
     validates :socialReason, presence: true
     validates_presence_of :name
     validates :state, presence: true
-    validates :rif, presence: true
+    validates :rif, presence: true, length: { minimum: 8 }
     validates :profitCode, presence: true
     validates :rif, uniqueness: true
     before_save :calculateCode

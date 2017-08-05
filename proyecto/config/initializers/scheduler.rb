@@ -1,5 +1,5 @@
 require 'rufus-scheduler'
-
+scheduler = Rufus::Scheduler.new
 #scheduler = Rufus::Scheduler::singleton
 
 #scheduler.every '1h' do
@@ -8,3 +8,22 @@ require 'rufus-scheduler'
    	    #puts client.email
    	#end
 #end
+
+scheduler.cron '0 9 */1 * *' do
+#0 0 1 * *
+	
+	
+	Client.all.each do |client|
+		id = Accountreceivable.last.id + 1
+		puts id
+		@accountreceivable = Accountreceivable.new
+   	    @accountreceivable.id = id
+   	    @accountreceivable.client_id = client.id
+   	    @accountreceivable.status = "facturada"
+   	    @accountreceivable.concept = "mensualidad"
+   	    @accountreceivable.paid = "no"
+   	    @accountreceivable.month = "enero"
+   	    @accountreceivable.save
+   	end
+
+end
