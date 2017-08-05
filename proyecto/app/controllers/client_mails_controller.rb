@@ -15,7 +15,7 @@ class ClientMailsController < ApplicationController
   # GET /client_mails/new
   def new
     @client_mail = ClientMail.new
-  end
+  end 
 
   # GET /client_mails/1/edit
   def edit
@@ -56,7 +56,7 @@ class ClientMailsController < ApplicationController
   def destroy
     @client_mail.destroy
     respond_to do |format|
-      format.html { redirect_to client_mails_ur}
+      format.html { redirect_to client_mails_url}
       format.json { head :no_content }
     end
   end

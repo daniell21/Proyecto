@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Monthlypayment:</strong>
+  <%= @constant.monthlyPayment %>
+</p>
+
+<p>
+  <strong>Installpayment:</strong>
+  <%= @constant.installPayment %>
+</p>
+
+<p>
+  <strong>Completepayment:</strong>
+  <%= @constant.completePayment %>
+</p>
+
+<p>
+  <strong>Reactivationpayment:</strong>
+  <%= @constant.reactivationPayment %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @constant.tax %>
+</p>
+
+<%= link_to 'Edit', edit_constant_path(@constant) %> |
+<%= link_to 'Back', constants_path %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Constants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Monthlypayment</th>
+      <th>Installpayment</th>
+      <th>Completepayment</th>
+      <th>Reactivationpayment</th>
+      <th>Tax</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @constants.each do |constant| %>
+      <tr>
+        <td><%= constant.monthlyPayment %></td>
+        <td><%= constant.installPayment %></td>
+        <td><%= constant.completePayment %></td>
+        <td><%= constant.reactivationPayment %></td>
+        <td><%= constant.tax %></td>
+        <td><%= link_to 'Show', constant %></td>
+        <td><%= link_to 'Edit', edit_constant_path(constant) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Constant', new_constant_path %>

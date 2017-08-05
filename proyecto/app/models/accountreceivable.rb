@@ -20,12 +20,16 @@ class Accountreceivable < ActiveRecord::Base
 
   after_save :importProof
   
-  
+  before_save :initialize
   before_save :calculateBaseAmount
   before_save :calculateBasicAmount
   before_save :calculateAmountWithTax
   before_save :calculateRetentions
   before_save :calculateTotalAmountPerceive
+
+  def initialize
+    @constant = Constant.last
+  end
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
@@ -47,6 +51,7 @@ class Accountreceivable < ActiveRecord::Base
   end
 
   def importProof
+    
       #raise ((document.filename.to_s).length).to_yaml
       if ((document.filename.to_s).length) > 0
       path = '/home/daniel/Documentos/Proyecto/proyecto/public/uploads/'+month+'/'+((client.rif).to_s + client.name)+'/'+document.filename
@@ -94,16 +99,16 @@ class Accountreceivable < ActiveRecord::Base
   	
   	if !self.baseAmount
   		if concept == "mensualidad"
-  	     self.baseAmount  = Settings.monthlyPayment
+  	     self.baseAmount  = @constant.monthlyPayment
   	 	end
   	 	if concept == "instalacion"
-  	 		self.baseAmount  = Settings.installPayment
+  	 		self.baseAmount  = @constant.installPayment
   	 	end
   	 	if concept == "instalacionMensualidad"
-  	 		self.baseAmount = Settings.completePayment
+  	 		self.baseAmount = @constant.completePayment
   	 	end
   	 	if concept == "reactivacion"
-  	 		self.baseAmount  = Settings.reactivationPayment
+  	 		self.baseAmount  = @constant.reactivationPayment
   	 	end
    	end
    

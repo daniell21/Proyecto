@@ -50,10 +50,7 @@
   <strong>Total Retenciones:</strong>
   <%= @accountreceivable.totalRetentions %>
 </p>
-<p>
-  <strong>Total a Percibir:</strong>
-  <%= @accountreceivable.totalAmountPerceive %>
-</p>
+
 <p>
   <strong>Factura Pagada:</strong>
   <%= @accountreceivable.paid %>
@@ -70,36 +67,46 @@
   <strong>Monto Pagado:</strong>
   <%= @accountreceivable.amountPaid %>
 </p>
-
+<p>
+  <strong>Banco:</strong>
+  <%= @accountreceivable.bank %>
+</p>
+<p>
+  <strong>Mes:</strong>
+  <%= @accountreceivable.month %>
+</p>
 <p>
   <strong>Comentarios:</strong>
   <%= @accountreceivable.paymentComment %>
 </p>
-<p>
-  <strong>Numero de Transferencia:</strong>
-  <%= @accountreceivable.transferNumber %>
-</p>
+
 <p>
   <strong>Cuenta Debitada:</strong>
   <%= @accountreceivable.clientAccount %>
 </p>
 <p>
-<p>
-  <strong>Cuenta a Transferir:</strong>
-  <%= @accountreceivable.elemetricaAccount %>
-</p>
-<p>
-  <strong>Número Profit:</strong>
-  <%= @accountreceivable.profitNumber %>
-</p>
-<p>
-  <strong>Código Profit:</strong>
-  <%= @accountreceivable.profitCode %>
-</p>
-<p>
-  <strong>Banco:</strong>
-  <%= @accountreceivable.bank %>
-</p>
+<%if (current_user.role != "client") %>
+  <p>
+    <strong>Total a Percibir:</strong>
+    <%= @accountreceivable.totalAmountPerceive %>
+  </p>
+  <p>
+    <strong>Numero de Transferencia:</strong>
+    <%= @accountreceivable.transferNumber %>
+  </p>
+  <p>
+    <strong>Cuenta a Transferir:</strong>
+    <%= @accountreceivable.elemetricaAccount %>
+  </p>
+  <p>
+    <strong>Número Profit:</strong>
+    <%= @accountreceivable.profitNumber %>
+  </p>
+  <p>
+    <strong>Código Profit:</strong>
+    <%= @accountreceivable.profitCode %>
+  </p>
+<%end%>
 
  <%# link_to 'Edit', edit_accountreceivable_path(@accountreceivable) %> 
 
