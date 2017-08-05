@@ -1,7 +1,11 @@
-<h1>Setup#index</h1>
-
- <div class="field">
-    
-     <%Settings.monthlyPayment%>
-     <%=Settings.monthlyPayment%>
-  </div
+	<div align="Center">
+		<h1>Configuraciones del sistema</h1>
+	 	<li style="list-style:none;">
+			<%= link_to 'Descuentos', controller: 'discounts', :class => 'btn btn-default btn'  %>
+		</li>
+		<br>
+		<br>
+		<li style="list-style:none;">
+			<%= link_to 'Gestión de Roles', controller: 'users' %>
+		</li>
+	</div>

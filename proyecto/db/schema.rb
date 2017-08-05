@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728235742) do
+ActiveRecord::Schema.define(version: 20170728234912) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 20170728235742) do
     t.string   "profitNumber"
     t.float    "amountPaid"
     t.string   "proof"
-    t.string   "proofPayment"
     t.string   "document"
     t.integer  "elemetricaAccount",   limit: 8
     t.string   "clientAccount"
