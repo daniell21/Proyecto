@@ -15,12 +15,20 @@ class Client < ActiveRecord::Base
     before_save :calculateCode
     validates_numericality_of :rif
     before_save :country_name
+    validates :specialDiscount,  absence: true, if: :validateDiscounts?
    #validates :username, format: { with: /regex/ }
    #after_create :send_mail
-  
    
 
-
+  def validateDiscounts?
+    contador = 0
+    discounts.each do |discount|
+      contador = contador + 1
+    end
+    if contador == 2
+      return true
+    end
+  end
     
     def self.import(file)
    spreadsheet = open_spreadsheet(file)

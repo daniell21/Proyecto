@@ -9,7 +9,9 @@ scheduler = Rufus::Scheduler.new
    	#end
 #end
 
-scheduler.cron '0 9 */1 * *' do
+
+#Todos los primero de mes a las 8 de la mañana se crearan las cuentas por cobrar de todos los clientes de Elemetrica
+scheduler.cron '0 8 */1 * *' do
 #0 0 1 * *
 	
 	

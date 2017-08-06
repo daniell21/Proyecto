@@ -18,7 +18,7 @@ class Accountreceivable < ActiveRecord::Base
   #validates_numericality_of :amountPaid, acceptance: { message: 'No es Numérico' }
   #validates_numericality_of :accountNumber, acceptance: { message: 'No es Numérico' }
   #validates_numericality_of :transferNumber, acceptance: { message: 'No es Numérico' }
-
+  
   after_save :importProof
   
   before_save :calculateBaseAmount
@@ -26,7 +26,7 @@ class Accountreceivable < ActiveRecord::Base
   before_save :calculateAmountWithTax
   before_save :calculateRetentions
   before_save :calculateTotalAmountPerceive
-
+  
   
 
   def self.import(file)
