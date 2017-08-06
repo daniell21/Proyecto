@@ -26,7 +26,7 @@ class Accountreceivable < ActiveRecord::Base
   before_save :calculateAmountWithTax
   before_save :calculateRetentions
   before_save :calculateTotalAmountPerceive
-  
+
   
 
   def self.import(file)
@@ -118,9 +118,12 @@ class Accountreceivable < ActiveRecord::Base
   	client.discounts.each do |discount|
   		
   		resultado = resultado + discount.percentage
+
   		
   	end
-  	
+    if client.specialDiscount
+     resultado = resultado + client.specialDiscount
+    end
   	
   	self.amountWithoutTax = ((baseAmount * ( 1 - (resultado.to_f/100))) * client.localAmount)
   	

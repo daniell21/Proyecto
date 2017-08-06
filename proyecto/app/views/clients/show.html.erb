@@ -48,9 +48,19 @@
   <%="Si" if @client.specialcontributor%> <%="No" if !@client.specialcontributor%>
 </p>
 <p>
-  <p>
-    Descuentos: <%= @client.discounts.map(&:name).join(',') %>
+  
+    <strong>Descuentos: </strong> <br> <%= @client.discounts.map(&:name).join(',') %>
+
 </p>
+<p>
+  
+    <strong>Descuentos: </strong> <br> 
+    <% @client.discounts.each do |discount|%>
+    <%=discount.name%> - <%=discount.percentage%>%<br>
+    <%end%>
+    <% if @client.specialDiscount %>
+     Especial - <%= @client.specialDiscount %>%
+    <%end%>
 </p>
 
 </div>
