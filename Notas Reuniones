@@ -51,7 +51,8 @@ Resp: listo
 
 17-Hacer alertas de pago excesivo o menor al monto adeudado
 
-18-Validar lo del descuento especial
+-18-Validar lo del descuento especial
+Resp: listo
 
 19-Cambiar la base de datos sqlite3
 
@@ -59,7 +60,8 @@ Resp: listo
 
 21-Validaciones registro de pago
 
-22-agregar cantidad de locales por clientes
+-22-agregar cantidad de locales por clientes
+Resp: listo
 
 23-Cambiar la manera en que se registran los pagos. el cliente al acceder debe ver sus locales
 
