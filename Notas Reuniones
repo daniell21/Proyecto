@@ -58,28 +58,42 @@ Resp: listo
 
 20-Correos recordatorios
 
-21-Validaciones registro de pago
+-/21-Validaciones registro de pago
+Resp: Esta hecho a medias, faltan validaciones.
+
 
 -22-agregar cantidad de locales por clientes
 Resp: listo
 
 23-Cambiar la manera en que se registran los pagos. el cliente al acceder debe ver sus locales
 
+24-Agregar la posibilidad de evitar que se genere una cuenta para un determinado cliente si se decide que ese mes no se le va a cobrar
+
+25-Validar que si el cliente aviso tardiamente que desde hace x meses atras no habia podido usar el servicio, las facturas de estos meses puedan
+ser anuladas y no tomadas en cuenta en la generacion de las graficas
+
+26-Agregar una segunda mensualidad para clientes viejos. y la que esta ahora sera para clientes nuevos
+
+27-Agregar campos de los proveedores y cuentas por pagar. que estas cuentas se pueda registrar el detalle
+
 
 Notas personales.
 Elemetrica retiene 100% de iva y 2% de isrl
 -1- Debo acomodar la Fecha de pago, ya que si no se selecciona una fecha en espesifico se asigna la facha del dia en que se crea la cuenta. y eso no debe ser asi
+
 -2- Arreglar form de clientes
-3- Agregar la validacion de los 3 descuentos que necesita el departamento administrativo
+
+-3- Agregar la validacion de los 3 descuentos que necesita el departamento administrativo
+Resp: listo
+
 4- Validar los rif que tienen numero despues del guion
+
 5- Falta cambiar a integer o numero. Numero factura profit y Numero codigo Profit
 
 
 
 
-Pregunta para Claudia.
 
-Por que guardan especial + Fidelidad y especial + Volumen. No les sirve que sea solo especial y que este descuento incluya todo?
 
 
 
