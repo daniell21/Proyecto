@@ -1,15 +1,37 @@
 <%= simple_form_for(@constant) do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :monthlyPayment %>
-    <%= f.input :installPayment %>
-    <%= f.input :completePayment %>
-    <%= f.input :reactivationPayment %>
-    <%= f.input :tax %>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :monthlyPayment, placeholder: 'Monto Mensualidad', label: 'Mensualidad', error: 'Debe ingresar el monto de la Mensualidad' %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :installPayment, placeholder: 'Monto Instalación', label: 'Instalación', error: 'Debe ingresar el monto de la Instalación'  %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+   <br>
+      <br>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :completePayment, placeholder: 'Monto Instalación y Mensualidad', label: 'Instalación-Mensualidad', error: 'Debe ingresar el monto de la mensualidad'  %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :reactivationPayment, placeholder: 'Monto Reactivación', label: 'Reactivación', error: 'Debe ingresar el monto de la Reactivación'  %>
+    </div>
+  </div>
+   <br>
+      <br>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :tax, placeholder: 'Monto IVA', label: 'IVA', error: 'Debe ingresar el monto del IVA'  %>
+    </div>
+  </div>
+  <br>
+  <div ALIGN=right>  
+    <br>
+    <div class="form-actions">
+      <%= f.button :submit, "Crear Montos" %>
+      <%= link_to 'Atrás', constants_path, :class => 'btn btn-default btn'  %>
+    </div>
   </div>
 <% end %>
