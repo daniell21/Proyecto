@@ -12,12 +12,11 @@ gem 'fog'
 gem 'rufus-scheduler'
 gem 'bootstrap-will_paginate'
 gem 'delayed_job_active_record'
-gem 'bootstrap-sass'
 gem 'config'
 gem 'simple_form'
 gem 'country_select'
-gem 'jquery-rails'
 gem 'i18n-country-translations'
+gem 'highcharts-rails'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -37,7 +36,7 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 # Use jquery as the JavaScript library
 
-gem 'jquery-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
