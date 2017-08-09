@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Descuentos</h1>
+<%= pie_chart({"Football" => 10, "Basketball" => 10, "Karate" => 10, "Trompo" => 10}) %>
+  
+
     <div ng-class="row">
       <div class="col-xs-6">
             <!--Busqueda de clientes por nombre-->
@@ -37,6 +40,7 @@
     <% end %>
   </tbody>
 </table>
+<%= line_chart ({ 20.day.ago => 5, 10.day.ago => 10, "2017-010-07 00:00:00 UTC" => 7})%>
 <div align="center">
 <%= will_paginate %>
 </div>

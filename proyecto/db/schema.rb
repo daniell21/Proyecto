@@ -60,8 +60,6 @@ ActiveRecord::Schema.define(version: 20170806003357) do
     t.integer  "elemetricaAccount",   limit: 8
     t.string   "clientAccount"
     t.float    "accountBalance"
-    t.integer  "especialDiscount"
-    t.integer  "specialDiscount"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
