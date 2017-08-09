@@ -76,6 +76,9 @@ ser anuladas y no tomadas en cuenta en la generacion de las graficas
 
 27-Agregar campos de los proveedores y cuentas por pagar. que estas cuentas se pueda registrar el detalle
 
+28- Terminar de arreglar la interfaz de tarifas
+
+29- Agregar alerta si se desea crear una cuenta y no se han creado las tarifas en el sistema
 
 Notas personales.
 Elemetrica retiene 100% de iva y 2% de isrl
@@ -95,14 +98,7 @@ Resp: listo
 
 
 
-
-
-a. id = 18
-a.client_id = 2
-a.concept = "mensualidad"
-a.status = "facturada"
-a.paid = "no"
-a.month = "enero"
+Preguntar a clau el tamaño de los rif y cuales son los rif que ellas manejan
 
 
 
