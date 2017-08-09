@@ -11,6 +11,8 @@ class ClientsController < ApplicationController
     #obtiene todos los registros de la tabla client
     #cambiar el 5 por el numero de elementos por pagiba
     @clients = Client.order(sort_column + " " + sort_diection).search(params[:search]).paginate(:per_page => 30, :page => params[:page])
+    @accountreceivables_count = Client.joins(:accountreceivables).group("clients.id, accountreceivables.client_id").select("clients.*, count(accountreceivables.id) as cuenta_accountreceivables").collect{|x| [x.name, x.cuenta_accountreceivables]}
+
     respond_to do |format|
     format.html
     format.json
