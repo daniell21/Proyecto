@@ -12,6 +12,7 @@ class Client < ActiveRecord::Base
     validates :profitCode, presence: true
     validates :localAmount, presence: true
     validates :rif, uniqueness: true
+    validates :chargeMonthlyFee, presence: true
     before_save :calculateCode
     validates_numericality_of :rif
     before_save :country_name

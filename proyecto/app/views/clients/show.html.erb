@@ -62,6 +62,10 @@
      Especial - <%= @client.specialDiscount %>%
     <%end%>
 </p>
+<p>
+  <strong>Cobrar Mensualidad:</strong>
+  <%="Si" if @client.chargeMonthlyFee%> <%="No" if !@client.chargeMonthlyFee%>
+</p>
 
 </div>
 <div ALIGN=right>
