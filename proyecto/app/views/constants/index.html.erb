@@ -1,18 +1,22 @@
+
 <p id="notice"><%= notice %></p>
 
 <h1>Tarifas</h1>
 
-<table>
-  <thead> 
+  
+
+    
+    
+<table class="table table-striped">
+  <thead>
     <tr>
       <th>Mensualidad</th>
       <th>Mensualidad Clientes Viejos</th>
       <th>Instalación</th>
       <th>Mensualidad e Instalación</th>
-      <th>Reactivationpayment</th>
+      <th>Reactivation </th>
       <th>Impuesto</th>
-      <th colspan="3"></th>
-    </tr> 
+    </tr>
   </thead>
 
   <tbody>
@@ -24,13 +28,19 @@
         <td><%= constant.completePayment %></td>
         <td><%= constant.reactivationPayment %></td>
         <td><%= constant.tax %></td>
-        <td><%= link_to 'Mostrar', constant, :class => 'btn btn-success btn'   %></td>
-        <td><%= link_to 'Editar', edit_constant_path(constant), :class => 'btn btn-warning btn'   %></td>
+        <td><%= link_to 'Mostrar', constant, :class => 'btn btn-success btn' %></td>
+        <td><%= link_to 'Editar', edit_constant_path(constant), :class => 'btn btn-warning btn' %></td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
+
+<div align="center">
+
+</div>
+<br>
 
 <div ALIGN=right>
   <%= link_to 'Crear Nuevas Tarias', new_constant_path, :class => 'btn btn-default btn'   %>

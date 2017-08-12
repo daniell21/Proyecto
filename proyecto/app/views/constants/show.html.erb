@@ -1,34 +1,37 @@
 <p id="notice"><%= notice %></p>
+<h1>Tarifas</h1>
+<div ALIGN=center>
+  <p>
+    <strong>Mensualidad:</strong>
+    <%= @constant.monthlyPayment %>
+  </p>
+  <p>
+    <strong>Mensualidad Clientes viejos:</strong>
+    <%= @constant.oldMonthlyPayment %>
+  </p>
 
-<p>
-  <strong>Mensualidad:</strong>
-  <%= @constant.monthlyPayment %>
-</p>
-<p>
-  <strong>Mensualidad Clientes viejos:</strong>
-  <%= @constant.oldMonthlyPayment %>
-</p>
 
+  <p>
+    <strong>Instalación:</strong>
+    <%= @constant.installPayment %>
+  </p>
 
-<p>
-  <strong>Instalación:</strong>
-  <%= @constant.installPayment %>
-</p>
+  <p>
+    <strong>Instalación y mensualidad:</strong>
+    <%= @constant.completePayment %>
+  </p>
 
-<p>
-  <strong>Instalación y mensualidad:</strong>
-  <%= @constant.completePayment %>
-</p>
+  <p>
+    <strong>Reactivación:</strong>
+    <%= @constant.reactivationPayment %>
+  </p>
 
-<p>
-  <strong>Reactivación:</strong>
-  <%= @constant.reactivationPayment %>
-</p>
+  <p>
+    <strong>Impuesto:</strong>
+    <%= @constant.tax %>
+  </p>
+</div>
+<div ALIGN=right>
 
-<p>
-  <strong>Impuesto:</strong>
-  <%= @constant.tax %>
-</p>
-
-<%= link_to 'Edit', edit_constant_path(@constant) %> |
-<%= link_to 'Back', constants_path %>
+  <%= link_to 'Atrás', constants_path, :class => 'btn btn-default btn'  %>
+</div>
