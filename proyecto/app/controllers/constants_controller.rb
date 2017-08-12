@@ -69,6 +69,6 @@ class ConstantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def constant_params
-      params.require(:constant).permit(:monthlyPayment, :installPayment, :completePayment, :reactivationPayment, :tax)
+      params.require(:constant).permit(:monthlyPayment, :installPayment, :completePayment, :reactivationPayment, :tax, :oldMonthlyPayment)
     end
 end

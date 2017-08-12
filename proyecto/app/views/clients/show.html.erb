@@ -17,6 +17,11 @@
   <%= @client.profitCode %>
 </p>
 <p> 
+  <strong>Cliente Viejo:</strong>
+  <%="Si" if @client.oldCustomer%> <%="No" if !@client.oldCustomer%>
+</p>
+
+<p> 
   <strong>Nombre:</strong>
   <%= @client.name %>
 </p>

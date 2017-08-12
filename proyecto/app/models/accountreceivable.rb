@@ -98,7 +98,11 @@ class Accountreceivable < ActiveRecord::Base
   	 @constant = Constant.last
   	if !self.baseAmount
   		if concept == "mensualidad"
+        if client.oldMonthlyPayment
+          self.baseAmount = @constant.oldMonthlyPayment * client.localAmount
+        else
   	     self.baseAmount  = @constant.monthlyPayment * client.localAmount
+        end
   	 	end
   	 	if concept == "instalacion"
   	 		self.baseAmount  = @constant.installPayment * client.localAmount

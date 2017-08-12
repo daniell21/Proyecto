@@ -6,6 +6,7 @@
   <thead> 
     <tr>
       <th>Mensualidad</th>
+      <th>Mensualidad Clientes Viejos</th>
       <th>Instalación</th>
       <th>Mensualidad e Instalación</th>
       <th>Reactivationpayment</th>
@@ -18,6 +19,7 @@
     <% @constants.each do |constant| %>
       <tr>
         <td><%= constant.monthlyPayment %></td>
+        <td><%= constant.oldMonthlyPayment %></td>
         <td><%= constant.installPayment %></td>
         <td><%= constant.completePayment %></td>
         <td><%= constant.reactivationPayment %></td>

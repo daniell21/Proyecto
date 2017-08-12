@@ -57,6 +57,11 @@
               <%= f.input :chargeMonthlyFee, :collection => [['Si','true'],['No','false']], label: "Cobrar Mensualidad",
                   include_blank: "Seleccionar"%>
         </div>
+        <div class="col-md-6">
+              <%= f.input :oldCustomer, :collection => [['Si','true'],['No','false']], label: "Clente Antiguo",
+                  include_blank: "Seleccionar"%>
+        </div>
+        
       </div>
       <br>
       <br>
