@@ -39,17 +39,21 @@
   <tbody>
     <% @accountreceivables.each do |accountreceivable| %>
       <tr>
-      
-      
-        <td><%= accountreceivable.client.name %></td>
-        <td><%= accountreceivable.date %></td>
-        
-        <td><%= accountreceivable.concept %></td>
-        <td><%= accountreceivable.elemetricaAccount %></td>
-        
-        <td><%= link_to 'Mostrar', accountreceivable, :class => 'btn btn-success btn'%></td>
-        <td><%= link_to 'Editar', edit_accountreceivable_path(accountreceivable), :class => 'btn btn-warning btn'  %></td>
-        <td><%= link_to 'Eliminar', accountreceivable, method: :delete, data: { confirm: '¿Estas Seguro?' },:class => 'btn btn-danger btn' %></td>
+      <%client = Client.find(accountreceivable.client_id)%>
+       
+        <%if current_user.role != "client" or (current_user.role == "client" and current_user.email == client.email) %>
+          <td><%= accountreceivable.client.name %></td>
+          <td><%= accountreceivable.date %></td>
+          <td><%= accountreceivable.concept %></td>
+          <td><%= accountreceivable.elemetricaAccount %></td>
+          <td><%= link_to 'Mostrar', accountreceivable, :class => 'btn btn-success btn'%></td>
+          <%if current_user.role != "client" or (current_user.role == "client" and accountreceivable.paid == "no") %>
+            <td><%= link_to 'Editar', edit_accountreceivable_path(accountreceivable), :class => 'btn btn-warning btn'  %></td>
+          <%end%>
+          <%if current_user.role != "client" %>
+            <td><%= link_to 'Eliminar', accountreceivable, method: :delete, data: { confirm: '¿Estas Seguro?' },:class => 'btn btn-danger btn' %></td>
+          <%end%>
+        <%end%>
       </tr>
     <% end %>
     

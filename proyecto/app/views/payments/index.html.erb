@@ -8,6 +8,12 @@
  <% end %>
  <p><%= link_to "Buscar Cliente", new_search_client_payment_path %></p> 
 
+    <ul class="menu">
+     <li class="active"><a href="<%= root_path %>">Home</a></li>
+     <li class=""><%= link_to 'Feeds' , clients_path %></li>
+     <li class=""><%= link_to 'Accounts' , accountreceivables_path %></li>
+</ul>
+        
   <!--<table class="table table-striped">
     <tr>
       <th>Name</th>
