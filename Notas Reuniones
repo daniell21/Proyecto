@@ -13,7 +13,7 @@ Resp: Pendiente
 Resp: listo
 
 -/-5- En cuentas por cobrar. al crear una cuenta. colocar un buscador de clientes para ubicar facilmente el cliente al que pertenece la cuenta
-Resp: No realizare por ahora, ya que el cron debe crear las cuentas a principios de mes haciendo match con el respectivo cliente, por lo que el departamento administrativo no deberia tener por que hacer el match manual. y si fuese el caso, al desplegar la lista, batsta con teclear la primera letra del cliente y el input te ubica lo escrito
+Resp: listo
 
 6- Poder agregar en el futuro otros conceptos de pago a parte de  mensualidad, instalacion...
 Resp:No hare por ahora.
@@ -28,11 +28,10 @@ Resp: listo
 Resp: listo
 
 
-
 -10- Agregar el monto pagado por el cliente en las cuentas por cobrar
 Resp: listo
 
-11-Analizar que se pueda modificar campos de las cuentas por cobrar por lotes
+11- Analizar que se pueda modificar campos de las cuentas por cobrar por lotes
 Resp: Este analisis se realizara a futuro. la prioridad ahorita es cubrir el alcance principal del proyecto
 
 -12- Colocar filtros multiples en los campos de las cuentas por cobrar
@@ -61,24 +60,29 @@ Resp: listo
 -/21-Validaciones registro de pago
 Resp: Esta hecho a medias, faltan validaciones.
 
-
 -22-agregar cantidad de locales por clientes
 Resp: listo
 
 23-Cambiar la manera en que se registran los pagos. el cliente al acceder debe ver sus locales
+Resp: En desarrollo
 
-24-Agregar la posibilidad de evitar que se genere una cuenta para un determinado cliente si se decide que ese mes no se le va a cobrar
+-/24-Agregar la posibilidad de evitar que se genere una cuenta para un determinado cliente si se decide que ese mes no se le va a cobrar
+Resp: listo, solo falta validar
 
-25-Validar que si el cliente aviso tardiamente que desde hace x meses atras no habia podido usar el servicio, las facturas de estos meses puedan
+-/25-Validar que si el cliente aviso tardiamente que desde hace x meses atras no habia podido usar el servicio, las facturas de estos meses puedan
 ser anuladas y no tomadas en cuenta en la generacion de las graficas
+Resp: listo. Solo falta excluir de las validaciones
 
-26-Agregar una segunda mensualidad para clientes viejos. y la que esta ahora sera para clientes nuevos
+-26-Agregar una segunda mensualidad para clientes viejos. y la que esta ahora sera para clientes nuevos
+Resp:listo
 
 27-Agregar campos de los proveedores y cuentas por pagar. que estas cuentas se pueda registrar el detalle
 
 28- Terminar de arreglar la interfaz de tarifas
 
 29- Agregar alerta si se desea crear una cuenta y no se han creado las tarifas en el sistema
+
+30- Cambiar la asignacion automatica del mes correcto cuando se cree una cuenta por cobrar por cron
 
 Notas personales.
 Elemetrica retiene 100% de iva y 2% de isrl
