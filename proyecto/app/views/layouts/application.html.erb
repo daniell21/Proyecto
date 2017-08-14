@@ -42,13 +42,17 @@
 					<%end%>
 					<%if (current_user.role != "client") %>
 						<li style="list-style:none;">
-							<%= link_to 'Configuración', controller: 'setup' %>
-							<ul>
-								<li><%= link_to 'Registro de Pagos', controller: 'payments' %></li>
-							</ul>
+							<%= link_to 'Gráficos', controller: 'charts' %>
 						</li>
 					
 					<%end%>
+					<%if (current_user.role != "client") %>
+						<li style="list-style:none;">
+							<%= link_to 'Configuración', controller: 'setup' %>
+						</li>
+					
+					<%end%>
+					
 					<%if current_user.role == "client"%>
 						<li style="list-style:none; padding: 0px; margin: 0px;">
 							<%= link_to 'Registro de Pagos', controller: 'payments' %>

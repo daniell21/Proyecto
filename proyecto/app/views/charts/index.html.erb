@@ -1,0 +1,20 @@
+<h1>Gráficos</h1>
+<div class="row">
+	<div class="col-xs-6">	
+		<%= pie_chart({"Football" => 10, "Basketball" => 10, "Karate" => 10, "Trompo" => 10}) %>
+	</div>
+
+ 	<div class="col-xs-6">
+		<%= column_chart ({ 20.day.ago => 5, 10.day.ago => 10, "2017-010-07 00:00:00 UTC" => 7})%>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="panel-heading">Cantidad de Cuentas por Cliente</div>
+				<div id="orders_chart" style="width: 400px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @accountreceivables_count, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", download: true, download: "boom"   %></div>
+		</div>
+	</div>
+	<br>
+	<br>
+</div>

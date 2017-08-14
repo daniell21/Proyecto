@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   
   
 
+  get 'charts/index'
+
   resources :constants
   resources :client_mails
   resources :groups
