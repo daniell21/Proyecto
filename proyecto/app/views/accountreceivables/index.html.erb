@@ -2,6 +2,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Cuentas por Cobrar</h1>
+  <%if current_user.role != "client" %>
     <div class="row">
       <div class="col-xs-4">
         <!--Busqueda de clientes por nombre-->
@@ -17,11 +18,12 @@
       </div> 
       <div class="col-xs-4">
         <%= form_tag import_accountreceivables_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
-<% end %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "Import" %>
+        <%end%>
       </div>   
-    </div> 
+    </div>
+  <%end%> 
 <table class="table table-striped">
   <thead>
     <tr>

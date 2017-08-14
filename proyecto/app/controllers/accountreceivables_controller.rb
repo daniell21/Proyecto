@@ -46,7 +46,7 @@ helper_method :sort_column, :sort_diection
     respond_to do |format|
       if @accountreceivable.update(accountreceivable_params)
         if current_user.role == "client"
-          format.html { redirect_to search_client_payments_url}
+          format.html { redirect_to accountreceivables_url}
           format.json { render :show, status: :ok, location: @accountreceivable }
         else
           format.html { redirect_to accountreceivables_url}
