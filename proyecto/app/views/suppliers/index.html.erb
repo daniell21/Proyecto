@@ -39,8 +39,9 @@
 
   <thead>
     <tr>
-      <th><%=  sortable "name", "Nombre"%></th>
-        <th><%=  sortable "lastname", "Apellido"%></th>
+      <th><%=  sortable "rif", "RIF"%></th>
+        <th><%=  sortable "name", "Name"%></th>
+        <th><%=  sortable "socialReason", "Razón Social"%></th>
         <th><%=  sortable "email", "Email"%></th>
       <th colspan="3"></th>
     </tr>
@@ -50,8 +51,9 @@
     <% @suppliers.each do |supplier| %>
      <tr data-href="<%= edit_supplier_path(supplier) %>">
       
+        <td><%= supplier.rif %></td>
         <td><%= supplier.name %></td>
-        <td><%= supplier.lastname %></td>
+        <td><%= supplier.socialReason %></td>
         <td><%= supplier.email %></td>
         <td><%= link_to 'Mostrar', supplier, :class => 'btn btn-success btn'  %></td>
         <td><%= link_to 'Editar', edit_supplier_path(supplier), :class => 'btn btn-primary btn' %></td>

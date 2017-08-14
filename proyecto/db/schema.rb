@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812041423) do
+ActiveRecord::Schema.define(version: 20170814011713) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -212,10 +212,13 @@ ActiveRecord::Schema.define(version: 20170812041423) do
 
   create_table "suppliers", force: :cascade do |t|
     t.string   "name"
-    t.string   "lastname"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "socialReason"
+    t.integer  "rif"
+    t.text     "address"
+    t.string   "category"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

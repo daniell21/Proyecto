@@ -1,21 +1,31 @@
 
-<%= simple_form_for(@supplier, html: { class: 'form-inline' }) do |f| %>
-  
-
+<%= simple_form_for(@supplier) do |f| %>
+    
+    <div class="row">
+      <div class="col-md-6"> 
+        <%= f.input :rif, placeholder: 'RIF', label: 'RIF' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :email, placeholder: 'Correo', label: 'Correo' %>
+      </div>
+    </div>
+    <br>
+    <br>
     <div class="row">
       <div class="col-md-6"> 
         <%= f.input :name, placeholder: 'Nombre', label: 'Nombre' %>
       </div>
     
       <div class="col-md-6">    
-        <%= f.input :lastname , placeholder: 'Apellido', label: 'Apellido' %>
+        <%= f.input :socialReason , placeholder: 'Razón Social', label: 'Razón Social' %>
       </div>
     </div>
     <br>
     <br>
     <div class="row">
+      
       <div class="col-md-6">
-        <%= f.input :email, placeholder: 'Correo', label: 'Correo' %>
+        <%= f.input :address, placeholder: 'Dirección', label: 'Dirección' %>
       </div>
     </div>
 

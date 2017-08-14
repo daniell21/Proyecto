@@ -124,7 +124,7 @@
         <div class="actions">
         <%if current_user.role == "client"%>
         <%= f.button :submit, "Crear Cuenta", data: { confirm: '¿Estas Seguro?' }  %>
-          <%= link_to 'Atrás', search_client_payments_path, :class => 'btn btn-default btn' %>
+          <%= link_to 'Atrás', accountreceivables_path, :class => 'btn btn-default btn' %>
           <%else%>
           <%= f.button :submit, "Crear Cuenta"%>
           <%= link_to 'Atrás', accountreceivables_path, :class => 'btn btn-default btn'  %>
