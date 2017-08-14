@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   
 
-  get 'charts/index'
+  get 'graphs/index'
 
   resources :constants
   resources :client_mails
