@@ -46,7 +46,9 @@
           <td><%= accountreceivable.date %></td>
           <td><%= accountreceivable.concept %></td>
           <td><%= accountreceivable.elemetricaAccount %></td>
-          <td><%= link_to 'Ver Pago', accountreceivable, :class => 'btn btn-success btn'%></td>
+          <%if current_user.role != "client" or (current_user.role == "client" and accountreceivable.paid == "si") %>
+            <td><%= link_to 'Ver Pago', accountreceivable, :class => 'btn btn-success btn'%></td>
+          <%end%>
           <%if current_user.role != "client" or (current_user.role == "client" and accountreceivable.paid == "no") %>
             <td><%= link_to 'Registrar Pago', edit_accountreceivable_path(accountreceivable), :class => 'btn btn-warning btn'  %></td>
           <%end%>
