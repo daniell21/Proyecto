@@ -1,5 +1,5 @@
 
-<%= simple_form_for(@client, html: { class: 'form-inline' }) do |f| %>
+<%= simple_form_for(@client) do |f| %>
 
   
        <div class="row">
@@ -25,14 +25,14 @@
       <br>
       <div class="row">
         
-        <div class="col-md-6">
+        <div class="col-xs-6">
               <%= f.input :specialcontributor, :collection => [['Si','true'],['No','false']], label: "Contribuyente Especial",
                   include_blank: "Seleccionar"%>
         </div>
-
-        <div class="field">
+        <div class="col-xs-6">
           <%= f.input :state, placeholder: 'Estado', label: 'Estado', error: 'Debe ingresar el Estado del Cliente' %>
         </div>
+        
       </div>
       <br>
       <br>
