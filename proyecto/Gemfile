@@ -19,6 +19,8 @@ gem 'country_select'
 gem 'i18n-country-translations'
 gem "chartkick"
 gem 'groupdate'
+gem 'active_link_to'
+
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

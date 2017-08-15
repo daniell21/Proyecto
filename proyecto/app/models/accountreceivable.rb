@@ -212,6 +212,8 @@ end
     self.update_column(:bank, "Provincial")
     balance = monto.to_f - amountWithtTax 
     self.update_column(:accountBalance, balance)
+    cuenta = self.elemetricaAccount
+    
   end
   #FALTA
   def mercantil(linea)

@@ -12,50 +12,49 @@
 <%= favicon_link_tag 'favicon.ico' %>
      <div class="navbar-default sidebar navbar-fixed" role="navigation">
 		 <img class="logo img-responsive" src="/assets/logo_data.png" />
-	     <div class="sidebar-nav navbar-collapse">
 		     <ul class="nav in" id="side-menu">
 		        	<%if (current_user.role != "client") %>
 						<li style="list-style:none;">
-							<%= link_to 'Clientes', controller: 'clients' %>
+							<%=  active_link_to 'Clientes', controller: 'clients' %>
 						</li>
 					<%end%>
 					<%if (current_user.role != "client") %>
 						<li style="list-style:none;">
-							<%= link_to 'Proveedores', controller: 'suppliers' %>
+							<%= active_link_to 'Proveedores', controller: 'suppliers' %>
 						</li>
 					<%end%>
 					<%if (current_user.role != "client")%>
 						<li style="list-style:none;">
-							<%= link_to 'Cuentas por Cobrar', controller: 'accountreceivables' %>
+							<%= active_link_to 'Cuentas por Cobrar', controller: 'accountreceivables' %>
 						</li>
 					<%end%>
 					<%if (current_user.role != "client") %>
 						<li style="list-style:none;">
-							<%= link_to 'Cuentas por Pagar', controller: 'accountpayables' %>
+							<%= active_link_to 'Cuentas por Pagar', controller: 'accountpayables' %>
 						</li>
 					<%end%>
 					
 					<%if (current_user.role != "client" 	 and current_user.role != "restricted")  %>
 						<li style="list-style:none;">
-							<%= link_to 'Correos Electrónicos', controller: 'client_mails' %>
+							<%= active_link_to 'Correos Electrónicos', controller: 'client_mails' %>
 						</li>
 					<%end%>
 					<%if (current_user.role != "client") %>
 						<li style="list-style:none;">
-							<%= link_to 'Gráficos', controller: 'graphs' %>
+							<%= active_link_to 'Gráficos', controller: 'graphs' %>
 						</li>
 					
 					<%end%>
 					<%if (current_user.role != "client") %>
 						<li style="list-style:none;">
-							<%= link_to 'Configuración', controller: 'setup' %>
+							<%= active_link_to 'Configuración', controller: 'setup' %>
 						</li>
 					
 					<%end%>
 					
 					<%if current_user.role == "client"%>
 						<li style="list-style:none; padding: 0px; margin: 0px;">
-							<%= link_to 'Registro de Pagos', controller: 'payments' %>
+							<%= active_link_to 'Registro de Pagos', controller: 'payments' %>
 						</li>
 					<%end%>
 		        </ul>

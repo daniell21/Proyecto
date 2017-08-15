@@ -22,6 +22,9 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_link_to (1.0.4)
+      actionpack
+      addressable
     activejob (4.2.4)
       activesupport (= 4.2.4)
       globalid (>= 0.3.0)
@@ -38,6 +41,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.5.1)
+      public_suffix (~> 2.0, >= 2.0.2)
     afm (0.2.2)
     arel (6.0.4)
     autoprefixer-rails (7.1.2.1)
@@ -279,6 +284,7 @@ GEM
       ttfunk
     pdftotext (0.2.1)
       cliver (~> 0.3)
+    public_suffix (2.0.5)
     rack (1.6.8)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -385,6 +391,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_link_to
   bootstrap-sass
   bootstrap-will_paginate
   byebug

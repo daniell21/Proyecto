@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814011713) do
+ActiveRecord::Schema.define(version: 20170814232336) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -58,8 +58,9 @@ ActiveRecord::Schema.define(version: 20170814011713) do
     t.string   "proof"
     t.string   "document"
     t.integer  "elemetricaAccount",   limit: 8
-    t.string   "clientAccount"
     t.float    "accountBalance"
+    t.string   "elemetricaAcount"
+    t.string   "clientAccount"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
