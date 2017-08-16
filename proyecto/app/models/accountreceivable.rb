@@ -11,6 +11,8 @@ class Accountreceivable < ActiveRecord::Base
   validates :paymentType, presence: true, on: :update
   validates :month, presence: true, on: :create
   validates :paid, presence: true
+  validates :bank, presence: true, on: :update
+  validates :amountPaid, presence: true, on: :update
   
 
   #validates_numericality_of :transferNumber
