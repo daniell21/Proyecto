@@ -3,11 +3,14 @@ class ClientMail < ActiveRecord::Base
 
 	after_create :send_mail
 	after_create :setDate
-	private	
+	after_save :setDate
+
 	def setDate
-		self.update_column(:date, Time.now.strftime("%Y-%d-%m %H:%M:%S %Z"))
+		self.update_column(:date, Time.now.strftime("%Y-%m-%d"))
 		
 	end
+	private	
+	
 	def send_mail
 		#raise self.client.to_yaml
 		ClientMailer.delay.client_mail(self)

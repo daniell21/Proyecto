@@ -51,7 +51,7 @@ class Accountreceivable < ActiveRecord::Base
     if self.paymentType == "deposito"
       raise self.paymentType.to_yaml
       validates :amountPaid, presence: true
-      valida
+      
     end
   end
 
