@@ -26,6 +26,12 @@
 					<%=d.amountPaid%>
 				<%end%>
 			</div>
+			<div class="col-xs-6">
+				<%Accountreceivable.where("DATE(created_at) BETWEEN ? AND ?", "2010-02-03 00:00:00", "2018-02-03 00:00:00").order('amountPaid asc').limit(2). each do |s|%>
+					<%=s.id%>
+				<%end%>
+		</div>
+%>
 		</div>
 	
 	

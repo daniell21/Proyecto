@@ -6,16 +6,17 @@
    <%= file_field_tag :file %>
    <%= submit_tag "Importar" %>-->
  <% end %>
- <p><%= link_to "Buscar Cliente", new_search_client_payment_path %></p> 
+ <!--<p><%= link_to "Buscar Cliente", new_search_client_payment_path %></p> -->
   <br>
   <br>
     <ul class="row">
       <div class="col-xs-6">
-        <li class=""><%= link_to 'Deposito' , clients_path %></li>
+        <%= link_to 'Deposito' , accountreceivables_path, :class => 'btn btn-default btn'   %>
      </div>
+     <ul class="row">
       <div class="col-xs-6">
-        <li class=""><%= link_to 'Transferencia' , accountreceivables_path %></li>
-      </div>
+        <%= link_to 'Deposito' , accountreceivables_path, :class => 'btn btn-default btn'   %>
+     </div>
 </ul>
         
   <!--<table class="table table-striped">

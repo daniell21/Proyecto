@@ -9,7 +9,7 @@ class Accountreceivable < ActiveRecord::Base
   validates :concept, presence: true, on: :create
   validates :status, presence: true, on: :create
   validates :paymentType, presence: true, on: :update
-  validates :month, presence: true
+  validates :month, presence: true, on: :create
   validates :paid, presence: true
   
 
@@ -20,7 +20,7 @@ class Accountreceivable < ActiveRecord::Base
   #validates_numericality_of :transferNumber, acceptance: { message: 'No es Numérico' }
   
   after_save :importProof
-  
+  before_save :validator
   before_save :calculateBaseAmount
   before_save :calculateBasicAmount
   before_save :calculateAmountWithTax
@@ -45,6 +45,13 @@ class Accountreceivable < ActiveRecord::Base
     when '.xls' then Excel.new(file.path, nil, :ignore)
     when '.xlsx' then Excelx.new(file.path, nil, :ignore)
     else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
+  def validator
+    if self.paymentType == "deposito"
+      raise self.paymentType.to_yaml
+      validates :amountPaid, presence: true
+      valida
     end
   end
 

@@ -15,12 +15,14 @@
           <br>
           <!--Esto debe acomodarse-->
           <div class="row">
-            <div class="col-xs-6">
-              
-              <%= f.association :client, label: "Cliente", 
-                  include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Ciente"  %>
+            <%if (current_user.role != "client") %>
+              <div class="col-xs-6">
+                
+                <%= f.association :client, label: "Cliente", 
+                    include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Ciente"  %>
 
-            </div>
+              </div>
+            <%end%>
             <div class="col-xs-6">
               <%= f.input :date, label: "Fecha Pago"%>
             </div>
@@ -63,10 +65,12 @@
           <br>
           <br>
           <div class="row">
-            <div class="col-md-6">
-                <%= f.input :month, :collection => [['enero','enero'],['febrero','febrero'],['marzo','marzo'],['abril','abril'],['mayo','mayo'],['junio','junio'],['julio','julio'],['agosto','agosto'],['septiembre','septiembre'],['octubre','octubre'],['noviembre','noviembre'],['diciembre','diciembre']], label: "Mes a Pagar ", 
-                  include_blank: "Seleccionar Mes",error: 'Debe seleccionar el mes de pago' %>
-            </div>  
+            <%if (current_user.role != "client") %>
+              <div class="col-md-6">
+                  <%= f.input :month, :collection => [['enero','enero'],['febrero','febrero'],['marzo','marzo'],['abril','abril'],['mayo','mayo'],['junio','junio'],['julio','julio'],['agosto','agosto'],['septiembre','septiembre'],['octubre','octubre'],['noviembre','noviembre'],['diciembre','diciembre']], label: "Mes a Pagar ", 
+                    include_blank: "Seleccionar Mes",error: 'Debe seleccionar el mes de pago' %>
+              </div> 
+            <%end%> 
             <div class="col-md-6"> 
               <%= f.input :bank, :collection => [["100%BANCO",'100%banco'],['Mercantil','mercantil'],['Banco Provincial','provincial'],['Banesco','banesco'],['Banco Banplus','banplus'],['Banco Bicentenario','bicentenario']], label: 'Banco', 
                   include_blank: "Seleccionar Banco" %>
