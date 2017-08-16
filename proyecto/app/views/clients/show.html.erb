@@ -71,6 +71,10 @@
   <strong>Cobrar Mensualidad:</strong>
   <%="Si" if @client.chargeMonthlyFee%> <%="No" if !@client.chargeMonthlyFee%>
 </p>
+<p>
+  <strong>Comentarios:</strong>
+  <%=@client.comment%> 
+</p>
 
 </div>
 <div ALIGN=right>

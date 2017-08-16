@@ -69,7 +69,7 @@
         
 
         <div class="col-xs-6">
-          <label>*País</label>
+          <label>País</label>
             <%= f.input :country, as: :country, placeholder: 'Venezuela', label: false, error: 'Debe ingresar el país del Cliente' %>
         </div>
         
@@ -83,6 +83,11 @@
                   include_blank: "Seleccionar", error: 'El cliente solo puede tener dos descuentos'%>
         </div>
         
+      </div>
+      <div class="row"> 
+        <label>Comentarios</label>
+            <%= f.input :comment, placeholder: 'Comentarios', label: false%>
+        </div>
       </div>
 
 
