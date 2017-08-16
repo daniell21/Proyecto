@@ -27,6 +27,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+    <th><%=sortable "profitNumber", "Numero de Factura Profit"%> </th>
     <%if current_user.role != "client"%>
       <th>Cliente</th>
     <%else%>
@@ -44,6 +45,7 @@
   <tbody>
     <% @accountreceivables.each do |accountreceivable| %>
       <tr>
+      <th><%= accountreceivable.profitNumber %></th>
       <%client = Client.find(accountreceivable.client_id)%>
        
         <%if current_user.role != "client" or (current_user.role == "client" and current_user.email == client.email) %>
