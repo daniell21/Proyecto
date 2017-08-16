@@ -20,7 +20,8 @@ gem 'i18n-country-translations'
 gem "chartkick"
 gem 'groupdate'
 gem 'active_link_to'
-
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -36,8 +37,7 @@ gem 'roo', '~> 2.1.0'
 gem "iconv", "~> 1.0.3"
 gem 'roo-xls'
 # gem 'therubyracer', platforms: :ruby
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+
 # Use jquery as the JavaScript library
 
 gem 'jquery-rails'

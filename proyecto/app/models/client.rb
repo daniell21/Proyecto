@@ -8,8 +8,9 @@ class Client < ActiveRecord::Base
     validates :socialReason, presence: true
     validates_presence_of :name
     validates :state, presence: true
-    validates :rif, presence: true, length: { minimum: 8 }
-    validates :profitCode, presence: true
+    validates :rif, presence: true, length: { minimum: 9 }
+
+    validates :profitCode, presence: true, length: { minimum: 6 }
     validates :localAmount, presence: true
     validates :rif, uniqueness: true
     validates :chargeMonthlyFee, presence: true
