@@ -3,6 +3,13 @@
   
   <div class="row">
     <div class="col-md-6"> 
+      <%= f.input :date, label: "Fecha de Pago", error: 'Debe seleccionar una Fecha' %>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-6"> 
       <%= f.association :supplier, label: "Proveedor", 
                       include_blank: "Seleccionar Proveedor", error: 'Debe seleccionar un Proveedor' %>
     </div>
@@ -15,8 +22,11 @@
     <br>
   <div class="row">
     <div class="col-md-6"> 
-      <%= f.input :total,  as: :string,  input_html: {value: 0}, label: 'Total', error: 'Debe ser Númerico' %>
+      <%= f.input :amountPaid, label: 'Monto Pagado', error: 'Debe ser Númerico' %>
     </div>
+    <div class="col-md-6"> 
+                <%= f.input :comment, placeholder: 'Agregar Comentarios', label: 'Comentarios' %>
+            </div>
   </div>
   <br>
  

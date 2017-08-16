@@ -4,7 +4,10 @@
 <br>
 <div ALIGN=center>
 <p>
-
+	<p>
+  <strong>Fecha:</strong>
+  <%= @accountpayable.date %>
+</p>
   <strong>Cuenta:</strong>
   <%= @accountpayable.supplier.name %>
 </p>
@@ -15,7 +18,11 @@
 
 <p>
   <strong>Total:</strong>
-  <%= @accountpayable.total %>
+  <%= @accountpayable.amountPaid %>
+</p>
+<p>
+  <strong>Comentarios:</strong>
+  <%= @accountpayable.comment %>
 </p>
 </div>
 <div align="right">

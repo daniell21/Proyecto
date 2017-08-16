@@ -71,10 +71,10 @@ class AccountpayablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accountpayable_params
-      params.require(:accountpayable).permit(:descripcion, :total, :supplier_id)
+      params.require(:accountpayable).permit(:descripcion, :amountPaid, :supplier_id, :date, :comment)
     end
     def sort_column
-      Accountpayable.column_names.include?(params[:sort]) ? params[:sort] : "total"
+      Accountpayable.column_names.include?(params[:sort]) ? params[:sort] : "amountPaid"
     end
 
     def sort_diection
