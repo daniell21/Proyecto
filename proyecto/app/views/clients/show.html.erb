@@ -28,8 +28,17 @@
 
 
 <p>
-  <strong>Email:</strong>
-  <%= @client.email %>
+  <strong>Correos:</strong>
+  <%= render "emails/form" %>
+  <ul>
+    <%@client.emails.each do |email|%>
+      <li  style="list-style:none;">
+        <%=email.email%>
+        
+       <%= link_to 'Eliminar Correo', [email.client, email], method: :delete, data: { confirm: 'Are you sure?' } %>
+      </li>
+    <%end%>
+  </ul>
 </p>
 <p>
   <strong>País:</strong>

@@ -3,32 +3,32 @@
 <div ALIGN=center>
   <p>
     <strong>Mensualidad:</strong>
-    <%= @constant.monthlyPayment %>
+    <%= @constant.monthlyPayment.to_s.gsub('.', ',') %>
   </p>
   <p>
     <strong>Mensualidad Clientes viejos:</strong>
-    <%= @constant.oldMonthlyPayment %>
+    <%= @constant.oldMonthlyPayment.to_s.gsub('.', ',') %>
   </p>
 
 
   <p>
     <strong>Instalación:</strong>
-    <%= @constant.installPayment %>
+    <%= @constant.installPayment.to_s.gsub('.', ',') %>
   </p>
 
   <p>
     <strong>Instalación y mensualidad:</strong>
-    <%= @constant.completePayment %>
+    <%= @constant.completePayment.to_s.gsub('.', ',') %>
   </p>
 
   <p>
     <strong>Reactivación:</strong>
-    <%= @constant.reactivationPayment %>
+    <%= @constant.reactivationPayment.to_s.gsub('.', ',') %>
   </p>
 
   <p>
     <strong>Impuesto:</strong>
-    <%= @constant.tax %>
+    <%= @constant.tax.to_s.gsub('.', ',') %>
   </p>
 </div>
 <div ALIGN=right>

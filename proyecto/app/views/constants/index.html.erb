@@ -22,12 +22,12 @@
   <tbody>
     <% @constants.each do |constant| %>
       <tr>
-        <td><%= constant.monthlyPayment %></td>
-        <td><%= constant.oldMonthlyPayment %></td>
-        <td><%= constant.installPayment %></td>
-        <td><%= constant.completePayment %></td>
-        <td><%= constant.reactivationPayment %></td>
-        <td><%= constant.tax %></td>
+        <td><%= constant.monthlyPayment.to_s.gsub('.', ',')%></td>
+        <td><%= constant.oldMonthlyPayment.to_s.gsub('.', ',') %></td>
+        <td><%= constant.installPayment.to_s.gsub('.', ',') %></td>
+        <td><%= constant.completePayment.to_s.gsub('.', ',') %></td>
+        <td><%= constant.reactivationPayment.to_s.gsub('.', ',') %></td>
+        <td><%= constant.tax.to_s.gsub('.', ',') %></td>
         <td><%= link_to 'Mostrar', constant, :class => 'btn btn-success btn' %></td>
         <td><%= link_to 'Editar', edit_constant_path(constant), :class => 'btn btn-warning btn' %></td>
 

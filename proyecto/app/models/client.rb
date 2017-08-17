@@ -1,6 +1,7 @@
 class Client < ActiveRecord::Base
 	has_many :accountreceivables, :dependent => :delete_all
   has_many :client_mails
+  has_many :emails
    has_and_belongs_to_many :discounts
     validates :name, presence: true #uniqueness: true
     validates :country, presence: true #length: {minimum: 20}

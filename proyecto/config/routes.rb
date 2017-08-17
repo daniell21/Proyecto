@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
   
 
+  
   get 'graphs/index'
 
   resources :constants
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
   resources :clients do
+    resources :emails
     collection { post :import }
   end
   resources :accountreceivables do
