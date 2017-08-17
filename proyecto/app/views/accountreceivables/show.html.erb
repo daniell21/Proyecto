@@ -56,7 +56,10 @@
   <strong>Total Retenciones:</strong>
   <%= @accountreceivable.totalRetentions %>
 </p>
-
+<p>
+    <strong>Total a Percibir:</strong>
+    <%= @accountreceivable.totalAmountPerceive %>
+  </p>
 <p>
   <strong>Factura Pagada:</strong>
   <%= @accountreceivable.paid %>
@@ -96,10 +99,7 @@
 </p>
 <p>
 <%if (current_user.role != "client") %>
-  <p>
-    <strong>Total a Percibir:</strong>
-    <%= @accountreceivable.totalAmountPerceive %>
-  </p>
+  
   <p>
     <strong>Numero de Transaccion Mercantil:</strong>
     <%= @accountreceivable.transferNumber %>

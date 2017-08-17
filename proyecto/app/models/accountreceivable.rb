@@ -106,7 +106,9 @@ class Accountreceivable < ActiveRecord::Base
 
  
   def calculateBaseAmount
-  	 @constant = Constant.last
+
+  	@constant = Constant.find(constant_id)
+    
   	if !self.baseAmount
       self.baseAmount = @constant.amount * client.localAmount
   		
@@ -126,7 +128,7 @@ class Accountreceivable < ActiveRecord::Base
      resultado = resultado + client.specialDiscount
     end
   	
-  	self.amountWithoutTax = ((baseAmount * ( 1 - (resultado.to_f/100))) * client.localAmount)
+  	self.amountWithoutTax = ((baseAmount * ( 1 - (resultado.to_f/100))))
   	
   	#raise (Settings.monthlyPayment * ( 1 - (client.discounts.find(1).percentage.to_f/100))).to_yaml
   	
@@ -141,11 +143,12 @@ class Accountreceivable < ActiveRecord::Base
   def calculateRetentions
   	retention = 0
   	#raise retentionIva.to_yaml
-  	@constant = Constant.last
+  	@constant = Constant.find(constant_id)
   	if client.specialcontributor
   		retention = amountWithoutTax * 0.02
+
   	end
-  		retention = retention + amountWithoutTax #* @constant.tax * 1
+  	retention = retention + amountWithoutTax * 0.12 * 1
   	
   	self.totalRetentions = retention
   	
@@ -153,6 +156,7 @@ class Accountreceivable < ActiveRecord::Base
 
   def calculateTotalAmountPerceive
   	self.totalAmountPerceive = amountWithtTax - totalRetentions
+   
   end
   #simple search rif
   def self.search(search)
