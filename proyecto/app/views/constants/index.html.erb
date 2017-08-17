@@ -16,11 +16,14 @@
   <tbody>
     <% @constants.each do |constant| %>
       <tr>
+      
         <td><%= constant.name %></td>
-        <td><%= constant.amount %></td>
+        <td><%= constant.amount.to_s.gsub('.', ',')%></td>
         <td><%= link_to 'Mostrar', constant, :class => 'btn btn-success btn' %></td>
         <td><%= link_to 'Editar', edit_constant_path(constant), :class => 'btn btn-warning btn'  %></td>
+        <%if !constant.name.include? "IVA"%>
         <td><%= link_to 'Eliminar', constant, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'btn btn-danger btn' %></td>
+       <%end%> 
       </tr>
     <% end %>
   </tbody>

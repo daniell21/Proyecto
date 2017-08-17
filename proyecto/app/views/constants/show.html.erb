@@ -5,16 +5,19 @@
   <strong>Nombre:</strong>
   <%= @constant.name %>
 </p>
-
+<%if @constant.name != "Porcentaje de IVA"%>
 <p>
   <strong>Monto:</strong>
-  <%= @constant.amount %>
+  <%= @constant.amount.to_s.gsub('.', ',') %>
 </p>
+<%else%>
 <p>
-
-</div>
-
+  <strong>Monto:</strong>
+  <%= @constant.amount.to_s.gsub('.', ',') %>%
 </p>
+<%end%>
+
+
 <div ALIGN=right>
 
 <%= link_to 'Atrás', constants_path, :class => 'btn btn-default btn' %>
