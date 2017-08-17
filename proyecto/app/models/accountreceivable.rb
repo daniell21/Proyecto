@@ -3,11 +3,12 @@ class Accountreceivable < ActiveRecord::Base
    #Hasta Ahora los comprobantes de Benplus no funcionan. No se pueden leer
    #Resta por hacer validaciones de fecha y numero de cuenta a acreditar. MOnto tambien
   belongs_to :client
-  belongs_to :constant
+  belongs_to :constant 
   mount_uploader :document, DocumentUploader
   validates :client_id, presence: true
+  validates :constant_id, presence: true
   validates :date, presence: true, on: :update
-  validates :concept, presence: true, on: :create
+  
   validates :status, presence: true, on: :create
   validates :paymentType, presence: true, on: :update
   validates :month, presence: true, on: :create
@@ -107,23 +108,8 @@ class Accountreceivable < ActiveRecord::Base
   def calculateBaseAmount
   	 @constant = Constant.last
   	if !self.baseAmount
-  		if concept == "mensualidad"
-
-        if @constant.oldMonthlyPayment
-          self.baseAmount = @constant.oldMonthlyPayment * client.localAmount
-        else
-  	     self.baseAmount  = @constant.monthlyPayment * client.localAmount
-        end
-  	 	end
-  	 	if concept == "instalacion"
-  	 		self.baseAmount  = @constant.installPayment * client.localAmount
-  	 	end
-  	 	if concept == "instalacionMensualidad"
-  	 		self.baseAmount = @constant.completePayment * client.localAmount
-  	 	end
-  	 	if concept == "reactivacion"
-  	 		self.baseAmount  = @constant.reactivationPayment * client.localAmount
-  	 	end
+      self.baseAmount = @constant.amount * client.localAmount
+  		
    	end
    
   end
@@ -159,7 +145,7 @@ class Accountreceivable < ActiveRecord::Base
   	if client.specialcontributor
   		retention = amountWithoutTax * 0.02
   	end
-  		retention = retention + amountWithoutTax * @constant.tax * 1
+  		retention = retention + amountWithoutTax #* @constant.tax * 1
   	
   	self.totalRetentions = retention
   	

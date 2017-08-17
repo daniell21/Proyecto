@@ -1,3 +1,4 @@
 class Constant < ActiveRecord::Base
-	has_many :clients
+	has_many :accountreceivables
+
 end

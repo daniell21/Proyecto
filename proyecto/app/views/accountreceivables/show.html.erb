@@ -38,7 +38,9 @@
 </p>
  <p>
   <strong>Concepto:</strong>
-  <%= @accountreceivable.concept %>: <%= @accountreceivable.baseAmount %>
+
+  <% @constant = Constant.find(@accountreceivable.constant_id) %>
+  <%= @constant.name %> - <%= @constant.amount %>
 </p>
  
 <p>
