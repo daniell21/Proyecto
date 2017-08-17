@@ -18,7 +18,7 @@ class ConstantsControllerTest < ActionController::TestCase
 
   test "should create constant" do
     assert_difference('Constant.count') do
-      post :create, constant: { completePayment: @constant.completePayment, installPayment: @constant.installPayment, monthlyPayment: @constant.monthlyPayment, reactivationPayment: @constant.reactivationPayment, tax: @constant.tax }
+      post :create, constant: { amount: @constant.amount, name: @constant.name }
     end
 
     assert_redirected_to constant_path(assigns(:constant))
@@ -35,7 +35,7 @@ class ConstantsControllerTest < ActionController::TestCase
   end
 
   test "should update constant" do
-    patch :update, id: @constant, constant: { completePayment: @constant.completePayment, installPayment: @constant.installPayment, monthlyPayment: @constant.monthlyPayment, reactivationPayment: @constant.reactivationPayment, tax: @constant.tax }
+    patch :update, id: @constant, constant: { amount: @constant.amount, name: @constant.name }
     assert_redirected_to constant_path(assigns(:constant))
   end
 

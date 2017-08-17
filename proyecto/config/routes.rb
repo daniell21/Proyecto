@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   
 
   
+  resources :constants
   get 'graphs/index'
 
-  resources :constants
   resources :client_mails
   resources :groups
   

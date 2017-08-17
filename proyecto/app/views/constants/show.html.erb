@@ -1,37 +1,14 @@
 <p id="notice"><%= notice %></p>
-<h1>Tarifas</h1>
-<div ALIGN=center>
-  <p>
-    <strong>Mensualidad:</strong>
-    <%= @constant.monthlyPayment.to_s.gsub('.', ',') %>
-  </p>
-  <p>
-    <strong>Mensualidad Clientes viejos:</strong>
-    <%= @constant.oldMonthlyPayment.to_s.gsub('.', ',') %>
-  </p>
+<h1>Tarifa</h1>
+<p>
+  <strong>Name:</strong>
+  <%= @constant.name %>
+</p>
 
+<p>
+  <strong>Amount:</strong>
+  <%= @constant.amount %>
+</p>
 
-  <p>
-    <strong>Instalación:</strong>
-    <%= @constant.installPayment.to_s.gsub('.', ',') %>
-  </p>
-
-  <p>
-    <strong>Instalación y mensualidad:</strong>
-    <%= @constant.completePayment.to_s.gsub('.', ',') %>
-  </p>
-
-  <p>
-    <strong>Reactivación:</strong>
-    <%= @constant.reactivationPayment.to_s.gsub('.', ',') %>
-  </p>
-
-  <p>
-    <strong>Impuesto:</strong>
-    <%= @constant.tax.to_s.gsub('.', ',') %>
-  </p>
-</div>
-<div ALIGN=right>
-
-  <%= link_to 'Atrás', constants_path, :class => 'btn btn-default btn'  %>
-</div>
+<%= link_to 'Edit', edit_constant_path(@constant) %> |
+<%= link_to 'Back', constants_path %>

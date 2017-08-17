@@ -18,16 +18,7 @@
           <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', error: 'Debe ingresar el nombre del Cliente' %>
         </div>
         <div class="col-xs-6">
-            <%= render "emails/form" %>
-  <ul>
-    <%@client.emails.each do |email|%>
-      <li  style="list-style:none;">
-        <%=email.email%>
-        
-       <%= link_to 'Eliminar Correo', [email.client, email], method: :delete, data: { confirm: 'Are you sure?' } %>
-      </li>
-    <%end%>
-  </ul>
+            <%= f.input :email, placeholder: 'Correo Electrónico', label: 'Correo', error: 'Debe ingresar el Correo del Cliente' %>
         </div>
       </div>
       <br>

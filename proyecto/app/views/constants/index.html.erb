@@ -1,47 +1,29 @@
-
 <p id="notice"><%= notice %></p>
 
 <h1>Tarifas</h1>
 
-  
-
-    
-    
-<table class="table table-striped">
+<table>
   <thead>
     <tr>
-      <th>Mensualidad</th>
-      <th>Mensualidad Clientes Viejos</th>
-      <th>Instalación</th>
-      <th>Mensualidad e Instalación</th>
-      <th>Reactivation </th>
-      <th>Impuesto</th>
+      <th>Nombre</th>
+      <th>Monto</th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @constants.each do |constant| %>
       <tr>
-        <td><%= constant.monthlyPayment.to_s.gsub('.', ',')%></td>
-        <td><%= constant.oldMonthlyPayment.to_s.gsub('.', ',') %></td>
-        <td><%= constant.installPayment.to_s.gsub('.', ',') %></td>
-        <td><%= constant.completePayment.to_s.gsub('.', ',') %></td>
-        <td><%= constant.reactivationPayment.to_s.gsub('.', ',') %></td>
-        <td><%= constant.tax.to_s.gsub('.', ',') %></td>
-        <td><%= link_to 'Mostrar', constant, :class => 'btn btn-success btn' %></td>
-        <td><%= link_to 'Editar', edit_constant_path(constant), :class => 'btn btn-warning btn' %></td>
-
+        <td><%= constant.name %></td>
+        <td><%= constant.amount %></td>
+        <td><%= link_to 'Mostrar', constant %></td>
+        <td><%= link_to 'Atrás', edit_constant_path(constant) %></td>
+        <td><%= link_to 'Eliminar', constant, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-
-<div align="center">
-
-</div>
 <br>
 
-<div ALIGN=right>
-  <%= link_to 'Crear Nuevas Tarias', new_constant_path, :class => 'btn btn-default btn'   %>
-</div>
+<%= link_to 'New Constant', new_constant_path %>
