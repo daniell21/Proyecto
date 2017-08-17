@@ -1,8 +1,10 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Tarifas</h1>
 
-<table>
+  
+
+   
+    
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -16,14 +18,20 @@
       <tr>
         <td><%= constant.name %></td>
         <td><%= constant.amount %></td>
-        <td><%= link_to 'Mostrar', constant %></td>
-        <td><%= link_to 'Atrás', edit_constant_path(constant) %></td>
-        <td><%= link_to 'Eliminar', constant, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+        <td><%= link_to 'Mostrar', constant, :class => 'btn btn-success btn' %></td>
+        <td><%= link_to 'Editar', edit_constant_path(constant), :class => 'btn btn-warning btn'  %></td>
+        <td><%= link_to 'Eliminar', constant, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'btn btn-danger btn' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+
+<div align="center">
+
+</div>
 <br>
 
-<%= link_to 'New Constant', new_constant_path %>
+<div align="right">
+  <%= link_to 'Nueva Tarifa', new_constant_path, :class => 'btn btn-default btn'  %>
+  </div>

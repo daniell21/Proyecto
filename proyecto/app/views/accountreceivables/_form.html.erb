@@ -33,9 +33,11 @@
           <br>
           <%if (current_user.role != "client") %>
             <div class="row">
-              <div class="col-md-6">
-                <%= f.input :concept, presence: true, :collection => [['Mensualidad','mensualidad'],['Instalación','instalacion'],['Instalación y Mensualidad','instalacionMensualidad'],['Reactivación','reactivacion']], label: "Concepto Cuenta",
-                    include_blank: "Seleccionar Concepto ", error: 'Debe ingresar el concepto de la Cuenta' %>
+             <div class="col-xs-6">
+                
+                <%= f.association :constant, label: "Concepto de Pago", 
+                    include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Concepto"  %>
+
               </div>
 
               

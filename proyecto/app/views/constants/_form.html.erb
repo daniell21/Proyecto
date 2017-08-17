@@ -1,12 +1,25 @@
 <%= simple_form_for(@constant) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :amount %>
+ 
+    
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', error: 'Debe ingresar el nombre de la tarifa '  %>
+    </div>
+ 
+    <div class="col-md-6">
+      <%= f.input :amount,  placeholder: 'Monto', label: 'Ingrese el Monto', error: 'DEste campo debe ser numérico' %>
+    </div>
+    
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <br>
+  <br>
+  <div ALIGN=right>
+    <div class="actions">
+      <%= f.button :submit, "Crear Tarifa"%>  
+      <%= link_to 'Atrás', constants_path, :class => 'btn btn-default btn'  %>
+    </div>
   </div>
 <% end %>
+
+
+

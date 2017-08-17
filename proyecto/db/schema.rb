@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817160539) do
+ActiveRecord::Schema.define(version: 20170817185302) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -67,9 +67,11 @@ ActiveRecord::Schema.define(version: 20170817160539) do
     t.string   "checkNumber"
     t.string   "depositNumber"
     t.string   "transferNumberClient"
+    t.integer  "constant_id"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
+  add_index "accountreceivables", ["constant_id"], name: "index_accountreceivables_on_constant_id"
 
   create_table "client_mails", force: :cascade do |t|
     t.string   "title"

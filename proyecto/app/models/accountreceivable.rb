@@ -3,6 +3,7 @@ class Accountreceivable < ActiveRecord::Base
    #Hasta Ahora los comprobantes de Benplus no funcionan. No se pueden leer
    #Resta por hacer validaciones de fecha y numero de cuenta a acreditar. MOnto tambien
   belongs_to :client
+  belongs_to :constant
   mount_uploader :document, DocumentUploader
   validates :client_id, presence: true
   validates :date, presence: true, on: :update

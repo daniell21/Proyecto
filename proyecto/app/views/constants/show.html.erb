@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
+
 <h1>Tarifa</h1>
+<div ALIGN=center>
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @constant.name %>
 </p>
 
 <p>
-  <strong>Amount:</strong>
+  <strong>Monto:</strong>
   <%= @constant.amount %>
 </p>
+<p>
 
-<%= link_to 'Edit', edit_constant_path(@constant) %> |
-<%= link_to 'Back', constants_path %>
+</div>
+
+</p>
+<div ALIGN=right>
+
+<%= link_to 'Atrás', constants_path, :class => 'btn btn-default btn' %>
+</div>
+
