@@ -117,9 +117,21 @@
               <div class="col-md-6">
                 <%= f.input :paid, :collection => [['Si','si'],['No','no']], label: "Cuenta Pagada",
                 include_blank: "Seleccionar",error: 'Debe indicar si la factura fue pagada o no' %>
-              </div>
-              
 
+              </div>
+              <div class="col-md-6"> 
+              <%= f.input :transferNumberClient,  placeholder: 'Numero Transferencia', label: "Numer Transferencia Cliente"%>
+              </div> 
+            </div>
+            <br>
+            <br>
+            <div class="row">
+              <div class="col-md-6"> 
+              <%= f.input :depositNumber,  placeholder: 'Numero Deposito', label: "Numero de Deposito"%>
+              </div> 
+              <div class="col-md-6"> 
+              <%= f.input :checkNumber,  placeholder: 'Numero Cheque', label: "Numero de Xheque"%>
+              </div> 
             </div>
             <br>
             <br>

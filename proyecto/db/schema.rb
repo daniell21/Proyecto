@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816221148) do
+ActiveRecord::Schema.define(version: 20170817030811) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20170816221148) do
   create_table "accountreceivables", force: :cascade do |t|
     t.integer  "client_id"
     t.integer  "total"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.date     "date"
     t.string   "concept"
     t.string   "profitCode"
@@ -60,10 +60,13 @@ ActiveRecord::Schema.define(version: 20170816221148) do
     t.float    "amountPaid"
     t.string   "proof"
     t.string   "document"
-    t.integer  "elemetricaAccount",   limit: 8
+    t.integer  "elemetricaAccount",    limit: 8
     t.float    "accountBalance"
     t.string   "elemetricaAcount"
     t.string   "clientAccount"
+    t.string   "checkNumber"
+    t.string   "depositNumber"
+    t.string   "transferNumberClient"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
