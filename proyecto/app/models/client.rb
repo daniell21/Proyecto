@@ -9,7 +9,7 @@ class Client < ActiveRecord::Base
   validates_presence_of :name
   validates :state, presence: true
   validates :rif, presence: true, length: { minimum: 9 }
-  validates :profitCode, presence: true, length: { minimum: 6 }
+  validates :profitCode, presence: true, length: { minimum: 6 }, uniqueness: true
   validates :localAmount, presence: true
   validates :rif, uniqueness: true  
   before_save :calculateCode

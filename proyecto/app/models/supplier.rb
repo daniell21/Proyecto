@@ -1,12 +1,18 @@
 class Supplier < ActiveRecord::Base
 	has_many :accountpayables, :dependent => :delete_all
 	validates :name, presence: true #uniqueness: true
-    validates :email, presence: true #length: {minimum: 20}
-    validates :rif, presence: true
-    validates :socialReason, presence: true
-    validates :address, presence: true
-    validates :email, uniqueness: true
-
+  validates :email, presence: true #length: {minimum: 20}
+  validates :rif, presence: true, length: { minimum: 9 }
+  validates :rif, uniqueness: true 
+  validates_numericality_of :rif
+  validates :socialReason, presence: true
+  validates :address, presence: true
+  validates :email, uniqueness: true
+  before_save :validateRif
+  
+  def validateRif
+    self.rif = rif.to_s.gsub(',', '.').to_i
+  end
    #validates :username, format: { with: /regex/ }
    def self.import(file)
    spreadsheet = open_spreadsheet(file)
