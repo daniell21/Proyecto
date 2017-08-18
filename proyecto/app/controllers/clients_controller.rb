@@ -83,7 +83,7 @@ class ClientsController < ApplicationController
   end
   def import
     Client.import(params[:file])
-    redirect_to clients_path, notice: "Clientes importados."
+    redirect_to clients_path, notice: "Clientes importados correctamente."
   end
   private
     # Use callbacks to share common setup or constraints between actions.

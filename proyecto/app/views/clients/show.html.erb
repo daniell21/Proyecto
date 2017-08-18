@@ -61,11 +61,7 @@
   <strong>Contribuyente Especial:</strong>
   <%="Si" if @client.specialcontributor%> <%="No" if !@client.specialcontributor%>
 </p>
-<p>
-  
-    <strong>Descuentos: </strong> <br> <%= @client.discounts.map(&:name).join(',') %>
 
-</p>
 <p>
   
     <strong>Descuentos: </strong> <br> 

@@ -6,7 +6,7 @@ class Client < ActiveRecord::Base
    has_and_belongs_to_many :discounts
     validates :name, presence: true #uniqueness: true
     validates :country, presence: true #length: {minimum: 20}
-    validates :email, uniqueness: true, presence: true
+
     validates :socialReason, presence: true
     validates_presence_of :name
     validates :state, presence: true
@@ -15,7 +15,7 @@ class Client < ActiveRecord::Base
     validates :profitCode, presence: true, length: { minimum: 6 }
     validates :localAmount, presence: true
     validates :rif, uniqueness: true
-    validates :chargeMonthlyFee, presence: true
+    
     before_save :calculateCode
     validates_numericality_of :rif
     before_save :country_name
@@ -37,10 +37,14 @@ class Client < ActiveRecord::Base
     def self.import(file)
    spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
+
     (2..spreadsheet.last_row).each do |i|
+
       row = Hash[[header, spreadsheet.row(i)].transpose]
+      
       client = find_by_id(row["id"]) || new
       client.attributes = row.to_hash.slice(*row.to_hash.keys)
+      client.chargeMonthlyFee = true
       client.save!
     end
 end
