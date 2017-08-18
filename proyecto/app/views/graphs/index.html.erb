@@ -20,23 +20,56 @@
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
 				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivables_type, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", download: true, download: "boom"   %></div>
 		</div>
-		<div class="row">
-			<div class="col-xs-6">	
-				<%Accountreceivable.order(amountPaid: :asc).limit(5).each do |d|%>
-					<%=d.amountPaid%>
-				<%end%>
-			</div>
-			<div class="col-xs-6">
-				<%Accountreceivable.where("DATE(created_at) BETWEEN ? AND ?", "2010-02-03 00:00:00", "2018-02-03 00:00:00").order('amountPaid asc').limit(2). each do |s|%>
-					<%=s.id%>
-				<%end%>
-		</div>
-
-		</div>
-	
-	
-	
 	</div>
 	<br>
-	<br>
+		<br>
+		<br>
+		<div class="row">
+		
+			<div class="col-xs-12">	
+				<table class="table table-striped">
+					<thead>
+				    <tr>
+				    <th>CodigoProfit </th>
+				    
+				      <th>Cliente</th>
+				    
+				      <th>Mes a Pagar</th>
+				    
+				    <th>Fecha</th>
+				      <th>Pagada</th>
+				      <th>Concepto</th>
+				      
+				      <th>Monto Pagado</th>
+				      
+				    </tr>
+					</thead>
+					<tbody>
+					<%@accountreceivables = Accountreceivable.all%>
+				    <% @accountreceivables.each do |accountreceivable| %>
+				    	<%@constant = Constant.find(accountreceivable.constant_id)%>
+				      	<tr>
+				        
+				        	<th><%= accountreceivable.profitNumber %></th>
+				            <td><%= accountreceivable.client.name %></td>
+				            <td><%= accountreceivable.month %></td>
+				         	<td><%= accountreceivable.paid%></td>
+				          	<td><%= accountreceivable.date %></td>
+				          	<td><%= accountreceivable.paid %></td>
+				          	<td><%= @constant.name %></td>   
+				      </tr>
+				    <% end %>
+				  	</tbody>
+				</table>
+
+			</div>
+					
+
+		</div>
+			
+			
+			
+			
+			<br>
+			<br>
 </div>
