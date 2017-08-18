@@ -14,7 +14,7 @@ class Client < ActiveRecord::Base
   validates :rif, uniqueness: true  
   before_save :calculateCode
   validates_numericality_of :rif
-  validates_numericality_of :specialDiscount, length: { minimum: 2 }
+  
   validates_numericality_of :localAmount
   before_save :country_name
   before_save :validateLocalAmount
@@ -43,7 +43,11 @@ class Client < ActiveRecord::Base
     self.rif = rif.to_s.gsub(',', '.').to_i
   end
   def validateSpecialDiscount
-    self.specialDiscount = specialDiscount.to_s.gsub(',', '.').to_i
+    if specialDiscount 
+      self.specialDiscount = specialDiscount.to_s.gsub(',', '.').to_i
+      validates_numericality_of :specialDiscount, length: { maximun: 2 }
+    end
+
   end
   def validateProfitCode
     self.profitCode = profitCode.to_s.gsub(',', '.').to_i

@@ -8,20 +8,16 @@ class Accountreceivable < ActiveRecord::Base
   validates :client_id, presence: true
   validates :constant_id, presence: true
   validates :date, presence: true, on: :update
-  
   validates :status, presence: true, on: :create
   validates :paymentType, presence: true, on: :update
   validates :month, presence: true, on: :create
   validates :paid, presence: true
   validates :bank, presence: true, on: :update
   validates :amountPaid, presence: true, on: :update
-  
+  validates :profitCode, presence: true
+  validates :profitNumber, presence: true
 
-  #validates_numericality_of :transferNumber
-  #validates_numericality_of :accountNumber
-  #validates_numericality_of :amountPaid, acceptance: { message: 'No es Numérico' }
-  #validates_numericality_of :accountNumber, acceptance: { message: 'No es Numérico' }
-  #validates_numericality_of :transferNumber, acceptance: { message: 'No es Numérico' }
+  
   
   after_save :importProof
   before_save :validator
@@ -30,10 +26,111 @@ class Accountreceivable < ActiveRecord::Base
   before_save :calculateAmountWithTax
   before_save :calculateRetentions
   before_save :calculateTotalAmountPerceive
-  before_save :calculateBalance
 
+  before_save :validateAmountPaid
+  before_save :existDepositNumber
+  before_save :existTransferNumber
+  before_save :existTransferNumberClient
+  before_save :existCheckNumber
+  before_save :existProfitCode
+  before_save :existProfitNumber
+  before_save :existElemetricaAccount
+  before_save :existClientAccount
+
+  def existDepositNumber
+    if depositNumber
+      validates_numericality_of :depositNumber
+      validateDepositNumber
+    end
+    
+  end
+
+  def existTransferNumber
+    if transferNumber
+      validates_numericality_of :transferNumber
+      validateTransferNumber
+    end
+    
+  end
+  def existTransferNumberClient
+    if transferNumberClient
+      validates_numericality_of :transferNumberClient
+      validateTransferNumberClient
+    end
+    
+  end
+  def existCheckNumber
+    if checkNumber
+      validates_numericality_of :checkNumber
+      validateCheckNumber
+    end
+    
+  end
+  def existProfitCode
+    if profitCode
+      validates_numericality_of :profitCode
+      validateProfitCode
+    end
+    
+  end
+  def existProfitNumber
+    if profitNumber
+      validates_numericality_of :profitNumber
+      validateProfitNumber
+    end
+    
+  end
+  def existElemetricaAccount
+    if elemetricaAccount
+      validates_numericality_of :elemetricaAccount
+      validateElemetricaAccount
+    end
+    
+  end
+  def existClientAccount
+    if clientAccount
+      validates_numericality_of :clientAccount
+      validateClientAccount
+    end
+    
+  end
+
+
+
+
+  def validateTransferNumber
+    self.transferNumber = transferNumber.to_s.gsub(',', '.').to_i
+  end
+  def validateDepositNumber
+    self.depositNumber = depositNumber.to_s.gsub(',', '.').to_i
+  end
+  def validateTransferNumberClient
+    self.transferNumberClient = transferNumberClient.to_s.gsub(',', '.').to_i
+  end
+  def validateCheckNumber
+    self.checkNumber = checkNumber.to_s.gsub(',', '.').to_i
+  end
+  def validateProfitCode
+    self.profitCode = profitCode.to_s.gsub(',', '.').to_i
+  end
+  def validateProfitNumber
+    self.profitNumber = profitNumber.to_s.gsub(',', '.').to_i
+  end
+  def validateElemetricaAccount
+    self.elemetricaAccount = elemetricaAccount.to_s.gsub(',', '.').to_i
+  end
+  def validateClientAccount
+    self.clientAccount = clientAccount.to_s.gsub(',', '.').to_i
+  end
   
+  def validateAmountPaid
+    if amountPaid
+      amount = amountPaid.to_s.gsub(',', '.').to_f
+      self.amountPaid = ActionController::Base.helpers.number_with_precision(amount, :precision => 2)
+      calculateBalance
+    end
 
+  end
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
@@ -120,7 +217,8 @@ class Accountreceivable < ActiveRecord::Base
   	@constant = Constant.find(constant_id)
     
   	if !self.baseAmount
-      self.baseAmount = @constant.amount * client.localAmount
+      
+      self.baseAmount = @constant.amount * client.localAmount.to_i
   		
    	end
    
@@ -135,7 +233,7 @@ class Accountreceivable < ActiveRecord::Base
   		
   	end
     if client.specialDiscount
-     resultado = resultado + client.specialDiscount
+     resultado = resultado + client.specialDiscount.to_i
     end
   	
   	self.amountWithoutTax = ((baseAmount * ( 1 - (resultado.to_f/100))))

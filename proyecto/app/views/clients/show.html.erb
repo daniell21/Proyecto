@@ -68,7 +68,7 @@
     <% @client.discounts.each do |discount|%>
     <%=discount.name%> - <%=discount.percentage%>%<br>
     <%end%>
-    <% if @client.specialDiscount %>
+    <% if @client.specialDiscount.to_i >0 %>
      Especial - <%= @client.specialDiscount %>%
     <%end%>
 </p>
