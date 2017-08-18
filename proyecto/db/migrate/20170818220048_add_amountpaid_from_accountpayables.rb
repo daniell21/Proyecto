@@ -1,5 +1,5 @@
 class AddAmountpaidFromAccountpayables < ActiveRecord::Migration
   def change
-    add_column :accountpayables, :amountPaid, :float
+    add_column :accountpayables, :amountPaid, :string
   end
 end

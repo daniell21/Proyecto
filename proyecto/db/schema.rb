@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818200415) do
+ActiveRecord::Schema.define(version: 20170818220048) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20170818200415) do
     t.date     "date"
     t.text     "concept"
     t.text     "comment"
-    t.float    "amountPaid"
+    t.string   "amountPaid"
   end
 
   add_index "accountpayables", ["supplier_id"], name: "index_accountpayables_on_supplier_id"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 20170818200415) do
     t.string   "paymentComment"
     t.float    "baseAmount"
     t.string   "profitNumber"
-    t.float    "amountPaid"
     t.string   "proof"
     t.string   "document"
     t.integer  "elemetricaAccount",    limit: 8
@@ -68,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170818200415) do
     t.string   "depositNumber"
     t.string   "transferNumberClient"
     t.integer  "constant_id"
+    t.string   "amountPaid"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"

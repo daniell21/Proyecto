@@ -4,7 +4,15 @@ class Accountpayable < ActiveRecord::Base
   validates :amountPaid, presence: true
   validates :date, presence: true
   validates :supplier, presence: true
+  before_save :validateAmountPaid
+def validateAmountPaid
+    if amountPaid
+      amount = amountPaid.to_s.gsub(',', '.').to_f
+      self.amountPaid = ActionController::Base.helpers.number_with_precision(amount, :precision => 2)
+      
+    end
 
+  end
 
 
 #validates :username, format: { with: /regex/ }
