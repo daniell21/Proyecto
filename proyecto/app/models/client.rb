@@ -42,7 +42,7 @@ class Client < ActiveRecord::Base
 
       row = Hash[[header, spreadsheet.row(i)].transpose]
       
-      client = find_by(profitCode: row["profitCode"].to_i.to_s) 
+      client = find_by(profitCode: row["profitCode"].to_i.to_s) || new
       
       client.attributes = row.to_hash.slice(*row.to_hash.keys)
       client.chargeMonthlyFee = true

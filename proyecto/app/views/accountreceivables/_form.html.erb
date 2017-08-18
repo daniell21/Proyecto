@@ -36,14 +36,14 @@
              <div class="col-xs-6">
                 
                 <%= f.association :constant, label: "Concepto de Pago", 
-                    include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Concepto"  %>
+                    include_blank: "Seleccionar Concepto de Pago", error: "Debe seleccionar un Concepto"  %>
 
               </div>
 
               
 
               <div class="col-md-6"> 
-                  <%= f.input :status, :collection => [['Facturada','facturada'],['Anulada','anulada'],['Incobrable','incobrable']], label: "Status Cuenta",
+                  <%= f.input :status, :collection => [['Facturada','Facturada'],['Anulada','Anulada'],['Incobrable','Incobrable']], label: "Status Cuenta",
                     include_blank: "Seleccionar Status ", error: 'Debe seleccionar el Status de la Cuenta' %>
               </div>
             </div>

@@ -1,6 +1,4 @@
 
-<p id="notice"><%= notice %></p>
-
 <h1>Cuentas por Cobrar</h1>
   <%if current_user.role != "client" %>
     <div class="row">
@@ -19,7 +17,7 @@
       <div class="col-xs-4">
         <%= form_tag import_accountreceivables_path, multipart: true do %>
           <%= file_field_tag :file %>
-          <%= submit_tag "Import" %>
+          <%= submit_tag "mportar Cuentas", :class => 'btn btn-default btn' %>
         <%end%>
       </div>   
     </div>
@@ -50,6 +48,7 @@
       <%accounts = false%>
       <%@clients = Client.all%>
       <%client = Client.find(accountreceivable.client_id)%>
+      <%@constant = Constant.find(accountreceivable.constant_id)%>
       
       
         <%client.emails.each do |email|%>
@@ -74,7 +73,7 @@
           <td><%= accountreceivable.paid%></td>
           <td><%= accountreceivable.date %></td>
           <td><%= accountreceivable.paid %></td>
-          <td><%= accountreceivable.constant.name %></td>
+          <td><%= @constant.name %></td>
           <td><%= accountreceivable.amountPaid %></td>
           <%if current_user.role != "client" or (current_user.role == "client" and accountreceivable.paid == "si") %>
             <td><%= link_to 'Ver Pago', accountreceivable, :class => 'btn btn-success btn'%></td>

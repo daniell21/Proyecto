@@ -30,25 +30,35 @@ class Accountreceivable < ActiveRecord::Base
   before_save :calculateAmountWithTax
   before_save :calculateRetentions
   before_save :calculateTotalAmountPerceive
+  before_save :calculateBalance
 
   
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
+    
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      product = find_by_id(row["id"]) || new
-      product.attributes = row.to_hash.slice(*accessible_attributes)
-      product.save!
+      accountreceivable = find_by(profitNumber: row["profitNumber"].to_i.to_s) || new
+
+      client = Client.find_by(rif: row["client_id"].to_i.to_s)
+      
+      accountreceivable.attributes = row.to_hash.slice(*row.to_hash.keys)
+      accountreceivable.client_id = client.id
+      accountreceivable.paid = true
+      accountreceivable.profitNumber = row["profitNumber"].to_i
+      accountreceivable.profitCode = row["profitCode"].to_i
+      accountreceivable.save!
     end
   end
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
-    when '.csv' then Csv.new(file.path, nil, :ignore)
-    when '.xls' then Excel.new(file.path, nil, :ignore)
-    when '.xlsx' then Excelx.new(file.path, nil, :ignore)
-    else raise "Unknown file type: #{file.original_filename}"
+      when '.csv' then Roo::Csv.new(file.path)
+      when '.xls' then Roo::Excel.new(file.path)
+      when '.xlsx' then Roo::Excelx.new(file.path)
+    else
+      raise "Unknown file type: #{file.original_filename}"
     end
   end
   def validator
@@ -58,7 +68,7 @@ class Accountreceivable < ActiveRecord::Base
       
     end
   end
-
+  
   def importProof
     
       #raise ((document.filename.to_s).length).to_yaml
@@ -166,7 +176,9 @@ class Accountreceivable < ActiveRecord::Base
       all
     end
 end
-
+  def calculateBalance
+    self.accountBalance =  self.amountPaid - amountWithtTax 
+  end
 
   #BANCOS
   def banesco(linea)
