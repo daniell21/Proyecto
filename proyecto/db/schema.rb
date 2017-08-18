@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817185302) do
+ActiveRecord::Schema.define(version: 20170817212134) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -96,10 +96,8 @@ ActiveRecord::Schema.define(version: 20170817185302) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
-    t.string   "lastname"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
     t.boolean  "specialcontributor"
     t.integer  "rif"
     t.string   "country"
