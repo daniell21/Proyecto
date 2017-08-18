@@ -4,6 +4,12 @@ class Discount < ActiveRecord::Base
 	 validates :percentage, presence: true
 	 validates_numericality_of :percentage
 	 #simple search name
+	 before_save :validatePercentage
+def validatePercentage
+	
+    self.percentage = percentage.to_s.gsub(',', '.').to_i
+    
+  end
 	 def self.search(search)
   if search
   where('name LIKE ?', "%#{search}%")
