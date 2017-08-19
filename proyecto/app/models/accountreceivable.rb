@@ -274,8 +274,9 @@ class Accountreceivable < ActiveRecord::Base
       all
     end
 end
+#Si la variable accountBalance es negativa, significa que pago menos de lo que debia
   def calculateBalance
-    self.accountBalance =  self.amountPaid - amountWithtTax 
+    self.accountBalance =  self.amountPaid.to_f - amountWithtTax 
   end
 
   #BANCOS
