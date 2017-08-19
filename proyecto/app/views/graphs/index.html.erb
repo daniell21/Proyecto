@@ -136,11 +136,21 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-6">
-			<div class="panel-heading">Tipos de Cuentas</div>
-				<div id="orders_chart" style="width: 1000px; height: 300px;
+				<div class="panel-heading">Tipos de Cuentas</div>
+				<div id="orders_chart" style="width: 400px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
 				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivables_type, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", download: true, download: "boom"   %></div>
+			</div>
+			
+			
 		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="panel-heading">Cantidad de cuentas por concepto</div>
+				<div id="orders_chart" style="width: 1000px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivablesConstantsPercentage, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", download: true, download: "boom"   %></div>
+			</div>
 		</div>
 		<div class="row">
 		<%@clients = Client.all%>
