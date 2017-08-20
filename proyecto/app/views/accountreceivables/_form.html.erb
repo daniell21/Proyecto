@@ -69,7 +69,7 @@
           <div class="row">
             <%if (current_user.role != "client") %>
               <div class="col-md-6">
-                  <%= f.input :month, :collection => [['enero','enero'],['febrero','febrero'],['marzo','marzo'],['abril','abril'],['mayo','mayo'],['junio','junio'],['julio','julio'],['agosto','agosto'],['septiembre','septiembre'],['octubre','octubre'],['noviembre','noviembre'],['diciembre','diciembre']], label: "Mes a Pagar ", 
+                  <%= f.input :month, :collection => [['enero',1],['febrero',2],['marzo',3],['abril',4],['mayo',5],['junio',6],['julio',7],['agosto',8],['septiembre',9],['octubre',10],['noviembre',11],['diciembre',12]], label: "Mes a Pagar ", 
                     include_blank: "Seleccionar Mes",error: 'Debe seleccionar el mes de pago' %>
               </div> 
             <%end%> 

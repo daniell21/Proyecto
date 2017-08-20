@@ -1,12 +1,26 @@
 class GraphsController < ApplicationController
   def index
   	
-  	#a.a. Monto facturado vs Monto pagado (Último trimestre)
+  	
+  	Time.use_zone('Caracas') do
+  		@presentMonth = Time.zone.now.month
+	end	
+	@thirdMonth = @presentMonth - 1
+  	@secondMonth = @thirdMonth - 1
+  	@firstMonth = @secondMonth - 1
 
+  	#a. Monto facturado vs Monto pagado (Último trimestre)
+  	@thirdMountAmountInvoicedvsPaid = Constant.joins(:accountreceivables).where("accountreceivables.month = ?", @thirdMonth).select("('Monto Facturado') as m, sum(constants.amount) as montos").union(Constant.joins(:accountreceivables).group(:paid).where('accountreceivables.paid = "si" and accountreceivables.month = ?', @thirdMonth).select("('Monto Pagado') as m, sum(accountreceivables.amountPaid) as montos")).collect{|x| [ x.m, x.montos]}
+  	@secondMountAmountInvoicedvsPaid = Constant.joins(:accountreceivables).where("accountreceivables.month = ?", @secondMonth).select("('Monto Facturado') as m, sum(constants.amount) as montos").union(Constant.joins(:accountreceivables).group(:paid).where('accountreceivables.paid = "si" and accountreceivables.month = ?', @secondMonth).select("('Monto Pagado') as m, sum(accountreceivables.amountPaid) as montos")).collect{|x| [ x.m, x.montos]}
+  	@firstMountAmountInvoicedvsPaid = Constant.joins(:accountreceivables).where("accountreceivables.month = ?", @firstMonth).select("('Monto Facturado') as m, sum(constants.amount) as montos").union(Constant.joins(:accountreceivables).group(:paid).where('accountreceivables.paid = "si" and accountreceivables.month = ?', @firstMonth).select("('Monto Pagado') as m, sum(accountreceivables.amountPaid) as montos")).collect{|x| [ x.m, x.montos]}
   	#b.
   	@historicalAmountInvoicedvsPaid = Constant.joins(:accountreceivables).select("('Monto Facturado') as m, sum(constants.amount) as montos").union(Constant.joins(:accountreceivables).group(:paid).where('accountreceivables.paid = "si"').select("('Monto Pagado') as m, sum(accountreceivables.amountPaid) as montos")).collect{|x| [ x.m, x.montos]}
   	#c.
+  	@presentMountAmountInvoicedvsPaid = Constant.joins(:accountreceivables).where("accountreceivables.month = ?", @presentMonth).select("('Monto Facturado') as m, sum(constants.amount) as montos").union(Constant.joins(:accountreceivables).group(:paid).where('accountreceivables.paid = "si" and accountreceivables.month = ?', @presentMonth).select("('Monto Pagado') as m, sum(accountreceivables.amountPaid) as montos")).collect{|x| [ x.m, x.montos]}
+
   	
+  	Constant.joins(:accountreceivables).group(:paid).where('accountreceivables.paid = "si" and accountreceivables.month = ?', @presentMonth).select("('Monto Pagado') as m, sum(accountreceivables.amountPaid) as montos").collect{|x| [ x.m, x.montos]}
+
   	#falta obtener el top
   	#d. Top clientes deudores (por monto adeudado).
   	#falta buscar la manera de invertir las baras
@@ -30,8 +44,7 @@ class GraphsController < ApplicationController
   	@accountreceivablesConstantsPercentage = Constant.joins(:accountreceivables).group("constants.id, accountreceivables.constant_id").select("constants.name, count(accountreceivables.id) as instalaciones").collect{|x| [x.name  + " " +(ActionController::Base.helpers.number_with_precision((((x.instalaciones).to_f * 100.00)/(Constant.joins(:accountreceivables).count).to_f), :precision => 2)).to_s + "%", x.instalaciones]}
 
   	@prueba = User.group_by_day(:created_at, range: 2.weeks.ago.midnight..Time.now).count
- # 	
- #falta obtener el top
+
   	
   	#Monto facturado
   	Constant.joins(:accountreceivables).select("('Monto Facturado') as m, sum(constants.amount) as montos").collect{|x| [ x.m, x.montos]}
@@ -40,7 +53,7 @@ class GraphsController < ApplicationController
   	Constant.joins(:accountreceivables).group(:paid).where('accountreceivables.paid = "si"').select("('Monto Pagado') as m, sum(accountreceivables.amountPaid) as montos").collect{|x| [ x.m, x.montos]}
 
 
-  	#Total monto pagado
+ 
   	
   	
 

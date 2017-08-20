@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170819171714) do
+ActiveRecord::Schema.define(version: 20170820033958) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20170819171714) do
     t.float    "amountWithtTax"
     t.string   "status"
     t.string   "bank"
-    t.string   "month"
     t.integer  "transferNumber"
     t.boolean  "retentionIva"
     t.boolean  "retentionIsrl"
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170819171714) do
     t.string   "transferNumberClient"
     t.integer  "constant_id"
     t.string   "amountPaid"
+    t.integer  "month"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
