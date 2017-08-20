@@ -27,7 +27,15 @@
         <% end %>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-xs-6">
+        <p>
+  Download:
+  <%= link_to "CSV", clients_path(format: "csv") %> |
+  <%= link_to "Excel", clients_path(format: "xls") %>
+</p>
+      </div>
+    </div>
     
       <table class="table table-striped">
         <thead>

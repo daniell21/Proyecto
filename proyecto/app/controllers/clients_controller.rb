@@ -16,7 +16,9 @@ class ClientsController < ApplicationController
     respond_to do |format|
     format.html
     format.json
-    format.pdf {render template: 'clients/reporte', pdf: 'Reporte'}
+   format.csv { send_data text: @clients.to_csv }
+   format.xls { send_data @clients.to_csv(col_sep: "\t") }
+    format.pdf {render template: 'clients/reporte', pdf: 'Reporte', :javascript_delay => 3000}
     end
   end
 
@@ -103,4 +105,5 @@ class ClientsController < ApplicationController
     def sort_diection
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
+
 end

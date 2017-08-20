@@ -12,20 +12,28 @@
 		<thead>
 			<tr>
 			    <th style="width: 200;">Nombre</th>
-				<th style="width: 200;">Apellido</th>
-				<th style="width: 200;">Correo</th>
+				<th style="width: 200;">RIF</th>
 			</tr>
 		</thead>
 		<tbody>
 		  <% @clients.each do |client|%>
 			<tr>
 				 <td><%=client.name%></td>
-				 <td><%=client.lastname%></td>
-				 <td><%=client.email%></td>
+				 <td><%=client.rif%></td>
 			</tr>
 		  <%end%>
 
 		</tbody>
 		</table>
 	</body>
+	<%= javascript_include_tag "/home/daniel/Documentos/Proyecto/proyecto/vendor/assets/javascripts
+/highcharts.js", "chartkick" %>
+	<div class="row">
+		<div class="col-xs-6">
+			
+				<div id="orders_chart" style="width: 400px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyAmount, label: "Deuda Bs", download: true   %></div>
+		</div>
+		</div>
 </html>
