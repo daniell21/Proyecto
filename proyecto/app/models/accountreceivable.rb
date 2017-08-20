@@ -16,11 +16,15 @@ class Accountreceivable < ActiveRecord::Base
   validates :amountPaid, presence: true, on: :update
   validates :profitCode, presence: true
   validates :profitNumber, presence: true
+  #por revisar
+  #validates :checkNumber, presence: true, if: :validator? 
+  #validates :depositNumber, presence: true, if: :validator? 
 
   
   
   after_save :importProof
-  before_save :validator
+  #revisar Tambien
+  #before_save :validator
   before_save :calculateBaseAmount
   before_save :calculateBasicAmount
   before_save :calculateAmountWithTax
@@ -158,12 +162,14 @@ class Accountreceivable < ActiveRecord::Base
       raise "Unknown file type: #{file.original_filename}"
     end
   end
+
   def validator
+    deposito = false
     if self.paymentType == "deposito"
-      raise self.paymentType.to_yaml
-      validates :amountPaid, presence: true
-      
+      return true
     end
+      return deposito
+    
   end
   
   def importProof
@@ -219,7 +225,6 @@ class Accountreceivable < ActiveRecord::Base
   	if !self.baseAmount
       
       self.baseAmount = @constant.amount * client.localAmount.to_i
-  		
    	end
    
   end
@@ -235,7 +240,6 @@ class Accountreceivable < ActiveRecord::Base
     if client.specialDiscount
      resultado = resultado + client.specialDiscount.to_i
     end
-  	
   	self.amountWithoutTax = ((baseAmount * ( 1 - (resultado.to_f/100))))
   	
   	#raise (Settings.monthlyPayment * ( 1 - (client.discounts.find(1).percentage.to_f/100))).to_yaml
@@ -276,7 +280,7 @@ class Accountreceivable < ActiveRecord::Base
 end
 #Si la variable accountBalance es negativa, significa que pago menos de lo que debia
   def calculateBalance
-    self.accountBalance =  self.amountPaid.to_f - amountWithtTax 
+    self.accountBalance =   amountWithtTax - self.amountPaid.to_f
   end
 
   #BANCOS

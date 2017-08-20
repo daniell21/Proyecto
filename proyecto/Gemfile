@@ -22,6 +22,7 @@ gem 'groupdate'
 gem 'active_link_to'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'active_record_union'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
