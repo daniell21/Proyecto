@@ -7,6 +7,14 @@ helper_method :sort_column, :sort_diection
   # GET /accountreceivables.json
   def index
     @accountreceivables = Accountreceivable.order(sort_column + " " + sort_diection).search(params[:search]).paginate(:per_page => 30, :page => params[:page])
+ 
+    respond_to do |format|
+    format.html
+    format.json
+    format.csv { send_data @accountreceivables.to_csv }
+      format.xls
+    
+    end
   end
 
   # GET /accountreceivables/1

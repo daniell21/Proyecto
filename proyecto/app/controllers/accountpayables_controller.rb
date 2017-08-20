@@ -7,6 +7,14 @@ class AccountpayablesController < ApplicationController
   # GET /accountpayables.json
   def index
     @accountpayables = Accountpayable.order(sort_column + " " + sort_diection).search(params[:search]).paginate(:per_page => 5, :page => params[:page])
+   
+      respond_to do |format|
+    format.html
+    format.json
+   format.csv { send_data text: @accountpayables.to_csv }
+   format.xls 
+    
+    end
   end
 
   # GET /accountpayables/1

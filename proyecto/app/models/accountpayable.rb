@@ -5,6 +5,16 @@ class Accountpayable < ActiveRecord::Base
   validates :date, presence: true
   validates :supplier, presence: true
   before_save :validateAmountPaid
+
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |accountpayable|
+        csv << accountpayable.attributes.values_at(*column_names)
+      end
+    end
+  end
 def validateAmountPaid
     if amountPaid
       amount = amountPaid.to_s.gsub(',', '.').to_f

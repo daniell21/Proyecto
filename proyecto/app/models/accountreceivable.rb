@@ -41,6 +41,15 @@ class Accountreceivable < ActiveRecord::Base
   before_save :existElemetricaAccount
   before_save :existClientAccount
 
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |accountreceivable|
+        csv << accountreceivable.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   def existDepositNumber
     if depositNumber
       validates_numericality_of :depositNumber

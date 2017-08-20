@@ -21,6 +21,15 @@
         <%end%>
       </div>   
     </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <p>
+          Exportar Cuenttas:
+          <%= link_to "CSV", accountreceivables_path(format: "csv") %> |
+          <%= link_to "Excel", accountreceivables_path(format: "xls") %>
+        </p>
+      </div>
+    </div>
   <%end%> 
 <table class="table table-striped">
   <thead>
