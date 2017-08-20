@@ -26,6 +26,15 @@
               
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <p>
+          Exportar Proveedores:
+          <%= link_to "CSV", suppliers_path(format: "csv") %> |
+          <%= link_to "Excel", suppliers_path(format: "xls") %>
+        </p>        
+      </div>
+    </div>
 
 
 

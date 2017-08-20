@@ -11,6 +11,8 @@ class SuppliersController < ApplicationController
     respond_to do |format|
     format.html
     format.json
+    format.csv { send_data @suppliers.to_csv }
+      format.xls { send_data @suppliers.to_csv(col_sep: "\t") }
     format.pdf {render template: 'suppliers/reporte', pdf: 'Reporte'}
     end
   end
@@ -49,7 +51,7 @@ class SuppliersController < ApplicationController
   # PATCH/PUT /suppliers/1
   # PATCH/PUT /suppliers/1.json
   def update
-    params[:supplier][:top_ids] ||=[]
+    #params[:supplier][:top_ids] ||=[]
     respond_to do |format|
       if @supplier.update(supplier_params)
         format.html { redirect_to @supplier}

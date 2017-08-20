@@ -10,6 +10,15 @@ class Supplier < ActiveRecord::Base
   validates :email, uniqueness: true
   before_save :validateRif
   
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |supplier|
+        csv << supplier.attributes.values_at(*column_names)
+      end
+    end
+  end
   def validateRif
     self.rif = rif.to_s.gsub(',', '.').to_i
   end
