@@ -12,7 +12,7 @@ class SuppliersController < ApplicationController
     format.html
     format.json
     format.csv { send_data @suppliers.to_csv }
-      format.xls { send_data @suppliers.to_csv(col_sep: "\t") }
+      format.xls 
     format.pdf {render template: 'suppliers/reporte', pdf: 'Reporte'}
     end
   end

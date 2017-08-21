@@ -17,8 +17,8 @@ class ClientsController < ApplicationController
     format.html
     format.json
    format.csv { send_data text: @clients.to_csv }
-   format.xls { send_data @clients.to_csv(col_sep: "\t") }
-    format.pdf {render template: 'clients/reporte', pdf: 'Reporte', :javascript_delay => 3000}
+   format.xls
+    format.pdf {render template: 'clients/reporte', pdf: 'Reporte',javascript_delay:5000}
     end
   end
 

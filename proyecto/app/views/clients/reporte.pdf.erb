@@ -2,7 +2,9 @@
 <html>
 	<head>
 		<title></title>
+		<!--esta etiqueta parece ser la que importa los estilos css al pdf-->
 		<%=wicked_pdf_stylesheet_link_tag 'pdf'%>
+
 		<meta charset="Utf-8">
 	</head>
 	<body>
@@ -26,14 +28,13 @@
 		</tbody>
 		</table>
 	</body>
-	<%= javascript_include_tag "/home/daniel/Documentos/Proyecto/proyecto/vendor/assets/javascripts
-/highcharts.js", "chartkick" %>
+	
 	<div class="row">
 		<div class="col-xs-6">
 			
 				<div id="orders_chart" style="width: 400px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyAmount, label: "Deuda Bs", download: true   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyAmount, label: "Deuda Bs", download: true, discrete: true   %></div>
 		</div>
 		</div>
 </html>

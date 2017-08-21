@@ -3,12 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>Elemétrica - Sistema Cobranza</title>
-
+ 
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	  <%= csrf_meta_tags %>
-
+	  <%= javascript_include_tag "https://www.google.com/jsapi" %>
+<%= wicked_pdf_javascript_include_tag 'chartkick'%>
 	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
 	  
 
 
@@ -59,7 +62,7 @@
 					
 					<%if current_user.role == "client"%>
 						<li style="list-style:none; padding: 0px; margin: 0px;">
-							<%= active_link_to 'Registro de Pagos', controller: 'payments' %>
+							<%= active_link_to 'Registro de Pagos', controller: 'accountreceivables' %>
 						</li>
 					<%end%>
 		        </ul>

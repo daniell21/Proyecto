@@ -17,25 +17,23 @@
             <%= submit_tag "Buscar Cliente", :name => nil, :class => 'btn btn-default btn'   %>
           </p>
         <% end %>
-        <p><%= link_to "Busqueda Avanzada", new_search_client_path %></p> 
+        
       </div>    
 
-      <div class="col-xs-6">
+      <div class="col-xs-4">
         <%= form_tag import_clients_path, multipart: true do %>
           <%= file_field_tag :file %>
           <%= submit_tag "Importar Clientes", :class => 'btn btn-default btn'   %>
         <% end %>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-6">
-        <p>
-  Exportar Clientes:
-  <%= link_to "CSV", clients_path(format: "csv") %> |
-  <%= link_to "Excel", clients_path(format: "xls") %>
-</p>
+      <div class="col-xs-4">
+        <%= link_to "Generar pdf", "/clients.pdf", :format => 'pdf', target: :_blank, :class => 'btn btn-default btn'  %>
+  <%= link_to "Exportar Clientes", clients_path(format: "xls"), :class => 'btn btn-default btn'   %>
+
+        <%= link_to "Busqueda Avanzada", new_search_client_path, :class => 'btn btn-default btn'    %>
       </div>
     </div>
+    
     
       <table class="table table-striped">
         <thead>
@@ -87,7 +85,7 @@
 <br>
 <div ALIGN=right>
   <%= link_to 'Nuevo Cliente', new_client_path, :class => 'btn btn-default btn'  %>
-  <%= link_to "Generar pdf", "/clients.pdf", :format => 'pdf', target: :_blank, :class => 'btn btn-default btn'  %>
+
 </div>
 <br>
 <br>

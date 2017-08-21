@@ -38,22 +38,20 @@
 		</div>
 	</div>
 <br><br>
-	<h2>Monto Facturado vs Pagado (Histórico)</h2>
+	
 	
 	<div class="row">
 		<div class="col-xs-6">
-			<!--<div class="panel-heading">b. Monto Facturado vs Pagado (Histórico)</div>-->
-				<div id="orders_chart" style="width: 700px; height: 300px;
+			<p style="color:#142c54;">Monto Facturado vs Pagado (Histórico)</p>
+				<div id="orders_chart" style="width: 500px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
 				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @historicalAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", download: true   %></div>
 		</div>
-	</div>
-<br><br>
-	<h2>Monto Facturado vs Pagado (Mes en Curso)</h2>
-	<div class="row">
+
+		
 		<div class="col-xs-6">
-			<!--<div class="panel-heading">b. Monto Facturado vs Pagado (Histórico)</div>-->
-				<div id="orders_chart" style="width: 700px; height: 300px;
+			<p style="color:#142c54;">Monto Facturado vs Pagado (Mes en Curso)</p>
+				<div id="orders_chart" style="width: 500px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
 				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @presentMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", download: true   %></div>
 		</div>
@@ -67,13 +65,13 @@
 			
 				<div id="orders_chart" style="width: 400px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyAmount, label: "Deuda Bs", download: true   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyAmount, label: "Deuda Bs", donut: true   %></div>
 		</div>
 		<div class="col-xs-6">
 			
 				<div id="orders_chart" style="width: 400px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @topDebtorsbyAmount, label: "Deuda Bs", xtitle: "Clientes", ytitle: "Bolivares", download: true   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= line_chart @topDebtorsbyAmount, label: "Deuda Bs", xtitle: "Clientes", ytitle: "Bolivares", download: true   %></div>
 		</div>
 		
 	</div>
@@ -90,7 +88,7 @@
 		
 				<div id="orders_chart" style="width: 400px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @topDebtorsbyMonth, label: "Deuda Meses", xtitle: "Clientes", ytitle: "Cantidad de meses", download: true  %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= line_chart @topDebtorsbyMonth, label: "Deuda Meses", xtitle: "Clientes", ytitle: "Cantidad de meses", download: true  %></div>
 		</div>
 		
 	</div>
@@ -113,7 +111,7 @@
 			
 				<div id="orders_chart" style="width: 1000px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivables_count, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", download: true, download: "boom"   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivables_count, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", download: true, donut: true   %></div>
 		</div>
 		
 	</div>

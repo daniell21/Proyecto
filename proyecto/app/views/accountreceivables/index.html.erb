@@ -1,6 +1,10 @@
 
-<h1>Cuentas por Cobrar</h1>
+  <%if current_user.role == "client" %>
+  <h1>Registro de Pagos</h1>
+  <%end%>
+
   <%if current_user.role != "client" %>
+  <h1>Cuentas por Cobrar</h1>
     <div class="row">
       <div class="col-xs-4">
         <!--Busqueda de clientes por nombre-->
