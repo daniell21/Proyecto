@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
 
   
+  resources :reports
   resources :constants
   get 'graphs/index'
 

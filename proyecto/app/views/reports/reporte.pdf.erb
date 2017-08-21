@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<!--esta etiqueta parece ser la que importa los estilos css al pdf-->
+		<%=wicked_pdf_stylesheet_link_tag 'pdf'%>
+
+		<meta charset="Utf-8">
+	</head>
+	<div align="center">
+		<body onload="number_pages()">
+		<% report = $actualReport %>
+		<h1><%= report.title %></h1>
+		
+		
+			
+			  
+				
+
+
+				<div ALIGN=center>
+					<%patchPc = "/home/daniel/Documentos/Proyecto/proyecto/public" + report.chart_url%>
+					
+					 <img src=<%= patchPc%>>
+					</p>
+					<p>
+					  <h3><%= report.content %></h3>
+					  
+					</p>
+
+					
+
+				</div>
+			  
+
+		</body>
+	</div>
+</html>

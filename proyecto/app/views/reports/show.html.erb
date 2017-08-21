@@ -1,0 +1,24 @@
+<h1>Informe</h1>
+<div ALIGN=center>
+<p>
+  <strong>Title:</strong>
+  <%= @report.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @report.content %>
+</p>
+
+<p>
+  <strong>Gráfico:</strong>
+ <%= image_tag(@report.chart_url(:thumb).to_s) %>
+</p>
+
+</div>
+<%$actualReport = @report%>
+</p>
+<div ALIGN=right>
+<%= link_to "Generar Reporte", "/reports.pdf", :format => 'pdf', target: :_blank, :class => 'btn btn-default btn'  %>
+<%= link_to 'Atrás', reports_path, :class => 'btn btn-default btn' %>
+</div>

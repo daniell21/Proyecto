@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170820033958) do
+ActiveRecord::Schema.define(version: 20170821054116) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -185,6 +185,14 @@ ActiveRecord::Schema.define(version: 20170820033958) do
     t.string   "proof"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "chart"
   end
 
   create_table "search_client_payments", force: :cascade do |t|
