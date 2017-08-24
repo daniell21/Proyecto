@@ -1,4 +1,4 @@
-Notas reunión Yuzmhar
+Notas reuniónes
 
 -1- Cambiar campo de entrada de numeros, ya que el input contiene a la derecha unas flechas para aumentar y disminuir numeros que no se ve bien
 Resp: listo
@@ -15,8 +15,8 @@ Resp: listo
 -/-5- En cuentas por cobrar. al crear una cuenta. colocar un buscador de clientes para ubicar facilmente el cliente al que pertenece la cuenta
 Resp: listo
 
-6- Poder agregar en el futuro otros conceptos de pago a parte de  mensualidad, instalacion...
-Resp:No hare por ahora.
+-6- Poder agregar en el futuro otros conceptos de pago a parte de  mensualidad, instalacion...
+Resp:listo
 
 -7- Al crear una cuenta. Al mostrarla, indicar los descuentos que posee el clinte al que pertenece la cuenta junto a su porcentaje
 Resp: listo
@@ -53,8 +53,6 @@ Resp: listo
 -18-Validar lo del descuento especial
 Resp: listo
 
-19-Cambiar la base de datos sqlite3
-
 20-Correos recordatorios
 
 -/21-Validaciones registro de pago
@@ -63,26 +61,112 @@ Resp: Esta hecho a medias, faltan validaciones.
 -22-agregar cantidad de locales por clientes
 Resp: listo
 
-23-Cambiar la manera en que se registran los pagos. el cliente al acceder debe ver sus locales
-Resp: En desarrollo
+-23-Cambiar la manera en que se registran los pagos. el cliente al acceder debe ver sus locales
+Resp: listo
 
 -/24-Agregar la posibilidad de evitar que se genere una cuenta para un determinado cliente si se decide que ese mes no se le va a cobrar
 Resp: listo, solo falta validar
 
--/25-Validar que si el cliente aviso tardiamente que desde hace x meses atras no habia podido usar el servicio, las facturas de estos meses puedan
-ser anuladas y no tomadas en cuenta en la generacion de las graficas
+-/25-Validar que si el cliente aviso tardiamente que desde hace x meses atras no habia podido usar el servicio, las facturas de estos meses puedan ser anuladas y no tomadas en cuenta en la generacion de las graficas
 Resp: listo. Solo falta excluir de las validaciones
 
 -26-Agregar una segunda mensualidad para clientes viejos. y la que esta ahora sera para clientes nuevos
 Resp:listo
 
-27-Agregar campos de los proveedores y cuentas por pagar. que estas cuentas se pueda registrar el detalle
+-27-Agregar campos de los proveedores y cuentas por pagar. que estas cuentas se pueda registrar el detalle
+Resp: listo
 
-28- Terminar de arreglar la interfaz de tarifas
+-28- Terminar de arreglar la interfaz de tarifas
+Resp: listo
 
 29- Agregar alerta si se desea crear una cuenta y no se han creado las tarifas en el sistema
 
-30- Cambiar la asignacion automatica del mes correcto cuando se cree una cuenta por cobrar por cron
+-30- el rif tiene 9 digitos
+Resp: listo
+
+-31- el codigo de profit tiene 6 digitos
+Resp: listo
+
+-32- en cantidad de locales en el crud de clientes cambiar la lista desplegable de cantidad de locales a un input
+Resp: listo
+
+-33-quitar la validacion de que no puedan existir los 3 descuentos a la misma vez. si se puede dar esa opcion
+Resp: listo
+
+-34- cambiar el nombre del iva en las tarifas. debe ser porcentaje de iva
+Resp: listo
+
+-35-todos los campos en el registro de pagos deben ser obligatorios
+Resp: listo
+
+-36- en el index de las cuentas de cada cliente debe aparecer el numero de factura profit
+Resp: listo
+
+-37- en los registro de epago debe decir el numero de la transferencia que arrojo el banco del cliente. si
+es deposito debe agregar el numero del deposito y el numero del cheque del deposito. si es transferencia colocar
+el numero de transferencia.
+Resp: listo
+
+-38- colocar que se puedan agregar n cantidad de montos a pagar. cambiar eso como un uno a muchos con cuentas por cobrar
+agregar las clasificaciones de los clientes en las mensualidades. que se pueda agregar el nombre del pago y el monto. 
+como esta con clientes viejos y nuevos
+Resp: listo
+
+-39- colocar que un cliente va a tener mas de un correo, y segun tantos correos tenga puede accesar con cada uno de estos a registrar 
+sus pagos
+Resp: listo
+
+-40-/Idear algun plan que que cuando se haga un cambio en la cantidad de locales a cobrar, luego el departamento administrativo se acuerde
+de que eso tiene que volver a la normalidad luego. al siguiente mes por ejemplo
+Resp: Ya se agrego el campo comentarios en clientes, se debe agregar el cron recordatorio que aquellos clientes con comentarios les mande
+un correo para que sepa esos comentarios
+
+-41 cambiar los decimales a comas, no puntos
+
+-42 revisar las operaciones al leer los datos del pdf y al ingresar el pago
+
+43 Revisar que se pueda mantener un historico de los cobros en el sistema, es decir que se pueda ver en las cuentas por cobrar cuanto fue cobrado a cada cliente, sin que al abrir alguna de estas cuentas se recalcule el los montos
+
+-43- el rif tiene 9 digitos
+Resp: listo
+
+-44- el codigo de profit tiene 6 digitos
+Resp: listo
+
+-45- en cantidad de locales en el crud de clientes cambiar la lista desplegable de cantidad de locales a un input
+Resp: listo
+
+-46-quitar la validacion de que no puedan existir los 3 descuentos a la misma vez. si se puede dar esa opcion
+Resp: listo
+
+-47- cambiar el nombre del iva en las tarifas. debe ser porcentaje de iva
+Resp: listo
+
+-48-todos los campos en el registro de pagos deben ser obligatorios
+Resp: listo
+
+-49- en el index de las cuentas de cada cliente debe aparecer el numero de factura profit
+Resp: listo
+
+-50- en los registro de epago debe decir el numero de la transferencia que arrojo el banco del cliente. si
+es deposito debe agregar el numero del deposito y el numero del cheque del deposito. si es transferencia colocar
+el numero de transferencia.
+Resp: listo
+
+-51- colocar que se puedan agregar n cantidad de montos a pagar. cambiar eso como un uno a muchos con cuentas por cobrar
+agregar las clasificaciones de los clientes en las mensualidades. que se pueda agregar el nombre del pago y el monto. 
+como esta con clientes viejos y nuevos
+Resp: listo
+
+-52- colocar que un cliente va a tener mas de un correo, y segun tantos correos tenga puede accesar con cada uno de estos a registrar 
+sus pagos
+Resp: listo
+
+-53-/Idear algun plan que que cuando se haga un cambio en la cantidad de locales a cobrar, luego el departamento administrativo se acuerde
+de que eso tiene que volver a la normalidad luego. al siguiente mes por ejemplo
+Resp: Ya se agrego el campo comentarios en clientes, se debe agregar el cron recordatorio que aquellos clientes con comentarios les mande
+un correo para que sepa esos comentarios
+
 
 Notas personales.
 Elemetrica retiene 100% de iva y 2% de isrl
@@ -97,12 +181,14 @@ Resp: listo
 
 5- Falta cambiar a integer o numero. Numero factura profit y Numero codigo Profit
 
+6-Por defecto al importar clientes por archivo de excel, se setea true el flag cobrar mensualidad
 
 
 
 
 
-Preguntar a clau el tamaño de los rif y cuales son los rif que ellas manejan
+
+
 
 
 
