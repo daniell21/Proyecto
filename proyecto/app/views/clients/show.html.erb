@@ -17,7 +17,7 @@
   <%= @client.profitCode %>
 </p>
 <p> 
-  <strong>Cliente Viejo:</strong>
+  <strong>Cliente Antiguo:</strong>
   <%="Si" if @client.oldCustomer%> <%="No" if !@client.oldCustomer%>
 </p>
 
@@ -68,7 +68,7 @@
     <% @client.discounts.each do |discount|%>
     <%=discount.name%> - <%=discount.percentage%>%<br>
     <%end%>
-    <% if @client.specialDiscount.to_i >0 %>
+    <% if @client.specialDiscount > 0 %>
      Especial - <%= @client.specialDiscount %>%
     <%end%>
 </p>

@@ -92,7 +92,7 @@
           
           <%if (current_user.role != "client") %>
             <div class="col-md-6"> 
-                <%= f.input :transferNumber,  as: :string, placeholder: 'Nro Mercantil', label: "Número Transferencia", error: 'Debe ser Númerico' %>
+                <%= f.input :transferNumber, placeholder: 'Nro Mercantil', label: "Número Transferencia", error: 'Debe ser Númerico' %>
             </div>
           <%end%>
           </div>
@@ -117,12 +117,11 @@
           <%if (current_user.role != "client") %>
             <div class="row">
               <div class="col-md-6">
-                <%= f.input :paid, :collection => [['Si','si'],['No','no']], label: "Cuenta Pagada",
-                include_blank: "Seleccionar",error: 'Debe indicar si la factura fue pagada o no' %>
+                <%= f.input :paid, as: :boolean,  label: "Contribuyente Especial"%>
 
               </div>
               <div class="col-md-6"> 
-              <%= f.input :transferNumberClient,  placeholder: 'Numero Transferencia', label: "Numer Transferencia Cliente"%>
+              <%= f.input :transferNumberClient,  placeholder: 'Numero Transferencia', label: "Numero Transferencia Cliente"%>
               </div> 
             </div>
             <br>

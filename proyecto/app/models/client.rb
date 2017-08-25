@@ -1,30 +1,27 @@
 class Client < ActiveRecord::Base
+  #Relaciones
 	has_many :accountreceivables, :dependent => :delete_all
   has_many :client_mails, :dependent => :delete_all
   has_many :emails, :dependent => :delete_all
+
+  #Validaciones
   has_and_belongs_to_many :discounts
-  validates :name, presence: true #uniqueness: true
-  validates :country, presence: true #length: {minimum: 20}
+  validates :name, presence: true
+  validates :country, presence: true 
   validates :socialReason, presence: true
-  validates_presence_of :name
   validates :state, presence: true
-  validates :rif, presence: true, length: { minimum: 9 }
+  validates :rif, presence: true, uniqueness: true , length: { minimum: 9 }
   validates :profitCode, presence: true, length: { minimum: 6 }, uniqueness: true
   validates :localAmount, presence: true
-  validates :rif, uniqueness: true  
-  before_save :calculateCode
+  
+
+  
   validates_numericality_of :rif
-  
   validates_numericality_of :localAmount
+  validates_numericality_of :profitCode
   before_save :country_name
-  before_save :validateLocalAmount
-  before_save :validateRif
-  before_save :validateSpecialDiscount
-  before_save :validateProfitCode
-    #validates :specialDiscount,  absence: true, if: :validateDiscounts?
-   #validates :username, format: { with: /regex/ }
-  
-   
+  before_save :calculateCode  
+ 
 
   #def validateDiscounts?
     #contador = 0
@@ -45,22 +42,7 @@ class Client < ActiveRecord::Base
       end
     end
   end
-  def validateLocalAmount
-    self.localAmount = localAmount.to_s.gsub(',', '.').to_i
-  end
-  def validateRif
-    self.rif = rif.to_s.gsub(',', '.').to_i
-  end
-  def validateSpecialDiscount
-    if specialDiscount 
-      self.specialDiscount = specialDiscount.to_s.gsub(',', '.').to_i
-      validates_numericality_of :specialDiscount, length: { maximun: 2 }
-    end
-
-  end
-  def validateProfitCode
-    self.profitCode = profitCode.to_s.gsub(',', '.').to_i
-  end
+  
     
     def self.import(file)
    spreadsheet = open_spreadsheet(file)
@@ -102,7 +84,7 @@ end
    private
 def calculateCode
   #self.total = Settings.monthlyPayment + retentioniva
-  self.code = country + state + profitCode.to_s.gsub(',', '.').to_i.to_s
+  self.code = country + state + profitCode
 end
   
 

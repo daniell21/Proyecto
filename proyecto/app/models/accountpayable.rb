@@ -1,11 +1,21 @@
 class Accountpayable < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   belongs_to :supplier
   validates :descripcion, presence: true #uniqueness: true
   validates :amountPaid, presence: true
   validates :date, presence: true
   validates :supplier, presence: true
   before_save :validateAmountPaid
+  
 
+def validateAmountPaid
+    if amountPaid
+      amount = amountPaid.to_s.gsub(',', '.').to_f
+      self.amountPaid = ActionController::Base.helpers.number_with_precision(amount, :precision => 2)
+     
+    end
+
+  end
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
@@ -15,14 +25,7 @@ class Accountpayable < ActiveRecord::Base
       end
     end
   end
-def validateAmountPaid
-    if amountPaid
-      amount = amountPaid.to_s.gsub(',', '.').to_f
-      self.amountPaid = ActionController::Base.helpers.number_with_precision(amount, :precision => 2)
-      
-    end
 
-  end
 
 
 #validates :username, format: { with: /regex/ }
@@ -35,6 +38,13 @@ def self.search(search)
     all
   end
 end
+private
+
+  def helper
+    @helper ||= Class.new do
+      include ActionView::Helpers::NumberHelper
+    end.new
+  end
 
 end
 

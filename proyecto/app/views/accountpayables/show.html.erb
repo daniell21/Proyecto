@@ -18,7 +18,7 @@
 
 <p>
   <strong>Total:</strong>
-  <%= @accountpayable.amountPaid %>
+  <%= @accountpayable.amountPaid.gsub('.', ',') %>
 </p>
 <p>
   <strong>Comentarios:</strong>

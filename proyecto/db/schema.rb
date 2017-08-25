@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821054116) do
+ActiveRecord::Schema.define(version: 20170824214449) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170821054116) do
     t.text     "concept"
     t.text     "comment"
     t.string   "amountPaid"
+    t.boolean  "paid"
   end
 
   add_index "accountpayables", ["supplier_id"], name: "index_accountpayables_on_supplier_id"
@@ -45,7 +46,6 @@ ActiveRecord::Schema.define(version: 20170821054116) do
     t.float    "amountWithtTax"
     t.string   "status"
     t.string   "bank"
-    t.integer  "transferNumber"
     t.boolean  "retentionIva"
     t.boolean  "retentionIsrl"
     t.float    "totalRetentions"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20170821054116) do
     t.string   "paymentComment"
     t.float    "baseAmount"
     t.string   "profitNumber"
-    t.string   "proof"
     t.string   "document"
     t.integer  "elemetricaAccount",    limit: 8
     t.float    "accountBalance"
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170821054116) do
     t.integer  "constant_id"
     t.string   "amountPaid"
     t.integer  "month"
+    t.string   "transferNumber"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
@@ -98,7 +98,6 @@ ActiveRecord::Schema.define(version: 20170821054116) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "specialcontributor"
-    t.integer  "rif"
     t.string   "country"
     t.text     "socialReason"
     t.string   "state"
@@ -109,7 +108,8 @@ ActiveRecord::Schema.define(version: 20170821054116) do
     t.boolean  "oldCustomer"
     t.text     "comment"
     t.string   "localAmount"
-    t.string   "specialDiscount"
+    t.string   "rif"
+    t.decimal  "specialDiscount",    precision: 5, scale: 2
   end
 
   create_table "clients_discounts", force: :cascade do |t|
