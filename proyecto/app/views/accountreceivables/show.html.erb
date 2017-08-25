@@ -40,25 +40,25 @@
   <strong>Concepto:</strong>
 
   <% @constant = Constant.find(@accountreceivable.constant_id) %>
-  <%= @constant.name %> - <%= @constant.amount %>
+  <%= @constant.name %> - <%= (@constant.amount).gsub('.', ',') %>
 </p>
  
 <p>
   <strong>Monto con Descuento sin Iva:</strong>
-  <%= @accountreceivable.amountWithoutTax %>
+  <%= (@accountreceivable.amountWithoutTax).to_s.gsub('.', ',') %>
 </p>
 
 <p>
   <strong>Monto con Descuento con Iva:</strong>
-  <%= @accountreceivable.amountWithtTax %>
+  <%= (@accountreceivable.amountWithtTax).to_s.gsub('.', ',') %>
 </p>
  <p>
   <strong>Total Retenciones:</strong>
-  <%= @accountreceivable.totalRetentions %>
+  <%= (@accountreceivable.totalRetentions).to_s.gsub('.', ',') %>
 </p>
 <p>
     <strong>Total a Percibir:</strong>
-    <%= @accountreceivable.totalAmountPerceive %>
+    <%= (@accountreceivable.totalAmountPerceive).to_s.gsub('.', ',') %>
   </p>
 <p>
   <strong>Factura Pagada:</strong>
@@ -74,11 +74,11 @@
 </p>
 <p>
   <strong>Monto Pagado:</strong>
-  <%= @accountreceivable.amountPaid %>
+  <%= (@accountreceivable.amountPaid).gsub('.', ',') %>
 </p>
 <p>
     <strong>Diferencia:</strong>
-    <%= @accountreceivable.accountBalance %> 
+    <%= (@accountreceivable.accountBalance).to_s.gsub('.', ',') %> 
   </p>
 <p>
   <strong>Banco:</strong>

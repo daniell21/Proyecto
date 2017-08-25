@@ -38,16 +38,23 @@
 <table class="table table-striped">
   <thead>
     <tr>
-    <th><%=sortable "profitNumber", "Numero de Factura Profit"%> </th>
     <%if current_user.role != "client"%>
+      <th><%=sortable "profitNumber", "Numero de Factura"%> </th>
       <th>Cliente</th>
-    <%else%>
-      <th><%=sortable "month", "Mes a Pagar"%></th>
-    <%end%>
-    <th><%= sortable "date", "Fecha"%></th>
       <th><%=sortable "paid", "Pagada"%></th>
-      
+      <th><%= sortable "date", "Fecha"%></th>
+      <th><%= sortable "month", "Mes"%></th>
       <th><%=sortable "amountPaid", "Monto Pagado"%></th>
+    <%else%>
+      <th><%=sortable "profitNumber", "Numero de Factura"%> </th>
+      <th><%=sortable "month", "Mes a Pagar"%></th>
+      <th><%=sortable "paid", "Pagada"%></th>
+      <th><%= sortable "date", "Fecha"%></th>
+      <th><%=sortable "amountPaid", "Monto Pagado"%></th>
+    <%end%>
+    
+      
+      
       
     </tr>
   </thead>
@@ -77,16 +84,24 @@
         <%if current_user.role != "client" or (current_user.role == "client" and accounts) %>
 
           <%if current_user.role != "client"%>
-          <th><%= accountreceivable.profitNumber %></th>
+            <th><%= accountreceivable.profitNumber %></th>
             <td><%= accountreceivable.client.name %></td>
-          <%else%>
+            <td><%= accountreceivable.paid%></td>
+            <td><%= accountreceivable.date %></td>
             <td><%= accountreceivable.month %></td>
+            <td><%= (accountreceivable.amountPaid).gsub('.', ',') %></td>
+          <%else%>
+          <th><%= accountreceivable.profitNumber %></th>
+            <td><%= accountreceivable.month %></td>
+            <td><%= accountreceivable.paid%></td>
+            <td><%= accountreceivable.date %></td>
+            <td><%= (accountreceivable.amountPaid).gsub('.', ',') %></td>
           <%end%>
-          <td><%= accountreceivable.paid%></td>
-          <td><%= accountreceivable.date %></td>
-          <td><%= accountreceivable.paid %></td>
-          <td><%= @constant.name %></td>
-          <td><%= accountreceivable.amountPaid %></td>
+          
+          
+          
+        
+          
           <%if current_user.role != "client" or (current_user.role == "client" and accountreceivable.paid == "si") %>
             <td><%= link_to 'Ver Pago', accountreceivable, :class => 'btn btn-success btn'%></td>
           <%end%>
