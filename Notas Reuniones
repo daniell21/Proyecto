@@ -122,8 +122,9 @@ Resp: Ya se agrego el campo comentarios en clientes, se debe agregar el cron rec
 un correo para que sepa esos comentarios
 
 -41 cambiar los decimales a comas, no puntos
+Resp: listo
 
--42 revisar las operaciones al leer los datos del pdf y al ingresar el pago
+42 revisar las operaciones al leer los datos del pdf y al ingresar el pago
 
 43 Revisar que se pueda mantener un historico de los cobros en el sistema, es decir que se pueda ver en las cuentas por cobrar cuanto fue cobrado a cada cliente, sin que al abrir alguna de estas cuentas se recalcule el los montos
 
@@ -167,19 +168,25 @@ de que eso tiene que volver a la normalidad luego. al siguiente mes por ejemplo
 Resp: Ya se agrego el campo comentarios en clientes, se debe agregar el cron recordatorio que aquellos clientes con comentarios les mande
 un correo para que sepa esos comentarios
 
+54- Agregar la opcion de enviar correos electronicos masivos en el sistema
+
+
+
+
+
+
+
+
+
 
 Notas personales.
 Elemetrica retiene 100% de iva y 2% de isrl
 -1- Debo acomodar la Fecha de pago, ya que si no se selecciona una fecha en espesifico se asigna la facha del dia en que se crea la cuenta. y eso no debe ser asi
 
--2- Arreglar form de clientes
+
 
 -3- Agregar la validacion de los 3 descuentos que necesita el departamento administrativo
 Resp: listo
-
-4- Validar los rif que tienen numero despues del guion
-
-5- Falta cambiar a integer o numero. Numero factura profit y Numero codigo Profit
 
 6-Por defecto al importar clientes por archivo de excel, se setea true el flag cobrar mensualidad
 
