@@ -11,7 +11,6 @@ class Accountreceivable < ActiveRecord::Base
   validates :status, presence: true, on: :create
   validates :paymentType, presence: true, on: :update
   validates :month, presence: true, on: :create
-  validates :paid, presence: true
   validates :bank, presence: true, on: :update
   validates :amountPaid, presence: true, on: :update
   validates :profitCode, presence: true

@@ -2,86 +2,133 @@
 <p id="notice"><%= notice %></p>
 <h1>Cliente</h1>
 <div ALIGN=center>
-
-<p>
-  <strong>Código:</strong>
-  <%= @client.code %>
-</p>
-<p> 
-  <strong>RIF:</strong>
-  <%= @client.rif %>
-</p>
-
-<p> 
-  <strong>Código Profit:</strong>
-  <%= @client.profitCode %>
-</p>
-<p> 
-  <strong>Cliente Antiguo:</strong>
-  <%="Si" if @client.oldCustomer%> <%="No" if !@client.oldCustomer%>
-</p>
-
-<p> 
-  <strong>Nombre:</strong>
-  <%= @client.name %>
-</p>
-
-
-<p>
-  <strong>Correos:</strong>
-  <%= render "emails/form" %>
-  <ul>
-    <%@client.emails.each do |email|%>
-      <li  style="list-style:none;">
-        <%=email.email%>
-        
-       <%= link_to 'Eliminar Correo', [email.client, email], method: :delete, data: { confirm: 'Are you sure?' } %>
-      </li>
-    <%end%>
-  </ul>
-</p>
-<p>
-  <strong>País:</strong>
-  <%= @client.completeCountry %>
-</p>
-<p>
-  <strong>Estado:</strong>
-  <%= @client.state %>
-</p>
-<p>
-  <strong>Razón Social:</strong>
-  <%= @client.socialReason %>
-</p>
-<p>
-  <strong>Número de locales:</strong>
-  <%= @client.localAmount %>
-</p>
-
-<p>
-  <strong>Contribuyente Especial:</strong>
-  <%="Si" if @client.specialcontributor%> <%="No" if !@client.specialcontributor%>
-</p>
-
-<p>
-  
-    <strong>Descuentos: </strong> <br> 
-    <% @client.discounts.each do |discount|%>
-    <%=discount.name%> - <%=discount.percentage%>%<br>
-    <%end%>
-    <% if @client.specialDiscount > 0 %>
-     Especial - <%= @client.specialDiscount %>%
-    <%end%>
-</p>
-<p>
-  <strong>Cobrar Mensualidad:</strong>
-  <%="Si" if @client.chargeMonthlyFee%> <%="No" if !@client.chargeMonthlyFee%>
-</p>
-<p>
-  <strong>Comentarios:</strong>
-  <%=@client.comment%> 
-</p>
-
-</div>
+<br>
+<br>
+  <div class="row">
+    <div class="col-xs-6">
+      <p>
+        <strong>Código:</strong>
+        <%= @client.code %>
+      </p>
+    </div>
+    <div class="col-xs-6">
+      <p> 
+        <strong>RIF:</strong>
+        <%= @client.rif %>
+      </p>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-xs-6">
+      <p> 
+        <strong>Código Profit:</strong>
+        <%= @client.profitCode %>
+      </p>
+    </div>
+    <div class="col-xs-6">
+      <p> 
+        <strong>Cliente Antiguo:</strong>
+        <%="Si" if @client.oldCustomer%> <%="No" if !@client.oldCustomer%>
+      </p>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-xs-6">
+      <p> 
+        <strong>Nombre:</strong>
+        <%= @client.name %>
+      </p>
+    </div>
+    <div class="col-xs-6">
+      <p>
+        <strong>País:</strong>
+        <%= @client.completeCountry %>
+      </p>
+    </div>    
+  </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-xs-6">
+        <p>
+          <strong>Cobrar Mensualidad:</strong>
+          <%="Si" if @client.chargeMonthlyFee%> <%="No" if !@client.chargeMonthlyFee%>
+        </p>
+      </div>
+      <div class="col-xs-6">
+        <p>
+          <strong>Estado:</strong>
+          <%= @client.state %>
+        </p>
+      </div>
+    </div>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-xs-6">
+          <p>
+            <strong>Razón Social:</strong>
+            <%= @client.socialReason %>
+          </p>
+        </div>
+        <div class="col-xs-6">
+          <p>
+            <strong>Número de locales:</strong>
+            <%= @client.localAmount %>
+          </p>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-xs-6">
+          <p>
+            <strong>Contribuyente Especial:</strong>
+            <%="Si" if @client.specialcontributor%> <%="No" if !@client.specialcontributor%>
+          </p>
+        </div>
+        <div class="col-xs-6">
+          <p>
+            <strong>Comentarios:</strong>
+            <%=@client.comment%> 
+          </p>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-xs-6"> 
+          <p>
+            <strong>Descuentos: </strong> <br> 
+            <% @client.discounts.each do |discount|%>
+            <%=discount.name%> - <%=discount.percentage%>%<br>
+            <%end%>
+            
+            <% if @client.specialDiscount%>
+             Especial - <%= @client.specialDiscount %>%
+            <%end%>
+          </p>
+        </div>
+        <div class="col-xs-6">
+          <p>
+           
+            <%= render "emails/form" %>
+            <ul>
+              <%@client.emails.each do |email|%>
+                <li  style="list-style:none;">
+                  <%=email.email%>
+                  
+                 <%= link_to 'Eliminar Correo', [email.client, email], method: :delete, data: { confirm: 'Are you sure?' } %>
+                </li>
+              <%end%>
+            </ul>
+          </p>
+        </div>
+      </div>
 <div ALIGN=right>
 
 <%= link_to 'Atrás', clients_path, :class => 'btn btn-default btn' %>

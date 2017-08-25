@@ -100,12 +100,11 @@
           
           
           
-        
           
-          <%if current_user.role != "client" or (current_user.role == "client" and accountreceivable.paid == "si") %>
+          <%if current_user.role != "client" or (current_user.role == "client" and accountreceivable.paid) %>
             <td><%= link_to 'Ver Pago', accountreceivable, :class => 'btn btn-success btn'%></td>
           <%end%>
-          <%if current_user.role != "client" or (current_user.role == "client" and accountreceivable.paid == "no") %>
+          <%if current_user.role != "client" or (current_user.role == "client" and !accountreceivable.paid) %>
             <%if current_user.role != "client"%>
               <td><%= link_to 'Editar Pago', edit_accountreceivable_path(accountreceivable), :class => 'btn btn-warning btn'  %></td>
             <%end%>

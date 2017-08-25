@@ -28,7 +28,8 @@ class GraphsController < ApplicationController
 
 
   	#e. Top clientes deudores (por meses adeudados)
-  	@topDebtorsbyMonth = Client.joins("left join accountreceivables on clients.id = accountreceivables.client_id").group("clients.id, accountreceivables.client_id").where('accountreceivables.paid = "no"').select("clients.*, count(accountreceivables.month) as cuenta_accountreceivables").order('cuenta_accountreceivables DESC').limit(10).collect{|x| [x.name, x.cuenta_accountreceivables]}
+  	@topDebtorsbyMonth = Client.joins("left join accountreceivables on clients.id = accountreceivables.client_id").group("clients.id, accountreceivables.client_id").where('accountreceivables.paid = "f"').select("clients.*, count(accountreceivables.month) as cuenta_accountreceivables").order('cuenta_accountreceivables DESC').limit(10).collect{|x| [x.name, x.cuenta_accountreceivables]}
+
 
   	
 

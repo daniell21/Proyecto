@@ -20,7 +20,7 @@ class Client < ActiveRecord::Base
   validates_numericality_of :localAmount
   validates_numericality_of :profitCode
   before_save :country_name
-  before_save :calculateCode  
+  before_save :calculateCode 
  
 
   #def validateDiscounts?
