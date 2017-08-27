@@ -1,0 +1,25 @@
+<h1>Tarifa</h1>
+<div ALIGN=center>
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Nombre:</strong>
+  <%= @rate.name %>
+</p>
+<%if @rate.name != "Porcentaje de IVA"%>
+<p>
+  <strong>Monto:</strong>
+  <%= @rate.amount.to_s.gsub('.', ',') %>
+</p>
+<%else%>
+<p>
+  <strong>Monto:</strong>
+  <%= @rate.amount.to_s.gsub('.', ',') %>%
+</p>
+<%end%>
+
+
+<div ALIGN=right>
+
+<%= link_to 'Atrás',rates_path, :class => 'btn btn-default btn' %>
+</div>
+

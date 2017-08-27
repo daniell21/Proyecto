@@ -35,7 +35,7 @@
             <div class="row">
              <div class="col-xs-6">
                 
-                <%= f.association :constant, label: "Concepto de Pago", 
+                <%= f.association :rate, label: "Concepto de Pago", 
                     include_blank: "Seleccionar Concepto de Pago", error: "Debe seleccionar un Concepto"  %>
 
               </div>
@@ -43,8 +43,8 @@
               
 
               <div class="col-md-6"> 
-                  <%= f.input :status, :collection => [['Facturada','Facturada'],['Anulada','Anulada'],['Incobrable','Incobrable']], label: "Status Cuenta",
-                    include_blank: "Seleccionar Status ", error: 'Debe seleccionar el Status de la Cuenta' %>
+                  <%= f.input :status, :collection => [['Facturada','Facturada'],['Anulada','Anulada'],['Incobrable','Incobrable']], label: "Estado de la Cuenta",
+                    include_blank: "Seleccionar Estado ", error: 'Debe seleccionar el Estado de la Cuenta' %>
               </div>
             </div>
             <br>

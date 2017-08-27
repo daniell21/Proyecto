@@ -1,118 +1,10 @@
 <h1>Gráficos</h1>
-<!--<div class="row">
-	<div class="col-xs-6">	
-		<%= pie_chart({"Football" => 10, "Basketball" => 10, "Karate" => 10, "Trompo" => 10}) %>
-	</div>
 
- 	<div class="col-xs-6">
-		<%= column_chart ({ 20.day.ago => 5, 10.day.ago => 10, "2017-010-07 00:00:00 UTC" => 7})%>
-	</div>
-</div>-->
 
-<h2>Monto Facturado vs Pagado (Último Trimestre)</h2>
-	<div class="form-group">
-  <label for="sel1">Select list:</label>
-  <select class="form-control" id="sel1">
-    <option><%= active_link_to 'Proveedores', controller: 'suppliers' %></option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-  </select>
-</div>
-	<div class="row">
-		<div class="col-xs-4">
-			<p style="color:#142c54;">Mes <%=@firstMonth%></p>
-				<div id="orders_chart" style="width: 307px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @firstMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
-		</div>
-		
-	
-	<div class="row">
-		<div class="col-xs-4">
-			<p style="color:#142c54;">Mes <%=@secondMonth%></p>
-				<div id="orders_chart" style="width: 307px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @secondMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
-		</div>
-	
-	<div class="row">
-		<div class="col-xs-4">
-		
-			<p style="color:#142c54;">Mes <%=@thirdMonth%></p>
-				<div id="orders_chart" style="width: 307px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @thirdMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
-		</div>
-	</div>
-<br><br>
-	
-	
-	<div class="row">
-		<div class="col-xs-6">
-			<p style="color:#142c54;">Monto Facturado vs Pagado (Histórico)</p>
-				<div id="orders_chart" style="width: 500px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @historicalAmountInvoicedvsPaid, label: "Monto Bs", legend: true, xtitle: "Tipos de Montos", ytitle: "Bolivares" , refresh: 60   %></div>
-		</div>
-
-		
-		<div class="col-xs-6">
-			<p style="color:#142c54;">Monto Facturado vs Pagado (Mes en Curso)</p>
-				<div id="orders_chart" style="width: 500px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @presentMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
-		</div>
-	</div>
-<br><br>
-
-	<h2>Top 10 Clientes deudores (Por monto adeudado)</h2>
-
-	<div class="row">
-		<div class="col-xs-6">
-			
-				<div id="orders_chart" style="width: 400px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyAmount, label: "Deuda Bs", legend: true , refresh: 60, donut: true   %></div>
-		</div>
-		<div class="col-xs-6">
-			
-				<div id="orders_chart" style="width: 400px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= line_chart @topDebtorsbyAmount, label: "Deuda Bs", xtitle: "Clientes", ytitle: "Bolivares", refresh: 60, legend: true   %></div>
-		</div>
-		
-	</div>
-	<br><br>
-	<h2>Top 10 Clientes deudores (Por meses adeudados)</h2>
-	<div class="row">
-		<div class="col-xs-6">
-			
-				<div id="orders_chart" style="width: 400px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyMonth, label: "Deuda Meses", refresh: 60, legend: true  %></div>
-		</div>
-		<div class="col-xs-6">
-		
-				<div id="orders_chart" style="width: 400px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= line_chart @topDebtorsbyMonth, label: "Deuda Meses", xtitle: "Clientes", ytitle: "Cantidad de meses", refresh: 60, legend: true  %></div>
-		</div>
-		
-	</div>
-	<br><br>
-	<h2>Instalaciones</h2>
-
-	<div class="row">
-		<div class="col-xs-6">
-			
-				<div id="orders_chart" style="width: 400px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @install, label: "Número", xtitle: "Concepto", ytitle: "Cantidad", refresh: 60, legend: true , legend: true  %></div>
-		</div>
-		
-	</div>
-	<br><br>
+<%= link_to 'Monto facturado Vs Monto Pagado', graphs_show_amountPaid_path, :class => 'btn btn-default btn'  %>
+<%= link_to 'Conceptos de pago', graphs_show_accountTypes_path, :class => 'btn btn-default btn'  %>
+<%= link_to 'Clientes Deudores', graphs_show_clientsDebtors_path, :class => 'btn btn-default btn'  %>
+<%= link_to 'Insalaciones', graphs_show_facilities_path, :class => 'btn btn-default btn'  %>
 	<h2>Cantidad de Cuentas por Cliente</h2>
 	<div class="row">
 		<div class="col-xs-12">
@@ -150,7 +42,7 @@
 					<tbody>
 					<%@accountreceivables = Accountreceivable.all%>
 				    <% @accountreceivables.each do |accountreceivable| %>
-				    	<%@constant = Constant.find(accountreceivable.constant_id)%>
+				    	<%@rate = Rate.find(accountreceivable.rate_id)%>
 				      	<tr>
 				        
 				        	<th><%= accountreceivable.profitNumber %></th>
@@ -159,7 +51,7 @@
 				         	<td><%= accountreceivable.paid%></td>
 				          	<td><%= accountreceivable.date %></td>
 				          	<td><%= accountreceivable.paid %></td>
-				          	<td><%= @constant.name %></td>   
+				          	<td><%= @rate.name %></td>   
 				      </tr>
 				    <% end %>
 				  	</tbody>
@@ -199,19 +91,7 @@
 					
 
 		</div>
-		<br><br>
-		<h2>Tipos de Cuentas</h2>
-
-		<div class="row">
-			<div class="col-xs-6">
-				
-				<div id="orders_chart" style="width: 400px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivables_type, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", refresh: 60, download: true   %></div>
-			</div>
-			
-			
-		</div>
+		
 		<br><br>
 		<h2>Cantidad de cuentas por Concepto</h2>
 
@@ -220,7 +100,7 @@
 				
 				<div id="orders_chart" style="width: 1000px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivablesConstantsPercentage, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", refresh: 60, download: true   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivablesRatesPercentage, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", refresh: 60, download: true   %></div>
 			</div>
 		</div>
 		<div class="row">
@@ -231,8 +111,4 @@
 		</div>
 			
 			
-			
-			
-			<br>
-			<br>
-
+	

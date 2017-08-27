@@ -92,7 +92,7 @@ helper_method :sort_column, :sort_diection
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accountreceivable_params
-      params.require(:accountreceivable).permit(:date, :client_id, :code, :retentionIva, :retentionIsrl, :amountWithoutTax, :profitCode, :profitNumber, :amountWithtTax, :transferNumber,  :month, :bank, :paymentType, :status, :paid, :paymentComment, :amountPaid, :document, :elemetricaAccount, :clientAccount, :accountBalance, :transferNumberClient, :depositNumber, :checkNumber, :constant_id)
+      params.require(:accountreceivable).permit(:date, :client_id, :code, :retentionIva, :retentionIsrl, :amountWithoutTax, :profitCode, :profitNumber, :amountWithtTax, :transferNumber,  :month, :bank, :paymentType, :status, :paid, :paymentComment, :amountPaid, :document, :elemetricaAccount, :clientAccount, :accountBalance, :transferNumberClient, :depositNumber, :checkNumber, :constant_id, :rate_id)
     end
     def sort_column
       Accountreceivable.column_names.include?(params[:sort]) ? params[:sort] : "date"

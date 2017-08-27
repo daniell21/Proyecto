@@ -1,0 +1,69 @@
+<h2>Monto Facturado vs Pagado (Último Trimestre)</h2>
+	<div class="form-group">
+  <label for="sel1">Select list:</label>
+  <select class="form-control" id="sel1">
+    <option><%= active_link_to 'Proveedores', controller: 'suppliers' %></option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+  </select>
+</div>
+	<div class="row">
+		<div class="col-xs-4">
+			<p style="color:#142c54;">Mes <%=@firstMonth%></p>
+				<div id="orders_chart" style="width: 307px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @firstMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
+		</div>
+		
+	
+	<div class="row">
+		<div class="col-xs-4">
+			<p style="color:#142c54;">Mes <%=@secondMonth%></p>
+				<div id="orders_chart" style="width: 307px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @secondMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
+		</div>
+	
+	<div class="row">
+		<div class="col-xs-4">
+		
+			<p style="color:#142c54;">Mes <%=@thirdMonth%></p>
+				<div id="orders_chart" style="width: 307px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @thirdMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
+		</div>
+	</div>
+	<br><br>
+	<div align="center">
+	
+	<div class="row">
+		<div class="col-xs-12">
+			<p style="color:#142c54;">Monto Facturado vs Pagado (Histórico)</p>
+				<div id="orders_chart" style="width: 1000px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @historicalAmountInvoicedvsPaid, label: "Monto Bs", legend: true, xtitle: "Tipos de Montos", ytitle: "Bolivares" , refresh: 60   %></div>
+		</div>
+	</div>
+<br>
+<br>
+		<div class="row">
+		<div class="col-xs-12">
+			<p style="color:#142c54;">Monto Facturado vs Pagado (Mes en Curso)</p>
+				<div id="orders_chart" style="width: 1000px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @presentMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
+		</div>
+	</div>
+	</div>
+	<div ALIGN=right>
+
+
+</div>
+<br>
+<div ALIGN=right>
+
+<%= link_to 'Atrás', graphs_index_path, :class => 'btn btn-default btn' %>
+</div>
+<br>
+<br>

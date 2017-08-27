@@ -6,12 +6,17 @@ Rails.application.routes.draw do
   
 
   
+  get 'admin/index'
+
+  resources :rates
   resources :reports
-  resources :constants
   get 'graphs/index'
+  get 'graphs/show_amountPaid'
+  get 'graphs/show_clientsDebtors'
+  get 'graphs/show_facilities'
+  get 'graphs/show_accountTypes'
 
   resources :client_mails
-  resources :groups
   
   get 'setup/index'
   resources :search_suppliers

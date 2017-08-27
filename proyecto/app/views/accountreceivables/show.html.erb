@@ -39,8 +39,8 @@
  <p>
   <strong>Concepto:</strong>
 
-  <% @constant = Constant.find(@accountreceivable.constant_id) %>
-  <%= @constant.name %> - <%= (@constant.amount).gsub('.', ',') %>
+  <% @rate = Rate.find(@accountreceivable.rate_id) %>
+  <%= @rate.name %> - <%= (@rate.amount).to_s.gsub('.', ',') %>
 </p>
  
 <p>
@@ -62,7 +62,7 @@
   </p>
 <p>
   <strong>Factura Pagada:</strong>
-  <%= @accountreceivable.paid %>
+  <%= "Si" if @accountreceivable.paid %> <%= "No" if !@accountreceivable.paid %>
 </p>
 <p>
   <strong>Estado de Pago:</strong>

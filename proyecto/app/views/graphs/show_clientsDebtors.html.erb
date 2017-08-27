@@ -1,0 +1,44 @@
+	
+
+
+	<h2>Top 10 Clientes deudores (Por monto adeudado)</h2>
+
+	<div class="row">
+		<div class="col-xs-6">
+			
+				<div id="orders_chart" style="width: 400px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyAmount, label: "Deuda Bs", legend: true , refresh: 60, donut: true   %></div>
+		</div>
+		<div class="col-xs-6">
+			
+				<div id="orders_chart" style="width: 400px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= line_chart @topDebtorsbyAmount, label: "Deuda Bs", xtitle: "Clientes", ytitle: "Bolivares", refresh: 60, legend: true   %></div>
+		</div>
+		
+	</div>
+	<br><br>
+	<h2>Top 10 Clientes deudores (Por meses adeudados)</h2>
+	<div class="row">
+		<div class="col-xs-6">
+			
+				<div id="orders_chart" style="width: 400px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyMonth, label: "Deuda Meses", refresh: 60, legend: true  %></div>
+		</div>
+		<div class="col-xs-6">
+		
+				<div id="orders_chart" style="width: 400px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= line_chart @topDebtorsbyMonth, label: "Deuda Meses", xtitle: "Clientes", ytitle: "Cantidad de meses", refresh: 60, legend: true  %></div>
+		</div>
+		
+	</div>
+	<br>
+	<div ALIGN=right>
+
+<%= link_to 'Atrás', graphs_index_path, :class => 'btn btn-default btn' %>
+</div>
+<br>
+<br>

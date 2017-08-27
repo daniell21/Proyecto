@@ -5,7 +5,7 @@ class DiscountsController < ApplicationController
   # GET /discounts.json
   helper_method :sort_column, :sort_diection
   def index
-    @discounts = Discount.order(sort_column + " " + sort_diection).search(params[:search]).paginate(:per_page => 5, :page => params[:page])
+    @discounts = Discount.search(params[:search]).order(sort_column + " " + sort_diection).paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /discounts/1
@@ -16,8 +16,7 @@ class DiscountsController < ApplicationController
   # GET /discounts/new
   def new
     @discount = Discount.new
-  end
-
+  end 
   # GET /discounts/1/edit
   def edit
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825053403) do
+ActiveRecord::Schema.define(version: 20170827171739) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -67,10 +67,12 @@ ActiveRecord::Schema.define(version: 20170825053403) do
     t.integer  "month"
     t.string   "transferNumber"
     t.boolean  "paid"
+    t.integer  "rate_id"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
   add_index "accountreceivables", ["constant_id"], name: "index_accountreceivables_on_constant_id"
+  add_index "accountreceivables", ["rate_id"], name: "index_accountreceivables_on_rate_id"
 
   create_table "client_mails", force: :cascade do |t|
     t.string   "title"
@@ -142,9 +144,9 @@ ActiveRecord::Schema.define(version: 20170825053403) do
 
   create_table "discounts", force: :cascade do |t|
     t.string   "name"
-    t.integer  "percentage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal  "percentage"
   end
 
   create_table "emails", force: :cascade do |t|
@@ -185,6 +187,13 @@ ActiveRecord::Schema.define(version: 20170825053403) do
     t.string   "proof"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reports", force: :cascade do |t|

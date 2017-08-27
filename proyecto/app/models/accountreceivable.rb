@@ -3,10 +3,10 @@ class Accountreceivable < ActiveRecord::Base
    #Hasta Ahora los comprobantes de Benplus no funcionan. No se pueden leer
    #Resta por hacer validaciones de fecha y numero de cuenta a acreditar. MOnto tambien
   belongs_to :client
-  belongs_to :constant 
+  belongs_to :rate
   mount_uploader :document, DocumentUploader
   validates :client_id, presence: true
-  validates :constant_id, presence: true
+  validates :rate_id, presence: true
   validates :date, presence: true, on: :update
   validates :status, presence: true, on: :create
   validates :paymentType, presence: true, on: :update
@@ -228,11 +228,11 @@ class Accountreceivable < ActiveRecord::Base
  
   def calculateBaseAmount
 
-  	@constant = Constant.find(constant_id)
+  	@rate = Rate.find(rate_id)
     
   	if !self.baseAmount
       
-      self.baseAmount = @constant.amount * client.localAmount.to_i
+      self.baseAmount = @rate.amount * client.localAmount.to_i
    	end
    
   end
@@ -263,7 +263,7 @@ class Accountreceivable < ActiveRecord::Base
   def calculateRetentions
   	retention = 0
   	#raise retentionIva.to_yaml
-  	@constant = Constant.find(constant_id)
+  	@rate = Rate.find(rate_id)
   	if client.specialcontributor
   		retention = amountWithoutTax * 0.02
 

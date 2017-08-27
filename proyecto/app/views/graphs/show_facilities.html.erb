@@ -1,0 +1,20 @@
+	<h2>Instalaciones</h2>
+
+	<div align="center">
+	<div class="row">
+		<div class="col-xs-12">
+			
+				<div id="orders_chart" style="width: 1000px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @install, label: "Número", xtitle: "Concepto", ytitle: "Cantidad", refresh: 60, legend: true , legend: true  %></div>
+		</div>
+		
+	</div>
+	</div>
+	<br>
+	<div ALIGN=right>
+
+<%= link_to 'Atrás', graphs_index_path, :class => 'btn btn-default btn' %>
+</div>
+<br>
+<br>

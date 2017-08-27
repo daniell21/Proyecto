@@ -64,7 +64,10 @@
         
         
         <% if can? :show, client %>
-        <td><%= link_to 'Mostrar', client, :class => 'btn btn-success btn'  %></td>
+        
+       
+   <%= link_to image_tag('/assets/edit.ico'), client %>
+<td><img class="logo img-responsive" src="/assets/edit.ico" /></td>
         <%end%>
         <% if can? :edit, client %>
         <td><%= link_to 'Editar', edit_client_path(client), :class => 'btn btn-warning btn'  %></td>

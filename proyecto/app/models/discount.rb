@@ -7,7 +7,8 @@ class Discount < ActiveRecord::Base
 	 before_save :validatePercentage
 def validatePercentage
 	
-    self.percentage = percentage.to_s.gsub(',', '.').to_i
+    per = percentage.to_s.gsub(',', '.').to_f
+    self.percentage = ActionController::Base.helpers.number_with_precision(per, :precision => 2)
     
   end
 	 def self.search(search)

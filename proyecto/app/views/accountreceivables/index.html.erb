@@ -67,7 +67,7 @@
       <%accounts = false%>
       <%@clients = Client.all%>
       <%client = Client.find(accountreceivable.client_id)%>
-      <%@constant = Constant.find(accountreceivable.constant_id)%>
+      <%@rate = Rate.find(accountreceivable.rate_id)%>
       
       
         <%client.emails.each do |email|%>
@@ -86,7 +86,7 @@
           <%if current_user.role != "client"%>
             <th><%= accountreceivable.profitNumber %></th>
             <td><%= accountreceivable.client.name %></td>
-            <td><%= accountreceivable.paid%></td>
+            <th><%= "Si" if accountreceivable.paid %><%= "No" if !accountreceivable.paid %></th>
             <td><%= accountreceivable.date %></td>
             <td><%= accountreceivable.month %></td>
             <td><%= (accountreceivable.amountPaid).gsub('.', ',') %></td>

@@ -1,0 +1,40 @@
+<h1>Tarifas</h1>
+
+  
+ <p id="notice"><%= notice %></p>
+   
+    
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Monto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rates.each do |rate| %>
+      <tr>
+      
+        <td><%= rate.name %></td>
+        <td><%= rate.amount.to_s.gsub('.', ',')%></td>
+        <td><%= link_to 'Mostrar', rate, :class => 'btn btn-success btn' %></td>
+        <td><%= link_to 'Editar', edit_rate_path(rate), :class => 'btn btn-warning btn'  %></td>
+        <%if !rate.name.include? "IVA"%>
+        <td><%= link_to 'Eliminar', rate, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'btn btn-danger btn' %></td>
+       <%end%> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<div align="center">
+
+</div>
+<br>
+
+<div align="right">
+  <%= link_to 'Nueva Tarifa', new_rate_path, :class => 'btn btn-default btn'  %>
+  </div>
