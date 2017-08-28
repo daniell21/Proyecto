@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20170828044540) do
 
-  create_table "Groups_Suppliers", id: false, force: :cascade do |t|
-    t.integer "supplier_id", null: false
-    t.integer "group_id",    null: false
-  end
-
-  add_index "Groups_Suppliers", ["group_id", "supplier_id"], name: "index_Groups_Suppliers_on_group_id_and_supplier_id"
-  add_index "Groups_Suppliers", ["supplier_id", "group_id"], name: "index_Groups_Suppliers_on_supplier_id_and_group_id"
-
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
     t.integer  "supplier_id"
@@ -80,16 +72,6 @@ ActiveRecord::Schema.define(version: 20170828044540) do
 
   add_index "client_mails", ["client_id"], name: "index_client_mails_on_client_id"
 
-  create_table "clientmails", force: :cascade do |t|
-    t.string   "title"
-    t.text     "body"
-    t.integer  "client_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "clientmails", ["client_id"], name: "index_clientmails_on_client_id"
-
   create_table "clients", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -112,13 +94,6 @@ ActiveRecord::Schema.define(version: 20170828044540) do
   create_table "clients_discounts", force: :cascade do |t|
     t.integer "client_id"
     t.integer "discount_id"
-  end
-
-  create_table "constants", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "amount"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -153,12 +128,6 @@ ActiveRecord::Schema.define(version: 20170828044540) do
 
   add_index "emails", ["client_id"], name: "index_emails_on_client_id"
 
-  create_table "groups", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "has_discounts", force: :cascade do |t|
     t.integer  "client_id"
     t.integer  "discount_id"
@@ -174,14 +143,6 @@ ActiveRecord::Schema.define(version: 20170828044540) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "payments", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "proof"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "rates", force: :cascade do |t|

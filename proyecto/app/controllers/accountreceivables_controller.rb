@@ -39,7 +39,7 @@ helper_method :sort_column, :sort_diection
     respond_to do |format|
     
       if @accountreceivable.save
-        format.html { redirect_to accountreceivables_url}
+        format.html { redirect_to @accountreceivable, notice: 'La Cuenta fue Creada Exitosamente.' }
         format.json { render :show, status: :created, location: @accountreceivable }
       else
         format.html { render :new }
@@ -54,10 +54,10 @@ helper_method :sort_column, :sort_diection
     respond_to do |format|
       if @accountreceivable.update(accountreceivable_params)
         if current_user.role == "client"
-          format.html { redirect_to accountreceivables_url}
+          format.html { redirect_to @accountreceivable, notice: 'La Cuenta fue Registrada.' }
           format.json { render :show, status: :ok, location: @accountreceivable }
         else
-          format.html { redirect_to accountreceivables_url}
+          format.html { redirect_to @accountreceivable, notice: 'La Cuenta fue actualizada.' }
           format.json { render :show, status: :ok, location: @accountreceivable }
         end
       else
@@ -72,7 +72,7 @@ helper_method :sort_column, :sort_diection
   def destroy
     @accountreceivable.destroy
     respond_to do |format|
-      format.html { redirect_to accountreceivables_url}
+      format.html { redirect_to accountreceivables_url, notice: 'Ha Eliminado una Cuenta.'}
       format.json { head :no_content }
     end
   end
