@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170827171739) do
+ActiveRecord::Schema.define(version: 20170828044540) do
 
   create_table "Groups_Suppliers", id: false, force: :cascade do |t|
     t.integer "supplier_id", null: false
@@ -38,40 +38,35 @@ ActiveRecord::Schema.define(version: 20170827171739) do
   create_table "accountreceivables", force: :cascade do |t|
     t.integer  "client_id"
     t.integer  "total"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.date     "date"
     t.string   "profitCode"
-    t.float    "amountWithoutTax"
-    t.float    "amountWithtTax"
     t.string   "status"
     t.string   "bank"
-    t.boolean  "retentionIva"
-    t.boolean  "retentionIsrl"
-    t.float    "totalRetentions"
-    t.float    "totalAmountPerceive"
     t.string   "paymentType"
     t.string   "paymentComment"
-    t.float    "baseAmount"
     t.string   "profitNumber"
     t.string   "document"
-    t.integer  "elemetricaAccount",    limit: 8
-    t.float    "accountBalance"
-    t.string   "elemetricaAcount"
     t.string   "clientAccount"
     t.string   "checkNumber"
     t.string   "depositNumber"
     t.string   "transferNumberClient"
-    t.integer  "constant_id"
-    t.string   "amountPaid"
     t.integer  "month"
     t.string   "transferNumber"
     t.boolean  "paid"
     t.integer  "rate_id"
+    t.decimal  "amountPaid"
+    t.string   "elemetricaAccount"
+    t.decimal  "accountBalance"
+    t.decimal  "baseAmount"
+    t.decimal  "amountWithoutTax"
+    t.decimal  "amountWithTax"
+    t.decimal  "totalRetentions"
+    t.decimal  "totalAmountPerceive"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
-  add_index "accountreceivables", ["constant_id"], name: "index_accountreceivables_on_constant_id"
   add_index "accountreceivables", ["rate_id"], name: "index_accountreceivables_on_rate_id"
 
   create_table "client_mails", force: :cascade do |t|

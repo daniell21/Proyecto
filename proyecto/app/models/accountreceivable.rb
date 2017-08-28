@@ -19,7 +19,7 @@ class Accountreceivable < ActiveRecord::Base
   #validates :checkNumber, presence: true, if: :validator? 
   #validates :depositNumber, presence: true, if: :validator? 
 
-  
+   
   
   after_save :importProof
   #revisar Tambien
@@ -184,8 +184,9 @@ class Accountreceivable < ActiveRecord::Base
     
       #raise ((document.filename.to_s).length).to_yaml
       if ((document.filename.to_s).length) > 0
-      path = '/home/daniel/Documentos/Proyecto/proyecto/public/uploads/'+month+'/'+((client.rif).to_s + client.name)+'/'+document.filename
+      path = '/home/daniel/Documentos/Proyecto/proyecto/public/uploads/'+month.to_s+'/'+((client.rif).to_s + client.name)+'/'+document.filename
       #path = '/home/daniel/Documentos/Proyecto/proyecto/public/uploads/Banesco.pdf'
+      
       patch = path.tr("'", '"') 
       #raise patch.to_yaml
       reader = PDF::Reader.new(Rails.root.join(patch))
@@ -233,6 +234,7 @@ class Accountreceivable < ActiveRecord::Base
   	if !self.baseAmount
       
       self.baseAmount = @rate.amount * client.localAmount.to_i
+
    	end
    
   end
@@ -240,29 +242,27 @@ class Accountreceivable < ActiveRecord::Base
   	resultado = 0
 
   	client.discounts.each do |discount|
-  		
   		resultado = resultado + discount.percentage
-
-  		
   	end
+    
     if client.specialDiscount
-     resultado = resultado + client.specialDiscount.to_i
+     resultado = resultado + client.specialDiscount
     end
+
   	self.amountWithoutTax = ((baseAmount * ( 1 - (resultado.to_f/100))))
   	
-  	#raise (Settings.monthlyPayment * ( 1 - (client.discounts.find(1).percentage.to_f/100))).to_yaml
+  	
   	
   end
 
   def calculateAmountWithTax
-  	#raise amountWithoutTax.to_yaml
   	
-  	self.amountWithtTax =  eval(sprintf("%14.4f",(amountWithoutTax * 1.12)))
+  	self.amountWithTax =  eval(sprintf("%14.4f",(amountWithoutTax * 1.12)))
+
   end
 
   def calculateRetentions
   	retention = 0
-  	#raise retentionIva.to_yaml
   	@rate = Rate.find(rate_id)
   	if client.specialcontributor
   		retention = amountWithoutTax * 0.02
@@ -275,7 +275,7 @@ class Accountreceivable < ActiveRecord::Base
   end
 
   def calculateTotalAmountPerceive
-  	self.totalAmountPerceive = amountWithtTax - totalRetentions
+  	self.totalAmountPerceive = amountWithTax - totalRetentions
    
   end
   #simple search rif
@@ -288,7 +288,7 @@ class Accountreceivable < ActiveRecord::Base
 end
 #Si la variable accountBalance es negativa, significa que pago menos de lo que debia
   def calculateBalance
-    self.accountBalance =   amountWithtTax - self.amountPaid.to_f
+    self.accountBalance =   amountWithTax - self.amountPaid.to_f
   end
 
   #BANCOS
@@ -312,7 +312,7 @@ end
      monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
     self.update_column(:amountPaid, monto)
     self.update_column(:bank, "Banesco")
-    balance = monto.to_f - amountWithtTax 
+    balance = monto.to_f - amountWithTax 
     self.update_column(:accountBalance, balance)
   end
   def provincial(linea)
@@ -333,7 +333,7 @@ end
     monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
     self.update_column(:amountPaid, monto)
     self.update_column(:bank, "Provincial")
-    balance = monto.to_f - amountWithtTax 
+    balance = monto.to_f - amountWithTax 
     self.update_column(:accountBalance, balance)
     cuenta = self.elemetricaAccount
     
@@ -359,7 +359,9 @@ end
     lineaCuentaAcreditada = linea.gsub!(/\s+/, ' ').split(" ")[15]
     finalCuenta = lineaCuentaAcreditada.length
     cuentaElemetrica = lineaCuentaAcreditada[15..finalCuenta]
+
     self.update_column(:elemetricaAccount, cuentaElemetrica)
+
     lineaCuentaDebitada = linea.gsub!(/\s+/, ' ').split(" ")[13]
     finalCuentaDebitada = lineaCuentaDebitada.length
     cuentaCliente = lineaCuentaDebitada[14..finalCuentaDebitada]
@@ -370,7 +372,7 @@ end
     monto = monto.gsub(/[.,]/, '.' => '', ',' => '.')
     self.update_column(:amountPaid, monto)
      self.update_column(:bank, "Bicentenario")
-     balance = monto.to_f - amountWithtTax 
+     balance = monto.to_f - amountWithTax 
     self.update_column(:accountBalance, balance)
   end
 

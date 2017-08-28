@@ -50,7 +50,7 @@
 
 <p>
   <strong>Monto con Descuento con Iva:</strong>
-  <%= (@accountreceivable.amountWithtTax).to_s.gsub('.', ',') %>
+  <%= (@accountreceivable.amountWithTax).to_s.gsub('.', ',') %>
 </p>
  <p>
   <strong>Total Retenciones:</strong>
@@ -74,7 +74,7 @@
 </p>
 <p>
   <strong>Monto Pagado:</strong>
-  <%= (@accountreceivable.amountPaid).gsub('.', ',') %>
+  <%= (@accountreceivable.amountPaid).to_s.gsub('.', ',') %>
 </p>
 <p>
     <strong>Diferencia:</strong>
@@ -101,7 +101,7 @@
 <%if (current_user.role != "client") %>
   
   <p>
-    <strong>Numero de Transaccion Mercantil:</strong>
+    <strong>Número de Transaccion Mercantil:</strong>
     <%= @accountreceivable.transferNumber %>
   </p>
   <p>

@@ -89,13 +89,13 @@
             <th><%= "Si" if accountreceivable.paid %><%= "No" if !accountreceivable.paid %></th>
             <td><%= accountreceivable.date %></td>
             <td><%= accountreceivable.month %></td>
-            <td><%= (accountreceivable.amountPaid).gsub('.', ',') %></td>
+            <td><%= (accountreceivable.amountPaid).to_s.gsub('.', ',') %></td>
           <%else%>
           <th><%= accountreceivable.profitNumber %></th>
             <td><%= accountreceivable.month %></td>
             <td><%= accountreceivable.paid%></td>
             <td><%= accountreceivable.date %></td>
-            <td><%= (accountreceivable.amountPaid).gsub('.', ',') %></td>
+            <td><%= (accountreceivable.amountPaid).to_s.gsub('.', ',') %></td>
           <%end%>
           
           
