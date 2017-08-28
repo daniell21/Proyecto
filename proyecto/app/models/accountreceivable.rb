@@ -183,40 +183,44 @@ class Accountreceivable < ActiveRecord::Base
   def importProof
     
       #raise ((document.filename.to_s).length).to_yaml
+     
       if ((document.filename.to_s).length) > 0
-      path = '/home/daniel/Documentos/Proyecto/proyecto/public/uploads/'+month.to_s+'/'+((client.rif).to_s + client.name)+'/'+document.filename
-      #path = '/home/daniel/Documentos/Proyecto/proyecto/public/uploads/Banesco.pdf'
-      
-      patch = path.tr("'", '"') 
-      #raise patch.to_yaml
-      reader = PDF::Reader.new(Rails.root.join(patch))
+        path = '/home/daniel/Documentos/Proyecto/proyecto/public/uploads/'+month.to_s+'/'+((client.rif).to_s + client.name)+'/'+document.filename
+        #path = '/home/daniel/Documentos/Proyecto/proyecto/public/uploads/Banesco.pdf'
+        
+        patch = path.tr("'", '"') 
       end
-      if ((document.filename.to_s).length) > 0
-     	  #reader = PDF::Reader.new(document.filename)
-         
+      
+      if (document.filename.to_s).include? ".pdf"
+        reader = PDF::Reader.new(Rails.root.join(patch))
+        if ((document.filename.to_s).length) > 0
+       	  #reader = PDF::Reader.new(document.filename)
+           
 
-          reader.pages.each do |page|
-       	    texto = page.text
-       	    #raise texto.to_yaml
-            linea = texto.delete(' ')
-            linea.gsub!(/\s+/, ' ').split(" ")    
-            #MERCANTIL
-            if linea.include? "MercantilenLínea"
-              mercantil(linea)  
-            #BANESCO
-            else if linea.include? "J­07013380"
-              banesco(linea)
-            #PROVINCIAL
-            else if linea.include? "Gracias por utilizar Provinet"
-           	 provincial(linea)
-              #BICENTENARIO
-            else if linea.include? "BicentenarioBancoUniversal"
-              bicentenario(linea)
-            end
+            reader.pages.each do |page|
+         	    texto = page.text
+         	    #raise texto.to_yaml
+              linea = texto.delete(' ')
+              if (linea.length) > 0
+                linea.gsub!(/\s+/, ' ').split(" ")    
+                #MERCANTIL
+                if linea.include? "MercantilenLínea"
+                  mercantil(linea)  
+                #BANESCO
+                else if linea.include? "J­07013380"
+                  banesco(linea)
+                #PROVINCIAL
+                else if linea.include? "Gracias por utilizar Provinet"
+               	 provincial(linea)
+                  #BICENTENARIO
+                else if linea.include? "BicentenarioBancoUniversal"
+                  bicentenario(linea)
+                end
+              end
+              end
             end
           end
         end
-      
       end
       #else
       # raise (4+3).to_yaml  #No se adjunto comprobante bancario

@@ -7,8 +7,9 @@
 <div id="accountreceivables">
   <strong>Comprobante:</strong>
   
-  
-  <%= image_tag(@accountreceivable.document_url.to_s) %>
+  <% if (@accountreceivable.document.file.filename).include? ".pdf"%>
+    <%= image_tag(@accountreceivable.document_url.to_s) %>
+  <%end%>
   </div>
 </p>
 <p>
