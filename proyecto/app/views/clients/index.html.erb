@@ -13,7 +13,7 @@
         <label>Nombre</label>
         <%= form_tag clients_path, :method => 'get' do %>
           <p>
-            <%= text_field_tag :search, params[:search] %>
+            <%= text_field_tag :search, params[:search], class: 'form-control'  %>
             <%= submit_tag "Buscar Cliente", :name => nil, :class => 'btn btn-default btn'   %>
           </p>
         <% end %>
@@ -35,22 +35,20 @@
     </div>
     
     
-      <table class="table table-striped">
-        <thead>
-          <tr>
-          <th><%=  sortable "code", "Código"%></th>
+      <table class="table table-striped table-hover">
+        
+         
+            <tr>
+      <th><%=  sortable "code", "Código"%></th>
           <th><%=  sortable "rif", "RIF"%></th>
           <th><%=  sortable "name", "Nombre"%></th>
           <th><%=  sortable "socialReason", "Razón Social"%></th> 
           
           <th><%=  sortable "country", "País"%></th>
           <th><%=  sortable "state", "Estado"%></th>
-           
-            
-           
-            
-          </tr>
-        </thead>
+      <th colspan="3"></th>
+    </tr>
+       
         <tbody>
     <% @clients.each do |client| %>
       <!--<tr data-link="<%= edit_client_path(client) %>">-->
@@ -66,13 +64,13 @@
         <% if can? :show, client %>
         
        
-   <td> <%= link_to image_tag('/assets/edit.ico'), client %></td>
+        <td> <%= link_to image_tag('/assets/showeye.ico'), client %></td>
         <%end%>
         <% if can? :edit, client %>
-        <td><%= link_to 'Editar', edit_client_path(client), :class => 'btn btn-warning btn'  %></td>
+        <td><%= link_to image_tag('/assets/pencil.ico'), edit_client_path(client) %></td>
         <%end%>
         <% if can? :destroy, client %>
-        <td><%= link_to 'Borrar', client, method: :delete, data: { confirm: '¿Estas seguro?' },:class => 'btn btn-danger btn' %></td>
+        <td><%= link_to image_tag('/assets/delete.ico'), client, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
         <%end%>
       </tr>
       

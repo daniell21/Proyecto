@@ -2,8 +2,8 @@
 
 <h1>Correos</h1>
  
-<table class="table table-striped">
-  <thead>
+<table class="table table-striped table-hover">
+ 
     <tr>
     
     <th>Fecha</th>
@@ -14,7 +14,7 @@
 
       <th colspan="3"></th>
     </tr>
-  </thead>
+  
 
   <tbody>
     <% @client_mails.each do |client_mail| %>
@@ -23,9 +23,9 @@
         <td><%= client_mail.date %></td>
         <td><%= (client_mail.client.name) %></td>
         <td><%= client_mail.title %></td>
-        <td><%= link_to 'Mostrar', client_mail, :class => 'btn btn-success btn'  %></td>
-        <td><%= link_to 'Editar', edit_client_mail_path(client_mail), :class => 'btn btn-warning btn'  %></td>
-        <td><%= link_to 'Eliminar', client_mail, method: :delete, data: { confirm: '¿Estas Seguro?' },:class => 'btn btn-danger btn' %></td>
+        <td> <%= link_to image_tag('/assets/showeye.ico'), client_mail %></td>
+        <td><%= link_to image_tag('/assets/pencil.ico'), edit_client_mail_path(client_mail) %></td>
+        <td><%= link_to image_tag('/assets/delete.ico'), client_mail, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
       </tr>
     <% end %>
     

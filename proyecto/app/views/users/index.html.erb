@@ -10,21 +10,21 @@
         <label>Nombre</label>
         <%= form_tag users_path, :method => 'get' do %>
           <p>
-            <%= text_field_tag :search, params[:search] %>
+            <%= text_field_tag :search, params[:search], class: 'form-control'  %>
             <%= submit_tag "Buscar Usuario", :name => nil, :class => 'btn btn-default btn'   %>
           </p>
         <% end %>
       </div>    
     </div> 
   
-    <table class="table table-striped">
-      <thead>
-      <tr>
+    <table class="table table-striped table-hover">
+      
+      <tr >
           <th>Correo</th>
           <th>Rol</th>
           <th colspan="3"></th>
       </tr>
-      </thead>
+    
 
     <tbody>
       <% @users.each do |user| %>
@@ -42,9 +42,9 @@
           <%if user.role == "client"%>
           <td>Cliente</td>
           <%end%>
-          <td><%= link_to 'Mostrar', user, :class => 'btn btn-success btn' %></td>
-          <td><%= link_to 'Editar', edit_user_path(user), :class => 'btn btn-warning btn' %></td>
-          <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: '¿Estás Seguro?' }, :class => 'btn btn-danger btn'%></td>
+          <td> <%= link_to image_tag('/assets/showeye.ico'), user %></td>
+          <td><%= link_to image_tag('/assets/pencil.ico'), edit_user_path(user) %></td>
+          <td><%= link_to image_tag('/assets/delete.ico'), user, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
         </tr>
       <% end %>
     </tbody>

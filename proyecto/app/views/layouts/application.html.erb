@@ -70,14 +70,10 @@
 					<%end%>
 		        </ul>
 		        <ul class="nav in" id="bottom-menu">
-		        	<li>
+		        	<li style="list-style:none; padding: 0px; margin: 0px;">
 		        		<%if user_signed_in? %>
-						  <br>
-						  <div ALIGN=center>
-							  <p class="col-md">
-							  	<%= link_to "Salir" , destroy_user_session_path , method: :delete%>
-							  </p> 
-						  </div>
+							<%= active_link_to "Salir (" + current_user.email+")", destroy_user_session_path , method: :delete%>
+						 
 						<%end%>
 		        	</li>
 		        </ul>   
