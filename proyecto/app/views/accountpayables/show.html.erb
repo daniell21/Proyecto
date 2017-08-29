@@ -18,7 +18,7 @@
 
 <p>
   <strong>Total:</strong>
-  <%= @accountpayable.amountPaid.gsub('.', ',') %>
+  <%= number_to_currency(@accountpayable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2) %>
 </p>
 <p>
   <strong>Comentarios:</strong>

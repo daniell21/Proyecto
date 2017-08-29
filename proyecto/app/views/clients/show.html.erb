@@ -109,7 +109,8 @@
             <%end%>
             
             <% if @client.specialDiscount%>
-             Especial - <%= @client.specialDiscount %>%
+             Especial - 
+             <%= number_to_currency(@client.specialDiscount, unit: "", separator: ",", delimiter: ".", precision: 2) %>%
             <%end%>
           </p>
         </div>

@@ -19,6 +19,7 @@ class Client < ActiveRecord::Base
   validates_numericality_of :rif
   validates_numericality_of :localAmount
   validates_numericality_of :profitCode
+  validates_numericality_of :specialDiscount
   before_save :country_name
   before_save :calculateCode 
  

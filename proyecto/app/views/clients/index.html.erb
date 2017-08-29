@@ -66,8 +66,7 @@
         <% if can? :show, client %>
         
        
-   <%= link_to image_tag('/assets/edit.ico'), client %>
-<td><img class="logo img-responsive" src="/assets/edit.ico" /></td>
+   <td> <%= link_to image_tag('/assets/edit.ico'), client %></td>
         <%end%>
         <% if can? :edit, client %>
         <td><%= link_to 'Editar', edit_client_path(client), :class => 'btn btn-warning btn'  %></td>

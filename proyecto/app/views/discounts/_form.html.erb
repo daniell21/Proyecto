@@ -1,6 +1,6 @@
 
 <%= simple_form_for(@discount) do |f| %>
- 
+   <%= f.error_notification %>
     
   <div class="row">
     <div class="col-md-6">
@@ -8,7 +8,7 @@
     </div>
  
     <div class="col-md-6">
-      <%= f.input :percentage,  as: :string, placeholder: 'Porcentaje', label: 'Porcentaje', error: 'Debe ingresar el porcentaje de Descuento o este debe ser Numérico' %>
+      <%= f.input :percentage,  as: :string, placeholder: 'Porcentaje', label: 'Porcentaje', error: 'Este campo debe ser numérico' %>
     </div>
     
   </div>

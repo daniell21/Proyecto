@@ -4,23 +4,26 @@
 <h1>Proveedores</h1>
 
 <div class="row">
-      <div class="col-xs-6">
+      <div class="col-xs-2">
         <!--Busqueda de clientes por nombre-->
         <%= hidden_field_tag :direction, params[:search]%>
         <%= hidden_field_tag :sort, params[:sort]%>
         <label>Nombre</label>
         <%= form_tag suppliers_path, :method => 'get' do %>
           <p>
-            <%= text_field_tag :search, params[:search] %>
+            <%= text_field_tag :search, params[:search], class: 'form-control'  %>
             <%= submit_tag "Buscar proveedor", :name => nil, :class => 'btn btn-default btn'   %>
           </p>
         <% end %>
-        <p><%= link_to "Busqueda Avanzada", new_search_supplier_path %></p> 
+        <p><%= link_to "Busqueda Avanzada", new_search_supplier_path, :class => 'btn btn-default btn' %></p> 
       </div>    
       
       <div class="col-xs-6">
         <%= form_tag import_suppliers_path, multipart: true do %>
-          <%= file_field_tag :file %>
+        <span class="btn btn-large btn-default btn-file">
+   Adjuntar Archivo
+    <%= file_field_tag :file %>
+</span>
           <%= submit_tag "Importar", :class => 'btn btn-default btn'   %>
         <% end %> 
               
@@ -30,7 +33,7 @@
       <div class="col-xs-6">
         <p>
           Exportar Proveedores:
-          <%= link_to "CSV", suppliers_path(format: "csv") %> |
+        
           <%= link_to "Excel", suppliers_path(format: "xls") %>
         </p>        
       </div>

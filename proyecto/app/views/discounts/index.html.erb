@@ -30,7 +30,7 @@
     <% @discounts.each do |discount| %>
       <tr>
         <td><%= discount.name %></td>
-        <td><%= discount.percentage.to_s.gsub('.', ',')  %></td>
+        <td> <%= number_to_currency(discount.percentage, unit: "", separator: ",", delimiter: ".", precision: 2)%></td>
         <td><%= link_to 'Mostrar', discount, :class => 'btn btn-success btn' %></td>
         <td><%= link_to 'Editar', edit_discount_path(discount), :class => 'btn btn-warning btn' %></td>
         <td><%= link_to 'Eliminar', discount, method: :delete, data: { confirm: 'Estás Seguro?' }, :class => 'btn btn-danger btn' %></td>

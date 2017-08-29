@@ -27,7 +27,8 @@
 <%client = Client.find(@accountreceivable.client_id)%>
 
  <%client.discounts.each do |discount|%>
-  <%=discount.name %>: <%= discount.percentage%>%
+  <%=discount.name %>: 
+  <%= number_to_currency(discount.percentage, unit: "", separator: ",", delimiter: ".", precision: 2)%>%
   <br>
 
   <%end%>
@@ -38,28 +39,29 @@
   <%= @accountreceivable.client.localAmount %>
 </p>
  <p>
-  <strong>Concepto:</strong>
+  <strong>Concepto:</strong><br>
 
   <% @rate = Rate.find(@accountreceivable.rate_id) %>
-  <%= @rate.name %> - <%= (@rate.amount).to_s.gsub('.', ',') %>
+  <%= @rate.name %>:
+  <%= number_to_currency(@rate.amount, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
 </p>
  
 <p>
   <strong>Monto con Descuento sin Iva:</strong>
-  <%= (@accountreceivable.amountWithoutTax).to_s.gsub('.', ',') %>
+  <%= number_to_currency(@accountreceivable.amountWithoutTax, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
 </p>
 
 <p>
   <strong>Monto con Descuento con Iva:</strong>
-  <%= (@accountreceivable.amountWithTax).to_s.gsub('.', ',') %>
+  <%= number_to_currency(@accountreceivable.amountWithTax, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
 </p>
  <p>
   <strong>Total Retenciones:</strong>
-  <%= (@accountreceivable.totalRetentions).to_s.gsub('.', ',') %>
+  <%= number_to_currency(@accountreceivable.totalRetentions, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
 </p>
 <p>
     <strong>Total a Percibir:</strong>
-    <%= (@accountreceivable.totalAmountPerceive).to_s.gsub('.', ',') %>
+    <%= number_to_currency(@accountreceivable.totalAmountPerceive, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
   </p>
 <p>
   <strong>Factura Pagada:</strong>
@@ -75,11 +77,11 @@
 </p>
 <p>
   <strong>Monto Pagado:</strong>
-  <%= (@accountreceivable.amountPaid).to_s.gsub('.', ',') %>
+  <%= number_to_currency(@accountreceivable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
 </p>
 <p>
     <strong>Diferencia:</strong>
-    <%= (@accountreceivable.accountBalance).to_s.gsub('.', ',') %> 
+    <%= number_to_currency(@accountreceivable.accountBalance, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
   </p>
 <p>
   <strong>Banco:</strong>
@@ -93,11 +95,12 @@
   <strong>Comentarios:</strong>
   <%= @accountreceivable.paymentComment %>
 </p>
-
+<%if @accountreceivable.clientAccount != '0'%>
 <p>
   <strong>Cuenta Debitada:</strong>
   <%= @accountreceivable.clientAccount %>
 </p>
+<%end%>
 <p>
 <%if (current_user.role != "client") %>
   
@@ -105,10 +108,12 @@
     <strong>Número de Transaccion Mercantil:</strong>
     <%= @accountreceivable.transferNumber %>
   </p>
+  <%if @accountreceivable.elemetricaAccount != '0'%>
   <p>
     <strong>Cuenta a Transferir:</strong>
     <%= @accountreceivable.elemetricaAccount %>
   </p>
+  <%end%>
   <p>
     <strong>Número Profit:</strong>
     <%= @accountreceivable.profitNumber %>
@@ -117,10 +122,12 @@
     <strong>Código Profit:</strong>
     <%= @accountreceivable.profitCode %>
   </p>
+  <%if @accountreceivable.transferNumberClient != '0'%>
   <p>
     <strong>Número de transferencia:</strong>
     <%= @accountreceivable.transferNumberClient %>
   </p>
+  <%end%>
   <p>
     <strong>Número de Deposito:</strong>
     <%= @accountreceivable.depositNumber %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828044540) do
+ActiveRecord::Schema.define(version: 20170829040852) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20170828044540) do
   create_table "accountreceivables", force: :cascade do |t|
     t.integer  "client_id"
     t.integer  "total"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.date     "date"
     t.string   "profitCode"
     t.string   "status"
@@ -48,14 +48,14 @@ ActiveRecord::Schema.define(version: 20170828044540) do
     t.string   "transferNumber"
     t.boolean  "paid"
     t.integer  "rate_id"
-    t.decimal  "amountPaid"
     t.string   "elemetricaAccount"
-    t.decimal  "accountBalance"
-    t.decimal  "baseAmount"
-    t.decimal  "amountWithoutTax"
-    t.decimal  "amountWithTax"
-    t.decimal  "totalRetentions"
-    t.decimal  "totalAmountPerceive"
+    t.decimal  "amountPaid",           precision: 15, scale: 2
+    t.decimal  "accountBalance",       precision: 15, scale: 2
+    t.decimal  "baseAmount",           precision: 15, scale: 2
+    t.decimal  "amountWithoutTax",     precision: 15, scale: 2
+    t.decimal  "amountWithTax",        precision: 15, scale: 2
+    t.decimal  "totalRetentions",      precision: 15, scale: 2
+    t.decimal  "totalAmountPerceive",  precision: 15, scale: 2
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
@@ -114,9 +114,9 @@ ActiveRecord::Schema.define(version: 20170828044540) do
 
   create_table "discounts", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.decimal  "percentage"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.decimal  "percentage", precision: 5, scale: 2
   end
 
   create_table "emails", force: :cascade do |t|
@@ -147,9 +147,9 @@ ActiveRecord::Schema.define(version: 20170828044540) do
 
   create_table "rates", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.decimal  "amount",     precision: 15, scale: 2
   end
 
   create_table "reports", force: :cascade do |t|

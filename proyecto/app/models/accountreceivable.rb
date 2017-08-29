@@ -1,25 +1,33 @@
 class Accountreceivable < ActiveRecord::Base
-  #Hasta Ahora los comprobantes de 100% banco no funcionan. No se pueden leer
-   #Hasta Ahora los comprobantes de Benplus no funcionan. No se pueden leer
-   #Resta por hacer validaciones de fecha y numero de cuenta a acreditar. MOnto tambien
-  belongs_to :client
-  belongs_to :rate
-  mount_uploader :document, DocumentUploader
-  validates :client_id, presence: true
-  validates :rate_id, presence: true
-  validates :date, presence: true, on: :update
-  validates :status, presence: true, on: :create
-  validates :paymentType, presence: true, on: :update
-  validates :month, presence: true, on: :create
-  validates :bank, presence: true, on: :update
-  validates :amountPaid, presence: true, on: :update
-  validates :profitCode, presence: true
-  validates :profitNumber, presence: true
-  #por revisar
-  #validates :checkNumber, presence: true, if: :validator? 
-  #validates :depositNumber, presence: true, if: :validator? 
+#Hasta Ahora los comprobantes de 100% banco no funcionan. No se pueden leer
+#Hasta Ahora los comprobantes de Benplus no funcionan. No se pueden leer
+#Resta por hacer validaciones de fecha y numero de cuenta a acreditar. MOnto tambien
+belongs_to :client
+belongs_to :rate
+mount_uploader :document, DocumentUploader
+validates :client_id, presence: true
+validates :rate_id, presence: true
+validates :date, presence: true, on: :update
+validates :status, presence: true, on: :create
+validates :paymentType, presence: true, on: :update
+validates :month, presence: true, on: :create
+validates :bank, presence: true, on: :update
+validates :amountPaid, presence: true, on: :update
+validates :profitCode, presence: true
+validates :profitNumber, presence: true
+#por revisar
+#validates :checkNumber, presence: true, if: :validator? 
+#validates :depositNumber, presence: true, if: :validator? 
 
-   
+ validates_numericality_of :amountPaid
+ validates_numericality_of :transferNumber, :allow_nil => true
+ validates_numericality_of :profitCode
+ validates_numericality_of :profitNumber
+ validates_numericality_of :clientAccount, :allow_nil => true
+ validates_numericality_of :elemetricaAccount, :allow_nil => true
+ validates_numericality_of :checkNumber, :allow_nil => true
+ validates_numericality_of :depositNumber, :allow_nil => true
+ validates_numericality_of :transferNumberClient, :allow_nil => true
   
   after_save :importProof
   #revisar Tambien

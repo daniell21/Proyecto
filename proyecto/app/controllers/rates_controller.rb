@@ -46,7 +46,7 @@ class RatesController < ApplicationController
         format.json { render :show, status: :ok, location: @rate }
       else
         format.html { render :edit }
-        format.json { render json: @rate.errors, status: :unprocessable_entity }
+        format.json { render json: @rate.errors, status: :unprocessable_entity, notice: 'HAs fallado' }
       end
     end
   end
