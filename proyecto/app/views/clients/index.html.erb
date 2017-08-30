@@ -5,8 +5,10 @@
 
 <br>
 <br> 
+<div id="menu-element" class="well-separator">
     <div class="row">
       <div class="col-xs-4">
+
         <!--Busqueda de clientes por nombre-->
         <%= hidden_field_tag :direction, params[:search]%>
         <%= hidden_field_tag :sort, params[:sort]%>
@@ -14,24 +16,27 @@
         <%= form_tag clients_path, :method => 'get' do %>
           <p>
             <%= text_field_tag :search, params[:search], class: 'form-control'  %>
-            <%= submit_tag "Buscar Cliente", :name => nil, :class => 'btn btn-default btn'   %>
+            <%=image_submit_tag("loop2.ico")%>
           </p>
         <% end %>
         
       </div>    
 
       <div class="col-xs-4">
+      <div  class="right-separator-red"style="float:right;">
         <%= form_tag import_clients_path, multipart: true do %>
           <%= file_field_tag :file %>
           <%= submit_tag "Importar Clientes", :class => 'btn btn-default btn'   %>
         <% end %>
+        </div>
       </div>
       <div class="col-xs-4">
-        <%= link_to "Generar pdf", "/clients.pdf", :format => 'pdf', target: :_blank, :class => 'btn btn-default btn'  %>
-  <%= link_to "Exportar Clientes", clients_path(format: "xls"), :class => 'btn btn-default btn'   %>
-
-        <%= link_to "Busqueda Avanzada", new_search_client_path, :class => 'btn btn-default btn'    %>
+        <%= link_to image_tag('/assets/pdf.ico'), "clients.pdf", :format => 'pdf', target: :_blank  %>
+  
+  <%= link_to image_tag('/assets/excel.ico'), clients_path(format: "xls")  %>
+        <%= link_to image_tag('/assets/advancedSearch.ico'), new_search_client_path %>
       </div>
+    </div>
     </div>
     
     
@@ -42,7 +47,7 @@
       <th><%=  sortable "code", "Código"%></th>
           <th><%=  sortable "rif", "RIF"%></th>
           <th><%=  sortable "name", "Nombre"%></th>
-          <th><%=  sortable "socialReason", "Razón Social"%></th> 
+          <th color="red"><%=  sortable "socialReason", "Razón Social"%></th> 
           
           <th><%=  sortable "country", "País"%></th>
           <th><%=  sortable "state", "Estado"%></th>
