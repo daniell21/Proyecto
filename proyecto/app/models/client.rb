@@ -46,6 +46,10 @@ class Client < ActiveRecord::Base
   
     
     def self.import(file)
+
+      if file.to_s.length == 0
+        raise (4+4).to_yaml
+      end
    spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
 
