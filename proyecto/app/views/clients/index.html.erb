@@ -16,7 +16,7 @@
    
         <div class="row">
           <div class="col-xs-4">
-
+          <div class="form-group bar-search">
             <!--Busqueda de clientes por nombre-->
             <%= hidden_field_tag :direction, params[:search]%>
             <%= hidden_field_tag :sort, params[:sort]%>
@@ -24,17 +24,21 @@
             <%= form_tag clients_path, :method => 'get' do %>
              
                 <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Cliente'  %>
-                <%=image_submit_tag("loop2.ico")%><%= link_to image_tag('/assets/advanced.ico'), new_search_client_path %>
+                <span class="loop-icon">
+                <span class="add-icon"><%=image_submit_tag("loop2.ico")%></span>
+                  <span class="add-icon"><%= link_to image_tag('/assets/advanced.ico'), new_search_client_path %></span>
              
+                </span>
+                
             <% end %>
-            
+            </div>
           </div>    
 
           <div class="col-xs-4"> 
             <div  class="right-separator-red"style="float:right;">
               <%= form_tag import_clients_path, multipart: true do %>
                 
-              <span class="btn btn-large btn-default btn-lg active btn-file">
+              <span class="btn btn-default active btn-file">
                   Seleccionar Archivo
                   <%= file_field_tag :file %>
               </span>

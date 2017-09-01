@@ -270,3 +270,42 @@ background-position: right center;
 .pretty th .asc {
   background-image: url(/images/down_arrow.gift);
 }
+/*forms*/
+
+.bar-search {
+  position: relative;
+  .form-control{
+    max-width:75%;
+  }
+}
+
+.loop-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.add-icon{
+  display: inline-block;
+  vertical-align: top; 
+}
+/*/////////*/
+.right-separator-red{
+  .btn{
+    vertical-align: top;
+
+  }
+
+}
+.nav {
+  li {
+    li {
+      background:rgb(55, 84, 132);
+      a {
+        color: #fff;
+        display: block;
+        padding: 10px 15px;
+      }
+    }
+  }
+}
