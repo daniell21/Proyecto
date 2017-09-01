@@ -13,7 +13,7 @@ class SuppliersController < ApplicationController
     format.json
     format.csv { send_data @suppliers.to_csv }
       format.xls 
-    format.pdf {render template: 'suppliers/reporte', pdf: 'Reporte'}
+    format.pdf {render template: 'suppliers/reporte', pdf: 'Proveedores', layout: 'pdf.html'}
     end
   end
 

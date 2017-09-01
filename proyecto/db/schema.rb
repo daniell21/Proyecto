@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829040852) do
+ActiveRecord::Schema.define(version: 20170901085643) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -158,6 +158,27 @@ ActiveRecord::Schema.define(version: 20170829040852) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "chart"
+  end
+
+  create_table "search_accountpayables", force: :cascade do |t|
+    t.string   "keywords"
+    t.date     "date"
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "search_accountreceivables", force: :cascade do |t|
+    t.string   "keywords"
+    t.string   "paymentType"
+    t.string   "status"
+    t.string   "bank"
+    t.date     "date"
+    t.boolean  "paid"
+    t.string   "month"
+    t.integer  "rate_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "search_client_payments", force: :cascade do |t|

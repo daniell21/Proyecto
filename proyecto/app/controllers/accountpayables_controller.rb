@@ -13,6 +13,7 @@ class AccountpayablesController < ApplicationController
     format.json
    format.csv { send_data text: @accountpayables.to_csv }
    format.xls 
+   format.pdf {render template: 'accountpayables/reporte', pdf: 'Cuentas por Pagar', layout: 'pdf.html'}#, header: { right: 'Página [page] de [topage]' }}
     
     end
   end

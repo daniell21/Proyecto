@@ -1,0 +1,22 @@
+<div align="center">
+	<table class="table table-default table-responsive table-striped">
+	    
+	    <tr>
+		    <th style="width: 200px;"> Código Profit </th>
+	        <th style="width: 200px;"> Cliente </th>
+	        <th style="width: 200px;"> Fecha </th>
+	        <th style="width: 200px;"> Mes </th>
+				<th colspan="3"></th>
+		</tr>
+       
+	    <tbody>
+			     <% @accountreceivables.each do |accountreceivable| %>
+			        <th><%= accountreceivable.profitNumber %></th>
+		            <td><%= accountreceivable.client.name %></td>
+		            <td><%= accountreceivable.date %></td>
+		            <td><%= accountreceivable.month %></td>
+				<%end%>
+
+		</tbody>
+	</table>
+</div>

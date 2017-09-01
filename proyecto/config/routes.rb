@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'setup/index'
   resources :search_suppliers
   resources :search_discounts
+   resources :search_accountreceivables
+    resources :search_accountpayables
   resources :search_clients
   resources :search_client_payments
   resources :discounts

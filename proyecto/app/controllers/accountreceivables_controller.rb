@@ -13,6 +13,7 @@ helper_method :sort_column, :sort_diection
     format.json
     format.csv { send_data @accountreceivables.to_csv }
       format.xls
+      format.pdf {render template: 'accountreceivables/reporte', pdf: 'CuentasPorCobrar', layout: 'pdf.html'}#, header: { right: 'Página [page] de [topage]' }}
     
     end
   end

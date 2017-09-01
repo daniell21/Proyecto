@@ -5,37 +5,58 @@
 
   <%if current_user.role != "client" %>
   <h1>Cuentas por Cobrar</h1>
-    <div class="row">
-      <div class="col-xs-4">
-        <!--Busqueda de clientes por nombre-->
-        <%= hidden_field_tag :direction, params[:search]%>
-        <%= hidden_field_tag :sort, params[:sort]%>
-        <label>Nombre</label>
-        <%= form_tag accountreceivables_path, :method => 'get' do %>
-          <p>
-            <%= text_field_tag :search, params[:search], class: 'form-control'  %>
-            <%= submit_tag "Buscar Cuenta", :name => nil, :class => 'btn btn-default btn'   %>
-          </p>
-        <% end %>
-      </div> 
-      <div class="col-xs-4">
-        <%= form_tag import_accountreceivables_path, multipart: true do %>
-          <%= file_field_tag :file %>
-          <%= submit_tag "Importar Cuentas", :class => 'btn btn-default btn' %>
-        <%end%>
-      </div>   
-    </div>
-    <div class="row">
-      <div class="col-xs-6">
-        <p>
-          Exportar Cuenttas:
-          <%= link_to "CSV", accountreceivables_path(format: "csv") %> |
-          <%= link_to "Excel", accountreceivables_path(format: "xls") %>
-        </p>
-      </div>
-    </div>
-  <%end%> 
-<table class="table table-striped table-hover">
+    
+  
+   <div id="menu-element" class="well-separator">
+      
+        <div class="row">
+        <div align="center">
+            <div class="col-sm-4"><label>Buscar</label></div>
+            <div class="col-sm-4"><label>Importar Cuentas</label></div>
+            <div class="col-sm-4"><label>Exportar Cuentas</label></div>
+            </div>
+        </div>
+   
+        <div class="row">
+          <div class="col-xs-4">
+
+            <!--Busqueda de clientes por nombre-->
+            <%= hidden_field_tag :direction, params[:search]%>
+            <%= hidden_field_tag :sort, params[:sort]%>
+            
+            <%= form_tag accountreceivables_path, :method => 'get' do %>
+             
+                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Cuenta'  %>
+                <%=image_submit_tag("loop2.ico")%><%= link_to image_tag('/assets/advanced.ico'), new_search_accountreceivable_path %>
+             
+            <% end %>
+            
+          </div>    
+
+          <div class="col-xs-4"> 
+            <div  class="right-separator-red"style="float:right;">
+              <%= form_tag import_accountreceivables_path, multipart: true do %>
+                
+              <span class="btn btn-large btn-default btn-lg active btn-file">
+                  Seleccionar Archivo
+                  <%= file_field_tag :file %>
+              </span>
+                <%=image_submit_tag("import.ico")%>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-xs-4">
+          <div align="center">
+            <%= link_to image_tag('/assets/pdf.ico'), "accountreceivables.pdf", :format => 'pdf', target: :_blank  %>
+            <%= link_to image_tag('/assets/excel.ico'), accountreceivables_path(format: "xls")  %>
+            
+          </div>
+          </div>
+        </div>
+        
+    
+</div>
+<%end%> <table class="table table-striped table-hover">
  
     <tr>
     <%if current_user.role != "client"%>
@@ -89,13 +110,13 @@
             <th><%= "Si" if accountreceivable.paid %><%= "No" if !accountreceivable.paid %></th>
             <td><%= accountreceivable.date %></td>
             <td><%= accountreceivable.month %></td>
-            <td><%= (accountreceivable.amountPaid).to_s.gsub('.', ',') %></td>
+            <td><%= number_to_currency(accountreceivable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
           <%else%>
           <th><%= accountreceivable.profitNumber %></th>
             <td><%= accountreceivable.month %></td>
             <td><%= accountreceivable.paid%></td>
             <td><%= accountreceivable.date %></td>
-            <td><%= (accountreceivable.amountPaid).to_s.gsub('.', ',') %></td>
+            <td><%= number_to_currency(accountreceivable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
           <%end%>
           
           
