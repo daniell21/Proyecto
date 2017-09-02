@@ -25,38 +25,31 @@
 						<li style="list-style:none;">
 							<%=  active_link_to 'Clientes', controller: 'clients' %>
 						</li>
-					<%end%>
-					<%if (current_user.role != "client") %>
+					
 						<li style="list-style:none;">
 							<%= active_link_to 'Proveedores', controller: 'suppliers' %>
 						</li>
-					<%end%>
-					<%if (current_user.role != "client")%>
+					
 						<li style="list-style:none;">
 							<%= active_link_to 'Cuentas por Cobrar', controller: 'accountreceivables' %>
 						</li>
-					<%end%>
-					<%if (current_user.role != "client") %>
+					
 						<li style="list-style:none;">
 							<%= active_link_to 'Cuentas por Pagar', controller: 'accountpayables' %>
 						</li>
-					<%end%>
 					
-					<%if (current_user.role != "client" 	 and current_user.role != "restricted")  %>
 						<li style="list-style:none;">
 							<%= active_link_to 'Correos Electrónicos', controller: 'client_mails' %>
 						</li>
-					<%end%>
-					<%if (current_user.role != "client") %>
+					
 						<li style="list-style:none;">
 							<%= active_link_to 'Gráficos', controller: 'graphs' %>
 						</li>
 						<li style="list-style:none;">
-							<%= active_link_to 'Informes', controller: 'reports' %>
+							<%= active_link_to 'Informes', controller: 'reports' %>	
 						</li>
 					
-					<%end%>
-					<%if (current_user.role != "client") %>
+					
 						<li style="list-style:none;">
 							<%= active_link_to 'Configuración', controller: 'setup' %>
 							<li><a href="#">ryryfy</a></li>

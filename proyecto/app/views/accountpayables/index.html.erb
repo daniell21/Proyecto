@@ -13,17 +13,23 @@
    
         <div class="row">
           <div class="col-xs-4">
-
+          
+          <div class="form-group bar-search">
             <!--Busqueda de clientes por nombre-->
             <%= hidden_field_tag :direction, params[:search]%>
             <%= hidden_field_tag :sort, params[:sort]%>
             
             <%= form_tag accountpayables_path, :method => 'get' do %>
              
-                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Cuenta'  %>
-                <%=image_submit_tag("loop2.ico")%><%= link_to image_tag('/assets/advanced.ico'), new_search_accountpayable_path %>
+                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Descripcion'  %>
+                <span class="loop-icon">
+                <span class="add-icon"><%=image_submit_tag("loop2.ico")%></span>
+                  <span class="add-icon"><%= link_to image_tag('/assets/advanced.ico'), new_search_accountpayable_path %></span>
              
+                </span>
+                
             <% end %>
+            </div>
             
           </div>    
 
