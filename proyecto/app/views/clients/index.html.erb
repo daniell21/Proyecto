@@ -25,8 +25,8 @@
              
                 <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Cliente'  %>
                 <span class="loop-icon">
-                <span class="add-icon"><%=image_submit_tag("loop2.ico")%></span>
-                  <span class="add-icon"><%= link_to image_tag('/assets/advanced.ico'), new_search_client_path %></span>
+                <span class="add-icon"><%=image_submit_tag("loop2.ico",  title: "Buscar")%></span>
+                  <span class="add-icon"><%= link_to image_tag('/assets/advanced.ico',  title: "Busqueda Avanzada"), new_search_client_path %></span>
              
                 </span>
                 
@@ -42,14 +42,14 @@
                   Seleccionar Archivo
                   <%= file_field_tag :file %>
               </span>
-                <%=image_submit_tag("import.ico")%>
+                <%=image_submit_tag("import.ico",  title: "Importar Archivo")%>
               <% end %>
             </div>
           </div>
           <div class="col-xs-4">
           <div align="center">
-            <%= link_to image_tag('/assets/pdf.ico'), "clients.pdf", :format => 'pdf', target: :_blank  %>
-            <%= link_to image_tag('/assets/excel.ico'), clients_path(format: "xls")  %>
+            <%= link_to image_tag('/assets/pdf.ico', title: "Generar Pdf"), "clients.pdf", :format => 'pdf', target: :_blank  %>
+            <%= link_to image_tag('/assets/excel.ico', title: "Generar Excel"), clients_path(format: "xls")  %>
             
           </div>
           </div>
@@ -89,13 +89,13 @@
         <% if can? :show, client %>
         
        
-        <td> <%= link_to image_tag('/assets/showeye.ico'), client %></td>
+        <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Cliente"), client %></td>
         <%end%>
         <% if can? :edit, client %>
-        <td><%= link_to image_tag('/assets/pencil.ico'), edit_client_path(client) %></td>
+        <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Cliente"), edit_client_path(client) %></td>
         <%end%>
         <% if can? :destroy, client %>
-        <td><%= link_to image_tag('/assets/delete.ico'), client, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Cliente"), client, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
         <%end%>
       </tr>
       
