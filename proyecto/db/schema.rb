@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901085643) do
+ActiveRecord::Schema.define(version: 20170903043456) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
     t.integer  "supplier_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.date     "date"
     t.text     "concept"
     t.text     "comment"
     t.string   "amountPaid"
     t.boolean  "paid"
+    t.string   "profitNumber"
   end
 
   add_index "accountpayables", ["supplier_id"], name: "index_accountpayables_on_supplier_id"

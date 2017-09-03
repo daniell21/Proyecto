@@ -8,27 +8,23 @@ mount_uploader :document, DocumentUploader
 validates :client_id, presence: true
 validates :rate_id, presence: true
 validates :date, presence: true, on: :update
-validates :status, presence: true, on: :create
+validates :status, presence: true
 validates :paymentType, presence: true, on: :update
-validates :month, presence: true, on: :create
+validates :month, presence: true
 validates :bank, presence: true, on: :update
 validates :amountPaid, presence: true, on: :update
 validates :profitCode, presence: true
 validates :profitNumber, presence: true
-#por revisar
-#validates :checkNumber, presence: true, if: :validator? 
-#validates :depositNumber, presence: true, if: :validator? 
 
- validates_numericality_of :amountPaid
- validates_numericality_of :transferNumber, :allow_nil => true
+ validates_numericality_of :amountPaid, :allow_blank => true
+ validates_numericality_of :transferNumber, :allow_blank => true
  validates_numericality_of :profitCode
  validates_numericality_of :profitNumber
- validates_numericality_of :clientAccount, :allow_nil => true
- validates_numericality_of :elemetricaAccount, :allow_nil => true
- validates_numericality_of :checkNumber, :allow_nil => true
- validates_numericality_of :depositNumber, :allow_nil => true
- validates_numericality_of :transferNumberClient, :allow_nil => true
-  
+ validates_numericality_of :clientAccount, :allow_blank => true
+ validates_numericality_of :elemetricaAccount, :allow_blank => true
+ validates_numericality_of :checkNumber, :allow_blank => true
+ validates_numericality_of :depositNumber, :allow_blank => true
+ validates_numericality_of :transferNumberClient, :allow_blank => true
   after_save :importProof
   #revisar Tambien
   #before_save :validator
@@ -39,14 +35,7 @@ validates :profitNumber, presence: true
   before_save :calculateTotalAmountPerceive
 
   before_save :validateAmountPaid
-  before_save :existDepositNumber
-  before_save :existTransferNumber
-  before_save :existTransferNumberClient
-  before_save :existCheckNumber
-  before_save :existProfitCode
-  before_save :existProfitNumber
-  before_save :existElemetricaAccount
-  before_save :existClientAccount
+
 
   def self.to_csv
     CSV.generate do |csv|
@@ -57,63 +46,7 @@ validates :profitNumber, presence: true
     end
   end
 
-  def existDepositNumber
-    if depositNumber
-      validates_numericality_of :depositNumber
-      validateDepositNumber
-    end
-    
-  end
 
-  def existTransferNumber
-    if transferNumber
-      validates_numericality_of :transferNumber
-      validateTransferNumber
-    end
-    
-  end
-  def existTransferNumberClient
-    if transferNumberClient
-      validates_numericality_of :transferNumberClient
-      validateTransferNumberClient
-    end
-    
-  end
-  def existCheckNumber
-    if checkNumber
-      validates_numericality_of :checkNumber
-      validateCheckNumber
-    end
-    
-  end
-  def existProfitCode
-    if profitCode
-      validates_numericality_of :profitCode
-      validateProfitCode
-    end
-    
-  end
-  def existProfitNumber
-    if profitNumber
-      validates_numericality_of :profitNumber
-      validateProfitNumber
-    end
-    
-  end
-  def existElemetricaAccount
-    if elemetricaAccount
-      validates_numericality_of :elemetricaAccount
-      validateElemetricaAccount
-    end
-    
-  end
-  def existClientAccount
-    if clientAccount
-      validates_numericality_of :clientAccount
-      validateClientAccount
-    end
-    
-  end
 
 
 
@@ -157,17 +90,28 @@ validates :profitNumber, presence: true
     
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      accountreceivable = find_by(profitNumber: row["profitNumber"].to_i.to_s) || new
-
-      client = Client.find_by(rif: row["client_id"].to_i.to_s)
-      
-      accountreceivable.attributes = row.to_hash.slice(*row.to_hash.keys)
+      accountreceivable = find_by(profitNumber: row["numeroProfit"].to_i.to_s) || new
+      client = Client.find_by rif: row["rifCliente"]
+      rate = Rate.find_by name: row["concepto"]
+      if row["facturaPagada"] == "Si"
+        accountreceivable.paid  = true
+      else
+        accountreceivable.paid  = false
+      end
+      #accountreceivable.attributes = row.to_hash.slice(*row.to_hash.keys)
       accountreceivable.client_id = client.id
-      accountreceivable.paid = true
-      accountreceivable.profitNumber = row["profitNumber"].to_i
-      accountreceivable.profitCode = row["profitCode"].to_i
+      accountreceivable.rate_id = rate.id
+      accountreceivable.profitNumber = row["numeroProfit"]
+      accountreceivable.profitCode = row["codigoProfit"]
+      accountreceivable.date = row["fecha"]
+      accountreceivable.status = row["estado"]
+      accountreceivable.paymentType = row["tipoPago"]
+      accountreceivable.amountPaid = row["montoPagado"]
+      accountreceivable.bank = row["banco"]
+      accountreceivable.month = row["mes"]
+      accountreceivable.paymentComment = row["comentarioPago"]
       accountreceivable.save!
-    end
+    end 
   end
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)

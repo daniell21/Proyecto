@@ -7,6 +7,7 @@
         <div class="row">
         <div align="center">
             <div class="col-sm-4"><label>Buscar</label></div>
+            <div class="col-sm-4"><label>Importar Cuentas</label></div>
             <div class="col-sm-4"><label>Exportar Cuentas</label></div>
             </div>
         </div>
@@ -32,11 +33,22 @@
             </div>
             
           </div>    
-
+          <div class="col-xs-4"> 
+            <div  class="right-separator-red" align="center">
+              <%= form_tag import_accountpayables_path, multipart: true do %>
+                
+              <span class="btn btn-default active btn-file">
+                  Seleccionar Archivo
+                  <%= file_field_tag :file %>
+              </span>
+                <%=image_submit_tag("import.ico")%>
+              <% end %>
+            </div>
+          </div>
           
           <div class="col-xs-4">
           <div align="center">
-            <%= link_to image_tag('/assets/pdf.ico'), "accountpayables.pdf", :format => 'pdf', target: :_blank  %>
+            <%= link_to image_tag('/assets/pdf.ico'), "accountrpayables.pdf", :format => 'pdf', target: :_blank  %>
             <%= link_to image_tag('/assets/excel.ico'), accountpayables_path(format: "xls")  %>
             
           </div>
@@ -51,6 +63,9 @@
       <tr>
       
 
+        
+        <th><%=  sortable "profitNumber", "Código"%></th>
+        <th><%=  sortable "date", "Fecha"%></th>
         <th>Proveedor</th>
         <th><%=  sortable "descripcion", "Descripción"%></th>
         <th><%=  sortable "amountPaid", "Total"%></th>
@@ -62,6 +77,8 @@
     <tbody>
       <% @accountpayables.each do |accountpayable| %>
           <tr>
+            <td><%= accountpayable.profitNumber %></td>
+            <td><%= accountpayable.date %></td>
             <td><%= accountpayable.supplier.name %></td>
             <td><%= accountpayable.descripcion %></td>
             <td><%= number_to_currency(accountpayable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>

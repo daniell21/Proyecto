@@ -11,6 +11,7 @@ class AccountpayablesController < ApplicationController
       respond_to do |format|
     format.html
     format.json
+  
    format.csv { send_data text: @accountpayables.to_csv }
    format.xls 
    format.pdf {render template: 'accountpayables/reporte', pdf: 'Cuentas por Pagar', layout: 'pdf.html'}#, header: { right: 'Página [page] de [topage]' }}
@@ -71,12 +72,12 @@ class AccountpayablesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
-    def import
-     Accountreceivable.import(params[:file])
-     redirect_to accountpayables_path, notice: "Cuentas correctamente."
+def import
+     Accountpayable.import(params[:file])
+     redirect_to accountpayables_path, notice: "Cuentas importadas correctamente."
     end
+  private
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_accountpayable
       @accountpayable = Accountpayable.find(params[:id])
@@ -84,7 +85,7 @@ class AccountpayablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accountpayable_params
-      params.require(:accountpayable).permit(:descripcion, :amountPaid, :supplier_id, :date, :comment)
+      params.require(:accountpayable).permit(:descripcion, :amountPaid, :supplier_id, :date, :comment, :profitNumber)
     end
     def sort_column
       Accountpayable.column_names.include?(params[:sort]) ? params[:sort] : "amountPaid"
