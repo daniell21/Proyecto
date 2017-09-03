@@ -84,8 +84,14 @@ class ClientsController < ApplicationController
     end
   end
   def import
-    Client.import(params[:file])
-    redirect_to clients_path, notice: "Clientes importados correctamente."
+    
+      if ((params[:file]).nil?) == false
+      
+        Client.import(params[:file])
+        redirect_to clients_path, notice: "Clientes importados correctamente."
+      else 
+        redirect_to clients_path, notice: "Archivo invalido"
+      end
   end
   private
     # Use callbacks to share common setup or constraints between actions.

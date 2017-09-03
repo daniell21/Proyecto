@@ -47,9 +47,7 @@ class Client < ActiveRecord::Base
     
     def self.import(file)
 
-      if file.to_s.length == 0
-        raise (4+4).to_yaml
-      end
+      
    spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
 
@@ -57,7 +55,6 @@ class Client < ActiveRecord::Base
 
       row = Hash[[header, spreadsheet.row(i)].transpose]
       client = find_by(rif: row["rif"].to_i.to_s) || new
-      raise client.to_yaml
       #client.attributes = row.to_hash.slice(*row.to_hash.keys)
       
       client.chargeMonthlyFee = ["cobrarMensualidad"]

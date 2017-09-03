@@ -73,9 +73,14 @@ class AccountpayablesController < ApplicationController
     end
   end
 def import
-     Accountpayable.import(params[:file])
-     redirect_to accountpayables_path, notice: "Cuentas importadas correctamente."
-    end
+    if ((params[:file]).nil?) == false
+      
+        Accountpayable.import(params[:file])
+        redirect_to accountpayables_path, notice: "Proveedores importados correctamente."
+      else 
+        redirect_to accountpayables_path, notice: "Archivo invalido"
+      end
+end
   private
     
     # Use callbacks to share common setup or constraints between actions.

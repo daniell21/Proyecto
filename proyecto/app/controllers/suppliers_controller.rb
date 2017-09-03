@@ -73,8 +73,13 @@ class SuppliersController < ApplicationController
     end
   end
   def import
-    Supplier.import(params[:file])
-    redirect_to suppliers_path, notice: "Suppliers imported."
+    if ((params[:file]).nil?) == false
+      
+        Supplier.import(params[:file])
+        redirect_to suppliers_path, notice: "Proveedores importados correctamente."
+      else 
+        redirect_to suppliers_path, notice: "Archivo invalido"
+      end
   end
   private
     # Use callbacks to share common setup or constraints between actions.
