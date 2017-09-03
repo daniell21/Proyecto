@@ -8,8 +8,8 @@ class Supplier < ActiveRecord::Base
   validates :socialReason, presence: true
   validates :address, presence: true
   validates :email, uniqueness: true
-  before_save :validateRif
-  
+ 
+   
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
@@ -19,20 +19,23 @@ class Supplier < ActiveRecord::Base
       end
     end
   end
-  def validateRif
-    self.rif = rif.to_s.gsub(',', '.').to_i
-  end
    #validates :username, format: { with: /regex/ }
    def self.import(file)
    spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      supplier = find_by_id(row["id"]) || new
-      supplier.attributes = row.to_hash.slice(*row.to_hash.keys)
-      supplier.save!
+      supplier = find_by(rif: row["rif"].to_i.to_s) || new
+      supplier.rif = row["rif"]
+      supplier.name = row["nombre"]
+      supplier.socialReason = row["razonSocial"]
+      supplier.email = row["correo"]
+      supplier.address = row["direccion"]
+      #supplier.attributes = row.to_hash.slice(*row.to_hash.keys)
+      supplier.save! 
     end
 end
+
 
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)

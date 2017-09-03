@@ -79,7 +79,7 @@ helper_method :sort_column, :sort_diection
   end
   def import
      Accountreceivable.import(params[:file])
-     redirect_to accountreceivables_path, notice: "Pago importado correctamente."
+     redirect_to accountreceivables_path, notice: "Cuentas correctamente."
    end
 
   private

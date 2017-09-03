@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   resources :search_client_payments
   resources :discounts
   resources :mailreminders
-  resources :accountpayables
+  resources :accountpayables do
+    collection { post :import }
+  end
   resources :suppliers do
     collection { post :import }
   end
@@ -42,5 +44,5 @@ Rails.application.routes.draw do
   devise_for :users, {registrations: "registrations"}
   root 'principal#index'
   resources :users
-  #root 'principal#index'
+  
 end

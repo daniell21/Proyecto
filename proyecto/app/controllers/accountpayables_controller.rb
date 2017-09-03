@@ -73,6 +73,10 @@ class AccountpayablesController < ApplicationController
   end
 
   private
+    def import
+     Accountreceivable.import(params[:file])
+     redirect_to accountpayables_path, notice: "Cuentas correctamente."
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_accountpayable
       @accountpayable = Accountpayable.find(params[:id])

@@ -19,8 +19,8 @@ class Client < ActiveRecord::Base
   validates_numericality_of :rif
   validates_numericality_of :localAmount
   validates_numericality_of :profitCode
-  validates_numericality_of :specialDiscount
-  before_save :country_name
+  validates_numericality_of :specialDiscount, :allow_blank => true
+  #before_save :country_name
   before_save :calculateCode 
  
 
@@ -56,14 +56,22 @@ class Client < ActiveRecord::Base
     (2..spreadsheet.last_row).each do |i|
 
       row = Hash[[header, spreadsheet.row(i)].transpose]
+      client = find_by(rif: row["rif"].to_i.to_s) || new
+      raise client.to_yaml
+      #client.attributes = row.to_hash.slice(*row.to_hash.keys)
       
-      client = find_by(profitCode: row["profitCode"].to_i.to_s) || new
-      
-      client.attributes = row.to_hash.slice(*row.to_hash.keys)
-      client.chargeMonthlyFee = true
-      client.socialReason = row["socialReason"]
-      client.profitCode = row["profitCode"].to_i
-      client.localAmount = row["localAmount"].to_i
+      client.chargeMonthlyFee = ["cobrarMensualidad"]
+      client.socialReason = row["razonSocial"]
+      client.profitCode = row["codigoProfit"]
+      client.localAmount = row["cantidadLocales"]
+      client.name = row["nombre"]
+      client.completeCountry = row["pais"]
+      client.oldCustomer = row["clienteAntiguo"]
+      client.rif = row["rif"]
+      client.comment = row["comentario"]
+      client.specialcontributor = row["contribuyenteEspecial"]
+      client.state = row["estado"]
+      #raise row["completeCountry"].to_yaml
       client.save!
     end
 end

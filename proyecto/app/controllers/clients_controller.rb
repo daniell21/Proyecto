@@ -10,7 +10,7 @@ class ClientsController < ApplicationController
   def index
     #obtiene todos los registros de la tabla client
     #cambiar el 5 por el numero de elementos por pagiba
-    @clients = Client.order(sort_column + " " + sort_diection).search(params[:search]).paginate(:per_page => 5, :page => params[:page])
+    @clients = Client.order(sort_column + " " + sort_diection).search(params[:search]).paginate(:per_page => 30, :page => params[:page])
     
 
     respond_to do |format|
