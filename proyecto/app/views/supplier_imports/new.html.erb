@@ -1,0 +1,34 @@
+<h1>Supplier Import</h1>
+
+<p>Un archivo CSV o Excel puede utilizarse para importar registros. La primera fila debe ser el nombre de columna. Se permiten las siguientes columnas.</p>
+
+<ul>
+  <% Supplier.columns.each do |column| %>
+    <% if column.name.in? ["rif", *Supplier.attribute_names] %>
+      <li>
+        <strong><%= column.name %></strong> -
+        <%= column.type.to_s.titleize %> type
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<p>Si un <strong>rif</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>
+
+<%= form_for @supplier_import do |f| %>
+  <% if @supplier_import.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@supplier_import.errors.count, "error") %> prohibited this import from completing:</h2>
+      <ul>
+      <% @supplier_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :file %>
+  </div>
+  <div class="buttons"><%= f.submit "Import" %></div>
+<% end %>

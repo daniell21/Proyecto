@@ -1,10 +1,37 @@
+ <p id="notice"><%= notice %></p>
+
 <h1>Tarifas</h1>
 
   
- <p id="notice"><%= notice %></p>
+
+ <div id="menu-element" class="well-separator">
+      
+        <div class="row">
+        <div align="center">
+            <div class="col-sm-4"><label>Buscar Tarifas</label></div>
+            </div>
+        </div>
+   
+        <div class="row">
+          <div class="col-xs-4" align="center">
+          <div class="form-group bar-search">
+            <!--Busqueda de clientes por nombre-->
+            <%= hidden_field_tag :direction, params[:search]%>
+            <%= hidden_field_tag :sort, params[:sort]%>
+            
+            <%= form_tag rates_path, :method => 'get' do %>
+             
+                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder:"Nombre Tarifa",id:"myInput", onkeyup:"myFunction()", autocomplete:"off" %>
+                
+                
+            <% end %>
+            </div>
+          </div>
+        </div>
+</div>
    
     
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover" id="myTable">
 
     <tr>
       <th>Nombre</th>
@@ -19,10 +46,10 @@
       
         <td><%= rate.name %></td>
         <td><%= number_to_currency(rate.amount, unit: "", separator: ",", delimiter: ".", precision: 2)%></td>
-        <td> <%= link_to image_tag('/assets/showeye.ico'), rate %></td>
-        <td><%= link_to image_tag('/assets/pencil.ico'), edit_rate_path(rate) %></td>
+        <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Tarifa"), rate %></td>
+        <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Tarifa"), edit_rate_path(rate) %></td>
        
-        <td><%= link_to image_tag('/assets/delete.ico'), rate, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Tarifa"), rate, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
    
       </tr>
     <% end %>
@@ -38,3 +65,24 @@
 <div align="right">
   <%= link_to 'Nueva Tarifa', new_rate_path, :class => 'btn btn-default btn'  %>
   </div>
+
+
+    <script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>

@@ -78,7 +78,7 @@ class SuppliersController < ApplicationController
         Supplier.import(params[:file])
         redirect_to suppliers_path, notice: "Proveedores importados correctamente."
       else 
-        redirect_to suppliers_path, notice: "Archivo invalido"
+        redirect_to suppliers_path, notice: "No ha seleccionado ningún archivo"
       end
   end
   private

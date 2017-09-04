@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170903043456) do
+ActiveRecord::Schema.define(version: 20170904091411) do
+
+  create_table "accountpayable_imports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -27,6 +32,11 @@ ActiveRecord::Schema.define(version: 20170903043456) do
   end
 
   add_index "accountpayables", ["supplier_id"], name: "index_accountpayables_on_supplier_id"
+
+  create_table "accountreceivable_imports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "accountreceivables", force: :cascade do |t|
     t.integer  "client_id"
@@ -61,6 +71,11 @@ ActiveRecord::Schema.define(version: 20170903043456) do
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
   add_index "accountreceivables", ["rate_id"], name: "index_accountreceivables_on_rate_id"
+
+  create_table "client_imports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "client_mails", force: :cascade do |t|
     t.string   "title"

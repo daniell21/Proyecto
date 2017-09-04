@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   
 
   
+
+  resources :accountpayable_imports
+  resources :accountreceivable_imports
+  resources :client_imports
+  resources :supplier_imports
   get 'admin/index'
 
   resources :rates

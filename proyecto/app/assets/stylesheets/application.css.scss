@@ -188,6 +188,7 @@ th {
     }
 }
 
+
 .sidebar .arrow {
     float: right;
 }
@@ -326,7 +327,20 @@ background-position: right center;
   }
 
 }
+
+down vote
+select {
+    /*for firefox*/
+    -moz-appearance: none;
+    /*for chrome*/
+    -webkit-appearance:none;
+}
 .nav {
+  button {
+    color: darken(white, 15%);
+    background-color: lighten(#142c54, 5%);
+
+  }
   li {
     li {
       background:rgb(55, 84, 132);

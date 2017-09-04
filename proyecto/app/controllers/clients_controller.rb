@@ -90,7 +90,7 @@ class ClientsController < ApplicationController
         Client.import(params[:file])
         redirect_to clients_path, notice: "Clientes importados correctamente."
       else 
-        redirect_to clients_path, notice: "Archivo invalido"
+        redirect_to clients_path, notice: "No ha seleccionado ningún archivo"
       end
   end
   private

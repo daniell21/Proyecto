@@ -81,9 +81,9 @@ helper_method :sort_column, :sort_diection
      if ((params[:file]).nil?) == false
       
         Accountreceivable.import(params[:file])
-        redirect_to accountreceivables_path, notice: "Proveedores importados correctamente."
+        redirect_to accountreceivables_path, notice: "Cuentas importadas correctamente."
       else 
-        redirect_to accountreceivables_path, notice: "Archivo invalido"
+        redirect_to accountreceivables_path, notice: "No ha seleccionado ningún archivo"
       end
    end
 

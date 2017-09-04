@@ -1,0 +1,34 @@
+<h1>Accountpayable Import</h1>
+
+<p>Un archivo  Excel puede utilizarse para importar registros. La primera fila debe ser el nombre de columna. Se permiten las siguientes columnas.</p>
+
+<ul>
+  <% Accountpayable.columns.each do |column| %>
+    <% if column.name.in? ["rif", *Accountpayable.attribute_names] %>
+      <li>
+        <strong><%= column.name %></strong> -
+        <%= column.type.to_s.titleize %> type
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<p>Si un <strong>rif</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>
+
+<%= form_for @accountpayable_import do |f| %>
+  <% if @accountpayable_import.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@accountpayable_import.errors.count, "error") %> prohibited this import from completing:</h2>
+      <ul>
+      <% @client_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :file %>
+  </div>
+  <div class="buttons"><%= f.submit "Import" %></div>
+<% end %>

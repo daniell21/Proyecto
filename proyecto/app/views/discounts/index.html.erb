@@ -1,24 +1,32 @@
+<p id="notice"><%= notice %></p>
 <h1>Descuentos</h1>
-
-  
-
-    <div ng-class="row">
-      <div class="col-xs-6">
+    <div id="menu-element" class="well-separator">
+      
+        <div class="row">
+        <div align="center">
+            <div class="col-sm-4"><label>Buscar Descuentos</label></div>
+            </div>
+        </div>
+   
+        <div class="row">
+          <div class="col-xs-4">
+          <div class="form-group bar-search" align="center">
             <!--Busqueda de clientes por nombre-->
             <%= hidden_field_tag :direction, params[:search]%>
             <%= hidden_field_tag :sort, params[:sort]%>
-            <label>Nombre</label>
+            
             <%= form_tag discounts_path, :method => 'get' do %>
-              <p>
-                <%= text_field_tag :search, params[:search], class: 'form-control'  %>
-                <%= submit_tag "Buscar Descuento", :name => nil, :class => 'btn btn-default btn'   %>
-              </p>
+             
+                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder:"Correo Usuario",id:"myInput", onkeyup:"myFunction()", autocomplete:"off" %>
+                
             <% end %>
-            <!--<p><%= link_to "Busqueda Avanzada", new_search_discount_path %></p> -->
-      </div>    
-    </div> 
+            </div>
+          </div>
+        </div>
+</div>
+
     
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover" id="myTable">
 
     <tr>
       <th><%= sortable "name", "Nombre"%></th>
@@ -28,13 +36,13 @@
 
 
   <tbody>
-    <% @discounts.each do |discount| %>
+    <% @discounts.each do |discount| %> 
       <tr>
         <td><%= discount.name %></td>
         <td> <%= number_to_currency(discount.percentage, unit: "", separator: ",", delimiter: ".", precision: 2)%></td>
-        <td> <%= link_to image_tag('/assets/showeye.ico'), discount %></td>
-       <td><%= link_to image_tag('/assets/pencil.ico'), edit_discount_path(discount) %></td>
-        <td><%= link_to image_tag('/assets/delete.ico'), discount, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Descuento"), discount %></td>
+       <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Descuento"), edit_discount_path(discount) %></td>
+        <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Descuento"), discount, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -49,4 +57,24 @@
 <div align="right">
   <%= link_to 'Nuevo Descuento', new_discount_path, :class => 'btn btn-default btn'  %>
   </div>
+
+  <script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
   

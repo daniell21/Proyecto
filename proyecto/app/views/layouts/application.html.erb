@@ -12,7 +12,9 @@
 	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
 	  <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
-	  
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
   </head>
@@ -50,12 +52,26 @@
 						</li>
 					
 					
-						<li style="list-style:none;">
+						
+						<button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
+						  Configuración<!--<i class="fa fa-caret-down"></i>-->
+						  </button>
+						  <div id="demoAcc" class="w3-hide  " >
+						    
+						    <li style="list-style:none;" ><%= link_to 'Descuentos' , discounts_path%></li>
+						    <li style="list-style:none;" ><%= link_to 'Gestión de Roles' , users_path%></li>
+						    <li style="list-style:none;" ><%= link_to 'Tarifas', rates_path %></li>
+						  </div>
+						  <li style="list-style:none;">
 							<%= active_link_to 'Configuración', controller: 'setup' %>
+							<ul style="padding-left: 0; list-style:none;">
 							<li><a href="#">ryryfy</a></li>
 							<li><a href="#">ryryfy</a></li>
 							<li><a href="#">ryryfy</a></li>
+							</ul>
 						</li>
+
+
 					
 					<%end%>
 					
@@ -74,7 +90,7 @@
 		        	</li>
 		        </ul>   
 	    </div>
-   </div>
+   
 
 	<div class="container-fluid" id="view">
 		<div class="col-md-12">
@@ -83,6 +99,22 @@
 		<p class="alert"><%= alert %></p>
 
 </div>
+
+<script>
+function myAccFunc() {
+    var x = document.getElementById("demoAcc");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += "w3-theme-l3";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace(" w3-green", "");
+    }
+}
+
+
+</script>
 
 
 

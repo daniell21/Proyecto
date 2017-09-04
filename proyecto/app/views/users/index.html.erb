@@ -2,22 +2,38 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Usuarios</h1>
+
+<div id="menu-element" class="well-separator">
+      
+        <div class="row">
+        <div align="center">
+            <div class="col-sm-4"><label>Buscar Usuarios</label></div>
+            </div>
+        </div>
+   
+        <div class="row">
+          <div class="col-xs-4" align="center">
+          <div class="form-group bar-search">
+            <!--Busqueda de clientes por nombre-->
+            <%= hidden_field_tag :direction, params[:search]%>
+            <%= hidden_field_tag :sort, params[:sort]%>
+            
+            <%= form_tag users_path, :method => 'get' do %>
+             
+                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder:"Correo Usuario",id:"myInput", onkeyup:"myFunction()", autocomplete:"off" %>
+                
+                
+            <% end %>
+            </div>
+          </div>
+        </div>
+</div>
+
+
 <div class="row">
-<div class="col-xs-4">
-        <!--Busqueda de clientes por nombre-->
-        <%= hidden_field_tag :direction, params[:search]%>
-        <%= hidden_field_tag :sort, params[:sort]%>
-        <label>Nombre</label>
-        <%= form_tag users_path, :method => 'get' do %>
-          <p>
-            <%= text_field_tag :search, params[:search], class: 'form-control'  %>
-            <%= submit_tag "Buscar Usuario", :name => nil, :class => 'btn btn-default btn'   %>
-          </p>
-        <% end %>
-      </div>    
-    </div> 
+
   
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover"  id="myTable">
       
       <tr >
           <th>Correo</th>
@@ -42,12 +58,33 @@
           <%if user.role == "client"%>
           <td>Cliente</td>
           <%end%>
-          <td> <%= link_to image_tag('/assets/showeye.ico'), user %></td>
-          <td><%= link_to image_tag('/assets/pencil.ico'), edit_user_path(user) %></td>
-          <td><%= link_to image_tag('/assets/delete.ico'), user, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+          <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Usuario"), user %></td>
+          <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Usuario"), edit_user_path(user) %></td>
+          <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Usuario"), user, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <%= will_paginate %>
+
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 
