@@ -13,7 +13,14 @@ class ClientMail < ActiveRecord::Base
 	
 	def send_mail
 		#raise self.client.to_yaml
-		ClientMailer.delay.client_mail(self)
+		
+		client = Client.find(self.client_id)
+		emails = client.email_ids
+		
+		emails.each do |email| 
+			e = Email.find(email)
+			ClientMailer.delay.client_mail(self, e.email)
+		end
 
 	end
 
