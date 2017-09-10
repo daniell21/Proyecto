@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170907161642) do
+ActiveRecord::Schema.define(version: 20170910215535) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -150,6 +150,13 @@ ActiveRecord::Schema.define(version: 20170907161642) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.decimal  "amount",     precision: 15, scale: 2
+  end
+
+  create_table "reminders", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "frecuency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reports", force: :cascade do |t|

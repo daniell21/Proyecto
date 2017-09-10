@@ -1,13 +1,15 @@
 require 'rufus-scheduler'
 scheduler = Rufus::Scheduler.new
 #scheduler = Rufus::Scheduler::singleton
-
-#scheduler.every '1h' do
+@time = '15s'
+scheduler.every @time do
   #Client.all.each do |client|
    	    #ReminderMailer.delay.new_sendreminder(client)
    	    #puts client.email
    	#end
-#end
+   	print Settings.payReminder 
+   	print @time
+end
 
 
 #Todos los primero de mes a las 8 de la mañana se crearan las cuentas por cobrar de todos los clientes de Elemetrica

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   
 
+  resources :reminders
   resources :accountpayable_imports
   resources :accountreceivable_imports
   resources :client_imports
