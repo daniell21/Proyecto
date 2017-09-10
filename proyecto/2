@@ -1,2 +1,0 @@
-      invoke  active_record
-    conflict    db/migrate/20170829034510_add_percentage_from_discounts.rb

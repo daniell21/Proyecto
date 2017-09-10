@@ -6,7 +6,7 @@ class Discount < ActiveRecord::Base
 	 #simple search name
 	 before_save :validatePercentage
 def validatePercentage
-	
+	raise percentage.to_s.to_yaml
     per = percentage.to_s.gsub(',', '.').to_f
     self.percentage = ActionController::Base.helpers.number_with_precision(per, :precision => 2)
     

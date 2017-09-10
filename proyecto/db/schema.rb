@@ -11,12 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170904091411) do
-
-  create_table "accountpayable_imports", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20170907161642) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -33,14 +28,8 @@ ActiveRecord::Schema.define(version: 20170904091411) do
 
   add_index "accountpayables", ["supplier_id"], name: "index_accountpayables_on_supplier_id"
 
-  create_table "accountreceivable_imports", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "accountreceivables", force: :cascade do |t|
     t.integer  "client_id"
-    t.integer  "total"
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.date     "date"
@@ -48,7 +37,6 @@ ActiveRecord::Schema.define(version: 20170904091411) do
     t.string   "status"
     t.string   "bank"
     t.string   "paymentType"
-    t.string   "paymentComment"
     t.string   "profitNumber"
     t.string   "document"
     t.string   "clientAccount"
@@ -67,15 +55,11 @@ ActiveRecord::Schema.define(version: 20170904091411) do
     t.decimal  "amountWithTax",        precision: 15, scale: 2
     t.decimal  "totalRetentions",      precision: 15, scale: 2
     t.decimal  "totalAmountPerceive",  precision: 15, scale: 2
+    t.text     "paymentComment"
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
   add_index "accountreceivables", ["rate_id"], name: "index_accountreceivables_on_rate_id"
-
-  create_table "client_imports", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "client_mails", force: :cascade do |t|
     t.string   "title"
@@ -102,9 +86,9 @@ ActiveRecord::Schema.define(version: 20170904091411) do
     t.boolean  "chargeMonthlyFee"
     t.boolean  "oldCustomer"
     t.text     "comment"
-    t.string   "localAmount"
     t.string   "rif"
     t.decimal  "specialDiscount",    precision: 5, scale: 2
+    t.integer  "localAmount"
   end
 
   create_table "clients_discounts", force: :cascade do |t|

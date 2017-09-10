@@ -189,7 +189,7 @@ validates :profitNumber, presence: true
     
   	if !self.baseAmount
       
-      self.baseAmount = @rate.amount * client.localAmount.to_i
+      self.baseAmount = @rate.amount * client.localAmount
 
    	end
    

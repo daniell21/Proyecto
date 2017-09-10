@@ -1,5 +1,5 @@
 class AddLocalamountFromClients < ActiveRecord::Migration
   def change
-    add_column :clients, :localAmount, :string
+    add_column :clients, :localAmount, :integer
   end
 end
