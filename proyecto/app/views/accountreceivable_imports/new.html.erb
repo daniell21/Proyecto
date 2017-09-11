@@ -18,9 +18,9 @@
 <%= form_for @accountreceivable_import do |f| %>
   <% if @accountreceivable_import.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@accountreceivable_import.errors.count, "error") %> prohibited this import from completing:</h2>
+      Errores: <h2><%= pluralize(@accountreceivable_import.errors.count, "error") %>. Por favor corrija los siguienes errores:</h2>
       <ul>
-      <% @client_import.errors.full_messages.each do |msg| %>
+      <% @accountreceivable_import.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

@@ -39,7 +39,9 @@ def load_imported_accountpayables
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      accountpayable = Accountpayable.find_by profitNUmber: row["numeroProfit"] || new
+      accountpayable = Accountpayable.find_by profitNUmber: row["numeroProfit"]
+      accountpayable =  Accountpayable.new if (Accountpayable.find_by profitNUmber: row["numeroProfit"]).nil?
+    
       accountpayable.profitNumber = row["numeroProfit"]
       accountpayable.date = row["fecha"]
       supplier = Supplier.find_by rif: row["rifProveedor"]

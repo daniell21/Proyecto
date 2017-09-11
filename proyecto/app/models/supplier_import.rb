@@ -37,7 +37,9 @@ class SupplierImport
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      supplier = Supplier.find_by rif: row["rif"] || new
+      supplier = Supplier.find_by rif: row["rif"] 
+      supplier =  Supplier.new if (Supplier.find_by rif: row["rif"]).nil?
+
       supplier.rif = row["rif"]
       supplier.name = row["nombre"]
       supplier.socialReason = row["razonSocial"]

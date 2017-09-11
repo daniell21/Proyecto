@@ -28,26 +28,30 @@ class ClientImport
     end
   end
 
+
+
   def imported_clients
     @imported_clients ||= load_imported_clients
   end
   
 
 def load_imported_clients
-
-      
    spreadsheet = open_spreadsheet
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      client = Client.find_by rif: row["rif"] || new
+       
+      client = Client.find_by rif: row["rif"] 
+      client =  Client.new if (Client.find_by rif: row["rif"]).nil?
+      
       #client.attributes = row.to_hash.slice(*row.to_hash.keys)
-      client.chargeMonthlyFee = ["cobrarMensualidad"]
+      client.chargeMonthlyFee = row["cobrarMensualidad"]
       client.socialReason = row["razonSocial"]
       client.profitCode = row["codigoProfit"]
       client.localAmount = row["cantidadLocales"]
       client.name = row["nombre"]
       client.completeCountry = row["pais"]
+      client.country = row["pais"]
       client.oldCustomer = row["clienteAntiguo"]
       client.rif = row["rif"]
       client.comment = row["comentario"]
@@ -57,6 +61,8 @@ def load_imported_clients
       client
     end
 end
+
+
 
 def open_spreadsheet
     case File.extname(file.original_filename)

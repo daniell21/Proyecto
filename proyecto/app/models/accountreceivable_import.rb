@@ -19,7 +19,7 @@ class AccountreceivableImport
        imported_accountreceivables.each(&:save!)
       true
     else
-      imported_accountreceivables.each_with_index do |accountreceivables, index|
+      imported_accountreceivables.each_with_index do |accountreceivable, index|
         accountreceivable.errors.full_messages.each do |message|
           errors.add :base, "linea #{index+2}: #{message}"
         end
@@ -38,7 +38,9 @@ def load_imported_accountreceivables
     
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      accountreceivable =  Accountreceivable.find_by profitNUmber: row["numeroProfit"] || new
+      accountreceivable = Accountreceivable.find_by profitNUmber: row["numeroProfit"]
+      accountreceivable =  Accountreceivable.new if (Accountreceivable.find_by profitNUmber: row["numeroProfit"]).nil?
+
       client = Client.find_by rif: row["rifCliente"]
       rate = Rate.find_by name: row["concepto"]
       if row["facturaPagada"] == "Si"
