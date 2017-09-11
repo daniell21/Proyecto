@@ -29,7 +29,12 @@
   <%=discount.name %>: 
   <%= number_to_currency(discount.percentage, unit: "", separator: ",", delimiter: ".", precision: 2)%>%
   <br>
-
+  <%end%>
+  <%if (client.specialDiscount).nil?%>
+  <%else%>
+  Descuento Especial:
+  
+  <%= number_to_currency(client.specialDiscount, unit: "", separator: ",", delimiter: ".", precision: 2)%>%
   <%end%>
 
  </p>

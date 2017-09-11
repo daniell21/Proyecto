@@ -7,8 +7,10 @@ scheduler.every @time do
    	    #ReminderMailer.delay.new_sendreminder(client)
    	    #puts client.email
    	#end
-   	print Settings.payReminder 
-   	print @time
+   	Reminder.all.each do |reminder|
+	   	
+	   	
+   end
 end
 
 

@@ -206,7 +206,7 @@ validates :profitNumber, presence: true
     end
 
   	self.amountWithoutTax = ((baseAmount * ( 1 - (resultado.to_f/100))))
-  	
+
   	
   	
   end
@@ -227,12 +227,12 @@ validates :profitNumber, presence: true
   	retention = retention + amountWithoutTax * 0.12 * 1
   	
   	self.totalRetentions = retention
-  	
+
   end
 
   def calculateTotalAmountPerceive
   	self.totalAmountPerceive = amountWithTax - totalRetentions
-   
+
   end
   #simple search rif
   def self.search(search)
