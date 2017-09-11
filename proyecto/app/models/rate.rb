@@ -1,5 +1,6 @@
 class Rate < ActiveRecord::Base
 	has_many :accountreceivables
+	validates :name, presence: true
 	validates :amount, presence: true
 	validates_numericality_of :amount
 	before_save :validateAmount

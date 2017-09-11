@@ -1,6 +1,8 @@
 
 
-<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), reminders_path %><h1>Recordatorio</h1>
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), reminders_path %>
+
+<h1>Recordatorio</h1>
 
 
   
@@ -13,7 +15,7 @@
 <p>
   <strong>Frecuencia:</strong>
 
-  <%= @reminder.frecuency %>
+ <%= "Diaria" if @reminder.frecuency == 1 %><%= "Quincenal" if @reminder.frecuency == 15 %><%= "Mensual" if @reminder.frecuency == 30 %>
 </p>
 
 
