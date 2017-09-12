@@ -1,0 +1,127 @@
+	/* Based on The MailChimp Reset INLINE: Yes. */
+	/* Client-specific Styles */
+	#outlook a {padding:0;} /* Force Outlook to provide a "view in browser" menu link. */
+	body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;}
+	/* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/
+	.ExternalClass {width:100%;} /* Force Hotmail to display emails at full width */
+	.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+	/* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
+	#background-table {margin:0; padding:0; width:100% !important; line-height: 100% !important;}
+	/* End reset */
+
+	/* Some sensible defaults for images
+	Bring inline: Yes. */
+	img {text-decoration:none; -ms-interpolation-mode: bicubic;}
+	a img {border:none;}
+	.image_fix {display:block;}
+
+	/* Yahoo paragraph fix
+	Bring inline: Yes. */
+	p {margin: 1em 0;}
+
+	/* Outlook 07, 10 Padding issue fix
+	Bring inline: No.*/
+	table td {border-collapse: collapse;}
+
+	/* Remove spacing around Outlook 07, 10 tables
+	Bring inline: Yes */
+	table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
+
+	/* Styling your links has become much simpler with the new Yahoo.  In fact, it falls in line with the main credo of styling in email and make sure to bring your styles inline.  Your link colors will be uniform across clients when brought inline.
+	Bring inline: Yes. */
+	a {color: blue;}
+
+	/* El .header-bar > div es para hacer que la barra azul sea menos alta que el logo */
+	#background-table, .graybg {
+		background-color: #F8F8F8;
+	}
+
+	/**
+	Premailer parece que se come los HTML entities, como non-breaking space.
+	Es importante poner esos espacios para que aaparezcan algunas barras de color.
+	El hack entonces es hacer que el texto en esas barras sea igual al del background, de forma
+	que no se vea. Basta poner un par de guiones.
+	**/
+
+	.graybg {
+		/* Hack de texto invisible*/
+		color: #F8F8F8;
+	}
+
+	table, tr, td {
+		color: #666666;
+		font-family: Sans-Serif;
+	}
+
+	
+
+	h1, h2, h3, h4, h5, h6 {
+		color: #878787 !important;
+		/* Los exploradores ponen !important a su estilo de los headers...*/
+	}
+
+	.body-image {
+		max-width: 500px;
+			height: auto;
+		}
+
+		/* Media queries usando los sizes de bootstrap */
+		/* xs */
+		@media(min-width: 480px) {
+			.body-image {
+				max-width: 460px;
+			}
+		}
+
+		/* sm */
+		@media(min-width: 768px) {
+			.body-image {
+				max-width: 740px
+			}
+		}
+
+		/* md (y lg por extension) */
+		@media(min-width: 992px) {
+			.body-image {
+				max-width: 100%;
+			}
+		}
+
+		.text-center {
+			text-align: center;
+		}
+
+	#date {
+		padding-right: 16px;
+		padding-top: 32px;
+	}
+
+	.header-bar {
+		background-color: #142B54;
+		width: 45%;
+	}
+
+	.blue-background, .blue-background > td {
+		background-color: #142B54;
+		color: #142B54; /* hack de texto invisible */
+	}
+
+	#center-banner > img {
+		padding: 0px 16px;
+		max-height: 60px;
+		vertical-align: bottom;
+	}
+
+	.body-spacing {
+		width: 10%;
+	}
+
+	#body-wrapper {
+		width: 100%;
+		margin-top: 32px;
+		margin-bottom: 32px;
+	}
+
+	.footer {
+		padding: 32px;
+	}

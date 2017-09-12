@@ -5,9 +5,8 @@
   
   <%= f.association :client %>
   <!--<%= f.input :client, :collection => Client.all, :input_html => { :multiple => true } %>-->
-    <%= f.input :title %>
-    <%= f.input :body %>
-    
+    <%= f.input :title, placeholder: 'Título', label: 'Título', error: 'Debe ingresar el título del Correo' %>
+    <%= f.input :body, placeholder: 'Mensaje', label: 'Mensaje', error: 'Debe ingresar el contenido del Correo' %>
 
   </div>
 <br><br>

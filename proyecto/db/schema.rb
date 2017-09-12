@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910215535) do
+ActiveRecord::Schema.define(version: 20170912031422) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -63,11 +63,11 @@ ActiveRecord::Schema.define(version: 20170910215535) do
 
   create_table "client_mails", force: :cascade do |t|
     t.string   "title"
-    t.string   "body"
     t.date     "date"
     t.integer  "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "body"
   end
 
   add_index "client_mails", ["client_id"], name: "index_client_mails_on_client_id"
