@@ -58,7 +58,7 @@
             
 
               <div class="col-md-6"> 
-              <%= f.input :amountPaid,  as: :string, placeholder: 'Monto Pagado', label: "Monto Pagado", error: 'Debe ser Numérico'%>
+              <%= f.input :amountPaid,  placeholder: 'Monto Pagado', label: "Monto Pagado", error: 'Debe ser Numérico'%>
               </div> 
             
         
@@ -92,7 +92,7 @@
           
           <%if (current_user.role != "client") %>
             <div class="col-md-6"> 
-                <%= f.input :transferNumber, placeholder: 'Nro Mercantil', label: "Número Transferencia", error: 'Este campo debe ser Númerico' %>
+                <%= f.input :transferNumber, as: :integer, placeholder: 'Nro Mercantil', label: "Número Transferencia", error: 'Este campo debe ser Númerico' %>
             </div>
           <%end%>
           </div>
@@ -102,12 +102,12 @@
             <div class="row">
               
               <div class="col-md-6"> 
-                <%= f.input :profitCode, placeholder: 'Código Profit', label: "Número Control Profit", error: 'Este campo debe ser Númerico' %>
+                <%= f.input :profitCode, as: :integer, placeholder: 'Código Profit', label: "Número Control Profit", error: 'Este campo debe ser Númerico' %>
               </div> 
 
 
               <div class="col-md-6">  
-                  <%= f.input :profitNumber, placeholder: 'Número  Profit', label: "Número Factura Profit", error: 'Este campo debe ser Númerico' %>
+                  <%= f.input :profitNumber, as: :integer, placeholder: 'Número  Profit', label: "Número Factura Profit", error: 'Este campo debe ser Númerico' %>
               </div>
               
             </div>
@@ -121,17 +121,17 @@
 
               </div>
               <div class="col-md-6"> 
-              <%= f.input :transferNumberClient,  placeholder: 'Número Transferencia', label: "Numero Transferencia Cliente", error: 'Este campo debe ser Númerico' %>
+              <%= f.input :transferNumberClient,  as: :integer, placeholder: 'Número Transferencia', label: "Numero Transferencia Cliente", error: 'Este campo debe ser Númerico' %>
               </div> 
             </div>
             <br>
             <br>
             <div class="row">
               <div class="col-md-6"> 
-              <%= f.input :depositNumber,  placeholder: 'Número Deposito', label: "Número de Deposito", error: 'Este campo debe ser Númerico' %>
+              <%= f.input :depositNumber,  as: :integer, placeholder: 'Número Deposito', label: "Número de Deposito", error: 'Este campo debe ser Númerico' %>
               </div> 
               <div class="col-md-6"> 
-              <%= f.input :checkNumber,  placeholder: 'Número Cheque', label: "Número de Cheque", error: 'Este campo debe ser Númerico' %>
+              <%= f.input :checkNumber,  as: :integer, placeholder: 'Número Cheque', label: "Número de Cheque", error: 'Este campo debe ser Númerico' %>
               </div> 
             </div>
             <br>

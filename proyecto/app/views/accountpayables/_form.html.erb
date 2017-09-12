@@ -6,7 +6,7 @@
       <%= f.input :date, label: "Fecha de Pago", error: 'Debe seleccionar una Fecha' %>
     </div>
     <div class="col-xs-6">
-            <%= f.input :profitNumber, placeholder: 'Nṕumero', label: 'Número', error: 'El Código debe ser Numérico (6 digitos)'%>
+            <%= f.input :profitNumber, as: :integer, placeholder: 'Nṕumero', label: 'Número', error: 'El Código debe ser Numérico (6 digitos)'%>
         </div>
   </div>
   <br>
@@ -25,7 +25,7 @@
     <br>
   <div class="row">
     <div class="col-md-6"> 
-      <%= f.input :amountPaid, as: :string , type: "number", label: 'Monto Pagado', error: 'Debe ser Númerico' %>
+      <%= f.input :amountPaid, type: "number", label: 'Monto Pagado', error: 'Debe ser Númerico' %>
     </div>
     <div class="col-md-6"> 
                 <%= f.input :comment, placeholder: 'Agregar Comentarios', label: 'Comentarios' %>

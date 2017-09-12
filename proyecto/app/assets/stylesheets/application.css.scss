@@ -36,7 +36,15 @@
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 }
-
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+//Supports Mozilla
+input[type=number] {
+    -moz-appearance:textfield;
+}
 /*flash*/
 .alert-error {
     background-color: #f2dede;
@@ -328,12 +336,13 @@ background-position: right center;
 
 }
 
-down vote
+
 select {
     /*for firefox*/
     -moz-appearance: none;
     /*for chrome*/
-    -webkit-appearance:none;
+    //-webkit-appearance:none;
+
 }
 .nav {
   button {
