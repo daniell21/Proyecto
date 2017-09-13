@@ -19,7 +19,9 @@ class AccountpayableImport
       imported_accountpayables.each(&:save!)
       true
     else
+
       imported_accountpayables.each_with_index do |accountpayable, index|
+     
         accountpayable.errors.full_messages.each do |message|
           errors.add :base, "linea #{index+2}: #{message}"
         end
@@ -45,7 +47,10 @@ def load_imported_accountpayables
       accountpayable.profitNumber = row["numeroProfit"]
       accountpayable.date = row["fecha"]
       supplier = Supplier.find_by rif: row["rifProveedor"]
+      supplier = Supplier.new if (supplier = Supplier.find_by rif: row["rifProveedor"]).nil?
+
       accountpayable.supplier_id = supplier.id
+
       accountpayable.descripcion = row["descripcion"]
       accountpayable.amountPaid = row["montoPagado"]
       accountpayable.comment = row["comentario"]

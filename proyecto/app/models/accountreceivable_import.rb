@@ -19,19 +19,21 @@ class AccountreceivableImport
        imported_accountreceivables.each(&:save!)
       true
     else
+
       imported_accountreceivables.each_with_index do |accountreceivable, index|
+      
         accountreceivable.errors.full_messages.each do |message|
           errors.add :base, "linea #{index+2}: #{message}"
         end
       end
-      false
+      false 
     end
   end
 
   def imported_accountreceivables
     @imported_accountreceivables ||= load_imported_accountreceivables
   end
-  
+  #validar si no existe un cliente o una tarifa
 def load_imported_accountreceivables
     spreadsheet = open_spreadsheet
     header = spreadsheet.row(1)
@@ -42,7 +44,10 @@ def load_imported_accountreceivables
       accountreceivable =  Accountreceivable.new if (Accountreceivable.find_by profitNUmber: row["numeroProfit"]).nil?
 
       client = Client.find_by rif: row["rifCliente"]
+      client = Client.new if (Client.find_by rif: row["rifCliente"]).nil?
+      
       rate = Rate.find_by name: row["concepto"]
+      rate = Rate.new if (Rate.find_by name: row["concepto"]).nil?
       if row["facturaPagada"] == "Si"
         accountreceivable.paid  = true
       else
