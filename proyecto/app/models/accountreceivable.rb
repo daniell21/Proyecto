@@ -33,7 +33,7 @@ validates :profitNumber, presence: true
   before_save :calculateAmountWithTax
   before_save :calculateRetentions
   before_save :calculateTotalAmountPerceive
-
+  after_save :send_notification
   before_save :validateAmountPaid
 
 
@@ -331,6 +331,20 @@ end
      balance = monto.to_f - amountWithTax 
     self.update_column(:accountBalance, balance)
   end
-
+def send_notification
+          PaymentMailer.delay.new_payment
+  #       if client.chargeMonthlyFee
+  #       id = Accountreceivable.last.id + 1
+  #       puts id
+  #       @accountreceivable = Accountreceivable.new
+  #             @accountreceivable.id = id
+  #             @accountreceivable.client_id = client.id
+  #             @accountreceivable.status = "facturada"
+  #             @accountreceivable.concept = "mensualidad"
+  #             @accountreceivable.paid = "no"
+  #             @accountreceivable.month = "enero"
+  #             @accountreceivable.save
+    
+end
 
 end

@@ -3,7 +3,7 @@ class PaymentMailer < ApplicationMailer
 	#falta por terminar
 	def new_payment
 		@client = Client.all
-			mail(to: "daniellorente20@gmail.com", subject: "Recordatorio Sistema de Cobranza")
+			mail(to: "daniellorente20@gmail.com", subject: "Recordatorio wqSistema de Cobranza")
 		
 	end 
 end

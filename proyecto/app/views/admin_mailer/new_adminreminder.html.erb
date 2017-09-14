@@ -1,31 +1,51 @@
- <!DOCTYPE html>
+<!-- este mailer es el encargado de enviar los recordatorios al departamento administrativo  -->
+<!DOCTYPE html>
 <html>
 	<head>
 		
 	</head>
 	<body>
-	<strong>Recordatorios del Sistema</strong>
+	<strong>Información a revisar:</strong>
 	
-		<p align="center">
-  <a style="-webkit-border-radius: 6;-moz-border-radius: 6;border-radius: 6px;
-    font-family: Arial;color: #ffffff;font-size: 15px;background: #00004c ;
-    padding: 10px 20px 10px 20px;text-decoration: none;"
-    href="http://localhost:3000">Registrar Pago
-  </a>
-</p>
+
 <br>
-<p align="center">
-  <b>¡Te invitamos a ver los avances de nuestra plataforma!</b>
-</p>
-<p align="center">
-  Ingresa a Elemétrica y haz click en "Visita la nueva versión".
-</p>
 <br>
-<p align="center">
-  <a style="-webkit-border-radius: 6;
-    -moz-border-radius: 6;border-radius: 6px;font-family: Arial;color: #ffffff;
-    font-size: 17px;background: #00004c;padding: 10px 20px 10px 20px;
-    text-decoration: none;" href="https://elemetrica.com/app">Ingresar a Elemétrica</a>
-</p>
+<br>
+<p>Clientes</p>
+<table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+    <tr>
+      <th align="center">Rif</th>
+      <th align="center">Cliente</th>
+      <th align="center">Comentario</th>
+    </tr>
+    <%@clients = Client.all%>
+    <% @clients.each do |client| %>
+            <!--<tr data-link="<%= edit_client_path(client) %>">-->
+             <tr link="<%= edit_client_path(client) %>">
+             <td><%= client.rif %></td>
+              <td><%= client.name %></td>
+              <td><%= client.comment %></td>
+        <%end%>
+  </table>
+<br>
+<br>
+<p>Proveedores</p>
+<table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+    <tr>
+      <th align="center">Rif</th>
+      <th align="center">Proveedor</th>
+      <th align="center">Comentario</th>
+    </tr>
+    <%@suppliers = Supplier.all%>
+    <% @suppliers.each do |supplier| %>
+             <tr link="<%= edit_client_path(client) %>">
+             <td><%= supplier.rif %></td>
+              <td><%= supplier.name %></td>
+              <td><%= supplier.comment %></td>
+        <%end%>
+  </table>
+
 	</body>
 </html>

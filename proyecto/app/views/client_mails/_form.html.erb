@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
   
-  <%= f.association :client, include_blank: "Seleccionar Cliente"%>
+  <%= f.association :client, include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Ciente"%> 
   <!--<%= f.input :client, :collection => Client.all, :input_html => { :multiple => true } %>-->
     <%= f.input :title, placeholder: 'Título', label: 'Título', error: 'Debe ingresar el título del Correo' %>
     <%= f.input :body, placeholder: 'Mensaje', label: 'Mensaje', error: 'Debe ingresar el contenido del Correo' %>

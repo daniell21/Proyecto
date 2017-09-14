@@ -3,8 +3,14 @@ class AdminMailer < ApplicationMailer
 #pendientes del sistema
 	#falta por terminar
 	def new_adminreminder
-		@user = User.all
-			mail(to: "daniellorente20@gmail.com", subject: "Recordatorio Sistema de Cobranza")
+		
+	    users = User.all
+	    users.each do |user|
+		    if user.role == "admin"
+		      mail(to: user.email, subject: "Recordatorio Sistema de Cobranza")
+		    end
+		end
+			
 		
 	end 
 end
