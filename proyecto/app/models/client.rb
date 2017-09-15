@@ -14,8 +14,8 @@ class Client < ActiveRecord::Base
   validates :profitCode, presence: true, length: { minimum: 6 }, uniqueness: true
   validates :localAmount, presence: true
 
-  validates :specialDiscount, format: { with: /\A-?[0-9]+([,\.][0-9]*)?\z/,
-    message: "only allows letters" }
+
+
 
   #before_update :sp
 
