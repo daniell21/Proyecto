@@ -1,3 +1,35 @@
+accountreceivable_amountPaid
+<script type="text/javascript">
+  $(document).ready(function() {
+    var amount = document.getElementById("accountreceivable_amountPaid");
+  
+    amount.value = amount.value.replace('.',',');
+    amount.addEventListener('keyup', validate_discount, true);
+    function validate_discount(){
+      var regex_amount = /^[0-9]+([,][0-9]+)?$/;
+      if (!(amount.value.match(regex_amount))) {
+        if(amount.value!=''){
+          var msg = 'Este campo debe ser numérico y sólo admite una coma.';
+          document.getElementById("error_discount").innerHTML= msg;
+        }
+        else{
+          document.getElementById("error_discount").innerHTML= '';
+        
+        }   
+      }
+      else{
+        document.getElementById("error_discount").innerHTML= '';
+        
+      }
+    };
+   
+    $('#button_edit').click(function(){
+    if($('#error_discount').text() ===''){
+      $('.simple_form edit_client').submit();
+    }
+  })
+  })
+  </script>
   <%= simple_form_for(@accountreceivable) do |f| %>
       <%= f.error_notification %>
           <br>

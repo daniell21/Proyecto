@@ -5,19 +5,11 @@ class Accountpayable < ActiveRecord::Base
   validates :amountPaid, presence: true
   validates :date, presence: true
   validates :supplier, presence: true
-  before_save :validateAmountPaid
   validates :profitNumber, presence: true, length: { minimum: 6 }, uniqueness: true
   validates_numericality_of :profitNumber
+  validates_numericality_of :amountPaid
   
 
-def validateAmountPaid
-    if amountPaid
-      amount = amountPaid.to_s.gsub(',', '.').to_f
-      self.amountPaid = ActionController::Base.helpers.number_with_precision(amount, :precision => 2)
-     
-    end
-
-  end
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

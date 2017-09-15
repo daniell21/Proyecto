@@ -1,4 +1,35 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    var discount = document.getElementById("client_specialDiscount");
+  
+    discount.value = discount.value.replace('.',',');
+    discount.addEventListener('keyup', validate_discount, true);
+    function validate_discount(){
+      var regex_amount = /^[0-9]+([,][0-9]+)?$/;
+      if (!(discount.value.match(regex_amount))) {
+        if(discount.value!=''){
+          var msg = 'Este campo debe ser numérico y sólo admite una coma.';
+          document.getElementById("error_discount").innerHTML= msg;
+        }
+        else{
+          document.getElementById("error_discount").innerHTML= '';
+        
+        }   
+      }
+      else{
+        document.getElementById("error_discount").innerHTML= '';
+        
+      }
+    };
+   
+    $('#button_edit').click(function(){
+    if($('#error_discount').text() ===''){
+      $('.simple_form edit_client').submit();
+    }
+  })
+  })
 
+</script>
 
 <script type="text/javascript">
   $(document).ready(function() {
