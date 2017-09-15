@@ -20,9 +20,12 @@ class ClientMail < ActiveRecord::Base
 		emails = client.email_ids
 		@client = client
 		emails.each do |email| 
+			
 			e = Email.find(email)
 			ClientMailer.delay.client_mail(self, e.email)
+
 		end
+		AdminMailer.delay.new_adminreminder
 
 	end
 # 	def send_reminder

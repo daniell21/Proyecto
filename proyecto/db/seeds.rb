@@ -5,10 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Constant.create(name: 'monthlyPayment')
-Constant.create(name: 'oldMonthlyPayment')
-Constant.create(name: 'installPayment')
-Constant.create(name: 'completePayment')
-Constant.create(name: 'reactivationPayment')
-Constant.create(name: 'tax')
+Rate.create(name: 'monthlyPayment', amount: 0)
+Rate.create(name: 'oldMonthlyPayment', amount: 0)
+Rate.create(name: 'installPayment', amount: 0)
+Rate.create(name: 'completePayment', amount: 0)
+Rate.create(name: 'reactivationPayment', amount: 0)
+Discount.create(name: 'Fidelidad', percentage: 0)
+Discount.create(name: 'Volumen', percentage: 0)
 

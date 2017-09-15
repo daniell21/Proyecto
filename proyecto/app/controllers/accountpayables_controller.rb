@@ -36,6 +36,7 @@ class AccountpayablesController < ApplicationController
   # POST /accountpayables
   # POST /accountpayables.json
   def create
+    accountpayable_params[:amountPaid].to_s.gsub!(',', '.')
     @accountpayable = Accountpayable.new(accountpayable_params)
 
     respond_to do |format|
@@ -53,6 +54,7 @@ class AccountpayablesController < ApplicationController
   # PATCH/PUT /accountpayables/1.json
   def update
     respond_to do |format|
+      accountpayable_params[:amountPaid].to_s.gsub!(',', '.')
       if @accountpayable.update(accountpayable_params)
         format.html { redirect_to @accountpayable}
         format.json { render :show, status: :ok, location: @accountpayable }

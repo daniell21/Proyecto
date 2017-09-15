@@ -44,8 +44,8 @@ class ClientsController < ApplicationController
   # POST /clients
   # POST /clients.json
   def create
+    client_params[:specialDiscount].to_s.gsub!(',', '.')
     @client = Client.new(client_params)
-    
 
     respond_to do |format|
       if @client.save
@@ -64,6 +64,7 @@ class ClientsController < ApplicationController
   def update
     params[:client][:discount_ids] ||=[]
     respond_to do |format|
+      client_params[:specialDiscount].to_s.gsub!(',', '.')
       if @client.update(client_params)
         format.html { redirect_to @client, notice: 'El Cliente fue Actualizado Exitosamente.' }
         format.json { render :show, status: :ok, location: @client }

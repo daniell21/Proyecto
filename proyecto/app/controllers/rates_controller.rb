@@ -24,6 +24,7 @@ class RatesController < ApplicationController
   # POST /rates
   # POST /rates.json
   def create
+    rate_params[:amount].to_s.gsub!(',', '.')
     @rate = Rate.new(rate_params)
 
     respond_to do |format| 
@@ -41,6 +42,7 @@ class RatesController < ApplicationController
   # PATCH/PUT /rates/1.json
   def update
     respond_to do |format|
+     rate_params[:amount].to_s.gsub!(',', '.')
       if @rate.update(rate_params)
         format.html { redirect_to @rate, notice: 'La Tarifa fue Actualizada.' }
         format.json { render :show, status: :ok, location: @rate }

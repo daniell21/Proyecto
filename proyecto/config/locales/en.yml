@@ -19,5 +19,21 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+#en:
+ # hello: "Hello world"
+
+  en:
+
+  date:
+    formats:
+      default: "%m/%d/%Y"
+
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M:%S"
+
+  number:
+    format:
+      separator: ','
+      delimiter: '.'
+      precision: 2

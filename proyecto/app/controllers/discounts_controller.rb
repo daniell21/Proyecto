@@ -24,6 +24,7 @@ class DiscountsController < ApplicationController
   # POST /discounts
   # POST /discounts.json
   def create
+    discount_params[:percentage].to_s.gsub!(',', '.')
     @discount = Discount.new(discount_params)
 
     respond_to do |format|
@@ -41,6 +42,7 @@ class DiscountsController < ApplicationController
   # PATCH/PUT /discounts/1.json
   def update
     respond_to do |format|
+      discount_params[:percentage].to_s.gsub!(',', '.')
       if @discount.update(discount_params)
         format.html { redirect_to @discount}
         format.json { render :show, status: :ok, location: @discount }

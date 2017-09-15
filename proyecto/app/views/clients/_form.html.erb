@@ -1,35 +1,69 @@
 
+<script type="text/javascript">
+  $(document).ready(function() {
+    var discount = document.getElementById("client_specialDiscount");
+  
+    discount.value = discount.value.replace('.',',');
+    discount.addEventListener('keyup', validate_discount, true);
+    function validate_discount(){
+      var regex_amount = /^[0-9]+([,][0-9]+)?$/;
+      if (!(discount.value.match(regex_amount))) {
+        if(discount.value!=''){
+          var msg = 'Este campo debe ser numérico y sólo admite una coma.';
+          document.getElementById("error_discount").innerHTML= msg;
+        }
+        else{
+          document.getElementById("error_discount").innerHTML= '';
+        
+        }   
+      }
+      else{
+        document.getElementById("error_discount").innerHTML= '';
+        
+      }
+    };
+   
+    $('#button_edit').click(function(){
+    if($('#error_discount').text() ===''){
+      $('.simple_form edit_client').submit();
+    }
+  })
+  })
+
+</script>
+
+
 <%= simple_form_for(@client) do |f| %>
   <%= f.error_notification %>
   
        <div class="row">
         <div class="col-xs-6">
-          <%= f.input :rif, as: :integer, placeholder: 'RIF', label: 'RIF', error: 'El RIF debe ser Numérico (9 digitos)'%>
+          <%= f.input :rif, placeholder: 'RIF', label: 'RIF', error: 'El RIF debe ser Numérico (9 digitos)', input_html: { autocomplete: 'off' }  %>
         </div>
       
         <div class="col-xs-6">
-            <%= f.input :profitCode,  as: :integer,placeholder: 'Código Profit', label: 'Código Profit', error: 'El Código debe ser Numérico (6 digitos)'%>
+            <%= f.input :profitCode,  as: :integer,placeholder: 'Código Profit', label: 'Código Profit', error: 'El Código debe ser Numérico (6 digitos)', input_html: { autocomplete: 'off' }  %>
         </div>
       </div>
       <br>
       <br>
       <div class="row">
         <div class="col-xs-6">
-          <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', error: 'Debe ingresar el nombre del Cliente' %>
+          <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', error: 'Debe ingresar el nombre del Cliente', input_html: { autocomplete: 'off' }   %>
         </div>
         <div class="col-xs-6">
-            <%= f.input :socialReason, placeholder: 'Razón Social', label: 'Razón Social', error: 'Debe ingresar la Razón Social del Cliente' %>
+            <%= f.input :socialReason, placeholder: 'Razón Social', label: 'Razón Social', error: 'Debe ingresar la Razón Social del Cliente', input_html: { autocomplete: 'off' }   %>
         </div>
       </div>
       <br>
       <br>
       <div class="row">
         <div class="col-md-6">
-              <%= f.input :localAmount, label: "Numero locales", error: 'Este campo debe ser Numérico'%>
+              <%= f.input :localAmount, label: "Numero locales", error: 'Este campo debe ser Numérico', input_html: { autocomplete: 'off' }  %>
         </div>
         
         <div class="col-xs-6">
-          <%= f.input :state, placeholder: 'Estado', label: 'Estado', error: 'Debe ingresar el Estado del Cliente' %>
+          <%= f.input :state, placeholder: 'Estado', label: 'Estado', error: 'Debe ingresar el Estado del Cliente', input_html: { autocomplete: 'off' } %>
         </div>
         
       </div>
@@ -66,8 +100,9 @@
 
         </div>
          <div class="col-md-3">
-              <%= f.input :specialDiscount,  type: "number",  label: "Descuento Especial",
-                  include_blank: "Seleccionar", error: 'Este campo debe ser Numérico'%>
+              <%= f.input :specialDiscount, as: :string, label: "Descuento Especial",
+                  include_blank: "Seleccionar", error: 'Este campo debe ser Numérico', input_html: { autocomplete: 'off' }  %>
+              <span id="error_discount" style="color:red"></span>
         </div>
         
       </div>
@@ -82,14 +117,16 @@
        
         
       </div> 
-     
+      
 
 
 <br>
   <div ALIGN=right>   
     <br>
       <div class="actions">
-      <%=image_submit_tag("addclient.ico",  title: "Añadir Cliente")%>
+       <%= f.button :button, "Crear Cliente" , id: "button_edit"%>
       </div>
   </div>
 <% end %>
+<br>
+<br>

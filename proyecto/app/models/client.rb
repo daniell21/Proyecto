@@ -13,7 +13,11 @@ class Client < ActiveRecord::Base
   validates :rif, presence: true, uniqueness: true , length: { minimum: 9 }
   validates :profitCode, presence: true, length: { minimum: 6 }, uniqueness: true
   validates :localAmount, presence: true
-  
+
+  validates :specialDiscount, format: { with: /\A-?[0-9]+([,\.][0-9]*)?\z/,
+    message: "only allows letters" }
+
+  #before_update :sp
 
   
   validates_numericality_of :rif
@@ -21,9 +25,9 @@ class Client < ActiveRecord::Base
   validates_numericality_of :profitCode
   validates_numericality_of :specialDiscount, :allow_blank => true
   #before_save :country_name
-  before_save :calculateCode 
- 
 
+ 
+  
   #def validateDiscounts?
     #contador = 0
     #discounts.each do |discount|
@@ -31,9 +35,7 @@ class Client < ActiveRecord::Base
     #end
     #if contador == 2
       #return true
-    #end
-  #end
-
+    
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
@@ -94,7 +96,9 @@ end
    private
 def calculateCode
   #self.total = Settings.monthlyPayment + retentioniva
+
   self.code = country + state + profitCode
+  
 end
   
 

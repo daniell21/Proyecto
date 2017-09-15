@@ -35,6 +35,7 @@ helper_method :sort_column, :sort_diection
   # POST /accountreceivables
   # POST /accountreceivables.json
   def create
+     accountreceivable_params[:amountPaid].to_s.gsub!(',', '.')
     @accountreceivable = Accountreceivable.new(accountreceivable_params)
     #@accountreceivable.proofPayment = params[:proofPayment]
     respond_to do |format|
@@ -53,6 +54,7 @@ helper_method :sort_column, :sort_diection
   # PATCH/PUT /accountreceivables/1.json
   def update
     respond_to do |format|
+      accountreceivable_params[:amountPaid].to_s.gsub!(',', '.')
       if @accountreceivable.update(accountreceivable_params)
         if current_user.role == "client"
           format.html { redirect_to @accountreceivable, notice: 'La Cuenta fue Registrada.' }
