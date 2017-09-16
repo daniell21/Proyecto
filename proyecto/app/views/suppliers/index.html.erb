@@ -1,4 +1,4 @@
-
+<br>
 <p id="notice"><%= notice %></p>
 
 <h1>Proveedores</h1>
@@ -92,11 +92,10 @@
 <%= will_paginate %>
 
 
+
 <div ALIGN=right>
-<%= link_to image_tag('/assets/add.ico',  title: "Nuevo Proveedor"), new_supplier_path %>
-
-
-</div>
+    <%= link_to 'Nuevo Proveedor', new_supplier_path, :class => 'btn btn-default btn'  %>
+    </div>
 
 <script>
 function myFunction() {

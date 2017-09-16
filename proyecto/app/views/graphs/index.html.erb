@@ -4,60 +4,21 @@
 <%= link_to 'Monto facturado Vs Monto Pagado', graphs_show_amountPaid_path, :class => 'btn btn-default btn'  %>
 <%= link_to 'Conceptos de pago', graphs_show_accountTypes_path, :class => 'btn btn-default btn'  %>
 <%= link_to 'Clientes Deudores', graphs_show_clientsDebtors_path, :class => 'btn btn-default btn'  %>
-<%= link_to 'Insalaciones', graphs_show_facilities_path, :class => 'btn btn-default btn'  %>
-	<h2>Cantidad de Cuentas por Cliente</h2>
-	<div class="row">
-		<div class="col-xs-12">
-			
+<%= link_to 'Instalaciones', graphs_show_facilities_path, :class => 'btn btn-default btn'  %>
+	<h2>Cantidad de cuentas por Concepto</h2>
+
+		<div class="row">
+			<div class="col-xs-12">
+				
 				<div id="orders_chart" style="width: 1000px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivables_count, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", refresh: 60   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivablesRatesPercentage, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", refresh: 60, download: true   %></div>
+			</div>
 		</div>
-		
-	</div>
 	<br>
 		<br>
 		<br>
 
-		<div class="row">
-		
-			<div class="col-xs-12">	
-				<table class="table table-striped">
-					<thead>
-				    <tr>
-				    <th>CodigoProfit </th>
-				    
-				      <th>Cliente</th>
-				    
-				      <th>Mes a Pagar</th>
-				    
-				    <th>Fecha</th>
-				      <th>Pagada</th>
-				      <th>Concepto</th>
-				      
-				      <th>Monto Pagado</th>
-				      
-				    </tr>
-					</thead>
-					<tbody>
-					<%@accountreceivables = Accountreceivable.all%>
-				    <% @accountreceivables.each do |accountreceivable| %>
-				    	<%@rate = Rate.find(accountreceivable.rate_id)%>
-				      	<tr>
-				        
-				        	<th><%= accountreceivable.profitNumber %></th>
-				            <td><%= accountreceivable.client.name %></td>
-				            <td><%= accountreceivable.month %></td>
-				         	<td><%= accountreceivable.paid%></td>
-				          	<td><%= accountreceivable.date %></td>
-				          	<td><%= accountreceivable.paid %></td>
-				          	<td><%= @rate.name %></td>   
-				      </tr>
-				    <% end %>
-				  	</tbody>
-				</table>
-
-			</div>
 					
 
 		</div>
@@ -69,7 +30,7 @@
 				    <tr>
 				    <th>Cliente </th>
 				    
-				      <th>Numero de cuentas</th>
+				      <th>Numero de cuentas</th> 
 				    
 				    </tr>
 					</thead>
@@ -93,22 +54,6 @@
 		</div>
 		
 		<br><br>
-		<h2>Cantidad de cuentas por Concepto</h2>
-
-		<div class="row">
-			<div class="col-xs-12">
-				
-				<div id="orders_chart" style="width: 1000px; height: 300px;
-				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivablesRatesPercentage, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", refresh: 60, download: true   %></div>
-			</div>
-		</div>
-		<div class="row">
-		<%@clients = Client.all%>
-		<%@clients.each do |client|%>
-
-		<%end%>
-		</div>
-			
+		
 			
 	

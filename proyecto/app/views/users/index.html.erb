@@ -58,7 +58,6 @@
           <%if user.role == "client"%>
           <td>Cliente</td>
           <%end%>
-          <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Usuario"), user %></td>
           <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Usuario"), edit_user_path(user) %></td>
           <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Usuario"), user, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
         </tr>

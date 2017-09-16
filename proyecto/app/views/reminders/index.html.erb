@@ -1,7 +1,8 @@
+<br>
 
-
-<p id="notice"><%= notice %></p>
-
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
 <h1>Recordatorios</h1>
 
 <div id="menu-element" class="well-separator">
@@ -56,12 +57,10 @@
       <% end %>
     </tbody>
   </table>
+<div align="right">
+  <%= link_to 'Crear Recordatorio', new_reminder_path, :class => 'btn btn-default btn'  %>
+  </div>
 
-<div ALIGN=right>
-<%= link_to image_tag('/assets/add.ico',  title: "Añadir Recordatorio"), new_reminder_path %>
-
-
-</div>
 
 
 <script>

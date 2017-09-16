@@ -1,8 +1,19 @@
 	
 
 
-	<h2>Top 10 Clientes deudores (Por monto adeudado)</h2>
+	<h2>Top 10 Clientes deudores</h2>
 
+	<select class="form-control" >
+			   
+            <option>Seleccione tipo</option> 
+            <option id="select1">Por Monto Adeudado</option>
+            <option id="select2">Por Meses Adeudados</option>
+            
+
+</select> 
+<br><br>
+	<div class="select1 box">
+	<h2>Top 10 Clientes deudores (Por monto adeudado)</h2>
 	<div class="row">
 		<div class="col-xs-6">
 			
@@ -17,8 +28,53 @@
 				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= line_chart @topDebtorsbyAmount, label: "Deuda Bs", xtitle: "Clientes", ytitle: "Bolivares", refresh: 60, legend: true   %></div>
 		</div>
 		
+	
+<br><br>
+	
+		
+			<div class="col-xs-12">	
+				<table class="table table-striped">
+					<thead>
+				    <tr>
+				    <th>CodigoProfit </th>
+				    
+				      <th>Cliente</th>
+				    
+				      <th>Mes a Pagar</th>
+				    
+				    <th>Fecha</th>
+				      <th>Pagada</th>
+				      <th>Concepto</th>
+				      
+				      <th>Monto Pagado</th>
+				      
+				    </tr>
+					</thead>
+					<tbody>
+					<%@accountreceivables = Accountreceivable.all%>
+				    <% @accountreceivables.each do |accountreceivable| %>
+				    	<%@rate = Rate.find(accountreceivable.rate_id)%>
+				      	<tr>
+				        
+				        	<th><%= accountreceivable.profitNumber %></th>
+				            <td><%= accountreceivable.client.name %></td>
+				            <td><%= accountreceivable.month %></td>
+				         	<td><%= accountreceivable.paid%></td>
+				          	<td><%= accountreceivable.date %></td>
+				          	<td><%= accountreceivable.paid %></td>
+				          	<td><%= @rate.name %></td>   
+				      </tr>
+				    <% end %>
+				  	</tbody>
+				</table>
+
+			</div>
+					
+
+		</div>
 	</div>
 	<br><br>
+	<div class="select2 box">
 	<h2>Top 10 Clientes deudores (Por meses adeudados)</h2>
 	<div class="row">
 		<div class="col-xs-6">
@@ -35,6 +91,7 @@
 		</div>
 		
 	</div>
+	</div>
 	<br>
 	<div ALIGN=right>
 
@@ -42,3 +99,28 @@
 </div>
 <br>
 <br>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            if($(this).attr("id")=="select1"){
+                $(".box").not(".select1").hide();
+                $(".select1").show();
+            }
+            else if($(this).attr("id")=="select2"){
+                $(".box").not(".select2").hide();
+                $(".select2").show();
+            }
+            else if($(this).attr("id")=="select3"){
+                $(".box").not(".select3").hide();
+                $(".select3").show();
+            }
+
+            else{
+                $(".box").hide();
+            }
+        });
+    }).change();
+});
+</script>

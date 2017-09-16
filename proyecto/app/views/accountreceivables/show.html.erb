@@ -1,6 +1,14 @@
-
-<p id="notice"><%= notice %></p>
+<br>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), accountreceivables_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
 <h1>Cuenta por Cobrar</h1>
+</div>
+</div>
+<p id="notice"><%= notice %></p>
+
 <br>
 <div ALIGN=center>
 <p>
@@ -144,11 +152,5 @@
 
  <%# link_to 'Edit', edit_accountreceivable_path(@accountreceivable) %> 
 
-<div ALIGN=right>
-<%if current_user.role == "client"%>
-<%= link_to 'Atrás', accountreceivables_path, :class => 'btn btn-default btn' %>
-<%else%>
-<%= link_to 'Atrás', accountreceivables_path, :class => 'btn btn-default btn' %>
-<%end%>
-</div>
+
 

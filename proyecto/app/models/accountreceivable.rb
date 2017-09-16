@@ -13,8 +13,8 @@ validates :paymentType, presence: true, on: :update
 validates :month, presence: true
 validates :bank, presence: true, on: :update
 validates :amountPaid, presence: true, on: :update
-validates :profitCode, presence: true
-validates :profitNumber, presence: true
+validates :profitCode, presence: true, uniqueness: true
+validates :profitNumber, presence: true, uniqueness: true
 
  validates_numericality_of :amountPaid, :allow_blank => true
  validates_numericality_of :transferNumber, :allow_blank => true
@@ -48,38 +48,11 @@ validates :profitNumber, presence: true
 
 
 
-
-
-
-  def validateTransferNumber
-    self.transferNumber = transferNumber.to_s.gsub(',', '.').to_i
-  end
-  def validateDepositNumber
-    self.depositNumber = depositNumber.to_s.gsub(',', '.').to_i
-  end
-  def validateTransferNumberClient
-    self.transferNumberClient = transferNumberClient.to_s.gsub(',', '.').to_i
-  end
-  def validateCheckNumber
-    self.checkNumber = checkNumber.to_s.gsub(',', '.').to_i
-  end
-  def validateProfitCode
-    self.profitCode = profitCode.to_s.gsub(',', '.').to_i
-  end
-  def validateProfitNumber
-    self.profitNumber = profitNumber.to_s.gsub(',', '.').to_i
-  end
-  def validateElemetricaAccount
-    self.elemetricaAccount = elemetricaAccount.to_s.gsub(',', '.').to_i
-  end
-  def validateClientAccount
-    self.clientAccount = clientAccount.to_s.gsub(',', '.').to_i
-  end
   
   def validateAmountPaid
     if amountPaid
-      amount = amountPaid.to_s.gsub(',', '.').to_f
-      self.amountPaid = ActionController::Base.helpers.number_with_precision(amount, :precision => 2)
+
+      self.amountPaid = ActionController::Base.helpers.number_with_precision(amountPaid, :precision => 2)
       calculateBalance
     end
 
