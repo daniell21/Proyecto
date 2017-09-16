@@ -57,10 +57,10 @@ helper_method :sort_column, :sort_diection
       accountreceivable_params[:amountPaid].to_s.gsub!(',', '.')
       if @accountreceivable.update(accountreceivable_params)
         if current_user.role == "client"
-          format.html { redirect_to @accountreceivable, notice: 'La Cuenta fue Registrada.' }
+          format.html { redirect_to @accountreceivable, notice: 'La Cuenta fue Registrada Exitosamente.' }
           format.json { render :show, status: :ok, location: @accountreceivable }
         else
-          format.html { redirect_to @accountreceivable, notice: 'La Cuenta fue actualizada.' }
+          format.html { redirect_to @accountreceivable, notice: 'La Cuenta fue Actualizada Exitosamente.' }
           format.json { render :show, status: :ok, location: @accountreceivable }
         end
       else
@@ -75,7 +75,7 @@ helper_method :sort_column, :sort_diection
   def destroy
     @accountreceivable.destroy
     respond_to do |format|
-      format.html { redirect_to accountreceivables_url, notice: 'Ha Eliminado una Cuenta.'}
+      format.html { redirect_to accountreceivables_url, notice: 'La cuenta fue Eliminada Exitosamente.'}
       format.json { head :no_content }
     end
   end

@@ -41,7 +41,7 @@ class AccountpayablesController < ApplicationController
 
     respond_to do |format|
       if @accountpayable.save
-        format.html { redirect_to @accountpayable}
+        format.html { redirect_to @accountpayable, notice: 'La Cuenta fue Creada Exitosamente.'}
         format.json { render :show, status: :created, location: @accountpayable }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class AccountpayablesController < ApplicationController
     respond_to do |format|
       accountpayable_params[:amountPaid].to_s.gsub!(',', '.')
       if @accountpayable.update(accountpayable_params)
-        format.html { redirect_to @accountpayable}
+        format.html { redirect_to @accountpayable, notice: 'La Cuenta fue Registrada Exitosamente.'}
         format.json { render :show, status: :ok, location: @accountpayable }
       else
         format.html { render :edit }
@@ -70,7 +70,7 @@ class AccountpayablesController < ApplicationController
   def destroy
     @accountpayable.destroy
     respond_to do |format|
-      format.html { redirect_to accountpayables_url}
+      format.html { redirect_to accountpayables_url, notice: 'La Cuenta fue Eliminada Exitosamente.'}
       format.json { head :no_content }
     end
   end

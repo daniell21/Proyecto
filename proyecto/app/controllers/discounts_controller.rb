@@ -29,7 +29,7 @@ class DiscountsController < ApplicationController
 
     respond_to do |format|
       if @discount.save
-        format.html { redirect_to @discount}
+        format.html { redirect_to @discount, notice: 'El Descuento fue Creado Exitosamente.'}
         format.json { render :show, status: :created, location: @discount }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class DiscountsController < ApplicationController
     respond_to do |format|
       discount_params[:percentage].to_s.gsub!(',', '.')
       if @discount.update(discount_params)
-        format.html { redirect_to @discount}
+        format.html { redirect_to @discount, notice: 'El Descuento fue Actualizado Exitosamente.'}
         format.json { render :show, status: :ok, location: @discount }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class DiscountsController < ApplicationController
   def destroy
     @discount.destroy
     respond_to do |format|
-      format.html { redirect_to discounts_url}
+      format.html { redirect_to discounts_url, notice: 'El Descuento fue Eliminado Exitosamente.'}
       format.json { head :no_content }
     end
   end

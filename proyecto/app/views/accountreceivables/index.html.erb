@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
 
   <%if current_user.role == "client" %>
   <h1>Registro de Pagos</h1>

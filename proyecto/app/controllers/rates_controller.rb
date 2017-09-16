@@ -44,11 +44,11 @@ class RatesController < ApplicationController
     respond_to do |format|
      rate_params[:amount].to_s.gsub!(',', '.')
       if @rate.update(rate_params)
-        format.html { redirect_to @rate, notice: 'La Tarifa fue Actualizada.' }
+        format.html { redirect_to @rate, notice: 'La Tarifa fue Actualizada Exitosamente.' }
         format.json { render :show, status: :ok, location: @rate }
       else
         format.html { render :edit }
-        format.json { render json: @rate.errors, status: :unprocessable_entity, notice: 'HAs fallado' }
+        format.json { render json: @rate.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -58,7 +58,7 @@ class RatesController < ApplicationController
   def destroy
     @rate.destroy
     respond_to do |format|
-      format.html { redirect_to rates_url, notice: 'Ha Eliminado una Tarifa.' }
+      format.html { redirect_to rates_url, notice: 'La Tarifa fue Eliminada Exitosamente.' }
       format.json { head :no_content }
     end
   end

@@ -1,5 +1,7 @@
 <br>
-<p id="notice"><%= notice %></p>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
 
 <h1>Proveedores</h1>
 

@@ -80,7 +80,7 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Ha Eliminado un Cliente.' }
+      format.html { redirect_to clients_url, notice: 'El Cliente fue Eliminado Exitosamente.' }
       format.json { head :no_content }
     end
   end

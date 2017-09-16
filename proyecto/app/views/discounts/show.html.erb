@@ -1,4 +1,7 @@
 <br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
 <div class="row">
 <div class="col-xs-1" style="margin-top : 6px;">
 <%= link_to image_tag('/assets/back.ico',  title: "Atrás"), discounts_path %>
@@ -24,7 +27,3 @@
 </div>
 
 </p>
-<div ALIGN=right>
-
-<%= link_to 'Atrás', discounts_path, :class => 'btn btn-default btn' %>
-</div>

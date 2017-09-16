@@ -28,7 +28,7 @@ class RemindersController < ApplicationController
 
     respond_to do |format|
       if @reminder.save
-        format.html { redirect_to @reminder, notice: 'Reminder was successfully created.' }
+        format.html { redirect_to @reminder, notice: 'El Recordatorio fue Creado Exitosamente.' }
         format.json { render :show, status: :created, location: @reminder }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class RemindersController < ApplicationController
   def update
     respond_to do |format|
       if @reminder.update(reminder_params)
-        format.html { redirect_to @reminder, notice: 'Reminder was successfully updated.' }
+        format.html { redirect_to @reminder, notice: 'El Recordatorio fue Actualizado Exitosamente.' }
         format.json { render :show, status: :ok, location: @reminder }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class RemindersController < ApplicationController
   def destroy
     @reminder.destroy
     respond_to do |format|
-      format.html { redirect_to reminders_url, notice: 'Reminder was successfully destroyed.' }
+      format.html { redirect_to reminders_url, notice: 'El Recordatorio fue Eliminado Exitosamente.' }
       format.json { head :no_content }
     end
   end

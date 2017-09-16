@@ -28,7 +28,7 @@ class ClientMailsController < ApplicationController
 
     respond_to do |format|
       if @client_mail.save
-        format.html { redirect_to @client_mail}
+        format.html { redirect_to @client_mail, notice: 'El Correo fue Enviado Exitosamente.'}
         format.json { render :show, status: :created, location: @client_mail }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ClientMailsController < ApplicationController
   def update
     respond_to do |format|
       if @client_mail.update(client_mail_params)
-        format.html { redirect_to @client_mail}
+        format.html { redirect_to @client_mail, notice: 'El Correo fue Actualizado Exitosamente.'}
         format.json { render :show, status: :ok, location: @client_mail }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ClientMailsController < ApplicationController
   def destroy
     @client_mail.destroy
     respond_to do |format|
-      format.html { redirect_to client_mails_url}
+      format.html { redirect_to client_mails_url, notice: 'El Correo fue Eliminado Exitosamente.'}
       format.json { head :no_content }
     end
   end

@@ -1,5 +1,8 @@
 <br>
- <p id="notice"><%= notice %></p>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<h1>Recordatorios</h1>
 
 <h1>Tarifas</h1>
 
@@ -66,7 +69,7 @@
 <div align="right">
   <%= link_to 'Nueva Tarifa', new_rate_path, :class => 'btn btn-default btn'  %>
   </div>
-
+<br>
 
     <script>
 function myFunction() {

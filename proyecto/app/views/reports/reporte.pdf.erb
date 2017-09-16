@@ -19,14 +19,22 @@
 
 
 				<div ALIGN=center>
-					<%patchPc = "/home/daniel/Documentos/Proyecto/proyecto/public" + report.chart_url%>
+					<%if report.chart_url.nil?.to_yaml%>
 					
-					 <img src=<%= patchPc%>>
-					</p>
-					<p>
-					  <h3><%= report.content %></h3>
-					  
-					</p>
+						<p>
+						  <h3><%= report.content %></h3>
+						  
+						</p>
+					<%else%>
+						<%patchPc = "/home/daniel/Documentos/Proyecto/proyecto/public" + report.chart_url%>
+						
+						 <img src=<%= patchPc%>>
+						
+						<p>
+						  <h3><%= report.content %></h3>
+						  
+						</p>
+					<%end%>
 
 					
 
