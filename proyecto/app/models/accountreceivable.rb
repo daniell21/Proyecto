@@ -7,7 +7,6 @@ belongs_to :rate
 mount_uploader :document, DocumentUploader
 validates :client_id, presence: true
 validates :rate_id, presence: true
-validates :date, presence: true, on: :update
 validates :status, presence: true
 validates :paymentType, presence: true, on: :update
 validates :month, presence: true
@@ -35,6 +34,7 @@ validates :profitNumber, presence: true, uniqueness: true
   before_save :calculateTotalAmountPerceive
   after_save :send_notification
   before_save :validateAmountPaid
+  after_save :setDate
 
 
   def self.to_csv
@@ -318,6 +318,15 @@ def send_notification
   #             @accountreceivable.month = "enero"
   #             @accountreceivable.save
     
+end
+
+def setDate
+ 
+  if self.amountPaid.nil?
+  else
+      self.update_column(:paid, true)
+      self.update_column(:date, Time.now.strftime("%d/%m/%Y %H:%M"))
+  end
 end
 
 end

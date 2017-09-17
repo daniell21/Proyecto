@@ -59,16 +59,14 @@
 						  </button>
 						  <div id="demoAcc" class="w3-hide  " >
 						    
-						    <li style="list-style:none;" ><%= link_to 'Descuentos' , discounts_path%></li>
-						    <li style="list-style:none;" ><%= link_to 'Gestión de Roles' , users_path%></li>
-						    <li style="list-style:none;" ><%= link_to 'Tarifas', rates_path %></li>
-						    <li style="list-style:none;" ><%= link_to 'Recordatorios', reminders_path %></li>
+						    <li style="list-style:none;" ><%= active_link_to 'Descuentos' , discounts_path%></li>
+						    <li style="list-style:none;" ><%= active_link_to 'Gestión de Roles' , users_path%></li>
+						    <li style="list-style:none;" ><%= active_link_to 'Tarifas', rates_path %></li>
+						    <li style="list-style:none;" ><%= active_link_to 'Recordatorios', reminders_path %></li>
 						  </div>
 						  <li style="list-style:none;">
 							<%= active_link_to 'Configuración', controller: 'setup' %>
 							<ul style="padding-left: 0; list-style:none;">
-							<li><a href="#">ryryfy</a></li>
-							<li><a href="#">ryryfy</a></li>
 							<li><a href="#">ryryfy</a></li>
 							</ul>
 						</li>

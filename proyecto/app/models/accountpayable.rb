@@ -1,13 +1,12 @@
 class Accountpayable < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   belongs_to :supplier
-  validates :descripcion, presence: true #uniqueness: true
   validates :amountPaid, presence: true
-  validates :date, presence: true
-  validates :supplier, presence: true
+  validates :supplier_id, presence: true
   validates :profitNumber, presence: true, length: { minimum: 6 }, uniqueness: true
   validates_numericality_of :profitNumber
   validates_numericality_of :amountPaid
+  after_save :setDate
   
 
 
@@ -66,6 +65,13 @@ private
       include ActionView::Helpers::NumberHelper
     end.new
   end
+
+  def setDate
+ 
+  
+      self.update_column(:date, Time.now.strftime("%d/%m/%Y %H:%M"))
+  
+end
 
 end
 

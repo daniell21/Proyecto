@@ -215,6 +215,20 @@ a {
         }
     }
 }
+.nav div li {
+  background-color: lighten(#142c54, 5%);
+    a {
+    color: darken(white, 15%);
+        &.active, &.active:hover, &.active:focus {
+          padding-left: 25px;
+          color: lighten(black, 15%);
+            background-color: #ededed;
+        }
+        &:hover, &:focus {
+          background-color: darken(#142c54, 5%);
+        }
+    }
+}
 
 
 .sidebar .arrow {
@@ -378,6 +392,13 @@ select {
         display: block;
         padding: 10px 15px;
       }
+    }
+  }
+  div {
+    li{
+      color: #fff;
+        display: block;
+        padding: 10px 15px;
     }
   }
 }
