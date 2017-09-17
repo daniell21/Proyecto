@@ -40,6 +40,10 @@ es:
         follow_request: Enviar correo electrónico cuando alguien solicita seguirte
         mention: Enviar correo electrónico cuando alguien te mencione
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
+      user:
+        email: "Correo"
+        login: Usuario
+        password: Contraseña
     error_notification:
       default_message: 'Por favor revise los siguientes problemas:'
     'no': 'No'

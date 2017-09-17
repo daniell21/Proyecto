@@ -60,11 +60,23 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 /*flash*/
+.alert>p, .alert>ul {
+    margin-bottom: 0;
+    list-style: none;
+    margin-left: -34px;
+}
+.alert {
+    padding: 15px;
+    margin-bottom: 22px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
 .alert-error {
     background-color: #f2dede;
     border-color: #ebccd1;
     color: #a94442;
     text-align: center;
+    font-weight: bold;
  }
 
 .alert-alert {
@@ -72,6 +84,7 @@ input[type=number] {
     border-color: #ebccd1;
     color: #a94442;
     text-align: center;
+    font-weight: bold;
  }
 
 .alert-success {
@@ -79,6 +92,7 @@ input[type=number] {
     border-color: #d6e9c6;
     color: #3c763d;
     text-align: center;
+    font-weight: bold;
  }
 
 .alert-notice {
@@ -86,6 +100,7 @@ input[type=number] {
     border-color: #d6e9c6;
     color: #3c763d;
     text-align: center;
+    font-weight: bold;
  }
 
 .btn-file input[type=file] {
@@ -175,6 +190,7 @@ th {
 .login {
   text-align: center;
   color: #fff;
+  margin-top: 20px;
   .logo {
     max-height: 80px;
     margin: 16px 0px;
@@ -187,6 +203,9 @@ th {
 a {
     color: #fff;
     text-decoration: none;
+}
+a:hover {
+    color: #ff2f2f;
 }
 
 }
