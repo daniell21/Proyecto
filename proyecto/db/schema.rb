@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913023655) do
+ActiveRecord::Schema.define(version: 20170916110053) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -141,6 +141,13 @@ ActiveRecord::Schema.define(version: 20170913023655) do
   create_table "mailreminders", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

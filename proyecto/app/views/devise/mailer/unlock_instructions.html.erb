@@ -1,7 +1,70 @@
-<p>Hola <%= @resource.email %>!</p>
 
-<p>Tu cuenta ha sido bloqueada debido a un excesivo número de inicios de sesión fallidos.</p>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<!--esta etiqueta parece ser la que importa los estilos css al pdf-->
+		<%=wicked_pdf_stylesheet_link_tag 'mail'%>
 
-<p>Haga clic en el enlace de abajo para abrir tu cuenta:</p>
+		<meta charset="Utf-8">
+	</head>
+	<div align="center">
+		<body onload="number_pages()">
+			<table cellpadding="0" cellspacing="0" border="0" id="background-table">
+<tbody>
+	<tr>
+		<td valign="top">
 
-<p><%= link_to 'Desbloquear Cuenta', unlock_url(@resource, unlock_token: @token) %></p>
+		<table cellpadding="0" cellspacing="0" border="0" align="center">
+		<tbody>
+			<tr>
+				<td valign="top" class="header-bar"><div class="graybg">-</div></td>
+				<td valign="top" id="center-banner"><img src="http://elemetrica.com/img/logo-azul-elemetrica-mail.png" alt="Elemétrica" width="250px" /></td>
+				<td valign="top" class="header-bar"><div class="graybg">-</div></td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" align="center">
+		<table cellpadding="0" cellspacing="0" border="0" align="left" id="body-wrapper">
+		<tbody>
+			<tr>
+				<td valign="top" class="body-spacing"><div>&nbsp;</div></td>
+				<td valign="top" class="body-content">
+	
+				<p>Hola <%= @resource.email %>!</p>
+
+				<p>Tu cuenta ha sido bloqueada debido a un excesivo número de inicios de sesión fallidos.</p>
+
+				<p>Haga clic en el enlace de abajo para abrir tu cuenta:</p>
+
+				<p><%= link_to 'Desbloquear Cuenta', unlock_url(@resource, unlock_token: @token) %></p>
+				</td>
+				<td valign="top" class="body-spacing"><div>&nbsp;</div></td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+	</tr>
+	<tr class="blue-background">
+		<td>-</td>
+	</tr>
+	<tr align="center">
+		<td class="footer" align="center">
+			Todos los derechos reservados. Servicios Lealtad TD CA. J-40058569-4.
+		</td>
+	</tr>
+
+</tbody>
+</table>
+			
+		</body>
+	</div>
+	
+
+</html>
+
+
+

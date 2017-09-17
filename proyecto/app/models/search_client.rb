@@ -1,5 +1,5 @@
 class SearchClient < ActiveRecord::Base
-
+	
 	def search_clients
 		clients = Client.all
 

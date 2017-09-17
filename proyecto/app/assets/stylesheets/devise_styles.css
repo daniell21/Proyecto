@@ -7,3 +7,12 @@ element.style {
   color: white;
   font-size: 1.2em;
 }
+
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #ff2f2f;
+  background-color: #fff;
+}

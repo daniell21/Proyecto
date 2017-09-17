@@ -1,4 +1,15 @@
-<h1>Accountpayable Import</h1>
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), accountpayables_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
+<h1>Importar Cuentas</h1>
+</div>
+</div>
 
 <p>Un archivo  Excel puede utilizarse para importar registros. La primera fila debe ser el nombre de columna. Se permiten las siguientes columnas.</p>
 

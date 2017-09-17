@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"> 
     <title>Elemétrica - Sistema Cobranza</title>
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -13,13 +13,14 @@
 	<div class="row login">
 		<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-5">
 			<img class="logo" src="/assets/logo_data.png" />
+			<p class="alert"><%= alert %></p>
 		      <%= yield %>  
 	    </div>
    </div>
 </div>
 
 		
-	<p class="alert"><%= alert %></p>
+	
 
 
 

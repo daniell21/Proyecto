@@ -4,7 +4,7 @@
 
   <div class="field">
 
-    <%= f.input :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: 'Correo Electrónico', label: false %>
+    <%= f.input :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: 'Correo Electrónico', label: false, error: false, error: false   %>
   </div>
 <br>
   <div class="actions">

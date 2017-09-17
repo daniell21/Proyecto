@@ -1,4 +1,15 @@
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), suppliers_path %>
+</div>
+<div class="col-xs-5" style="margin-left : -30px;">
 <h1>Busqueda Avanzada</h1>
+</div>
+</div>
 <%= simple_form_for(@search_supplier) do |s| %>
 
 	<div class="row">
@@ -20,7 +31,6 @@
 	<div ALIGN=right>  
     <br>
 	<%= s.button :submit, "Buscar Proveedor"%>  
-	<%= link_to 'Atrás', suppliers_path, :class => 'btn btn-default btn'  %>
 	</div>
 <%end%>
 

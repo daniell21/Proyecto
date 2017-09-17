@@ -10,32 +10,25 @@ class Client < ActiveRecord::Base
   validates :country, presence: true 
   validates :socialReason, presence: true
   validates :state, presence: true
-  validates :rif, presence: true, uniqueness: true , length: { minimum: 9 }
+  validates :rif, presence: true, uniqueness: true , length: { minimum: 9, maximum: 9}
   validates :profitCode, presence: true, length: { minimum: 6 }, uniqueness: true
   validates :localAmount, presence: true
 
 
 
 
-  #before_update :sp
 
   
   validates_numericality_of :rif
   validates_numericality_of :localAmount
   validates_numericality_of :profitCode
   validates_numericality_of :specialDiscount, :allow_blank => true
-  #before_save :country_name
+
+  before_save :calculateCode
 
  
   
-  #def validateDiscounts?
-    #contador = 0
-    #discounts.each do |discount|
-      #contador = contador + 1
-    #end
-    #if contador == 2
-      #return true
-    
+
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
@@ -105,17 +98,6 @@ end
    #def send_mail
     #ClientMailer.delay.new_client(self)
    #end
-   def country_name
-
-    country = ISO3166::Country[self.country]
-    country.translations[I18n.locale.to_s] || country.name
-    self.completeCountry = country
-    
-    if self.completeCountry == "Venezuela (Bolivarian Republic of)"
-      
-      self.completeCountry = "Venezuela"
-      
-    end
-  end
+ 
 
 end
