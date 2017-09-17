@@ -1,22 +1,22 @@
-<div align="center">
-	<table class="table table-default table-responsive table-striped">
-	    
-	    <tr>
-	        <th style="width: 200px;"> RIF </th>
+
+<h1>Proveedores</h1>
+<table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+    <tr>
+		<th style="width: 200px;"> RIF </th>
 	        <th style="width: 200px;"> Nombre </th>
 	        <th style="width: 200px;"> Correo </th>
 	        <th style="width: 200px;"> Dirección </th>
-				<th colspan="3"></th>
-		</tr>
-       
-	    <tbody>
-			    <% @suppliers.each do |supplier| %>
-			        <td><%= supplier.rif %></td>
-			        <td><%= supplier.name %></td>
-			        <td><%= supplier.email%></td>
-			        <td><%= supplier.address%></td>
-				<%end%>
-
-		</tbody>
-	</table>
-</div>
+    </tr>
+    <%@suppliers = Supplier.all%>
+    <% @suppliers.each do |supplier| %>
+    	<tr>
+        <td><%= supplier.rif %></td>
+        <td><%= supplier.name %></td>
+        <td><%= supplier.email%></td>
+        <td><%= supplier.address%></td>
+	<%end%>
+    <%if @suppliers.size == 0%>
+      No Hay  Proveedores
+    <%end%>
+  </table>

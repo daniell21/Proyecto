@@ -1,22 +1,23 @@
-<div align="center">
-	<table class="table table-default table-responsive table-striped">
-	    
+<h1>Cuentas por Pagar</h1>
+<table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+    <tr>
+		<th style="width: 200px;"> Número Factura </th>
+        <th style="width: 200px;"> Fecha </th>
+        <th style="width: 200px;"> Nombre </th>
+        <th style="width: 200px;"> Descripción </th>
+        <th style="width: 200px;"> Monto </th>
+    </tr>
+    <%@accountpayables = Accountpayable.all%>
+    <% @accountpayables.each do |accountpayable| %>
 	    <tr>
-		    <th style="width: 200px;"> Fecha </th>
-	        <th style="width: 200px;"> Proveedor </th>
-	        <th style="width: 200px;"> Descripción </th>
-	        <th style="width: 200px;"> Monto </th>
-				
-		</tr>
-       
-	    <tbody>
-			     <% @accountpayables.each do |accountpayable| %>
-			        <td><%= accountpayable.date %></td>
-			        <td><%= accountpayable.supplier.name %></td>
-			        <td><%= accountpayable.descripcion%></td>
-			        
-				<%end%>
-
-		</tbody>
-	</table>
-</div>
+        <td><%= accountpayable.profitNumber %></td>
+        <td><%= accountpayable.date %></td>
+        <td><%= accountpayable.supplier.name %></td>
+        <td><%= accountpayable.descripcion %></td>
+        <td><%= number_to_currency(accountpayable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+		<%end%>
+    <%if @accountpayables.size == 0%>
+      No Hay  Cuentas por Pagar
+    <%end%>
+  </table>

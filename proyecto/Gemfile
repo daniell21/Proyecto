@@ -21,7 +21,6 @@ gem "chartkick"
 gem 'groupdate'
 gem 'active_link_to'
 gem 'wicked_pdf'
-#gem 'wkhtmltopdf-binary'
 gem 'wkhtmltopdf-binary-edge'
 gem 'active_record_union'
 gem "mini_magick"

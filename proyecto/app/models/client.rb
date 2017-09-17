@@ -25,7 +25,7 @@ class Client < ActiveRecord::Base
   validates_numericality_of :specialDiscount, :allow_blank => true
 
   before_save :calculateCode
-
+  before_save :country_name
  
   
 
@@ -63,7 +63,6 @@ class Client < ActiveRecord::Base
       client.comment = row["comentario"]
       client.specialcontributor = row["contribuyenteEspecial"]
       client.state = row["estado"]
-      #raise row["completeCountry"].to_yaml
       client.save!
     end
 end
@@ -88,16 +87,21 @@ end
 
    private
 def calculateCode
-  #self.total = Settings.monthlyPayment + retentioniva
 
   self.code = country + state + profitCode
   
 end
+def country_name
+
+    country = ISO3166::Country[self.country]
+    country = country.translations[I18n.locale.to_s]
+    self.completeCountry = country
+    
+   
+  end
   
 
-   #def send_mail
-    #ClientMailer.delay.new_client(self)
-   #end
+
  
 
 end
