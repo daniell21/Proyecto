@@ -15,23 +15,30 @@ class ClientImport
   end
 
   def save
-    if imported_clients.map(&:valid?).all?
-      imported_clients.each(&:save!)
-      true
+    if (file.nil?)
     else
-      imported_clients.each_with_index do |client, index|
-        client.errors.full_messages.each do |message|
-          errors.add :base, "linea #{index+2}: #{message}"
+      if imported_clients.map(&:valid?).all?
+        imported_clients.each(&:save!)
+        true
+      else
+        imported_clients.each_with_index do |client, index|
+          client.errors.full_messages.each do |message|
+            errors.add :base, "linea #{index+2}: #{message}"
+          end
         end
+        false
       end
-      false
     end
   end
 
 
 
   def imported_clients
-    @imported_clients ||= load_imported_clients
+    if (file.nil?)
+      else
+      @imported_clients ||= load_imported_clients
+    end
+   
   end
   
 
@@ -65,6 +72,8 @@ end
 
 
 def open_spreadsheet
+  
+
     case File.extname(file.original_filename)
       when '.csv' then Roo::Csv.new(file.path)
       when '.xls' then Roo::Excel.new(file.path)
@@ -72,6 +81,7 @@ def open_spreadsheet
     else
       raise "Unknown file type: #{file.original_filename}"
     end
+    
   end
  end
 

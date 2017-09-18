@@ -29,7 +29,7 @@
 <%= form_for @supplier_import do |f| %>
   <% if @supplier_import.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@supplier_import.errors.count, "error") %> prohibited this import from completing:</h2>
+      <h2>Se encontraron <%= pluralize(@supplier_import.errors.count, "errores") %> en la importación:</h2>
       <ul>
       <% @supplier_import.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -43,3 +43,4 @@
   </div>
   <div class="buttons"><%= f.submit "Import" %></div>
 <% end %>
+<br>

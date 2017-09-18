@@ -15,21 +15,27 @@ class SupplierImport
   end
 
   def save
-    if imported_suppliers.map(&:valid?).all?
-      imported_suppliers.each(&:save!)
-      true
+    if (file.nil?) 
     else
-      imported_suppliers.each_with_index do |supplier, index|
-        supplier.errors.full_messages.each do |message|
-          errors.add :base, "linea #{index+2}: #{message}"
+      if imported_suppliers.map(&:valid?).all?
+        imported_suppliers.each(&:save!)
+        true
+      else
+        imported_suppliers.each_with_index do |supplier, index|
+          supplier.errors.full_messages.each do |message|
+            errors.add :base, "linea #{index+2}: #{message}"
+          end
         end
+        false
       end
-      false
     end
   end
 
   def imported_suppliers
-    @imported_suppliers ||= load_imported_suppliers
+    if (file.nil?) 
+    else
+      @imported_suppliers ||= load_imported_suppliers
+    end
   end
   
      def load_imported_suppliers

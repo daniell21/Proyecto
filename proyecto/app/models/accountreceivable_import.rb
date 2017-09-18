@@ -15,23 +15,29 @@ class AccountreceivableImport
   end
 
   def save
-    if imported_accountreceivables.map(&:valid?).all?
-       imported_accountreceivables.each(&:save!)
-      true
+    if (file.nil?) 
     else
+      if imported_accountreceivables.map(&:valid?).all?
+         imported_accountreceivables.each(&:save!)
+        true
+      else
 
-      imported_accountreceivables.each_with_index do |accountreceivable, index|
-      
-        accountreceivable.errors.full_messages.each do |message|
-          errors.add :base, "linea #{index+2}: #{message}"
+        imported_accountreceivables.each_with_index do |accountreceivable, index|
+        
+          accountreceivable.errors.full_messages.each do |message|
+            errors.add :base, "linea #{index+2}: #{message}"
+          end
         end
+        false 
       end
-      false 
     end
   end
 
   def imported_accountreceivables
-    @imported_accountreceivables ||= load_imported_accountreceivables
+    if (file.nil?) 
+    else
+      @imported_accountreceivables ||= load_imported_accountreceivables
+    end
   end
   #validar si no existe un cliente o una tarifa
 def load_imported_accountreceivables

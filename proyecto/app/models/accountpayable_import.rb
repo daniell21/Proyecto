@@ -15,23 +15,29 @@ class AccountpayableImport
   end
 
   def save
-    if imported_accountpayables.map(&:valid?).all?
-      imported_accountpayables.each(&:save!)
-      true
+    if (file.nil?) 
     else
+      if imported_accountpayables.map(&:valid?).all?
+        imported_accountpayables.each(&:save!)
+        true
+      else
 
-      imported_accountpayables.each_with_index do |accountpayable, index|
-     
-        accountpayable.errors.full_messages.each do |message|
-          errors.add :base, "linea #{index+2}: #{message}"
+        imported_accountpayables.each_with_index do |accountpayable, index|
+       
+          accountpayable.errors.full_messages.each do |message|
+            errors.add :base, "linea #{index+2}: #{message}"
+          end
         end
+        false
       end
-      false
     end
   end
 
   def imported_accountpayables
-    @imported_accountpayables ||= load_imported_accountpayables
+    if (file.nil?) 
+    else
+      @imported_accountpayables ||= load_imported_accountpayables
+    end
   end
   
 
