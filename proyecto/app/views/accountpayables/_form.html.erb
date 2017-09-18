@@ -36,15 +36,17 @@
     <div class="col-xs-6">
             <%= f.input :profitNumber, as: :integer, placeholder: 'Nṕumero', label: 'Número', error: 'El Código debe ser Numérico (6 digitos)'%>
         </div>
+    <div class="col-md-6"> 
+      <%= f.association :supplier, label: "Proveedor", 
+                  include_blank: "Seleccionar Proveedor", error: 'Debe seleccionar un Proveedor' %>
+    </div>
   </div>
   <br>
   <br>
   <div class="row">
     <div class="col-md-6"> 
-      <%= f.association :supplier, label: "Proveedor", 
-                      include_blank: "Seleccionar Proveedor", error: 'Debe seleccionar un Proveedor' %>
+      <%= f.input :amountPaid, as: :string, type: "number", label: 'Monto Pagado', error: 'Debe ser Númerico' %>
     </div>
-    
     <div class="col-md-6">
       <%= f.input :descripcion, label: 'Descripción' %>
     </div>
@@ -52,9 +54,7 @@
     <br>
     <br>
   <div class="row">
-    <div class="col-md-6"> 
-      <%= f.input :amountPaid, as: :string, type: "number", label: 'Monto Pagado', error: 'Debe ser Númerico' %>
-    </div>
+    
     <div class="col-md-6"> 
                 <%= f.input :comment, placeholder: 'Agregar Comentarios', label: 'Comentarios' %>
             </div>

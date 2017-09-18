@@ -4,20 +4,31 @@
     <tr>
 		<th style="width: 200px;"> Numero de Factura </th>
         <th style="width: 200px;"> Cliente </th>
+        <th style="width: 200px;"> Concepto </th>
+        <th style="width: 200px;"> Mes </th>
+        <th style="width: 200px;"> Estado </th>
+        <th style="width: 200px;"> Tipo de Pago </th>
+        <th style="width: 200px;"> Benco </th>
         <th style="width: 200px;"> Pagada </th>
         <th style="width: 200px;"> Fecha de Pago </th>
-        <th style="width: 200px;"> Mes </th>
         <th style="width: 200px;"> Monto Pagado </th>
+        <th style="width: 200px;"> Comentarios </th>
     </tr>
     <%@accountreceivables = Accountreceivable.all%>
     <% @accountreceivables.each do |accountreceivable| %>
     <tr>
         <td><%= accountreceivable.profitNumber %></td>
         <td><%= accountreceivable.client.name %></td>
+        <td><%= accountreceivable.rate.name %></td>
+        <td><%= accountreceivable.month %></td>
+        <td><%= accountreceivable.status %></td>
+        <td><%= accountreceivable.paymentType %></td>
+        <td><%= accountreceivable.bank %></td>
         <td><%= "Si" if accountreceivable.paid %><%= "No" if !accountreceivable.paid %></td>
         <td><%= accountreceivable.date %></td>
-        <td><%= accountreceivable.month %></td>
+        
         <td><%= number_to_currency(accountreceivable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+        <td><%= accountreceivable.paymentComment %></td>
 	<%end%>
     <%if @accountreceivables.size == 0%>
       No Hay  Cuentas por Cobrar

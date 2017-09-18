@@ -6,6 +6,7 @@
 		<th style="width: 200px;"> RIF </th>
 	        <th style="width: 200px;"> Nombre </th>
 	        <th style="width: 200px;"> Correo </th>
+          <th style="width: 200px;"> Razón Social </th>
 	        <th style="width: 200px;"> Dirección </th>
     </tr>
     <%@suppliers = Supplier.all%>
@@ -14,6 +15,7 @@
         <td><%= supplier.rif %></td>
         <td><%= supplier.name %></td>
         <td><%= supplier.email%></td>
+        <td><%= supplier.socialReason%></td>
         <td><%= supplier.address%></td>
 	<%end%>
     <%if @suppliers.size == 0%>

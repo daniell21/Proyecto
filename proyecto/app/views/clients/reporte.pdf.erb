@@ -3,20 +3,32 @@
 <table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
          style="margin:0 auto;">
     <tr>
-		<th style="width: 200px;"> Código Profit </th>
+		<th style="width: 200px;"> Número </th>
         <th style="width: 200px;"> RIF </th>
         <th style="width: 200px;"> Nombre </th>
+        <th style="width: 200px;"> Razón Social </th>
+        <th style="width: 200px;"> Cantidad Locales </th>
         <th style="width: 200px;"> País </th>
         <th style="width: 200px;"> Estado </th>
+        <th style="width: 200px;"> Conntribuyente Especial </th>
+        <th style="width: 200px;"> Comentarios </th>
+
     </tr>
     <%@clients = Client.all%>
     <% @clients.each do |client| %>
-       <tr link="<%= edit_client_path(client) %>">
-       <td><%= client.code %></td>
+    <div align="center">
+      <tr>
+        <td><%= client.code %></td>
         <td><%= client.rif %></td>
         <td><%= client.name %></td>
+        <td><%= client.socialReason %></td>
+        <td><%= client.localAmount %></td>
         <td><%= client.completeCountry%></td>
         <td><%= client.state%></td>
+        <td><%= "Si" if client.specialcontributor %><%= "No" if !client.specialcontributor %></td>
+        <td><%= client.comment%></td>
+
+    </div>  
 	<%end%>
     <%if @clients.size == 0%>
       No Hay  Clientes

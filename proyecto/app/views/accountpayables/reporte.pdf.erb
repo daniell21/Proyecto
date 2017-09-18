@@ -3,10 +3,12 @@
          style="margin:0 auto;">
     <tr>
 		<th style="width: 200px;"> Número Factura </th>
-        <th style="width: 200px;"> Fecha </th>
-        <th style="width: 200px;"> Nombre </th>
-        <th style="width: 200px;"> Descripción </th>
+        <th style="width: 200px;"> Fecha de Pago </th>
+        <th style="width: 200px;"> Nombre Proveedor</th>
         <th style="width: 200px;"> Monto </th>
+        <th style="width: 200px;"> Descripción </th>
+        <th style="width: 200px;"> Comentarios </th>
+        
     </tr>
     <%@accountpayables = Accountpayable.all%>
     <% @accountpayables.each do |accountpayable| %>
@@ -14,8 +16,10 @@
         <td><%= accountpayable.profitNumber %></td>
         <td><%= accountpayable.date %></td>
         <td><%= accountpayable.supplier.name %></td>
-        <td><%= accountpayable.descripcion %></td>
         <td><%= number_to_currency(accountpayable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+        <td><%= accountpayable.descripcion %></td>
+        <td><%= accountpayable.comment %></td>
+        
 		<%end%>
     <%if @accountpayables.size == 0%>
       No Hay  Cuentas por Pagar
