@@ -15,7 +15,7 @@ class ClientImport
   end
 
   def save
-    if (file.nil?)
+    if (file.nil?) or (@p.nil?) 
     else
       if imported_clients.map(&:valid?).all?
         imported_clients.each(&:save!)
@@ -44,29 +44,33 @@ class ClientImport
 
 def load_imported_clients
    spreadsheet = open_spreadsheet
-    header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).map do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-       
-      client = Client.find_by rif: row["rif"] 
-      client =  Client.new if (Client.find_by rif: row["rif"]).nil?
+   @p = spreadsheet
+   unless @p.nil?
       
-      #client.attributes = row.to_hash.slice(*row.to_hash.keys)
-      client.chargeMonthlyFee = row["cobrarMensualidad"]
-      client.socialReason = row["razonSocial"]
-      client.profitCode = row["codigoProfit"]
-      client.localAmount = row["cantidadLocales"]
-      client.name = row["nombre"]
-      client.completeCountry = row["pais"]
-      client.country = row["pais"]
-      client.oldCustomer = row["clienteAntiguo"]
-      client.rif = row["rif"]
-      client.comment = row["comentario"]
-      client.specialcontributor = row["contribuyenteEspecial"]
-      client.state = row["estado"]
-      #raise row["completeCountry"].to_yaml
-      client
-    end
+      header = spreadsheet.row(1)
+      (2..spreadsheet.last_row).map do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+         
+        client = Client.find_by rif: row["rif"] 
+        client =  Client.new if (Client.find_by rif: row["rif"]).nil?
+        
+        #client.attributes = row.to_hash.slice(*row.to_hash.keys)
+        client.chargeMonthlyFee = row["cobrarMensualidad"]
+        client.socialReason = row["razonSocial"]
+        client.profitCode = row["codigoProfit"]
+        client.localAmount = row["cantidadLocales"]
+        client.name = row["nombre"]
+        client.completeCountry = row["pais"]
+        client.country = row["pais"]
+        client.oldCustomer = row["clienteAntiguo"]
+        client.rif = row["rif"]
+        client.comment = row["comentario"]
+        client.specialcontributor = row["contribuyenteEspecial"]
+        client.state = row["estado"]
+        #raise row["completeCountry"].to_yaml
+        client
+      end
+  end
 end
 
 
@@ -79,7 +83,7 @@ def open_spreadsheet
       when '.xls' then Roo::Excel.new(file.path)
       when '.xlsx' then Roo::Excelx.new(file.path)
     else
-      raise "Unknown file type: #{file.original_filename}"
+      #raise "Unknown file type: #{file.original_filename}"
     end
     
   end

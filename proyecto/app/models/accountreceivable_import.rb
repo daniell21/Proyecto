@@ -15,7 +15,7 @@ class AccountreceivableImport
   end
 
   def save
-    if (file.nil?) 
+    if (file.nil?) or (@p.nil?)
     else
       if imported_accountreceivables.map(&:valid?).all?
          imported_accountreceivables.each(&:save!)
@@ -42,37 +42,40 @@ class AccountreceivableImport
   #validar si no existe un cliente o una tarifa
 def load_imported_accountreceivables
     spreadsheet = open_spreadsheet
-    header = spreadsheet.row(1)
-    
-    (2..spreadsheet.last_row).map do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      accountreceivable = Accountreceivable.find_by profitNUmber: row["numeroProfit"]
-      accountreceivable =  Accountreceivable.new if (Accountreceivable.find_by profitNUmber: row["numeroProfit"]).nil?
-
-      client = Client.find_by rif: row["rifCliente"]
-      client = Client.new if (Client.find_by rif: row["rifCliente"]).nil?
+    @p = spreadsheet
+    unless @p.nil?
+      header = spreadsheet.row(1)
       
-      rate = Rate.find_by name: row["concepto"]
-      rate = Rate.new if (Rate.find_by name: row["concepto"]).nil?
-      if row["facturaPagada"] == "Si"
-        accountreceivable.paid  = true
-      else
-        accountreceivable.paid  = false
-      end
-      #accountreceivable.attributes = row.to_hash.slice(*row.to_hash.keys)
-      accountreceivable.client_id = client.id
-      accountreceivable.rate_id = rate.id
-      accountreceivable.profitNumber = row["numeroProfit"]
-      accountreceivable.profitCode = row["codigoProfit"]
-      accountreceivable.date = row["fecha"]
-      accountreceivable.status = row["estado"]
-      accountreceivable.paymentType = row["tipoPago"]
-      accountreceivable.amountPaid = row["montoPagado"]
-      accountreceivable.bank = row["banco"]
-      accountreceivable.month = row["mes"]
-      accountreceivable.paymentComment = row["comentarioPago"]
-      accountreceivable
-    end 
+      (2..spreadsheet.last_row).map do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        accountreceivable = Accountreceivable.find_by profitNUmber: row["numeroProfit"]
+        accountreceivable =  Accountreceivable.new if (Accountreceivable.find_by profitNUmber: row["numeroProfit"]).nil?
+
+        client = Client.find_by rif: row["rifCliente"]
+        client = Client.new if (Client.find_by rif: row["rifCliente"]).nil?
+        
+        rate = Rate.find_by name: row["concepto"]
+        rate = Rate.new if (Rate.find_by name: row["concepto"]).nil?
+        if row["facturaPagada"] == "Si"
+          accountreceivable.paid  = true
+        else
+          accountreceivable.paid  = false
+        end
+        #accountreceivable.attributes = row.to_hash.slice(*row.to_hash.keys)
+        accountreceivable.client_id = client.id
+        accountreceivable.rate_id = rate.id
+        accountreceivable.profitNumber = row["numeroProfit"]
+        accountreceivable.profitCode = row["codigoProfit"] 
+        accountreceivable.date = row["fecha"]
+        accountreceivable.status = row["estado"]
+        accountreceivable.paymentType = row["tipoPago"]
+        accountreceivable.amountPaid = row["montoPagado"]
+        accountreceivable.bank = row["banco"]
+        accountreceivable.month = row["mes"]
+        accountreceivable.paymentComment = row["comentarioPago"]
+        accountreceivable
+      end 
+    end
   end
 
 

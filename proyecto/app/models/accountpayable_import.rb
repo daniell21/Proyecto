@@ -15,9 +15,9 @@ class AccountpayableImport
   end
 
   def save
-    if (file.nil?) 
+    if (file.nil?) or (@p.nil?)
     else
-      if imported_accountpayables.map(&:valid?).all?
+      if imported_accountpayables.map(&:valid?).all? 
         imported_accountpayables.each(&:save!)
         true
       else
@@ -43,25 +43,28 @@ class AccountpayableImport
 
 
 def load_imported_accountpayables
-   spreadsheet = open_spreadsheet
-    header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).map do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      accountpayable = Accountpayable.find_by profitNUmber: row["numeroProfit"]
-      accountpayable =  Accountpayable.new if (Accountpayable.find_by profitNUmber: row["numeroProfit"]).nil?
-    
-      accountpayable.profitNumber = row["numeroProfit"]
-      accountpayable.date = row["fecha"]
-      supplier = Supplier.find_by rif: row["rifProveedor"]
-      supplier = Supplier.new if (supplier = Supplier.find_by rif: row["rifProveedor"]).nil?
+    spreadsheet = open_spreadsheet
+    @p = spreadsheet
+    unless @p.nil?
+      header = spreadsheet.row(1)
+      (2..spreadsheet.last_row).map do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        accountpayable = Accountpayable.find_by profitNUmber: row["numeroProfit"]
+        accountpayable =  Accountpayable.new if (Accountpayable.find_by profitNUmber: row["numeroProfit"]).nil?
+      
+        accountpayable.profitNumber = row["numeroProfit"]
+        accountpayable.date = row["fecha"]
+        supplier = Supplier.find_by rif: row["rifProveedor"]
+        supplier = Supplier.new if (supplier = Supplier.find_by rif: row["rifProveedor"]).nil?
 
-      accountpayable.supplier_id = supplier.id
+        accountpayable.supplier_id = supplier.id
 
-      accountpayable.descripcion = row["descripcion"]
-      accountpayable.amountPaid = row["montoPagado"]
-      accountpayable.comment = row["comentario"]
-      #supplier.attributes = row.to_hash.slice(*row.to_hash.keys)
-      accountpayable
+        accountpayable.descripcion = row["descripcion"]
+        accountpayable.amountPaid = row["montoPagado"]
+        accountpayable.comment = row["comentario"]
+        #supplier.attributes = row.to_hash.slice(*row.to_hash.keys)
+        accountpayable
+      end
     end
 end
 

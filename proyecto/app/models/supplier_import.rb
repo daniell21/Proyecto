@@ -15,7 +15,7 @@ class SupplierImport
   end
 
   def save
-    if (file.nil?) 
+    if (file.nil?) or (@p.nil?)
     else
       if imported_suppliers.map(&:valid?).all?
         imported_suppliers.each(&:save!)
@@ -39,20 +39,23 @@ class SupplierImport
   end
   
      def load_imported_suppliers
-   spreadsheet = open_spreadsheet
-    header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).map do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      supplier = Supplier.find_by rif: row["rif"] 
-      supplier =  Supplier.new if (Supplier.find_by rif: row["rif"]).nil?
+    spreadsheet = open_spreadsheet
+    @p = spreadsheet
+    unless @p.nil?
+      header = spreadsheet.row(1)
+      (2..spreadsheet.last_row).map do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        supplier = Supplier.find_by rif: row["rif"] 
+        supplier =  Supplier.new if (Supplier.find_by rif: row["rif"]).nil?
 
-      supplier.rif = row["rif"]
-      supplier.name = row["nombre"]
-      supplier.socialReason = row["razonSocial"]
-      supplier.email = row["correo"]
-      supplier.address = row["direccion"]
-      #supplier.attributes = row.to_hash.slice(*row.to_hash.keys)
-      supplier
+        supplier.rif = row["rif"]
+        supplier.name = row["nombre"]
+        supplier.socialReason = row["razonSocial"]
+        supplier.email = row["correo"]
+        supplier.address = row["direccion"]
+        #supplier.attributes = row.to_hash.slice(*row.to_hash.keys)
+        supplier
+      end
     end
 end
 
