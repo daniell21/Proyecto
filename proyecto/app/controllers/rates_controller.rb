@@ -2,11 +2,12 @@ class RatesController < ApplicationController
   load_and_authorize_resource 
   skip_load_and_authorize_resource
   before_action :set_rate, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_diection
 
   # GET /rates
   # GET /rates.json
   def index
-    @rates = Rate.all
+    @rates = Rate.order(sort_column + " " + sort_diection)
   end
 
   # GET /rates/1
@@ -74,5 +75,12 @@ class RatesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def rate_params
       params.require(:rate).permit(:name, :amount)
+    end
+    def sort_column
+      Rate.column_names.include?(params[:sort]) ? params[:sort] : "amount"
+    end
+
+    def sort_diection
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

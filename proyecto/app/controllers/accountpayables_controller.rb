@@ -74,15 +74,15 @@ class AccountpayablesController < ApplicationController
       format.json { head :no_content }
     end
   end
-def import
-    if ((params[:file]).nil?) == false
-      
-        Accountpayable.import(params[:file])
-        redirect_to accountpayables_path, notice: "Cuentas importados correctamente."
-      else 
-        redirect_to accountpayables_path, notice: "No ha seleccionado ningún archivo"
-      end
-end
+  def import
+      if ((params[:file]).nil?) == false
+        
+          Accountpayable.import(params[:file])
+          redirect_to accountpayables_path, notice: "Cuentas importados correctamente."
+        else 
+          redirect_to accountpayables_path, notice: "No ha seleccionado ningún archivo"
+        end
+  end
   private
     
     # Use callbacks to share common setup or constraints between actions.

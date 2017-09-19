@@ -2,11 +2,12 @@ class ClientMailsController < ApplicationController
   load_and_authorize_resource 
   skip_load_and_authorize_resource
   before_action :set_client_mail, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_diection
 
   # GET /client_mails
   # GET /client_mails.json
   def index
-    @client_mails = ClientMail.all
+    @client_mails = ClientMail.order(sort_column + " " + sort_diection)
   end
 
   # GET /client_mails/1
@@ -73,4 +74,11 @@ class ClientMailsController < ApplicationController
     def client_mail_params
       params.require(:client_mail).permit(:title, :body, :date, :client_id)
     end
+    def sort_column
+      ClientMail.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    end
+
+    def sort_diection
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end 
 end

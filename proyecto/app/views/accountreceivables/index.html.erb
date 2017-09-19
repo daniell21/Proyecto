@@ -63,7 +63,7 @@
     <tr>
     <%if current_user.role != "client"%>
       <th><%=sortable "profitNumber", "Numero de Factura"%> </th>
-      <th>Cliente</th>
+      <th><%=  sortable "client_id", "Cliente"%></th>
       <th><%=sortable "paid", "Pagada"%></th>
       <th><%= sortable "date", "Fecha de Pago"%></th>
       <th><%= sortable "month", "Mes"%></th>
