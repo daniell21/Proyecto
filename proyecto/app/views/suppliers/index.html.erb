@@ -78,10 +78,15 @@
         <td><%= supplier.name %></td>
         <td><%= supplier.socialReason %></td>
         <td><%= supplier.email %></td>
-        <td><%= link_to image_tag('/assets/showeye.ico',  title: "Ver Proveedor"), supplier %></td>
+        <% if can? :show, supplier %>
+          <td><%= link_to image_tag('/assets/showeye.ico',  title: "Ver Proveedor"), supplier %></td>
+        <%end%>
+        <% if can? :edit, supplier %>
         <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Proveedor"), edit_supplier_path(supplier) %></td>
-
+        <%end%>
+        <% if can? :delete, supplier %>
         <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Proveedor"), supplier, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <%end%>
 
       </tr>
     <% end %>

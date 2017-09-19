@@ -1,4 +1,6 @@
 class ClientMailsController < ApplicationController
+  load_and_authorize_resource 
+  skip_load_and_authorize_resource
   before_action :set_client_mail, only: [:show, :edit, :update, :destroy]
 
   # GET /client_mails

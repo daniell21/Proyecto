@@ -46,9 +46,15 @@
         <td><%= report.title %></td>
         <td><%= report.content %></td>
         <td><%= report.chart %></td>
-        <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Reporte"), report %></td>
+        <% if can? :show, report %>
+          <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Reporte"), report %></td>
+        <%end%>
+        <% if can? :edit, report %>
         <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Reporte"), edit_report_path(report) %></td>
-        <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Reporte"), report, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <%end%>
+        <% if can? :delete, report %>
+          <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Reporte"), report, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

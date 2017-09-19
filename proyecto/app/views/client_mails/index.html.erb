@@ -49,10 +49,15 @@
         <td><%= (client_mail.client.name) %></td>
         <td><%= client_mail.date %></td>
         
-        
-        <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Correo"), client_mail %></td>
-        <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Correo"), edit_client_mail_path(client_mail) %></td>
-        <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Correo"), client_mail, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <% if can? :show, client_mail %>
+          <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Correo"), client_mail %></td>
+        <%end%>
+        <% if can? :edit, client_mail %>
+          <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Correo"), edit_client_mail_path(client_mail) %></td>
+        <%end%>
+        <% if can? :delete, client_mail %>  
+          <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Correo"), client_mail, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <%end%>
       </tr>
     <% end %>
     

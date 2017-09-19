@@ -1,4 +1,6 @@
 class RemindersController < ApplicationController
+  load_and_authorize_resource 
+  skip_load_and_authorize_resource
   before_action :set_reminder, only: [:show, :edit, :update, :destroy]
 
   # GET /reminders

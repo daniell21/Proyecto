@@ -49,9 +49,15 @@
           <td><%= reminder.name %></td>
           <td><%= "Diaria" if reminder.frecuency == 1 %><%= "Quincenal" if reminder.frecuency == 15 %><%= "Mensual" if reminder.frecuency == 30 %>
           </td>
-          <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Recordatorio"), reminder %></td>
-          <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Recordatorio"), edit_reminder_path(reminder) %></td>
-          <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Recordatorio"), reminder, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+          <% if can? :show, reminder %>
+            <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Recordatorio"), reminder %></td>
+          <%end%>
+          <% if can? :edit, reminder %>
+            <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Recordatorio"), edit_reminder_path(reminder) %></td>
+          <%end%>
+          <% if can? :delete, reminder %>
+            <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Recordatorio"), reminder, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+          <%end%>
         </tr>
       <% end %>
     </tbody>

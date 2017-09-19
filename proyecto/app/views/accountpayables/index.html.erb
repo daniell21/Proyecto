@@ -76,9 +76,15 @@
             <td><%= accountpayable.supplier.name %></td>
             <td><%= accountpayable.descripcion %></td>
             <td><%= number_to_currency(accountpayable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
-            <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Cuenta"), accountpayable %></td>
-            <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Cuenta"), edit_accountpayable_path(accountpayable) %></td>
-            <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Cuenta"), accountpayable, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+            <% if can? :show, accountpayable %>
+              <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Cuenta"), accountpayable %></td>
+            <%end%>
+            <% if can? :edit, accountpayable %>
+              <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Cuenta"), edit_accountpayable_path(accountpayable) %></td>
+            <%end%>
+            <% if can? :delete, accountpayable %>
+              <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Cuenta"), accountpayable, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+            <%end%>
           </tr>
       <% end %>
       

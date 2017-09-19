@@ -43,9 +43,15 @@
       <tr >
         <td><%= discount.name %></td>
         <td> <%= number_to_currency(discount.percentage, unit: "", separator: ",", delimiter: ".", precision: 2)%></td>
-        <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Descuento"), discount %></td>
-       <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Descuento"), edit_discount_path(discount) %></td>
-        <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Descuento"), discount, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <% if can? :show, discount %>
+          <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Descuento"), discount %></td>
+        <%end%>
+        <% if can? :edit, discount %>
+          <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Descuento"), edit_discount_path(discount) %></td>
+        <%end%>
+        <% if can? :delete, discount %>
+          <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Descuento"), discount, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

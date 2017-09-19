@@ -123,20 +123,26 @@
           
           
           
-          
-          <%if current_user.role != "client" or (current_user.role == "client" and accountreceivable.paid) %>
-            <td><%= link_to image_tag('/assets/showeye.ico',  title: "Ver Cuenta"), accountreceivable %></td>
+          <% if can? :show, accountreceivable %>
+            <%if current_user.role != "client" or (current_user.role == "client" and accountreceivable.paid) %>
+              <td><%= link_to image_tag('/assets/showeye.ico',  title: "Ver Cuenta"), accountreceivable %></td>
+            <%end%>
           <%end%>
-          <%if current_user.role != "client" %>
-            <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Cuenta"), edit_accountreceivable_path(accountreceivable) %></td>
+          <% if can? :edit, accountreceivable %>
+            <%if current_user.role != "client" %>
+              <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Cuenta"), edit_accountreceivable_path(accountreceivable) %></td>
+            <%end%>
           <%end%>
-          <%if (current_user.role == "client" and !accountreceivable.paid)%>
-            <td><%= link_to image_tag('/assets/registerpay.ico',  title: "Editar Cuenta"), edit_accountreceivable_path(accountreceivable) %></td>
+          <% if can? :edit, accountreceivable %>
+            <%if (current_user.role == "client" and !accountreceivable.paid)%>
+              <td><%= link_to image_tag('/assets/registerpay.ico',  title: "Editar Cuenta"), edit_accountreceivable_path(accountreceivable) %></td>
+            <%end%>
           <%end%>
-          <%if current_user.role != "client" %>
-            <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Cuenta"), accountreceivable, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+          <% if can? :delete, accountreceivable %>
+            
+              <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Cuenta"), accountreceivable, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+            
           <%end%>
-        
         <%end%>
         
       </tr>
