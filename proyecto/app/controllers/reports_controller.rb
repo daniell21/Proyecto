@@ -12,7 +12,7 @@ class ReportsController < ApplicationController
     format.json
    format.csv { send_data text: @clients.to_csv }
    format.xls
-    format.pdf {render template: 'reports/reporte', pdf: 'Reporte', header: { right: 'Página [page] de [topage]' }}
+    format.pdf {render template: 'reports/reporte', pdf: 'Reporte', layout: 'pdf.html'}# header: { right: 'Página [page] de [topage]' }}
     end
   end
 
