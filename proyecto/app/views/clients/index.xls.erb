@@ -10,7 +10,6 @@
         <Cell><Data ss:Type="String">codigoProfit</Data></Cell>
         <Cell><Data ss:Type="String">rif</Data></Cell>        
         <Cell><Data ss:Type="String">nombre</Data></Cell>
-        <Cell><Data ss:Type="String">clienteAntiguo</Data></Cell>
         <Cell><Data ss:Type="String">pais</Data></Cell>
         <Cell><Data ss:Type="String">cobrarMensualidad</Data></Cell>
         <Cell><Data ss:Type="String">estado</Data></Cell>
@@ -22,13 +21,12 @@
       <%@clients = Client.all%>
     <% @clients.each do |client| %>
       <Row>
-      <%@oldCustomer = "Si" if client.oldCustomer%><%@oldCustomer = "No" if !client.oldCustomer%>
+  
       <%@specialcontributor = "Si" if client.specialcontributor%><%@specialcontributor = "No" if !client.specialcontributor%>
       <%@chargeMonthlyFee = "Si" if client.chargeMonthlyFee%><%@chargeMonthlyFee = "No" if !client.chargeMonthlyFee%>
         <Cell><Data ss:Type="String"><%= client.profitCode %></Data></Cell>
         <Cell><Data ss:Type="String"><%= client.rif %></Data></Cell>
         <Cell><Data ss:Type="String"><%= client.name %></Data></Cell>
-        <Cell><Data ss:Type="String"><%=@oldCustomer%></Data></Cell>
         <Cell><Data ss:Type="String"><%= client.completeCountry %></Data></Cell>
         <Cell><Data ss:Type="String"><%= @chargeMonthlyFee%></Data></Cell>
         <Cell><Data ss:Type="String"><%= client.state %></Data></Cell>

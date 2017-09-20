@@ -12,36 +12,52 @@
 </div>
 
 
-<br>
 <div ALIGN=center>
-<p>
-	
-  <strong>Fecha:</strong>
-  <%= @accountpayable.date %>
-
-</p>
-<p>
-  
-  <strong>Fecha:</strong>
-  <%= @accountpayable.profitNumber %>
-
-</p>
-<p>
-  <strong>Cuenta:</strong>
-  <%= @accountpayable.supplier.name %>
-</p>
-<p>
-  <strong>Descripcion:</strong>
-  <%= @accountpayable.descripcion %>
-</p>
-
-<p>
-  <strong>Total:</strong>
-  <%= number_to_currency(@accountpayable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2) %>
-</p>
-<p>
-  <strong>Comentarios:</strong>
-  <%= @accountpayable.comment %>
-</p>
+  <table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+      <tr>
+        <td>
+          <p>
+            <strong>Fecha:</strong>
+            <%= @accountpayable.date %>
+          </p>
+        </td>
+        <td>
+        <p>
+          <strong>Fecha:</strong>
+          <%= @accountpayable.profitNumber %>
+        </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <strong>Cuenta:</strong>
+            <%= @accountpayable.supplier.name %>
+          </p>
+        </td>
+        <td>
+          <p>
+            <strong>Descripcion:</strong>
+            <%= @accountpayable.descripcion %>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <strong>Total:</strong>
+            <%= number_to_currency(@accountpayable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2) %>
+          </p>
+        </td>
+        <td>
+          <p>
+            <strong>Comentarios:</strong>
+            <%= @accountpayable.comment %>
+          </p>
+        </td>
+      </tr>
+    
+  </table>
 </div>
 

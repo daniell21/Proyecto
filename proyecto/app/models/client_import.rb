@@ -61,8 +61,6 @@ def load_imported_clients
         client.localAmount = row["cantidadLocales"]
         client.name = row["nombre"]
         client.completeCountry = row["pais"]
-        client.country = row["pais"]
-        client.oldCustomer = row["clienteAntiguo"]
         client.rif = row["rif"]
         client.comment = row["comentario"]
         client.specialcontributor = row["contribuyenteEspecial"]

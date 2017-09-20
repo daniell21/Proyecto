@@ -393,12 +393,24 @@ select {
     //-webkit-appearance:none;
 
 }
+.nav .w3-button:hover {
+    color: #fff !important;
+    background-color: #0d1e3a !important;
+}
+.nav div li:hover {
+    color: #fff !important;
+    display: block;
+    padding: 10px 15px;
+    background-color: #375484;
+    width: 100%;
+}
 .nav {
   button {
     color: darken(white, 15%);
-    background-color: lighten(#142c54, 5%);
+        background-color: #193769;
 
   }
+
   li {
     li {
       background:rgb(55, 84, 132);
@@ -411,9 +423,16 @@ select {
   }
   div {
     li{
-      color: #fff;
+      color: #fff!important;
         display: block;
         padding: 10px 15px;
+          background-color: #375484;
+
     }
   }
+
+}
+
+.w3-btn, .w3-button {
+    text-align: left!important;
 }

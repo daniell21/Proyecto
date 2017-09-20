@@ -12,25 +12,41 @@
 </div>
 
 
-<p>
-<div align="center">
-<p>
-  <strong>Fecha:</strong>
-  <%= @client_mail.date %>
-</p>
-<%@client = Client.find(@client_mail.client_id)%>
-<p>
-  <strong>Cliente:</strong>
-  <%= @client.name %>
-</p>
-  <strong>Título:</strong>
-  <%= @client_mail.title %>
-</p>
 
-<p>
-  <strong>Mensaje:</strong>
-  <%= @client_mail.body %>
-</p>
+<div ALIGN=center>
+  	<table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+        <tr>
+        	<td> 
+				<p>
+				  <strong>Fecha:</strong>
+				  <%= @client_mail.date %>
+				</p>
+		
+				<%@client = Client.find(@client_mail.client_id)%>
+			</td>
+        	<td>
+				<p>
+				  <strong>Cliente:</strong>
+				  <%= @client.name %>
+				</p>
+			</td>
+        </tr>
+        <tr>
+        	<td> 
+				<p>
+				  <strong>Título:</strong>
+				  <%= @client_mail.title %>
+				</p>
+			</td>
+        	<td>
+				<p>
+				  <strong>Mensaje:</strong>
+				  <%= @client_mail.body %>
+				</p>
+			</td>
+        </tr>
+</div>
 
 
 

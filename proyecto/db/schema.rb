@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170916110053) do
+ActiveRecord::Schema.define(version: 20170919060157) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20170916110053) do
     t.string   "code"
     t.string   "completeCountry"
     t.boolean  "chargeMonthlyFee"
-    t.boolean  "oldCustomer"
     t.text     "comment"
     t.string   "rif"
     t.decimal  "specialDiscount",    precision: 5, scale: 2

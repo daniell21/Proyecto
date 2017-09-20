@@ -37,14 +37,7 @@ validates :profitNumber, presence: true, uniqueness: true
   after_save :setDate
 
 
-  def self.to_csv
-    CSV.generate do |csv|
-      csv << column_names
-      all.each do |accountreceivable|
-        csv << accountreceivable.attributes.values_at(*column_names)
-      end
-    end
-  end
+  
 
 
 
@@ -57,44 +50,7 @@ validates :profitNumber, presence: true, uniqueness: true
     end
 
   end
-  def self.import(file)
-    spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
-    
-    (2..spreadsheet.last_row).each do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      accountreceivable = find_by(profitNumber: row["numeroProfit"].to_i.to_s) || new
-      client = Client.find_by rif: row["rifCliente"]
-      rate = Rate.find_by name: row["concepto"]
-      if row["facturaPagada"] == "Si"
-        accountreceivable.paid  = true
-      else
-        accountreceivable.paid  = false
-      end
-      #accountreceivable.attributes = row.to_hash.slice(*row.to_hash.keys)
-      accountreceivable.client_id = client.id
-      accountreceivable.rate_id = rate.id
-      accountreceivable.profitNumber = row["numeroProfit"]
-      accountreceivable.profitCode = row["codigoProfit"]
-      accountreceivable.date = row["fecha"]
-      accountreceivable.status = row["estado"]
-      accountreceivable.paymentType = row["tipoPago"]
-      accountreceivable.amountPaid = row["montoPagado"]
-      accountreceivable.bank = row["banco"]
-      accountreceivable.month = row["mes"]
-      accountreceivable.paymentComment = row["comentarioPago"]
-      accountreceivable.save!
-    end 
-  end
-  def self.open_spreadsheet(file)
-    case File.extname(file.original_filename)
-      when '.csv' then Roo::Csv.new(file.path, :ignore)
-      when '.xls' then Roo::Excel.new(file.path, :ignore)
-      when '.xlsx' then Roo::Excelx.new(file.path, :ignore)
-    else
-      raise "Unknown file type: #{file.original_filename}"
-    end
-  end
+ 
 
   def validator
     deposito = false

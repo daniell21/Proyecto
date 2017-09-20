@@ -14,14 +14,25 @@
 <p>Un archivo CSV o Excel puede utilizarse para importar registros. La primera fila debe ser el nombre de columna. Se permiten las siguientes columnas.</p>
 
 <ul>
-  <% Supplier.columns.each do |column| %>
-    <% if column.name.in? ["rif", *Supplier.attribute_names] %>
+      
       <li>
-        <strong><%= column.name %></strong> -
-        <%= column.type.to_s.titleize %> type
+        <strong>rif</strong> - Tipo texto   
       </li>
-    <% end %>
-  <% end %>
+      <li>
+        <strong>nombre</strong> - Tipo texto  
+      </li>
+      <li>
+        <strong>razonSocial</strong> - Tipo texto  
+      </li>
+      <li>
+        <strong>correo</strong> - Tipo texto  
+      </li>
+      <li>
+        <strong>direccion</strong> - Tipo texto  
+      </li>
+
+
+
 </ul>
 
 <p>Si un <strong>rif</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>

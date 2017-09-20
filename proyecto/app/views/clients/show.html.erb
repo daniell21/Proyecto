@@ -12,10 +12,10 @@
 </div>
 
 
-<div ALIGN=center>
+<div ALIGN=center> 
 
-<table class="table table-striped table-hover">
-<tbody>
+<table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
   <tr>
     <td>
       <p>
@@ -37,12 +37,7 @@
         <%= @client.profitCode %>
       </p>
     </td>
-    <td>
-      <p> 
-        <strong>Cliente Antiguo:</strong>
-        <%="Si" if @client.oldCustomer%> <%="No" if !@client.oldCustomer%>
-      </p>
-    </td>
+   
   </tr>
   <tr>
     <td>
@@ -130,8 +125,6 @@
           </p>
         </td>
       </tr>
-      </tbody>
+      
     </table>
 
-<br>
-<br>
