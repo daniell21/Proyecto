@@ -1,4 +1,4 @@
-class Rate < ActiveRecord::Base
+class Rate < ApplicationRecord
 	has_many :accountreceivables
 	validates :name, presence: true
 	validates :amount, presence: true

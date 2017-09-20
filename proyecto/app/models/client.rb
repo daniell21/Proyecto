@@ -1,4 +1,4 @@
-class Client < ActiveRecord::Base
+class Client < ApplicationRecord
   #Relaciones
 	has_many :accountreceivables, :dependent => :delete_all
   has_many :client_mails, :dependent => :delete_all

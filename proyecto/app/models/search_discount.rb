@@ -1,4 +1,4 @@
-class SearchDiscount < ActiveRecord::Base
+class SearchDiscount < ApplicationRecord
 	def search_discounts
 		discounts = Discount.all
 

@@ -1,4 +1,4 @@
-class SearchSupplier < ActiveRecord::Base
+class SearchSupplier <ApplicationRecord
 	def search_suppliers
 		suppliers = Supplier.all
 

@@ -1,9 +1,9 @@
-class Accountreceivable < ActiveRecord::Base
+class Accountreceivable < ApplicationRecord
 #Hasta Ahora los comprobantes de 100% banco no funcionan. No se pueden leer
 #Hasta Ahora los comprobantes de Benplus no funcionan. No se pueden leer
 #Resta por hacer validaciones de fecha y numero de cuenta a acreditar. MOnto tambien
-belongs_to :client
-belongs_to :rate
+belongs_to :client, optional: true
+belongs_to :rate, optional: true
 mount_uploader :document, DocumentUploader
 validates :client_id, presence: true
 validates :rate_id, presence: true

@@ -1,4 +1,4 @@
-class Supplier < ActiveRecord::Base
+class Supplier < ApplicationRecord
 	has_many :accountpayables, :dependent => :delete_all
 	validates :name, presence: true #uniqueness: true
   validates :email, presence: true #length: {minimum: 20}

@@ -1,5 +1,5 @@
-class ClientMail < ActiveRecord::Base
-  belongs_to :client
+class ClientMail < ApplicationRecord
+  belongs_to :client, optional: true
   validates :client_id, presence: true
   validates :title, presence: true
 	#after_create :send_reminder

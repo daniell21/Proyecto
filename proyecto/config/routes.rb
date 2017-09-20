@@ -1,13 +1,8 @@
 Rails.application.routes.draw do
-  
-  
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  
-  
 
-  
-
-  resources :products
+    resources :products
   resources :reminders
   resources :accountpayable_imports
   resources :accountreceivable_imports
@@ -51,5 +46,4 @@ Rails.application.routes.draw do
   devise_for :users, {registrations: "registrations"}
   root 'principal#index'
   resources :users
-  
 end

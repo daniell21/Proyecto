@@ -12,6 +12,7 @@
         <Cell><Data ss:Type="String">razonSocial</Data></Cell>
         <Cell><Data ss:Type="String">correo</Data></Cell>
         <Cell><Data ss:Type="String">direccion</Data></Cell>
+         <Cell><Data ss:Type="String">comentarios</Data></Cell>
       </Row>
       <%@suppliers = Supplier.all%>
     <% @suppliers.each do |supplier| %>
@@ -21,6 +22,7 @@
         <Cell><Data ss:Type="String"><%= supplier.socialReason %></Data></Cell>
         <Cell><Data ss:Type="String"><%= supplier.email %></Data></Cell>
         <Cell><Data ss:Type="String"><%= supplier.address %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= supplier.comment %></Data></Cell>
       </Row>
     <% end %>
     </Table>

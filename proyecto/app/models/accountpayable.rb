@@ -1,6 +1,6 @@
-class Accountpayable < ActiveRecord::Base
+class Accountpayable < ApplicationRecord
   include ActionView::Helpers::NumberHelper
-  belongs_to :supplier
+  belongs_to :supplier, optional: true
   validates :amountPaid, presence: true
   validates :supplier_id, presence: true
   validates :profitNumber, presence: true, length: { minimum: 6 }, uniqueness: true

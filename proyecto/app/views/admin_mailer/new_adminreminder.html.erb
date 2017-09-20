@@ -9,8 +9,6 @@
 	
 
 <br>
-<br>
-<br>
 <p>Clientes</p>
 <table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
          style="margin:0 auto;">
@@ -21,16 +19,20 @@
     </tr>
     <%@clients = Client.all%>
     <% @clients.each do |client| %>
-      <%if client.comment.size > 0%>
-        <td><%= client.rif %></td>
-        <td><%= client.name %></td>
-        <td><%= client.comment %></td>
+      <tr>
+      <%unless client.comment.nil?%>
+        <%if client.comment.size > 0%>
+          <td><%= client.rif %></td>
+          <td><%= client.name %></td>
+          <td><%= client.comment %></td>
+        <%end%>
       <%end%>
     <%end%>
-    <%if @clients.size == 0%>
-      No Hay Comentarios registrados para los Clientes
+    <%if @clients.nil?%>
+      No Hay Comentarios registrados para los Proveedores
     <%end%>
   </table>
+
 <br>
 <br>
 <p>Proveedores</p>
@@ -43,13 +45,16 @@
     </tr>
     <%@suppliers = Supplier.all%>
     <% @suppliers.each do |supplier| %>
-      <%if supplier.comment.size > 0%>
-        <td><%= supplier.rif %></td>
-        <td><%= supplier.name %></td>
-        <td><%= supplier.comment %></td>
+      <tr>
+      <% unless supplier.comment.nil?%>
+        <%if supplier.comment.size > 0%>
+          <td><%= supplier.rif %></td>
+          <td><%= supplier.name %></td>
+          <td><%= supplier.comment %></td>
+        <%end%>
       <%end%>
     <%end%>
-    <%if @suppliers.size == 0%>
+    <%if @suppliers.nil?%>
       No Hay Comentarios registrados para los Proveedores
     <%end%>
   </table>

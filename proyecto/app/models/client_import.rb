@@ -15,8 +15,10 @@ class ClientImport
   end
 
   def save
-    if (file.nil?) or (@p.nil?) 
-    else
+    
+   unless file.nil?
+    unless @p.nil?
+      raise 4.to_yaml
       if imported_clients.map(&:valid?).all?
         imported_clients.each(&:save!)
         true
@@ -29,6 +31,7 @@ class ClientImport
         false
       end
     end
+ end
   end
 
 
@@ -45,7 +48,8 @@ class ClientImport
 def load_imported_clients
    spreadsheet = open_spreadsheet
    @p = spreadsheet
-   unless @p.nil?
+   unless spreadsheet.nil?
+    raise spreadsheet.nil?.to_yaml
       
       header = spreadsheet.row(1)
       (2..spreadsheet.last_row).map do |i|
@@ -68,7 +72,7 @@ def load_imported_clients
         #raise row["completeCountry"].to_yaml
         client
       end
-  end
+    end
 end
 
 

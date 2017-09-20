@@ -1,4 +1,4 @@
-class SearchClient < ActiveRecord::Base
+class SearchClient < ApplicationRecord
 	
 	def search_clients
 		clients = Client.all

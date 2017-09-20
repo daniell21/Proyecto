@@ -1,4 +1,4 @@
-class SearchClientPayment < ActiveRecord::Base
+class SearchClientPayment < ApplicationRecord
 	validates :keywords, presence: true
 	validates_numericality_of :keywords
 	def search_client_payments

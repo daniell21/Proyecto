@@ -1,4 +1,4 @@
-class SearchAccountreceivable < ActiveRecord::Base
+class SearchAccountreceivable < ApplicationRecord
 	def search_accountreceivables
 		accountreceivables = Accountreceivable.all
 
