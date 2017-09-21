@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Rate.create(name: 'Mensualidad', amount: 0)
+Rate.create(name: 'Instalación', amount: 0)
+Rate.create(name: 'Pago COmpleto', amount: 0)
+Rate.create(name: 'Reactivación', amount: 0)
+Discount.create(name: 'Fidelidad', percentage: 0)
+Discount.create(name: 'Volumen', percentage: 0)
+

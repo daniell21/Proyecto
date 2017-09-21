@@ -1,0 +1,56 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    var discount = document.getElementById("client_specialDiscount");
+  
+    discount.value = discount.value.replace('.',',');
+    discount.addEventListener('keyup', validate_discount, true);
+    function validate_discount(){
+      var regex_amount = /^[0-9]+([,][0-9]+)?$/;
+      if (!(discount.value.match(regex_amount))) {
+        if(discount.value!=''){
+          var msg = 'Este campo debe ser numérico y sólo admite una coma.';
+          document.getElementById("error_discount").innerHTML= msg;
+        }
+        else{
+          document.getElementById("error_discount").innerHTML= '';
+        
+        }   
+      }
+      else{
+        document.getElementById("error_discount").innerHTML= '';
+        
+      }
+    };
+   
+    $('#button_edit').click(function(){
+    if($('#error_discount').text() ===''){
+      $('.simple_form edit_client').submit();
+    }
+  })
+  })
+
+</script>
+
+
+<%= simple_form_for(@discount) do |f| %>
+   <%= f.error_notification %>
+    
+  <div class="row">
+    <div class="col-md-6">
+    
+      <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', error: 'Debe ingresar el nombre del Descuento '  %>
+    </div>
+ 
+    <div class="col-md-6">
+      <%= f.input :percentage, as: :string, placeholder: 'Porcentaje', label: 'Porcentaje', error: 'Este campo debe ser numérico' %>
+    </div>
+    
+  </div>
+  <br>
+  <br>
+  <div ALIGN=right>
+    <div class="actions">
+      <%= f.button :submit, "Crear Descuento" %>  
+    </div>
+  </div>
+<% end %>

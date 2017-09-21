@@ -1,0 +1,56 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    var amount = document.getElementById("rate_amount");
+  
+    amount.value = amount.value.replace('.',',');
+    amount.addEventListener('keyup', validate_discount, true);
+    function validate_discount(){
+      var regex_amount = /^[0-9]+([,][0-9]+)?$/;
+      if (!(amount.value.match(regex_amount))) {
+        if(amount.value!=''){
+          var msg = 'Este campo debe ser numérico y sólo admite una coma.';
+          document.getElementById("error_discount").innerHTML= msg;
+        }
+        else{
+          document.getElementById("error_discount").innerHTML= '';
+        
+        }   
+      }
+      else{
+        document.getElementById("error_discount").innerHTML= '';
+        
+      }
+    };
+   
+    $('#button_edit').click(function(){
+    if($('#error_discount').text() ===''){
+      $('.simple_form edit_client').submit();
+    }
+  })
+  })
+
+</script>
+<%= simple_form_for(@rate) do |f| %>
+ 
+  <%= f.error_notification %>
+    
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', error: 'Debe ingresar el nombre de la tarifa '  %>
+    </div>
+ 
+    <div class="col-md-6">
+      <%= f.input :amount, as: :string,   placeholder: 'Monto', label: 'Ingrese el Monto', error: 'Este campo debe ser numérico' %>
+    </div>
+    
+  </div>
+  <br>
+  <br>
+  <div ALIGN=right>
+    <div class="actions">
+      <%= f.button :submit, "Crear Tarifa"%>  
+    </div>
+  </div>
+<% end %>
+
+ 

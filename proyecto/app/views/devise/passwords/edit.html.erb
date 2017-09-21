@@ -1,24 +1,23 @@
-<h2>Change your password</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, html: { class: 'form-inline' }) do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
   <div class="field">
-    <%= f.label :password, "New password" %><br />
+<br />
     <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+      <em>(mínimo <%= @minimum_password_length %> caracteres)</em>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+    <%= f.input :password, autofocus: true, autocomplete: "off", placeholder: 'Contraseña', label: false, error: false  %>
   </div>
-
+<br>
   <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
 
+    <%= f.input :password_confirmation, autocomplete: "off", placeholder: 'Confirmacion Contraseña', label: false, error: false  %>
+  </div>
+<br>
   <div class="actions">
-    <%= f.submit "Change my password" %>
+    <%= f.button :submit, "Cambiar Contraseña" %>
   </div>
 <% end %>
 

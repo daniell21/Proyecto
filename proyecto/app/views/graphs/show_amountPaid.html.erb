@@ -1,0 +1,131 @@
+<h2>Monto Facturado vs Pagado</h2>
+
+<select class="form-control" >
+			   
+            <option>Seleccione el Período</option> 
+            <option id="select1">Mes Actual</option>
+            <option id="select2">Último Trimestre</option> 
+            <option id="select3">Histórico</option>
+            
+
+</select> 
+<br><br>
+<div class="select1 box">
+
+<div class="row">
+		<div class="col-xs-12">
+			<p style="color:#142c54;">Monto Facturado vs Pagado (Mes en Curso)</p>
+				<div id="orders_chart" style="width: 1000px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @presentMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
+		</div>
+	</div>
+</div>
+<div class="select2 box">
+
+	<div class="row">
+		<div class="col-xs-4">
+			<p style="color:#142c54;">Mes <%=@firstMonth%></p>
+				<div id="orders_chart" style="width: 307px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @firstMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
+		</div>
+		
+	
+
+		<div class="col-xs-4">
+			<p style="color:#142c54;">Mes <%=@secondMonth%></p>
+				<div id="orders_chart" style="width: 307px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @secondMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", legend: true , refresh: 60   %></div>
+		</div>
+	
+
+		<div class="col-xs-4">
+		
+			<p style="color:#142c54;">Mes <%=@thirdMonth%></p>
+				<div id="orders_chart" style="width: 307px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @thirdMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", legend: true , refresh: 60   %></div>
+		</div>
+	</div>
+</div>
+	
+	<div class="select3 box">
+	<div class="row">
+		<div class="col-xs-12">
+			<p style="color:#142c54;">Monto Facturado vs Pagado (Histórico)</p>
+				<div id="orders_chart" style="width: 1000px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @historicalAmountInvoicedvsPaid, label: "Monto Bs", legend: true, xtitle: "Tipos de Montos", ytitle: "Bolivares" , refresh: 60   %></div>
+		</div>
+	
+	<br><br>
+
+		
+			<div class="col-xs-12">	
+				<table class="table table-striped">
+					<thead>
+				    <tr>
+				    	<th>Monto</th>
+				      	<th>Total</th>
+				    </tr>
+					</thead>
+					<tbody>
+					
+				    <% amount = @historicalAmountInvoicedvsPaid  %>
+				    
+				    	
+				      	<tr>
+				        
+				        	<td>Monto Facturado</td>
+				            <td><%= number_to_currency((amount[0][1]), unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+				        </tr><tr>
+				            <td>Monto Pagado</td>
+				            <td><%= number_to_currency((amount[1][1]), unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+				             
+				      </tr>
+				    
+				  	</tbody>
+				</table>
+
+			</div>
+					
+
+		</div>
+		</div>
+
+		
+	
+<br>
+<div ALIGN=right>
+
+<%= link_to 'Atrás', graphs_index_path, :class => 'btn btn-default btn' %>
+</div>
+<br>
+<br>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            if($(this).attr("id")=="select1"){
+                $(".box").not(".select1").hide();
+                $(".select1").show();
+            }
+            else if($(this).attr("id")=="select2"){
+                $(".box").not(".select2").hide();
+                $(".select2").show();
+            }
+            else if($(this).attr("id")=="select3"){
+                $(".box").not(".select3").hide();
+                $(".select3").show();
+            }
+
+            else{
+                $(".box").hide();
+            }
+        });
+    }).change();
+});
+</script>

@@ -1,0 +1,205 @@
+<div ng-if="loaded">
+  <div class="row">
+    <div class="col-xs-12">
+      <p>
+        <h2 class="pull-left">Soporte</h2>
+        <label class="pull-right">
+          <input type="checkbox" ng-model="salesOnly"> Sólo ventas
+        </label>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="panel-title">Resumen</h2>
+      <div class="table-panel panel panel-default">
+        <div class="panel-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <th># Locales</th>
+                <th># Loaders</th>
+                <th title="Última vez que entró un deal a este estado">Tiempo Mínimo</th>
+                <th title="La mitad de los locales llevan menos de este tiempo en este estado">Percentil 50</th>
+                <th title="75% de los locales llevan menos de este tiempo en este estado">Percentil 75</th>
+                <th title="95% de los locales llevan menos de este tiempo en este estado">Percentil 95</th>
+                <th title="Cuanto tiempo lleva el deal con más tiempo en este estado">Tiempo Máximo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in groups" ng-hide="(!salesOnly && !row.inSupport) || (salesOnly && !row.inSales)">
+              	<td><a href="#stage-{{ row.stageId }}" target="_self">{{ row.stage }}</a></td>
+              	<td>{{ row.local_count }}</td>
+              	<td>{{ row.loader_count }}</td>
+              	<td>{{ row.min_time }} días</td>
+              	<td>{{ row.p50_time }} días</td>
+              	<td>{{ row.p75_time }} días</td>
+              	<td>{{ row.p95_time }} días</td>
+              	<td>{{ row.max_time }} días</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-repeat="group in groups" class="row" ng-hide="group.rows.length === 0 || (!salesOnly && !group.inSupport) || (salesOnly && !group.inSales)">
+    <div class="col-sm-12">
+      <h2 class="panel-title" id="stage-{{ group.stageId }}"><input type="checkbox" ng-model="group.hidden"> {{ group.stage }} ({{ group.rows.length }})</h2>
+      
+      <div class="table-panel panel panel-default" ng-hide="group.hidden">
+        <div class="panel-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th ng-click="toggleSort(group, 'local')">
+                  Local
+                  <span ng-if="group.sortBy == 'local'">
+                    <span class="glyphicon glyphicon-triangle-bottom" ng-if="group.sortDirection == 'desc'"></span>
+                    <span class="glyphicon glyphicon-triangle-top" ng-if="group.sortDirection == 'asc'"></span>
+                  </span>
+                </th>
+                <th ng-click="toggleSort(group, 'lastInvoiceSince')">
+                  Factura más reciente
+                  <span ng-if="group.sortBy == 'lastInvoiceSince'">
+                    <span class="glyphicon glyphicon-triangle-bottom" ng-if="group.sortDirection == 'desc'"></span>
+                    <span class="glyphicon glyphicon-triangle-top" ng-if="group.sortDirection == 'asc'"></span>
+                  </span>
+                </th>
+                <th ng-click="toggleSort(group, 'lastMessageSince')">
+                  Última conexión
+                  <span ng-if="group.sortBy == 'lastMessageSince'">
+                    <span class="glyphicon glyphicon-triangle-bottom" ng-if="group.sortDirection == 'desc'"></span>
+                    <span class="glyphicon glyphicon-triangle-top" ng-if="group.sortDirection == 'asc'"></span>
+                  </span>
+                </th>
+                <th ng-click="toggleSort(group, 'lastStageSince')">
+                  Días en stage
+                  <span ng-if="group.sortBy == 'lastStageSince'">
+                    <span class="glyphicon glyphicon-triangle-bottom" ng-if="group.sortDirection == 'desc'"></span>
+                    <span class="glyphicon glyphicon-triangle-top" ng-if="group.sortDirection == 'asc'"></span>
+                  </span>
+                </th>
+                <th ng-click="toggleSort(group, 'lastOpenSince')">
+                  Días abierto
+                  <span ng-if="group.sortBy == 'lastOpenSince'">
+                    <span class="glyphicon glyphicon-triangle-bottom" ng-if="group.sortDirection == 'desc'"></span>
+                    <span class="glyphicon glyphicon-triangle-top" ng-if="group.sortDirection == 'asc'"></span>
+                  </span>
+                </th>
+                <th ng-click="toggleSort(group, 'assignee')">
+                  Responsable
+                  <span ng-if="group.sortBy == 'assignee'">
+                    <span class="glyphicon glyphicon-triangle-bottom" ng-if="group.sortDirection == 'desc'"></span>
+                    <span class="glyphicon glyphicon-triangle-top" ng-if="group.sortDirection == 'asc'"></span>
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in group.rows" ng-class="row.status">
+                <td>{{$index + 1}}</td>
+                <td><a href="http://admin.elemetrica.com/kibana/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-24h,mode:quick,to:now))&_a=(columns:!(_source),index:'logstash-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'type:%22loaders%22%20AND%20username:%22{{row.loaderId}}%22')),sort:!('@timestamp',desc))" target="_blank" title="{{row.loaderId}} ({{row.localId}})">K</a></td>
+                <td>{{row.country}}</td>
+                <td><a href="https://elemetrica.pipedrive.com/deal/{{row.dealId}}">{{row.local}}</a></td>
+                <td title="{{row.dateLastInvoice | date:'medium'}}">hace {{row.lastInvoiceSince}} días</td>
+                <td title="{{row.dateLastMessage | date:'medium'}}">hace {{row.lastMessageSince}} días</td>
+                <!--<td>{{row.closedDays.join(', ')}}</td>-->
+                <td title="{{row.lastStageDate | date:'medium'}}">hace {{row.lastStageSince}} días</td>
+                <td title="{{row.lastOpenDate | date:'medium'}}">
+                  <span ng-if="row.lastOpenDate != null">hace {{row.lastOpenSince}} días</span>
+                </td>
+                <td><span ng-if="row.assignee != null">{{row.assignee}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Deals problemáticos</h2>
+      <p>Deals que existen en Pipedrive pero que les falta información o está errada:</p>
+      <ul>
+        <li>Están en el pipeline de soporte pero no tienen local asociado</li>
+        <li>Tienen local asociado pero no coincide con ningún loader instalado</li>
+      </ul>
+      <div class="table-panel panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Falta identificador de local</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Local</th>
+                <th>Pipeline</th>
+                <th>Estado</th>
+                <th>Última Actualización</th>
+                <th>Vendedor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in missing_local_id">
+                <td>{{$index + 1}}</td>
+                <td><a href="https://elemetrica.pipedrive.com/deal/{{row.dealId}}">{{row.name}}</a></td>
+                <td>{{row.pipeline}}</td>
+                <td>{{row.stage}} ({{row.status}})</td>
+                <td>{{row.lastDate | date:'medium'}}</td>
+                <td>{{row.salesrep}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="table-panel panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">No coinciden con ningún loader</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Local</th>
+                <th>Pipeline</th>
+                <th>Estado</th>
+                <th>Última Actualización</th>
+                <th>Vendedor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in unmatched_deals">
+                <td>{{$index + 1}}</td>
+                <td><a href="https://elemetrica.pipedrive.com/deal/{{row.dealId}}">{{row.name}} ({{row.localId}})</a></td>
+                <td>{{row.pipeline}}</td>
+                <td>{{row.stage}} ({{row.status}})</td>
+                <td>{{row.lastDate | date:'medium'}}</td>
+                <td>{{row.salesrep}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-if="!loaded">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Cargando...</h2>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+
+<%= simple_form_for(@supplier, html: { class: 'form-inline' }) do |f| %>
+  
+
+    <div class="row">
+      <div class="col-md-6"> 
+        <%= f.input :name, placeholder: 'Nombre', label: 'Nombre' %>
+      </div>
+    
+      <div class="col-md-6">    
+        <%= f.input :lastname , placeholder: 'Apellido', label: 'Apellido' %>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :email, placeholder: 'Correo', label: 'Correo' %>
+      </div>
+    </div>
+
+
+
+  <div ALIGN=right>
+    <div class="actions">
+      <%= f.button :submit, "Crear Proveedor"%>
+      <%= link_to 'Atrás', suppliers_path, :class => 'btn btn-default btn'  %>
+    </div>
+  </div>
+<% end %>

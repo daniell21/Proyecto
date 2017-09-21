@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">codigoProfit</Data></Cell>
+        <Cell><Data ss:Type="String">rif</Data></Cell>        
+        <Cell><Data ss:Type="String">nombre</Data></Cell>
+        <Cell><Data ss:Type="String">pais</Data></Cell>
+        <Cell><Data ss:Type="String">cobrarMensualidad</Data></Cell>
+        <Cell><Data ss:Type="String">estado</Data></Cell>
+        <Cell><Data ss:Type="String">razonSocial</Data></Cell>
+        <Cell><Data ss:Type="String">cantidadLocales</Data></Cell>
+        <Cell><Data ss:Type="String">contribuyenteEspecial</Data></Cell>
+        <Cell><Data ss:Type="String">comentario</Data></Cell>
+      </Row>
+      <%@clients = Client.all%>
+    <% @clients.each do |client| %>
+      <Row>
+      <%@specialcontributor = "Si" if client.specialcontributor%><%@specialcontributor = "No" if !client.specialcontributor%>
+      <%@chargeMonthlyFee = "Si" if client.chargeMonthlyFee%><%@chargeMonthlyFee = "No" if !client.chargeMonthlyFee%>
+        <Cell><Data ss:Type="String"><%= client.profitCode %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= client.rif %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= client.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= client.completeCountry %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @chargeMonthlyFee%></Data></Cell>
+        <Cell><Data ss:Type="String"><%= client.state %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= client.socialReason %></Data></Cell>
+        <Cell><Data ss:Type="integer"><%= client.localAmount %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @specialcontributor%></Data></Cell>
+        <Cell><Data ss:Type="String"><%= client.comment %></Data></Cell>
+
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

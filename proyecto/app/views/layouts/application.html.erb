@@ -1,26 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Proyecto</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<p class="alert"><%= alert %></p>
+  <head>
+    <meta charset="utf-8">
+    <title>Elemétrica - Sistema Cobranza</title>
+ 
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	  <%= javascript_include_tag "https://www.google.com/jsapi" %>
+<%= wicked_pdf_javascript_include_tag 'chartkick'%>
+	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+  </head>
+  <body>
+  <div class="alert alert-success" role="alert" style="display: none;"></div>
+<%= favicon_link_tag 'favicon.ico' %>
+     <div class="navbar-default sidebar navbar-fixed" role="navigation">
+		 <img class="logo img-responsive" src="/assets/logo_data.png" />
+		     <ul class="nav in" id="side-menu">
+		        	<%if (current_user.role != "client") %>
+						<li style="list-style:none;">
+							<%=  active_link_to 'Clientes', controller: 'clients' %>
+						</li>
+					
+						<li style="list-style:none;">
+							<%= active_link_to 'Proveedores', controller: 'suppliers' %>
+						</li>
+					
+						<li style="list-style:none;">
+							<%= active_link_to 'Cuentas por Cobrar', controller: 'accountreceivables' %>
+						</li>
+					
+						<li style="list-style:none;">
+							<%= active_link_to 'Cuentas por Pagar', controller: 'accountpayables' %>
+						</li>
+					
+						<li style="list-style:none;">
+							<%= active_link_to 'Correos Electrónicos', controller: 'client_mails' %>
+						</li>
+					
+						<li style="list-style:none;">
+							<%= active_link_to 'Gráficos', controller: 'graphs' %>
+						</li>
+						<li style="list-style:none;">
+							<%= active_link_to 'Informes', controller: 'reports' %>	
+						</li>
+					
+					
+						
+							<button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
+							  Configuración<!--<i class="fa fa-caret-down"></i>-->
+							  </button>
+							  <div id="demoAcc" class="w3-hide  " >
+							    
+							    <li style="list-style:none;" ><%= active_link_to 'Descuentos' , discounts_path%></li>
+							   <%if (current_user.role == "admin") %>
+							    <li style="list-style:none;" ><%= active_link_to 'Gestión de Roles' , users_path%></li>
+							   <%end%>
+							    <li style="list-style:none;" ><%= active_link_to 'Tarifas', rates_path %></li>
+							    <li style="list-style:none;" ><%= active_link_to 'Recordatorios', reminders_path %></li>
+							  </div>
+							  <li style="list-style:none;">
+								<%= active_link_to 'Configuración', controller: 'setup' %>
+								<ul style="padding-left: 0; list-style:none;">
+								<li><a href="#">ryryfy</a></li>
+								</ul>
+							</li>
+						
+
+
+					
+					<%end%>
+					
+					<%if current_user.role == "client"%>
+						<li style="list-style:none; padding: 0px; margin: 0px;">
+							<%= active_link_to 'Registro de Pagos', controller: 'accountreceivables' %>
+						</li>
+					<%end%>
+		        </ul>
+		        <ul class="nav in" id="bottom-menu">
+		        	<li style="list-style:none; padding: 0px; margin: 0px;">
+		        		<%if user_signed_in? %>
+							<%= active_link_to "Salir (" + current_user.email+")", destroy_user_session_path , method: :delete%>
+						 
+						<%end%>
+		        	</li>
+		        </ul>   
+	    </div>
+   
+
+	<div class="container-fluid" id="view">
+		<div class="col-md-12">
+			<%= yield %>
+		</div>
+		<p class="alert"><%= alert %></p>
+
+</div>
+
+<script>
+function myAccFunc() {
+    var x = document.getElementById("demoAcc");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += "w3-theme-l3";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace(" w3-green", "");
+    }
+}
+
+
+</script>
 
 
 
-<%= yield %>
 
-<%if user_signed_in? %>
-<br>
-  <div ALIGN=center>
-  <p class="col-md">
-  	<%= link_to "Log Out", destroy_user_session_path , method: :delete%>
-  </p> 
-  </div>
-<%end%>
 
 </body>
 </html>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">numeroProfit</Data></Cell>
+        <Cell><Data ss:Type="String">codigoProfit</Data></Cell>
+        <Cell><Data ss:Type="String">fecha</Data></Cell>
+        <Cell><Data ss:Type="String">nombreCliente</Data></Cell>
+        <Cell><Data ss:Type="String">rifCliente</Data></Cell>
+        <Cell><Data ss:Type="String">concepto</Data></Cell>
+        <Cell><Data ss:Type="String">facturaPagada</Data></Cell>
+         <Cell><Data ss:Type="String">estado</Data></Cell>
+        <Cell><Data ss:Type="String">tipoPago</Data></Cell>
+        <Cell><Data ss:Type="String">montoPagado</Data></Cell>
+        <Cell><Data ss:Type="String">banco</Data></Cell>
+        <Cell><Data ss:Type="String">mes</Data></Cell>
+        <Cell><Data ss:Type="String">comentarioPago</Data></Cell>
+      </Row>
+      <%@accountreceivables = Accountreceivable.all%>
+    <% @accountreceivables.each do |accountreceivable| %>
+      <Row>
+      <%@paid = "Si" if accountreceivable.paid%><%@paid = "No" if !accountreceivable.paid%>
+        <Cell><Data ss:Type="String"><%= accountreceivable.profitNumber %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= accountreceivable.profitCode %></Data></Cell>
+        <Cell><Data ss:Type="date"><%= accountreceivable.date %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= accountreceivable.client.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= accountreceivable.client.rif %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= accountreceivable.rate.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @paid %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= accountreceivable.status %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= accountreceivable.paymentType %></Data></Cell>
+        <Cell><Data ss:Type="decimal"><%= accountreceivable.amountPaid %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= accountreceivable.bank %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= accountreceivable.month %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= accountreceivable.paymentComment %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>  
+

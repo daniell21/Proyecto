@@ -1,0 +1,36 @@
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), suppliers_path %>
+</div>
+<div class="col-xs-5" style="margin-left : -30px;">
+<h1>Busqueda Avanzada</h1>
+</div>
+</div>
+<%= simple_form_for(@search_supplier) do |s| %>
+
+	<div class="row">
+    	<div class="col-xs-6">
+			<%=s.input :keywords, label: "Nombre"%>
+		</div>
+	
+        <div class="col-xs-6">
+			<%=s.input :lastname, label: "Apellido"%>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row">
+        <div class="col-xs-6">
+			<%=s.input :email, label: "Correo"%>
+		</div>
+	</div>
+	<div ALIGN=right>  
+    <br>
+	<%= s.button :submit, "Buscar Proveedor"%>  
+	</div>
+<%end%>
+

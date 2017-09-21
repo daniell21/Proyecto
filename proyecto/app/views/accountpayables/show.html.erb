@@ -1,8 +1,31 @@
-
-<div ALIGN=center>
-<p id="notice"><%= notice %></p>
-<h1>Cuenta por Pagar</h1>
 <br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), accountpayables_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
+<h1>Cuenta por Pagar</h1>
+</div>
+</div>
+
+
+<br>
+<div ALIGN=center>
+<p>
+	
+  <strong>Fecha:</strong>
+  <%= @accountpayable.date %>
+
+</p>
+<p>
+  
+  <strong>Fecha:</strong>
+  <%= @accountpayable.profitNumber %>
+
+</p>
 <p>
   <strong>Cuenta:</strong>
   <%= @accountpayable.supplier.name %>
@@ -14,10 +37,11 @@
 
 <p>
   <strong>Total:</strong>
-  <%= @accountpayable.total %>
+  <%= number_to_currency(@accountpayable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2) %>
 </p>
-
-
-<%= link_to 'Editar', edit_accountpayable_path(@accountpayable) %> |
-<%= link_to 'Atrás', accountpayables_path %>
+<p>
+  <strong>Comentarios:</strong>
+  <%= @accountpayable.comment %>
+</p>
 </div>
+

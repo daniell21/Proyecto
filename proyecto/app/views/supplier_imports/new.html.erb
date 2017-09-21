@@ -1,0 +1,46 @@
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), suppliers_path %>
+</div>
+<div class="col-xs-5" style="margin-left : -30px;">
+<h1>Importar Proveedores</h1>
+</div>
+</div>
+
+<p>Un archivo CSV o Excel puede utilizarse para importar registros. La primera fila debe ser el nombre de columna. Se permiten las siguientes columnas.</p>
+
+<ul>
+  <% Supplier.columns.each do |column| %>
+    <% if column.name.in? ["rif", *Supplier.attribute_names] %>
+      <li>
+        <strong><%= column.name %></strong> -
+        <%= column.type.to_s.titleize %> type
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<p>Si un <strong>rif</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>
+
+<%= form_for @supplier_import do |f| %>
+  <% if @supplier_import.errors.any? %>
+    <div id="error_explanation">
+      <h2>Se encontraron <%= pluralize(@supplier_import.errors.count, "errores") %> en la importación:</h2>
+      <ul>
+      <% @supplier_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :file %>
+  </div>
+  <div class="buttons"><%= f.submit "Import" %></div>
+<% end %>
+<br>

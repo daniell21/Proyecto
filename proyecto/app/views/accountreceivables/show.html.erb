@@ -1,23 +1,159 @@
-<div ALIGN=center>
-<p id="notice"><%= notice %></p>
-<h1>Cuenta por Cobrar</h1>
 <br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), accountreceivables_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
+<h1>Cuenta por Cobrar</h1>
+</div>
+</div>
+
+
+<br>
+<div ALIGN=center>
 <p>
-  <strong>Cuenta por Cobrar:</strong>
+<div id="accountreceivables">
+  <strong>Comprobante:</strong>
+  <% if (@accountreceivable.document.file) and (@accountreceivable.document.file.filename).include? ".pdf"%>
+    <%= image_tag(@accountreceivable.document_url.to_s) %>
+  <%end%>
+  </div>
+</p>
+<p>
+  <strong>Fecha de Pago:</strong>
+  <%= @accountreceivable.date %>
+</p>
+<p>
+  <strong>Cuenta por Cobrar a:</strong>
   <%= @accountreceivable.client.name %>
 </p>
 
-<p>
-  <strong>Descripcion:</strong>
-  <%= @accountreceivable.descripcion %>
-</p>
 
 <p>
-  <strong>Total:</strong>
-  <%= @accountreceivable.total %>
+<strong>Descuentos que posee el Cliente:</strong><br>
+<%client = Client.find(@accountreceivable.client_id)%>
+
+ <%client.discounts.each do |discount|%>
+  <%=discount.name %>: 
+  <%= number_to_currency(discount.percentage, unit: "", separator: ",", delimiter: ".", precision: 2)%>%
+  <br>
+  <%end%>
+  <%if (client.specialDiscount).nil?%>
+  <%else%>
+  Descuento Especial:
+  
+  <%= number_to_currency(client.specialDiscount, unit: "", separator: ",", delimiter: ".", precision: 2)%>%
+  <%end%>
+
+ </p>
+ <p>
+  <strong>Número de locales:</strong>
+  <%= @accountreceivable.client.localAmount %>
+</p>
+ <p>
+  <strong>Concepto:</strong><br>
+
+  <% @rate = Rate.find(@accountreceivable.rate_id) %>
+  <%= @rate.name %>:
+  <%= number_to_currency(@rate.amount, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
 </p>
  
+<p>
+  <strong>Monto con Descuento sin Iva:</strong>
+  <%= number_to_currency(@accountreceivable.amountWithoutTax, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+</p>
+
+<p>
+  <strong>Monto con Descuento con Iva:</strong>
+  <%= number_to_currency(@accountreceivable.amountWithTax, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+</p>
+ <p>
+  <strong>Total Retenciones:</strong>
+  <%= number_to_currency(@accountreceivable.totalRetentions, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+</p>
+<p>
+    <strong>Total a Percibir:</strong>
+    <%= number_to_currency(@accountreceivable.totalAmountPerceive, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+  </p>
+<p>
+  <strong>Factura Pagada:</strong>
+  <%= "Si" if @accountreceivable.paid %> <%= "No" if !@accountreceivable.paid %>
+</p>
+<p>
+  <strong>Estado de Pago:</strong>
+  <%= @accountreceivable.status %>
+</p>
+<p>
+  <strong>Tipo de Pago:</strong>
+  <%= @accountreceivable.paymentType %>
+</p>
+<p>
+  <strong>Monto Pagado:</strong>
+  <%= number_to_currency(@accountreceivable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+</p>
+<p>
+    <strong>Diferencia:</strong>
+    <%= number_to_currency(@accountreceivable.accountBalance, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+  </p>
+<p>
+  <strong>Banco:</strong>
+  <%= @accountreceivable.bank %>
+</p>
+<p>
+  <strong>Mes:</strong>
+  <%= @accountreceivable.month %>
+</p>
+<p>
+  <strong>Comentarios:</strong>
+  <%= @accountreceivable.paymentComment %>
+</p>
+<%if @accountreceivable.clientAccount != '0'%>
+<p>
+  <strong>Cuenta Debitada:</strong>
+  <%= @accountreceivable.clientAccount %>
+</p>
+<%end%>
+<p>
+<%if (current_user.role != "client") %>
+  
+  <p>
+    <strong>Número de Transaccion Mercantil:</strong>
+    <%= @accountreceivable.transferNumber %>
+  </p>
+  <%if @accountreceivable.elemetricaAccount != '0'%>
+  <p>
+    <strong>Cuenta a Transferir:</strong>
+    <%= @accountreceivable.elemetricaAccount %>
+  </p>
+  <%end%>
+  <p>
+    <strong>Número Profit:</strong>
+    <%= @accountreceivable.profitNumber %>
+  </p>
+  <p>
+    <strong>Código Profit:</strong>
+    <%= @accountreceivable.profitCode %>
+  </p>
+  <%if @accountreceivable.transferNumberClient != '0'%>
+  <p>
+    <strong>Número de transferencia:</strong>
+    <%= @accountreceivable.transferNumberClient %>
+  </p>
+  <%end%>
+  <p>
+    <strong>Número de Deposito:</strong>
+    <%= @accountreceivable.depositNumber %>
+  </p>
+  <p>
+    <strong>Número de Cheque:</strong>
+    <%= @accountreceivable.checkNumber %>
+  </p>
+<%end%>
+
  <%# link_to 'Edit', edit_accountreceivable_path(@accountreceivable) %> 
 
-<%= link_to 'Atrás', accountreceivables_path %>
-<div ALIGN=center>
+
+

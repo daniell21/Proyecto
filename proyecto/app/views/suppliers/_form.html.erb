@@ -1,31 +1,40 @@
-<div ALIGN=center>
-<%= form_for(@supplier) do |f| %>
-  <% if @supplier.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@supplier.errors.count, "error") %> prohibited this supplier from being saved:</h2>
 
-      <ul>
-      <% @supplier.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= simple_form_for(@supplier) do |f| %>
+   <%= f.error_notification %> 
+    <div class="row">
+      <div class="col-md-6"> 
+        <%= f.input :rif, as: :integer, placeholder: 'RIF', label: 'RIF', error: 'Debe ingresar el RIF del Cliente o este debe ser Numérico' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :email, placeholder: 'Correo', label: 'Correo' %>
+      </div>
     </div>
-  <% end %>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-6"> 
+        <%= f.input :name, placeholder: 'Nombre', label: 'Nombre' %>
+      </div>
+    
+      <div class="col-md-6">    
+        <%= f.input :socialReason , placeholder: 'Razón Social', label: 'Razón Social' %>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      
+      <div class="col-md-6">
+        <%= f.input :address, placeholder: 'Dirección', label: 'Dirección' %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :Nombre %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :Apellido %><br>
-    <%= f.text_field :lastname %>
-  </div>
-  <div class="field">
-    <%= f.label :Email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Crear Proveedor'%>
+
+
+  <div ALIGN=right>
+    <div class="actions">
+      <%= f.button :submit, "Crear Proveedor"%>  
+    </div>
   </div>
 <% end %>
-</div>
+

@@ -1,0 +1,33 @@
+<%= simple_form_for(@report) do |f| %>
+ <%= f.error_notification %>
+    
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.file_field :chart %>
+    </div>
+ </div>
+ <br><br>
+ <div class="row">
+    <div class="col-md-12">
+      <%= f.input :title, placeholder: 'Título', label: 'Título', error: 'Debe ingresar el Título del Reporte' %>
+  	</div>
+   
+   </div>
+  
+  <div class="row">
+ 
+    <div class="col-md-12">
+      <%= f.input :content, placeholder: 'Contenido', label: 'Contenido'%>
+    </div>
+    
+  </div>
+
+
+  <br>
+  <br>
+  <div ALIGN=right>
+    <div class="actions">
+      <%= f.button :submit, "Crear Informe"%>  
+    </div>
+  </div>
+<% end %>

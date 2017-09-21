@@ -1,19 +1,24 @@
 class ClientsController < ApplicationController
    load_and_authorize_resource 
    skip_load_and_authorize_resource
-   before_action :set_client, only: [:show, :edit, :update, :destroy]
-   before_action :authenticate_user!
-  
+  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+ helper_method :sort_column, :sort_diection
 
   # GET /clients
   # GET /clients.json
   def index
     #obtiene todos los registros de la tabla client
-    @clients = Client.all
+    #cambiar el 5 por el numero de elementos por pagiba
+    @clients = Client.order(sort_column + " " + sort_diection).search(params[:search]).paginate(:per_page => 30, :page => params[:page])
+    
+
     respond_to do |format|
     format.html
     format.json
-    format.pdf {render template: 'clients/reporte', pdf: 'Reporte'}
+     format.csv { send_data text: @clients.to_csv }
+     format.xls 
+    format.pdf {render template: 'clients/reporte', pdf: 'Clientes', layout: 'pdf.html'}#, header: { right: 'Página [page] de [topage]' }}
     end
   end
 
@@ -22,12 +27,14 @@ class ClientsController < ApplicationController
   def show
     #encontrar un registro por su id
     @accountreceivable = Accountreceivable.new
-    @clientmail = Clientmail.new
+    @email = Email.new
+    #@clientmail = Clientmail.new
   end
 
   # GET /clients/new
-  def new
+ def new
     @client = Client.new
+    @discounts = Discount.all
   end
 
   # GET /clients/1/edit
@@ -37,11 +44,13 @@ class ClientsController < ApplicationController
   # POST /clients
   # POST /clients.json
   def create
+    client_params[:specialDiscount].to_s.gsub!(',', '.')
     @client = Client.new(client_params)
 
     respond_to do |format|
       if @client.save
-        format.html { redirect_to @client, notice: 'Client was successfully created.' }
+
+        format.html { redirect_to @client, notice: 'El Cliente fue Creado Exitosamente.' }
         format.json { render :show, status: :created, location: @client }
       else
         format.html { render :new }
@@ -53,9 +62,11 @@ class ClientsController < ApplicationController
   # PATCH/PUT /clients/1
   # PATCH/PUT /clients/1.json
   def update
+    params[:client][:discount_ids] ||=[]
     respond_to do |format|
+      client_params[:specialDiscount].to_s.gsub!(',', '.')
       if @client.update(client_params)
-        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
+        format.html { redirect_to @client, notice: 'El Cliente fue Actualizado Exitosamente.' }
         format.json { render :show, status: :ok, location: @client }
       else
         format.html { render :edit }
@@ -69,13 +80,19 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'El cliente fue eliminado exitosamente.' }
+      format.html { redirect_to clients_url, notice: 'El Cliente fue Eliminado Exitosamente.' }
       format.json { head :no_content }
     end
   end
   def import
-    Client.import(params[:file])
-    redirect_to clients_path, notice: "Clientes importados."
+    
+      if ((params[:file]).nil?) == false
+      
+        Client.import(params[:file])
+        redirect_to clients_path, notice: "Clientes importados correctamente."
+      else 
+        redirect_to clients_path, notice: "No ha seleccionado ningún archivo"
+      end
   end
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -86,6 +103,14 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:name, :lastname, :email)
+      params.require(:client).permit!
     end
+    def sort_column
+      Client.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_diection
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
 end

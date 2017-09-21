@@ -1,21 +1,38 @@
-<div ALIGN=center>
-<p id="notice"><%= notice %></p>
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), suppliers_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
 <h1>Proveedor</h1>
+</div>
+</div>
+
+
+<div ALIGN=center>
 <p>
-  <strong>Name:</strong>
-  <%= @supplier.name %>
+  <strong>RIF:</strong>
+  <%= @supplier.rif %>
 </p>
 
 <p>
-  <strong>Lastname:</strong>
-  <%= @supplier.lastname %>
+  <strong>Nombre:</strong>
+  <%= @supplier.name %> 
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>Razon Social:</strong>
+  <%= @supplier.socialReason %>
+</p>
+<p>
+  <strong>Correo Electrónico:</strong>
   <%= @supplier.email %>
 </p>
-
-<%= link_to 'Editar', edit_supplier_path(@supplier) %> |
-<%= link_to 'Atrás', suppliers_path %>
+<p>
+  <strong>Dirección:</strong>
+  <%= @supplier.address %>
+</p>
 </div>

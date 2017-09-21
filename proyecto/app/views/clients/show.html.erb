@@ -1,31 +1,131 @@
-<div ALIGN=center>
-<p id="notice"><%= notice %></p>
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), clients_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
 <h1>Cliente</h1>
-<p> 
-  <strong>Nombre:</strong>
-  <%= @client.name %>
-</p>
+</div>
+</div>
 
-<p>
-  <strong>Apellido:</strong>
-  <%= @client.lastname %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%= @client.email %>
-</p>
-<div class="field">
-    <h3>Correos</h3>
-	<%=render "clientmails/form"%> 
-	<ul>
-		<% @client.clientmails.each do |clientmail| %>
-		<li>
-		  <%= clientmail.title%> 
-		</li>
-		<p>- <%=clientmail.body%>	</p>
-		<%end%>
-	</ul>
-</div>
-<%= link_to 'Editar', edit_client_path(@client) %> |
-<%= link_to 'Atrás', clients_path %>
-</div>
+
+<div ALIGN=center>
+
+<table class="table table-striped table-hover">
+<tbody>
+  <tr>
+    <td>
+      <p>
+        <strong>Código:</strong>
+        <%= @client.code %>
+      </p>
+    </td>
+    <td>
+      <p> 
+        <strong>RIF:</strong>
+        <%= @client.rif %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p> 
+        <strong>Código Profit:</strong>
+        <%= @client.profitCode %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p> 
+        <strong>Nombre:</strong>
+        <%= @client.name %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>País:</strong>
+        <%= @client.completeCountry %> 
+      </p>
+    </td>    
+  </tr>
+    <tr>
+      <td>
+        <p>
+          <strong>Cobrar Mensualidad:</strong>
+          <%="Si" if @client.chargeMonthlyFee%> <%="No" if !@client.chargeMonthlyFee%>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>Estado:</strong>
+          <%= @client.state %>
+        </p>
+      </td>
+    </tr>
+      <tr>
+        <td>
+          <p>
+            <strong>Razón Social:</strong>
+            <%= @client.socialReason %>
+          </p>
+        </td>
+        <td>
+          <p>
+            <strong>Número de locales:</strong>
+            <%= @client.localAmount %>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <strong>Contribuyente Especial:</strong>
+            <%="Si" if @client.specialcontributor%> <%="No" if !@client.specialcontributor%>
+          </p>
+        </td>
+        <td>
+          <p>
+            <strong>Comentarios:</strong>
+            <%=@client.comment%> 
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td> 
+          <p>
+            <strong>Descuentos: </strong> <br> 
+            <% @client.discounts.each do |discount|%>
+            <%=discount.name%> - <%=discount.percentage%>%<br>
+            <%end%>
+            
+            <% if @client.specialDiscount%>
+             Especial - 
+             <%= number_to_currency(@client.specialDiscount, unit: "", separator: ",", delimiter: ".", precision: 2) %>%
+            <%end%>
+          </p>
+        </td>
+        <td>
+          <p>
+           
+            <%= render "emails/form" %>
+            <ul>
+              <%@client.emails.each do |email|%>
+                <li  style="list-style:none;">
+                  <%=email.email%>
+                  
+                 <%= link_to 'Eliminar Correo', [email.client, email], method: :delete, data: { confirm: 'Are you sure?' } %>
+                </li>
+              <%end%>
+            </ul>
+          </p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+<br>
+<br>

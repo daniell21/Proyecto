@@ -1,0 +1,27 @@
+
+<%= simple_form_for(@reminder) do |f| %>
+ 
+  <%= f.error_notification %>
+    
+  <div class="row">
+  	<div class="col-md-6">
+    <!-- <label>Nombre</label>
+      <%=@reminder.name%> -->
+      <%= f.input :name, placeholder: 'Nombre Recordatorio', label: 'Nombre', error: 'Debe ingresar un nombre' %>
+    </div>
+    <div class="col-md-6"> 
+    	<%= f.input :frecuency, :collection => [['Diaria',1],['Quincenal',15],['Mensual',30]], label: "Frecuencia ",
+        include_blank: "Seleccionar Frecuencia ", error: 'Debe seleccionar la frecuencia del recordatorio' %>
+	</div> 
+ 
+    
+    
+  </div>
+  <br>
+  <br>
+  <div ALIGN=right>
+    <div class="actions">
+      <%= f.button :submit, "Crear Recordatorio"%>  
+    </div>
+  </div>
+<% end %>

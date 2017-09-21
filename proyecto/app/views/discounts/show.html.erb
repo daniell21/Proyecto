@@ -1,0 +1,29 @@
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), discounts_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
+<h1>Descuento</h1>
+</div>
+</div>
+
+<div ALIGN=center>
+<p>
+  <strong>Nombre:</strong>
+  <%= @discount.name %>
+</p>
+
+<p>
+  <strong>Porcentaje:</strong>
+<%= number_to_currency(@discount.percentage, unit: "", separator: ",", delimiter: ".", precision: 2)%>%
+
+</p>
+<p>
+
+</div>
+
+</p>

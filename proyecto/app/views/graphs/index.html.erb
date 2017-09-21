@@ -1,0 +1,59 @@
+<h1>Gráficos</h1>
+
+
+<%= link_to 'Monto facturado Vs Monto Pagado', graphs_show_amountPaid_path, :class => 'btn btn-default btn'  %>
+<%= link_to 'Conceptos de pago', graphs_show_accountTypes_path, :class => 'btn btn-default btn'  %>
+<%= link_to 'Clientes Deudores', graphs_show_clientsDebtors_path, :class => 'btn btn-default btn'  %>
+<%= link_to 'Instalaciones', graphs_show_facilities_path, :class => 'btn btn-default btn'  %>
+	<h2>Distribución de cuentas por Concepto</h2>
+
+		<div class="row">
+			<div class="col-xs-12">
+				
+				<div id="orders_chart" style="width: 1000px; height: 300px;
+				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivablesRatesPercentage, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", refresh: 60, download: true   %></div>
+			</div>
+		</div>
+	<br>
+		<br>
+		<br>
+
+					
+
+		</div>
+		<div class="row">
+		
+			<div class="col-xs-12">	
+				<table class="table table-striped">
+					<thead>
+				    <tr>
+				    <th>Cliente </th>
+				    
+				      <th>Numero de cuentas</th> 
+				    
+				    </tr>
+					</thead>
+					<tbody>
+					
+				    <% @accountreceivables_count.each do |accountreceivable| %>
+				    
+				    	
+				      	<tr>
+				        
+				        	<th><%= accountreceivable[0] %></th>
+				            <td><%= accountreceivable[1] %></td> 
+				      </tr>
+				    <% end %>
+				  	</tbody>
+				</table>
+
+			</div>
+					
+
+		</div>
+		
+		<br><br>
+		
+			
+	

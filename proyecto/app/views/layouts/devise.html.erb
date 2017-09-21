@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"> 
+    <title>Elemétrica - Sistema Cobranza</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+  </head>
+  <body style="background-color:#142c54;">
+<div class="container">
+	<div class="row login">
+		<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-5">
+			<img class="logo" src="/assets/logo_data.png" />
+	
+			<%= render 'layouts/messages' %>
+		      <%= yield %>  
+	    </div>
+   </div>
+</div>
+
+		
+	
+
+
+
+
+
+
+
+</body>
+</html>

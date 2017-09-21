@@ -1,0 +1,18 @@
+<%= simple_form_for(@client_mail) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  
+  <%= f.association :client, include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Ciente"%> 
+  <!--<%= f.input :client, :collection => Client.all, :input_html => { :multiple => true } %>-->
+    <%= f.input :title, placeholder: 'Título', label: 'Título', error: 'Debe ingresar el título del Correo' %>
+    <%= f.input :body, placeholder: 'Mensaje', label: 'Mensaje', error: 'Debe ingresar el contenido del Correo' %>
+
+  </div>
+<br><br>
+<div align="right">
+  <div class="form-actions">
+    <%= f.button :submit, "Crear Correo" %>
+  </div>
+
+<% end %>

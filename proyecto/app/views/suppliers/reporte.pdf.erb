@@ -1,29 +1,24 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title></title>
-		<%=wicked_pdf_stylesheet_link_tag 'pdf'%>
-		<meta charset="Utf-8">
-	</head>
-	<body>
-	<h1>Proveedores en el Sistema</h1>
-		<table>
-		<thead>
-			<tr>
-			    <th style="width: 200;">Nombre</th>
-				<th style="width: 200;">Apellido</th>
-				<th style="width: 200;">Correo</th>
-			</tr>
-		</thead>
-		<tbody>
-		  <% @suppliers.each do |supplier|%>
-			<tr>
-				 <td><%=supplier.name%></td>
-				 <td><%=supplier.lastname%></td>
-				 <td><%=supplier.email%></td>
-			</tr>
-		  <%end%>
-		</tbody>
-		</table>
-	</body>
-</html>
+
+<h1>Proveedores</h1>
+<table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+    <tr>
+		<th style="width: 200px;"> RIF </th>
+	        <th style="width: 200px;"> Nombre </th>
+	        <th style="width: 200px;"> Correo </th>
+          <th style="width: 200px;"> Razón Social </th>
+	        <th style="width: 200px;"> Dirección </th>
+    </tr>
+    <%@suppliers = Supplier.all%>
+    <% @suppliers.each do |supplier| %>
+    	<tr>
+        <td><%= supplier.rif %></td>
+        <td><%= supplier.name %></td>
+        <td><%= supplier.email%></td>
+        <td><%= supplier.socialReason%></td>
+        <td><%= supplier.address%></td>
+	<%end%>
+    <%if @suppliers.size == 0%>
+      No Hay  Proveedores
+    <%end%>
+  </table>

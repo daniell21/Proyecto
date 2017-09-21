@@ -1,9 +1,13 @@
-
-<div ALIGN=center>
+<br>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), accountpayables_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
 <h1>Editar Cuenta</h1>
+</div>
+</div>
 <br>
 <%= render 'form' %>
 
-<%= link_to 'Mostrar', @accountpayable %> |
-<%= link_to 'Atrás', accountpayables_path %>
-<div ALIGN=center>
+

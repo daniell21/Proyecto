@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+<% if @search_client_payment.search_client_payments.empty? %>
+	<p> No se encontraron Clientes </p>
+<%else%>
+
+	<%@search_client_payment.search_client_payments.each do |c|%>
+		<br>
+		<div class="div">
+
+				<h1><%=c.name%></h1>
+				<p>RIF: <%=c.rif%></p>
+				<p>Codigo Profit: <%=c.profitCode%></p>
+				<p>Correo: <%=c.email%></p>
+				<p>Contribuyente Especial: <%="Si" if c.specialcontributor%> <%="No" if !c.specialcontributor%></p>
+				<p>Estado: <%=c.state%></p>
+				<p>Razón Social: <%=c.socialReason%></p>
+				<p>País: <%=c.country%></p>
+
+		</div>
+		<div class="field">
+		    <h3>Cuentas por cobrar</h3>
+			
+		  <table class="table table-striped table-hover">
+			    <tr>
+			      <th>Cliente</th>
+			      <th>Fecha</th>
+			      <th>Concepto</th>
+			      <th colspan="3"></th>
+			    </tr>
+			  
+
+				<tbody>
+				    <% c.accountreceivables.each do |accountreceivable| %>
+					    
+					      <tr>
+					        <td><%= accountreceivable.client.name %></td>
+					        <td><%= accountreceivable.date %></td>
+					        <td><%= accountreceivable.concept %></td>
+					        <div align="right">
+						        <td><%= link_to 'Mostrar', accountreceivable, :class => 'btn btn-success btn'  %></td>
+						    	<% if accountreceivable.paid == "no"%>
+						        	<td><%= link_to 'Editar', edit_accountreceivable_path(accountreceivable), :class => 'btn btn-warning btn'  %></td>
+						        	<%end%>
+				        	</div>
+				      		</tr>
+				      	
+
+				    <% end %>
+				</tbody>
+			</table>
+
+
+			
+		</div>
+	<%end%>
+<%end%>
+<div align="right">
+<%= link_to 'Atrás', new_search_client_payment_path, :class => 'btn btn-default btn'  %>
+</div>
+<br> <br>

@@ -1,29 +1,22 @@
-<div ALIGN=center>
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= simple_form_for(@user) do |f| %>
+<%= f.error_notification %>
+
+  <div class="row">
+    <div class="col-xs-6">
+      Usuario <%= f.label :Correo, @user.email %><br>
     </div>
-  <% end %>
-  <br>
-  <div class="field">
-    <%= f.label :Correo %><br>
-    <%= @user.email %>
+  
+    <div class="col-xs-6">
+      <%= f.input :role, :collection => [['Administrador','admin'],['Limitado','limited'],['Restringido','restricted'], ['Cliente', 'client']], label: "Rol" %>
+    </div>
   </div>
-  <div class="field">
-    <%@roles = {"admin": "Administrador", "limited": "Limitado", "restricted": "Restringido" }%>
-    <%= f.label :Rol %><br>
-    <%= f.select :role, options_for_select(@roles.map { |k, v| [v, k] }) %>
 
+  <br>
+  <div ALIGN=right>
+   <div class="actions">
+    <%= f.button :submit, "Modificar Rol"%>  
   </div>
-  <div class="actions">
-    <%= f.submit "Modificar Rol"%>
   </div>
 <% end %>
-<div ALIGN=center>
+

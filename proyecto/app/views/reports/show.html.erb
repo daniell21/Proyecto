@@ -1,0 +1,36 @@
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), reports_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
+<h1>Informe</h1>
+</div>
+</div>
+
+<div ALIGN=center>
+<p>
+  <strong>Título:</strong>
+  <%= @report.title %>
+</p>
+<p>
+  <strong>Gráfico:</strong>
+ <%= image_tag(@report.chart_url(:thumb).to_s) %>
+</p>
+<p>
+  <strong>Análisis:</strong>
+  <%= @report.content %>
+</p>
+
+
+
+</div>
+<%$actualReport = @report%>
+</p>
+<div ALIGN=right>
+<%= link_to "Generar Reporte", "/reports.pdf", :format => 'pdf', target: :_blank, :class => 'btn btn-default btn'  %>
+
+</div>

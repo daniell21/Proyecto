@@ -1,0 +1,33 @@
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), reminders_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
+<h1>Recordatorio</h1>
+</div>
+</div>
+
+
+
+
+
+  
+<div ALIGN=center>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @reminder.name %>
+</p>
+<p>
+  <strong>Frecuencia:</strong>
+
+ <%= "Diaria" if @reminder.frecuency == 1 %><%= "Quincenal" if @reminder.frecuency == 15 %><%= "Mensual" if @reminder.frecuency == 30 %>
+</p>
+
+
+

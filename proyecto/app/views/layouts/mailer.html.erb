@@ -1,5 +1,63 @@
+<!DOCTYPE html>
 <html>
-  <body>
-    <%= yield %>
-  </body>
+	<head>
+		<title></title>
+		<!--esta etiqueta parece ser la que importa los estilos css al pdf-->
+		<%=wicked_pdf_stylesheet_link_tag 'mail'%>
+
+		<meta charset="Utf-8">
+	</head>
+	<div align="center">
+		<body onload="number_pages()">
+			<table cellpadding="0" cellspacing="0" border="0" id="background-table">
+<tbody>
+	<tr>
+		<td valign="top">
+
+		<table cellpadding="0" cellspacing="0" border="0" align="center">
+		<tbody>
+			<tr>
+				<td valign="top" class="header-bar"><div class="graybg">-</div></td>
+				<td valign="top" id="center-banner"><img src="http://elemetrica.com/img/logo-azul-elemetrica-mail.png" alt="Elemétrica" width="250px" /></td>
+				<td valign="top" class="header-bar"><div class="graybg">-</div></td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" align="center">
+		<table cellpadding="0" cellspacing="0" border="0" align="left" id="body-wrapper">
+		<tbody>
+			<tr>
+				<td valign="top" class="body-spacing"><div>&nbsp;</div></td>
+				<td valign="top" class="body-content">
+	
+				<%= yield%>
+				</td>
+				<td valign="top" class="body-spacing"><div>&nbsp;</div></td>
+			</tr>
+		</tbody>
+		</table>
+		</td>
+	</tr>
+	<tr class="blue-background">
+		<td>-</td>
+	</tr>
+	<tr align="center">
+		<td class="footer" align="center">
+			Todos los derechos reservados. Servicios Lealtad TD CA. J-40058569-4.
+		</td>
+	</tr>
+
+</tbody>
+</table>
+			
+		</body>
+	</div>
+	
+
 </html>
+
+
+
