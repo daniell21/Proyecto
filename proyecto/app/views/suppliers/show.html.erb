@@ -13,26 +13,50 @@
 
 
 <div ALIGN=center>
-<p>
-  <strong>RIF:</strong>
-  <%= @supplier.rif %>
-</p>
-
-<p>
-  <strong>Nombre:</strong>
-  <%= @supplier.name %> 
-</p>
-
-<p>
-  <strong>Razon Social:</strong>
-  <%= @supplier.socialReason %>
-</p>
-<p>
-  <strong>Correo Electrónico:</strong>
-  <%= @supplier.email %>
-</p>
-<p>
-  <strong>Dirección:</strong>
-  <%= @supplier.address %>
-</p>
+  <table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+      <tr>
+        <td>
+          <p>
+            <strong>RIF:</strong>
+            <%= @supplier.rif %>
+          </p>
+        </td>
+        <td>
+        <p>
+          <strong>Nombre:</strong>
+            <%= @supplier.name %> 
+        </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <strong>Razon Social:</strong>
+            <%= @supplier.socialReason %>
+          </p>
+        </td>
+        <td>
+          <p>
+           <strong>Correo Electrónico:</strong>
+            <%= @supplier.email %>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <strong>Dirección:</strong>
+            <%= @supplier.address %>
+          </p>
+        </td>
+        <td>
+          <p>
+            <strong>Comentarios:</strong>
+            <%= @supplier.comment %>
+          </p>
+        </td>
+      </tr>
+    
+  </table>
 </div>

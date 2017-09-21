@@ -12,18 +12,22 @@
 </div>
 
 <div ALIGN=center>
-<p>
-  <strong>Nombre:</strong>
-  <%= @discount.name %>
-</p>
+  	<table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+        <tr>
+        	<td> 
+				<p>
+				  <strong>Nombre:</strong>
+				  <%= @discount.name %>
+				</p>
+			</td>
+        	<td>
+				<p>
+				  <strong>Porcentaje:</strong>
+				<%= number_to_currency(@discount.percentage, unit: "", separator: ",", delimiter: ".", precision: 2)%>%
 
-<p>
-  <strong>Porcentaje:</strong>
-<%= number_to_currency(@discount.percentage, unit: "", separator: ",", delimiter: ".", precision: 2)%>%
+				</p>
+				<p>
+			</td>
+        </tr>
 
-</p>
-<p>
-
-</div>
-
-</p>

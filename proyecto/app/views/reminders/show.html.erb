@@ -18,16 +18,21 @@
 
   
 <div ALIGN=center>
+  	<table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+        <tr>
+        	<td>
+				<p>
+				  <strong>Nombre:</strong>
+				  <%= @reminder.name %>
+				</p>
+			</td>
+        	<td>
+				<p>
+				  <strong>Frecuencia:</strong>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @reminder.name %>
-</p>
-<p>
-  <strong>Frecuencia:</strong>
-
- <%= "Diaria" if @reminder.frecuency == 1 %><%= "Quincenal" if @reminder.frecuency == 15 %><%= "Mensual" if @reminder.frecuency == 30 %>
-</p>
-
-
-
+				 <%= "Diaria" if @reminder.frecuency == 1 %><%= "Quincenal" if @reminder.frecuency == 15 %><%= "Mensual" if @reminder.frecuency == 30 %>
+				</p>
+			</td>
+        </tr>
+</div>

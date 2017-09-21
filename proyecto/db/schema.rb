@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921074205) do
+ActiveRecord::Schema.define(version: 20170921080423) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -235,9 +235,9 @@ ActiveRecord::Schema.define(version: 20170921074205) do
     t.datetime "updated_at",   null: false
     t.text     "socialReason"
     t.text     "address"
-    t.string   "category"
     t.string   "email"
     t.string   "rif"
+    t.text     "comment"
   end
 
   create_table "users", force: :cascade do |t|

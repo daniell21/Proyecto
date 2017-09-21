@@ -13,23 +13,21 @@
 </div>
 </div>
 <div ALIGN=center>
-
-<p>
-  <strong>Nombre:</strong>
-  <%= @rate.name %>
-</p>
-<%if @rate.name != "Porcentaje de IVA"%>
-<p>
-  <strong>Monto:</strong>
-  <%= number_to_currency(@rate.amount, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
-</p>
-<%else%>
-<p>
-  <strong>Monto:</strong>
-
-  <%= number_to_currency(@rate.amount, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
-</p>
-<%end%>
-
-
-
+  	<table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+        <tr>
+        	<td>
+				<p>
+				  <strong>Nombre:</strong>
+				  <%= @rate.name %>
+				</p>
+			</td>
+        	<td>	
+				<p>
+				  <strong>Monto:</strong>
+				  <%= number_to_currency(@rate.amount, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+				</p>
+			</td>
+        </tr>
+	</table>
+</div>

@@ -3,6 +3,7 @@ class ClientMailer < ApplicationMailer
 #Esto cambia, ahora email es una entidas debil de cliente
 	
 	def client_mail(client_mail, email)
+	
     	@client_mail = client_mail
     	@client = Client.find(@client_mail.client_id)
     	mail(to: email, subject: client_mail.title)

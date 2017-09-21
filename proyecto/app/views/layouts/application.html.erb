@@ -24,6 +24,7 @@
      <div class="navbar-default sidebar navbar-fixed" role="navigation">
 		 <img class="logo img-responsive" src="/assets/logo_data.png" />
 		     <ul class="nav in" id="side-menu">
+		     	<%$user = current_user%>
 		        	<%if (current_user.role != "client") %>
 						<li style="list-style:none;">
 							<%=  active_link_to 'Clientes', controller: 'clients' %>
@@ -66,12 +67,7 @@
 							    <li style="list-style:none;" ><%= active_link_to 'Tarifas', rates_path %></li>
 							    <li style="list-style:none;" ><%= active_link_to 'Recordatorios', reminders_path %></li>
 							  </div>
-							  <li style="list-style:none;">
-								<%= active_link_to 'Configuración', controller: 'setup' %>
-								<ul style="padding-left: 0; list-style:none;">
-								<li><a href="#">ryryfy</a></li>
-								</ul>
-							</li>
+							
 						
 
 
