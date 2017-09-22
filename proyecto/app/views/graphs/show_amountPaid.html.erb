@@ -1,8 +1,61 @@
-<h2>Monto Facturado vs Pagado</h2>
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), graphs_index_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
+<h1>Gráficos</h1>
+</div>
+</div>
+
+    <div id="menu-element" class="well-separator">
+      
+        <div class="row">
+        <div align="center">
+            <div class="col-sm-3"><label>Monto Facturado Vs  Pagado</label></div>
+            <div class="col-sm-3"><label>Conceptos de pago</label></div>
+            <div class="col-sm-3"><label>Clientes Deudores</label></div>
+            <div class="col-sm-3"><label>Instalaciones</label></div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3" align="center">
+          
+                  
+                   <%= link_to image_tag('/assets/paid.ico', title: "Monto Pagado Vs Facturado"), graphs_show_amountPaid_path %>
+           
+          </div>    
+
+          <div class="col-xs-3"> 
+            <div  class="right-separator-red" align="center">
+        	 <%= link_to image_tag('/assets/accounts.ico', title: "Conceptos de Pago"), graphs_show_accountTypes_path %>
+            </div>
+          </div>
+          <div class="col-xs-3">
+          <div align="center">
+            
+            <%= link_to image_tag('/assets/debtors.ico', title: "Clientes Deudores"), graphs_show_clientsDebtors_path %>
+            
+          </div>
+          </div>
+          <div class="col-xs-3">
+          <div align="center">
+
+
+            <%= link_to image_tag('/assets/install.ico', title: "Instalaciones"), graphs_show_facilities_path %>
+            
+          </div>
+          </div>
+        </div>
+        
+    
+</div>
 
 <select class="form-control" >
 			   
-            <option>Seleccione el Período</option> 
             <option id="select1">Mes Actual</option>
             <option id="select2">Último Trimestre</option> 
             <option id="select3">Histórico</option>
@@ -13,52 +66,81 @@
 <div class="select1 box">
 
 <div class="row">
-		<div class="col-xs-12">
-			<p style="color:#142c54;">Monto Facturado vs Pagado (Mes en Curso)</p>
-				<div id="orders_chart" style="width: 1000px; height: 300px;
+			<div class="col-xs-12">
+				<div class="panel" style="width: 986px; background-color: #142c54; color: #fff; -moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75); box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75)">
+      <div class="panel-heading">Monto Facturado vs Pagado (Mes en Curso)</div>
+     
+    
+		
+				<div id="orders_chart" style="width: 986px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @presentMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @presentMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %>
 		</div>
-	</div>
+	
 </div>
+</div>
+</div>
+</div>
+
+
 <div class="select2 box">
 
 	<div class="row">
 		<div class="col-xs-4">
-			<p style="color:#142c54;"><%=Settings.meses[@firstMonth]%></p>
+		<div class="panel" style="width: 307px; background-color: #142c54; color: #fff; -moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75); box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75)">
+      <div class="panel-heading"><%=Settings.meses[@firstMonth]%></div>
 				<div id="orders_chart" style="width: 307px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
 				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @firstMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
 		</div>
 		
-	
+	</div>
 
-		<div class="col-xs-4">
-			<p style="color:#142c54;"><%=Settings.meses[@secondMonth]%></p>
+	<div class="col-xs-4">
+		<div class="panel" style="width: 307px; background-color: #142c54; color: #fff; -moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75); box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75)">
+      <div class="panel-heading"><%=Settings.meses[@secondMonth]%></div>
 				<div id="orders_chart" style="width: 307px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @secondMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", legend: true , refresh: 60   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @secondMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
 		</div>
-	
-
-		<div class="col-xs-4">
 		
-			<p style="color:#142c54;"><%=Settings.meses[@thirdMonth]%></p>
+	</div>
+
+	<div class="col-xs-4">
+		<div class="panel" style="width: 307px; background-color: #142c54; color: #fff; -moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75); box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75)">
+      <div class="panel-heading"><%=Settings.meses[@thirdMonth]%></div>
 				<div id="orders_chart" style="width: 307px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @thirdMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", legend: true , refresh: 60   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @thirdMountAmountInvoicedvsPaid, label: "Monto Bs", xtitle: "Tipos de Montos", ytitle: "Bolivares", legend: true , refresh: 60   %></div>
 		</div>
+		
+	</div>
+
+	
 	</div>
 </div>
-	
+
 	<div class="select3 box">
-	<div class="row">
-		<div class="col-xs-12">
-			<p style="color:#142c54;">Monto Facturado vs Pagado (Histórico)</p>
-				<div id="orders_chart" style="width: 1000px; height: 300px;
+
+<div class="row">
+			<div class="col-xs-12">
+				<div class="panel" style="width: 986px; background-color: #142c54; color: #fff; -moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75); box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75)">
+      <div class="panel-heading">Monto Facturado vs Pagado (Histórico)</div>
+     
+    
+		
+			<div id="orders_chart" style="width: 986px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
 				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @historicalAmountInvoicedvsPaid, label: "Monto Bs", legend: true, xtitle: "Tipos de Montos", ytitle: "Bolivares" , refresh: 60   %></div>
-		</div>
+	
+</div>
+</div>
+</div>
+
+	
+	
+	<div class="row">
+		
 	
 	<br><br>
 

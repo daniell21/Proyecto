@@ -1,15 +1,85 @@
-<h2>Tipos de Cuentas</h2>
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), graphs_index_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
+<h1>Gráficos</h1>
+</div>
+</div>
 
+    <div id="menu-element" class="well-separator">
+      
+        <div class="row">
+        <div align="center">
+            <div class="col-sm-3"><label>Monto Facturado Vs  Pagado</label></div>
+            <div class="col-sm-3"><label>Conceptos de pago</label></div>
+            <div class="col-sm-3"><label>Clientes Deudores</label></div>
+            <div class="col-sm-3"><label>Instalaciones</label></div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3" align="center">
+          
+                  
+                   <%= link_to image_tag('/assets/paid.ico', title: "Monto Pagado Vs Facturado"), graphs_show_amountPaid_path %>
+           
+          </div>    
+
+          <div class="col-xs-3"> 
+            <div  class="right-separator-red" align="center">
+        	 <%= link_to image_tag('/assets/accounts.ico', title: "Conceptos de Pago"), graphs_show_accountTypes_path %>
+            </div>
+          </div>
+          <div class="col-xs-3">
+          <div align="center">
+            
+            <%= link_to image_tag('/assets/debtors.ico', title: "Clientes Deudores"), graphs_show_clientsDebtors_path %>
+            
+          </div>
+          </div>
+          <div class="col-xs-3">
+          <div align="center">
+
+
+            <%= link_to image_tag('/assets/install.ico', title: "Instalaciones"), graphs_show_facilities_path %>
+            
+          </div>
+          </div>
+        </div>
+        
+    
+</div>
+
+
+<%= link_to 'Monto facturado Vs Monto Pagado', graphs_show_amountPaid_path, :class => 'btn btn-default btn'  %>
+<%= link_to 'Conceptos de pago', graphs_show_accountTypes_path, :class => 'btn btn-default btn'  %>
+<%= link_to 'Clientes Deudores', graphs_show_clientsDebtors_path, :class => 'btn btn-default btn'  %>
+<%= link_to 'Instalaciones', graphs_show_facilities_path, :class => 'btn btn-default btn'  %>
+<br>
+<br>
+<br>
 		<div class="row">
-			<div class="col-xs-6">
-				
-				<div id="orders_chart" style="width: 400px; height: 300px;
+			<div class="col-xs-12">
+				<div class="panel" style="width: 987px;background-color: #5e2068; color: #fff; -moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75); box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75)">
+      <div class="panel-heading">Tipos de Cuentas</div>
+     
+    
+				<div id="orders_chart" style="width: 987px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivables_type, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", refresh: 60, download: true   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @accountreceivables_type, label: "Cuentas", xtitle: "Clientes", ytitle: "Nro Cuentas", refresh: 60  %></div>
+
 			</div>
-			
-			
 		</div>
+	
+					
+
+		</div>
+
+	
 		<br>
 		<div ALIGN=right>
 

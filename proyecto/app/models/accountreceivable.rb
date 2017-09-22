@@ -124,16 +124,17 @@ validates :profitNumber, presence: true, uniqueness: true
   end
   def calculateBasicAmount
   	resultado = 0
+    if self.amountWithoutTax.nil?
+    	client.discounts.each do |discount|
+    		resultado = resultado + discount.percentage
+    	end
+      
+      if client.specialDiscount
+       resultado = resultado + client.specialDiscount
+      end
 
-  	client.discounts.each do |discount|
-  		resultado = resultado + discount.percentage
-  	end
-    
-    if client.specialDiscount
-     resultado = resultado + client.specialDiscount
+    	self.amountWithoutTax = ((baseAmount * ( 1 - (resultado.to_f/100))))
     end
-
-  	self.amountWithoutTax = ((baseAmount * ( 1 - (resultado.to_f/100))))
 
   	
   	
@@ -141,20 +142,23 @@ validates :profitNumber, presence: true, uniqueness: true
 
   def calculateAmountWithTax
   	
-  	self.amountWithTax =  eval(sprintf("%14.4f",(amountWithoutTax * 1.12)))
-
+  	 self.amountWithTax =  eval(sprintf("%14.4f",(amountWithoutTax * 1.12)))
+    
   end
 
   def calculateRetentions
-  	retention = 0
-  	@rate = Rate.find(rate_id)
-  	if client.specialcontributor
-  		retention = amountWithoutTax * 0.02
+      if self.totalRetentions.nil?
+      	retention = 0
+      	@rate = Rate.find(rate_id)
+      	if client.specialcontributor
+      		retention = amountWithoutTax * 0.02
 
-  	end
-  	retention = retention + amountWithoutTax * 0.12 * 1
-  	
-  	self.totalRetentions = retention
+      	end
+      	retention = retention + amountWithoutTax * 0.12 * 1
+      	
+      	self.totalRetentions = retention
+      end
+    
 
   end
 
