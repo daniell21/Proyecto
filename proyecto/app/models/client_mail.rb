@@ -14,18 +14,31 @@ class ClientMail < ActiveRecord::Base
 	private	
 	
 	def send_mail
-		#raise self.client.to_yaml
-		
-		client = Client.find(self.client_id)
-		emails = client.email_ids
-		@client = client
-		emails.each do |email| 
-			
-			e = Email.find(email)
-			ClientMailer.delay.client_mail(self, e.email)
+		if massMailings
 
+			c = Client.all
+			c.each do |client|
+				emails = client.email_ids
+				emails.each do |email| 
+			
+					e = Email.find(email)
+					ClientMailer.delay.client_mail(self, e.email)
+				end
+			end
+
+		else
+		
+			client = Client.find(self.client_id)
+			emails = client.email_ids
+			@client = client
+			emails.each do |email| 
+				
+				e = Email.find(email)
+				ClientMailer.delay.client_mail(self, e.email)
+
+			end
 		end
-		AdminMailer.delay.new_adminreminder
+			AdminMailer.delay.new_adminreminder
 
 	end
 # 	def send_reminder

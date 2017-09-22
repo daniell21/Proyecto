@@ -6,7 +6,7 @@ class SearchAccountpayable < ActiveRecord::Base
 		
 		accountpayables = accountpayables.where(["amountPaid LIKE ?",amountPaid]) if amountPaid.present?
 		accountpayables = accountpayables.where(["descripcion LIKE ?",descripcion]) if descripcion.present?
-
+		accountpayables = accountpayables.where(["supplier_id LIKE ?",supplier_id]) if supplier_id.present?
 		accountpayables = accountpayables.where(["profitNumber LIKE ?",profitNumber]) if profitNumber.present?
 
 		return accountpayables

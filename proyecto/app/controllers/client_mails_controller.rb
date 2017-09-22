@@ -72,7 +72,7 @@ class ClientMailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_mail_params
-      params.require(:client_mail).permit(:title, :body, :date, :client_id)
+      params.require(:client_mail).permit(:title, :body, :date, :client_id, :massMailings)
     end
     def sort_column
       ClientMail.column_names.include?(params[:sort]) ? params[:sort] : "title"

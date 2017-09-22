@@ -60,6 +60,7 @@
             <tr>
 
           <th><%=  sortable "rif", "RIF"%></th>
+          <th><%=  sortable "code", "Código"%></th>
           <th><%=  sortable "name", "Nombre"%></th>
           <th color="red"><%=  sortable "socialReason", "Razón Social"%></th> 
           
@@ -74,9 +75,10 @@
        <tr >
    
         <td><%= client.rif %></td>
+        <td><%= client.code %></td>
         <td><%= client.name %></td>
         <td><%= client.socialReason%></td>
-        <td><%= client.completeCountry%></td>
+        <td><%= client.country%></td>
         <td><%= client.state%></td>
         
         

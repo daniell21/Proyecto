@@ -62,13 +62,11 @@ def load_imported_clients
         client.profitCode = row["codigoProfit"]
         client.localAmount = row["cantidadLocales"]
         client.name = row["nombre"]
-        client.completeCountry = row["pais"]
         client.country = row["pais"]
         client.rif = row["rif"]
         client.comment = row["comentario"]
         client.specialcontributor = row["contribuyenteEspecial"]
         client.state = row["estado"]
-        #raise row["completeCountry"].to_yaml
         client
       end
   end

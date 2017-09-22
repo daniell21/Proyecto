@@ -3,6 +3,8 @@
 
   <div class="form-inputs">
   
+  <b><%= f.input :massMailings,  label: "Correo Masivo"%></b>
+
   <%= f.association :client, include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Ciente"%> 
   <!--<%= f.input :client, :collection => Client.all, :input_html => { :multiple => true } %>-->
     <%= f.input :title, placeholder: 'Título', label: 'Título', error: 'Debe ingresar el título del Correo' %>
