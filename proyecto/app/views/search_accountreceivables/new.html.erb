@@ -1,0 +1,135 @@
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), accountpayables_path %>
+</div>
+<div class="col-xs-5" style="margin-left : -30px;">
+  <h1>Busqueda Avanzada</h1>
+</div>
+</div>
+
+  <%= simple_form_for(@search_accountreceivable) do |f| %>
+      <%= f.error_notification %>
+       
+          <div align="center">
+          <div class="row">
+          
+            
+          </div>
+            
+          </div>
+          <br>
+          <br>
+          <div class="row">
+              
+              <div class="col-md-6"> 
+                <%= f.input :profitCode, as: :integer, placeholder: 'Código Profit', label: "Número Control Profit", error: 'Este campo debe ser Númerico' %>
+              </div> 
+
+
+              <div class="col-md-6">  
+                  <%= f.input :profitNumber, as: :integer, placeholder: 'Número  Profit', label: "Número Factura Profit", error: 'Este campo debe ser Númerico' %>
+              </div>
+              
+            </div>
+          <br>
+          <br>
+          <!--Esto debe acomodarse-->
+          <div class="row"> 
+            
+            <div class="col-md-6">
+                  <%= f.input :month, :collection => [['enero',1],['febrero',2],['marzo',3],['abril',4],['mayo',5],['junio',6],['julio',7],['agosto',8],['septiembre',9],['octubre',10],['noviembre',11],['diciembre',12]], label: "Mes a Pagar ", 
+                    include_blank: "Seleccionar Mes",error: 'Debe seleccionar el mes de pago' %>
+              </div> 
+           <div class="col-md-6"> 
+              <%= f.input :bank, :collection => [["100%BANCO",'100%banco'],['Mercantil','mercantil'],['Banco Provincial','provincial'],['Banesco','banesco'],['Banco Banplus','banplus'],['Banco Bicentenario','bicentenario']], label: 'Banco', 
+                  include_blank: "Seleccionar Banco" %>
+            </div>
+            
+          </div>
+          <br>
+          <br>
+          
+            <div class="row">
+            
+
+              
+
+              <div class="col-md-6"> 
+                  <%= f.input :status, :collection => [['Facturada','Facturada'],['Anulada','Anulada'],['Incobrable','Incobrable']], label: "Estado de la Cuenta",
+                    include_blank: "Seleccionar Estado ", error: 'Debe seleccionar el Estado de la Cuenta' %>
+              </div>
+            </div>
+            <br>
+            <br>
+           
+          <div class="row">
+            <div class="col-md-6">
+                  <%= f.input :paymentType, :collection => [['Transferencia','transferencia'],['Deposito','deposito']], label: "Tipo de Pago", 
+                  include_blank: "Seleccionar Tipo",error: 'Debe seleccionar el tipo de pago' %>
+            </div>
+            
+
+              <div class="col-md-6"> 
+              <%= f.input :amountPaid, as: :string,  placeholder: 'Monto Pagado', label: "Monto Pagado", error: 'Debe ser Numérico' %>
+        </div>
+              </div> 
+            
+        
+            
+          
+          <br>
+          <br>
+          <div class="row">
+            
+            
+            <div class="col-md-6"> 
+              <%= f.input :transferNumberClient,  as: :integer, placeholder: 'Número Transferencia', label: "Número Transferencia Cliente", error: 'Este campo debe ser Númerico' %>
+              </div> 
+             
+            
+          </div>
+         
+          <br>
+          <br>
+          <div class="row">
+
+
+          
+            
+          
+          
+            <div class="col-md-6"> 
+                <%= f.input :transferNumber, as: :integer, placeholder: 'Nro Mercantil', label: "Número Transferencia Elemétrica", error: 'Este campo debe ser Númerico' %>
+            </div>
+            <div class="col-md-6"> 
+              <%= f.input :depositNumber,  as: :integer, placeholder: 'Número Deposito', label: "Número de Deposito", error: 'Este campo debe ser Númerico' %>
+              </div> 
+         
+          </div>
+          <br>
+          <br>
+          
+        
+            <div class="row">
+              
+              <div class="col-md-6"> 
+              <%= f.input :checkNumber,  as: :integer, placeholder: 'Número Cheque', label: "Número de Cheque", error: 'Este campo debe ser Númerico' %>
+              </div> 
+            </div>
+            <br>
+            <br>
+            
+<div ALIGN=right>
+        <div class="actions">
+        <%= f.button :submit, "Crear Cuenta"%>
+
+
+        </div>
+</div>
+<br>
+
+  <% end %>

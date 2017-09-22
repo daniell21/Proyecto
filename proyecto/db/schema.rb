@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921235342) do
+ActiveRecord::Schema.define(version: 20170922002442) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -174,22 +174,24 @@ ActiveRecord::Schema.define(version: 20170921235342) do
   end
 
   create_table "search_accountreceivables", force: :cascade do |t|
-    t.string   "keywords"
     t.string   "paymentType"
     t.string   "status"
     t.string   "bank"
     t.date     "date"
     t.boolean  "paid"
-    t.string   "month"
     t.integer  "rate_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "search_client_payments", force: :cascade do |t|
-    t.integer  "keywords"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "profitCode"
+    t.string   "profitNumber"
+    t.string   "clientAccount"
+    t.string   "checkNumber"
+    t.string   "depositNumber"
+    t.string   "transferNumberClient"
+    t.integer  "month"
+    t.string   "transferNumber"
+    t.string   "elemetricaAccount"
+    t.decimal  "amountPaid",           precision: 15, scale: 2
   end
 
   create_table "search_clients", force: :cascade do |t|
@@ -206,13 +208,6 @@ ActiveRecord::Schema.define(version: 20170921235342) do
     t.boolean  "chargeMonthlyFee"
     t.integer  "localAmount"
     t.boolean  "specialcontributor"
-  end
-
-  create_table "search_discounts", force: :cascade do |t|
-    t.string   "keywords"
-    t.integer  "percentage"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "search_suppliers", force: :cascade do |t|
