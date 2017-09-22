@@ -13,13 +13,14 @@
 <%= simple_form_for(@search_supplier) do |s| %>
 
 	<div class="row">
+		<div class="col-xs-6">
+			<%=s.input :rif, label: "RIF"%>
+		</div>
     	<div class="col-xs-6">
-			<%=s.input :keywords, label: "Nombre"%>
+			<%=s.input :name, label: "Nombre"%>
 		</div>
 	
-        <div class="col-xs-6">
-			<%=s.input :lastname, label: "Apellido"%>
-		</div>
+        
 	</div>
 	<br>
 	<br>
@@ -27,10 +28,22 @@
         <div class="col-xs-6">
 			<%=s.input :email, label: "Correo"%>
 		</div>
+		<div class="col-xs-6">
+			<%=s.input :socialReason, label: "Razón Social"%>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row">
+        <div class="col-xs-6">
+			<%=s.input :address, label: "Dirección"%>
+		</div>
+		
 	</div>
 	<div ALIGN=right>  
     <br>
 	<%= s.button :submit, "Buscar Proveedor"%>  
 	</div>
 <%end%>
+
 

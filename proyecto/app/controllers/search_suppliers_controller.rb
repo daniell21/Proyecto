@@ -14,6 +14,6 @@ class SearchSuppliersController < ApplicationController
 	end
 	private
 	def search_supplier_params
-		params.require(:search_supplier).permit(:keywords, :lastname, :email)
+		params.require(:search_supplier).permit!
 	end
 end

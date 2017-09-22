@@ -1,0 +1,71 @@
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), new_search_accountpayable_path %>
+</div>
+
+<h1>Resultados</h1>
+
+
+<% if @search_accountpayable.search_accountpayables.empty? %>
+<p> No se encontraron Cuentas </p>
+<%else%>
+
+<%@search_accountpayable.search_accountpayables.each do |c|%>
+<br>
+<div ALIGN=center>
+  <table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+      <tr>
+        <td>
+          <p>
+            <strong>Fecha:</strong>
+            <%= c.date %>
+          </p>
+        </td>
+        <td>
+        <p>
+          <strong>Número Factura:</strong>
+          <%= c.profitNumber %>
+        </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <strong>Cuenta:</strong>
+            <%= c.supplier.name %>
+          </p>
+        </td>
+        <td>
+          <p>
+            <strong>Descripcion:</strong>
+            <%= c.descripcion %>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <strong>Total:</strong>
+            <%= number_to_currency(c.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2) %>
+          </p>
+        </td>
+        <td>
+          <p>
+            <strong>Comentarios:</strong>
+            <%= c.comment %>
+          </p>
+        </td>
+      </tr>
+    
+  </table>
+	
+	
+	
+
+</div>
+<%end%>
+<%end%>

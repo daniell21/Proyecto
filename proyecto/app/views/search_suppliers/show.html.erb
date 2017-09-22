@@ -1,19 +1,69 @@
+<br>
+<% if flash[:notice] -%>
+  <div class = "alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), new_search_supplier_path %>
+</div>
+
 <h1>Resultados</h1>
 
 
-<% if @search_supplier.search_suppliers.empty? %>
-<p> No se encontraron proveedores </p>
-<%else%>
+	<% if @search_supplier.search_suppliers.empty? %>
+	<p> No se encontraron proveedores </p>
+	<%else%>
 
-<%@search_supplier.search_suppliers.each do |c|%>
-<br>
-<div class="div">
-		<h1><%=c.name%></h1>
-		<p>Apellido: <%=c.lastname%></p>
-		<p>Correo: <%=c.email%></p>
+	<%@search_supplier.search_suppliers.each do |c|%>
+	<br>
+	<div ALIGN=center>
+	  <table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+	         style="margin:0 auto;">
+	      <tr>
+	        <td>
+	          <p>
+	            <strong>RIF:</strong>
+	            <%= c.rif %>
+	          </p>
+	        </td>
+	        <td>
+	        <p>
+	          <strong>Nombre:</strong>
+	            <%= c.name %> 
+	        </p>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td>
+	          <p>
+	            <strong>Razon Social:</strong>
+	            <%= c.socialReason %>
+	          </p>
+	        </td>
+	        <td>
+	          <p>
+	           <strong>Correo Electrónico:</strong>
+	            <%= c.email %>
+	          </p>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td>
+	          <p>
+	            <strong>Dirección:</strong>
+	            <%= c.address %>
+	          </p>
+	        </td>
+	        <td>
+	          <p>
+	            <strong>Comentarios:</strong>
+	            <%= c.comment %>
+	          </p>
+	        </td>
+	      </tr>
+	    
+	  </table>
+	</div>
+	<%end%>
+	<%end%>
 
-</div>
-<%end%>
-<%end%>
-
-<%= link_to 'Atrás', new_search_supplier_path, :class => 'btn btn-default btn'  %>

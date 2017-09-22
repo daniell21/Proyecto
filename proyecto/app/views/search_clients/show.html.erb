@@ -5,22 +5,124 @@
 <p> No se encontraron Clientes </p>
 <%else%>
 
-<%@search_client.search_clients.each do |c|%>
+<%@search_client.search_clients.each do |client|%>
 <br>
-<div class="div">
-		<h1><%=c.name%></h1>
-		<p>RIF: <%=c.rif%></p>
-		<p>Codigo Profit: <%=c.profitCode%></p>
-	
-		<p>Contribuyente Especial: <%="Si" if c.specialcontributor%> <%="No" if !c.specialcontributor%></p>
-		<p>Estado: <%=c.state%></p>
-		<p>Razón Social: <%=c.socialReason%></p>
-		<p>País: <%=c.country%></p>
+<div ALIGN=center> 
 
-</div>
+<table width="100%" border="2px" cellspacing="0px" cellpadding="8px"
+         style="margin:0 auto;">
+  <tr>
+    <td>
+      <p>
+        <strong>Código:</strong>
+        <%= client.code %>
+      </p>
+    </td>
+    <td>
+      <p> 
+        <strong>RIF:</strong>
+        <%= client.rif %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p> 
+        <strong>Código Profit:</strong>
+        <%= client.profitCode %>
+      </p>
+    </td>
+   
+  </tr>
+  <tr>
+    <td>
+      <p> 
+        <strong>Nombre:</strong>
+        <%= client.name %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>País:</strong>
+        <%= client.completeCountry %> 
+      </p>
+    </td>    
+  </tr>
+    <tr>
+      <td>
+        <p>
+          <strong>Cobrar Mensualidad:</strong>
+          <%="Si" if client.chargeMonthlyFee%> <%="No" if !client.chargeMonthlyFee%>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>Estado:</strong>
+          <%= client.state %>
+        </p>
+      </td>
+    </tr>
+      <tr>
+        <td>
+          <p>
+            <strong>Razón Social:</strong>
+            <%= client.socialReason %>
+          </p>
+        </td>
+        <td>
+          <p>
+            <strong>Número de locales:</strong>
+            <%= client.localAmount %>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <strong>Contribuyente Especial:</strong>
+            <%="Si" if client.specialcontributor%> <%="No" if !client.specialcontributor%>
+          </p>
+        </td>
+        <td>
+          <p>
+            <strong>Comentarios:</strong>
+            <%=client.comment%> 
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td> 
+          <p>
+            <strong>Descuentos: </strong> <br> 
+            <% client.discounts.each do |discount|%>
+            <%=discount.name%> - <%=discount.percentage%>%<br>
+            <%end%>
+            
+            <% if client.specialDiscount%>
+             Especial - 
+             <%= number_to_currency(client.specialDiscount, unit: "", separator: ",", delimiter: ".", precision: 2) %>%
+            <%end%>
+          </p>
+        </td>
+        <td>
+     
+        </td>
+      </tr>
+      
+    </table>
+   </div>
 <%end%>
 <%end%>
 <div align="right">
 <%= link_to 'Atrás', new_search_client_path, :class => 'btn btn-default btn'  %>
 </div>
 <br> <br>
+
+
+
+
+
+
+
+
+

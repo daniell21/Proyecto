@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921080423) do
+ActiveRecord::Schema.define(version: 20170921235342) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -19,9 +19,7 @@ ActiveRecord::Schema.define(version: 20170921080423) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.date     "date"
-    t.text     "concept"
     t.text     "comment"
-    t.boolean  "paid"
     t.string   "profitNumber"
     t.decimal  "amountPaid",   precision: 15, scale: 2
   end
@@ -144,13 +142,6 @@ ActiveRecord::Schema.define(version: 20170921080423) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.decimal  "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "rates", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                          null: false
@@ -174,11 +165,12 @@ ActiveRecord::Schema.define(version: 20170921080423) do
   end
 
   create_table "search_accountpayables", force: :cascade do |t|
-    t.string   "keywords"
     t.date     "date"
     t.string   "descripcion"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "profitNumber"
+    t.decimal  "amountPaid",   precision: 15, scale: 2
   end
 
   create_table "search_accountreceivables", force: :cascade do |t|
@@ -201,17 +193,19 @@ ActiveRecord::Schema.define(version: 20170921080423) do
   end
 
   create_table "search_clients", force: :cascade do |t|
-    t.string   "keywords"
     t.integer  "rif"
     t.string   "profitCode"
-    t.string   "email"
-    t.string   "specialcontributor"
     t.string   "state"
     t.string   "socialReason"
     t.string   "discounts"
     t.string   "country"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "name"
+    t.decimal  "specialDiscount",    precision: 15, scale: 2
+    t.boolean  "chargeMonthlyFee"
+    t.integer  "localAmount"
+    t.boolean  "specialcontributor"
   end
 
   create_table "search_discounts", force: :cascade do |t|
@@ -222,11 +216,13 @@ ActiveRecord::Schema.define(version: 20170921080423) do
   end
 
   create_table "search_suppliers", force: :cascade do |t|
-    t.string   "keywords"
-    t.string   "lastname"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "name"
+    t.string   "rif"
+    t.text     "socialReason"
+    t.text     "address"
   end
 
   create_table "suppliers", force: :cascade do |t|
