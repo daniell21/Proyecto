@@ -59,7 +59,7 @@
       <br>
       <div class="row">
         <div class="col-md-6">
-              <%= f.input :localAmount, label: "Numero locales", error: 'Este campo debe ser Numérico', input_html: { autocomplete: 'off' }  %>
+              <%= f.input :localAmount, label: "Numero locales", placeholder: 'Número de Locales', error: 'Este campo debe ser Numérico', input_html: { autocomplete: 'off' }  %>
         </div>
         
         <div class="col-xs-6">
@@ -83,8 +83,11 @@
         
       <br>
       <br>
-      <div class="row">
-      <div align="left">
+      <div class="row">  
+        <div class="col-md-6">
+              <%= f.input :localId, label: "Id del Local", placeholder: 'Id del local', error: 'Esta campo es necesario', input_html: { autocomplete: 'off' }  %>
+              <span id="error_discount" style="color:#a94442"></span>
+        </div>
 
         <div class="col-xs-6">
           <b><%= f.input :specialcontributor,  label: "Contribuyente Especial"%></b>
@@ -93,7 +96,13 @@
     
      
         </div>
-      </div>
+        
+       
+        
+      </div> 
+      <br><br>
+      <div class="row">
+      
         <div class="col-xs-3">
           <label>Descuentos Aplicables</label> <br>
             <%=f.collection_check_boxes :discount_ids, Discount.all, :id, :name%>
@@ -109,15 +118,7 @@
       <br>
       <br>
         
-      <div class="row">  
-        
-
-        
-        
-       
-        
-      </div> 
-      
+            
 
 
 <br>

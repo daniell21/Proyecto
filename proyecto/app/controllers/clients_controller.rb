@@ -15,7 +15,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
     format.html
-    format.json
+    format.json { render json: @clients }
      format.csv { send_data text: @clients.to_csv }
      format.xls 
     format.pdf {render template: 'clients/reporte', pdf: 'Clientes', layout: 'pdf.html'}#, header: { right: 'Página [page] de [topage]' }}

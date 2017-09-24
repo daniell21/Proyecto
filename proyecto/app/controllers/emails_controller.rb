@@ -31,7 +31,7 @@ class EmailsController < ApplicationController
     #raise @email.client_id.to_yaml
     respond_to do |format|
       if @email.save
-        format.html { redirect_to @email.client, notice: 'Email was successfully created.' }
+        format.html { redirect_to @email.client, notice: 'El Correo fue Creado Exitosamente.' }
         format.json { render :show, status: :created, location: @email }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class EmailsController < ApplicationController
   def update
     respond_to do |format|
       if @email.update(email_params)
-        format.html { redirect_to @email.client, notice: 'Email was successfully updated.' }
+        format.html { redirect_to @email.client, notice: 'El Correo fue Actualizado Exitosamente.' }
         format.json { render :show, status: :ok, location: @email }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class EmailsController < ApplicationController
 
     @email.destroy
     respond_to do |format|
-      format.html { redirect_to @client, notice: 'Email was successfully destroyed.' }
+      format.html { redirect_to @client, notice: 'El Correo fue Eliminado Exitosamente.' }
       format.json { head :no_content }
     end
   end

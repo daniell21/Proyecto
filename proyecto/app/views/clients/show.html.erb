@@ -1,4 +1,4 @@
-<br>
+
 <% if flash[:notice] -%>
   <div class = "alert alert-success"><%= flash[:notice] %></div>
 <% end %>
@@ -35,6 +35,12 @@
       <p> 
         <strong>Código Profit:</strong>
         <%= @client.profitCode %>
+      </p>
+    </td>
+    <td>
+      <p> 
+        <strong>Id del Local:</strong>
+        <%= @client.localId %>
       </p>
     </td>
    
@@ -113,6 +119,7 @@
           <p>
            
             <%= render "emails/form" %>
+
             <ul>
               <%@client.emails.each do |email|%>
                 <li  style="list-style:none;">
