@@ -8,6 +8,9 @@
         <div class="row">
         <div align="center">
             <div class="col-sm-4"><label>Buscar Informes</label></div>
+            <div class="col-sm-2"><label></label></div>
+            <div class="col-sm-2"><label></label></div>
+            <div class="col-sm-4"><label>Agregar Informe</label></div>
             </div>
         </div>
    
@@ -23,6 +26,13 @@
                 <%= text_field_tag :search, params[:search], class: 'form-control', placeholder:"Título Informe",id:"myInput", onkeyup:"myFunction()", autocomplete:"off" %>
                 
             <% end %>
+            </div>
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2"></div>
+          <div align="col-sm-4">
+          <div class="form-group bar-search" align="center">
+              <%= link_to 'Crear Informe', new_report_path, :class => 'btn btn-default btn'  %>
             </div>
           </div>
         </div>
@@ -65,9 +75,6 @@
 
 <br>
 
-<div align="right">
-  <%= link_to 'Crear Informe', new_report_path, :class => 'btn btn-default btn'  %>
-  </div>
 
 
   <script>

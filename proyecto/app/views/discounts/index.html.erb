@@ -8,6 +8,9 @@
         <div class="row">
         <div align="center">
             <div class="col-sm-4"><label>Buscar Descuentos</label></div>
+            <div class="col-sm-2"><label></label></div>
+            <div class="col-sm-2"><label></label></div>
+            <div class="col-sm-4"><label>Agregar Descuento</label></div>
             </div>
         </div>
    
@@ -23,6 +26,13 @@
                 <%= text_field_tag :search, params[:search], class: 'form-control', placeholder:"Correo Usuario",id:"myInput", onkeyup:"myFunction()", autocomplete:"off" %>
                 
             <% end %>
+            </div>
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2"></div>
+          <div align="col-sm-4">
+          <div class="form-group bar-search" align="center">
+              <%= link_to 'Nuevo Descuento', new_discount_path, :class => 'btn btn-default btn'  %>
             </div>
           </div>
         </div>
@@ -63,9 +73,6 @@
 </div>
 <br>
 
-<div align="right">
-  <%= link_to 'Nuevo Descuento', new_discount_path, :class => 'btn btn-default btn'  %>
-  </div>
 
   <script>
 function myFunction() {
