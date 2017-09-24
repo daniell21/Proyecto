@@ -35,6 +35,7 @@ validates :profitNumber, presence: true, uniqueness: true
   after_save :send_notification
   before_save :validateAmountPaid
   after_save :setDate
+  after_save :setlastPayment
 
 
 
@@ -295,6 +296,15 @@ def setDate
   else
       self.update_column(:paid, true)
       self.update_column(:date, Time.now.strftime("%d/%m/%Y %H:%M"))
+  end
+end
+
+def setlastPayment
+  if self.amountPaid.nil?
+  else  
+    client = Client.find(client_id)
+    client.update_column(:lastPayment, Time.now.strftime("%d/%m/%Y %H:%M"))
+  
   end
 end
 

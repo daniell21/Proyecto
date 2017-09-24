@@ -10,6 +10,7 @@ class Client < ActiveRecord::Base
   validates :country, presence: true 
   validates :socialReason, presence: true
   validates :state, presence: true
+  validates :localId, presence: true
   validates :rif, presence: true, uniqueness: true , length: { minimum: 9, maximum: 9}
   validates :profitCode, presence: true, length: { minimum: 6 }, uniqueness: true
   validates :localAmount, presence: true

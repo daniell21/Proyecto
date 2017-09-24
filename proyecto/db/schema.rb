@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170924210720) do
+ActiveRecord::Schema.define(version: 20170924222144) do
 
   create_table "accountpayables", force: :cascade do |t|
     t.string   "descripcion"
@@ -58,6 +58,12 @@ ActiveRecord::Schema.define(version: 20170924210720) do
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
   add_index "accountreceivables", ["rate_id"], name: "index_accountreceivables_on_rate_id"
+
+  create_table "api_keys", force: :cascade do |t|
+    t.string   "access_token"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "client_mails", force: :cascade do |t|
     t.string   "title"
