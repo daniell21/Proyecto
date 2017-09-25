@@ -1,6 +1,6 @@
 <script type="text/javascript">
   $(document).ready(function() {
-    var discount = document.getElementById("client_specialDiscount");
+    var discount = document.getElementById("discount_percentage");
   
     discount.value = discount.value.replace('.',',');
     discount.addEventListener('keyup', validate_discount, true);
@@ -38,11 +38,12 @@
   <div class="row">
     <div class="col-md-6">
     
-      <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', error: 'Debe ingresar el nombre del Descuento '  %>
+      <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', input_html: { autocomplete: 'off' }, error: 'Debe ingresar el nombre del Descuento '  %>
     </div>
  
     <div class="col-md-6">
-      <%= f.input :percentage, as: :string, placeholder: 'Porcentaje', label: 'Porcentaje', error: 'Este campo debe ser numérico' %>
+      <%= f.input :percentage, as: :string, placeholder: 'Porcentaje', label: 'Porcentaje', input_html: { autocomplete: 'off' }, error: 'Este campo debe ser numérico' %>
+      <span id="error_discount" style="color:#a94442"></span>
     </div>
     
   </div>

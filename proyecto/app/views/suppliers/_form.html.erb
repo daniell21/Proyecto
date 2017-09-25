@@ -2,21 +2,21 @@
    <%= f.error_notification %> 
     <div class="row">
       <div class="col-md-6"> 
-        <%= f.input :rif, as: :integer, placeholder: 'RIF', label: 'RIF', error: 'Debe ingresar el RIF del Cliente o este debe ser Numérico' %>
+        <%= f.input :rif, as: :integer, placeholder: 'RIF', label: 'RIF', input_html: { autocomplete: 'off' } , error: 'Debe ingresar el RIF del Cliente o este debe ser Numérico' %>
       </div>
       <div class="col-md-6">
-        <%= f.input :email, placeholder: 'Correo', label: 'Correo' %>
+        <%= f.input :email, placeholder: 'Correo', label: 'Correo', input_html: { autocomplete: 'off' }  %>
       </div>
     </div>
     <br>
     <br>
     <div class="row">
       <div class="col-md-6"> 
-        <%= f.input :name, placeholder: 'Nombre', label: 'Nombre' %>
+        <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', input_html: { autocomplete: 'off' }  %>
       </div>
     
       <div class="col-md-6">    
-        <%= f.input :socialReason , placeholder: 'Razón Social', label: 'Razón Social' %>
+        <%= f.input :socialReason , placeholder: 'Razón Social', label: 'Razón Social', input_html: { autocomplete: 'off' } %>
       </div>
     </div>
     <br>
@@ -24,10 +24,10 @@
     <div class="row">
       
       <div class="col-md-6">
-        <%= f.input :address, placeholder: 'Dirección', label: 'Dirección' %>
+        <%= f.input :address, placeholder: 'Dirección', label: 'Dirección', input_html: { autocomplete: 'off' } %>
       </div>
       <div class="col-md-6">
-        <%= f.input :comment, placeholder: 'Comentarios', label: 'Comentarios' %>
+        <%= f.input :comment, placeholder: 'Comentarios', label: 'Comentarios', input_html: { autocomplete: 'off' } %>
       </div>
     </div>
 

@@ -7,8 +7,8 @@
 
   <%= f.association :client, include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Ciente"%> 
   <!--<%= f.input :client, :collection => Client.all, :input_html => { :multiple => true } %>-->
-    <%= f.input :title, placeholder: 'Título', label: 'Título', error: 'Debe ingresar el título del Correo' %>
-    <%= f.input :body, placeholder: 'Mensaje', label: 'Mensaje', error: 'Debe ingresar el contenido del Correo' %>
+    <%= f.input :title, placeholder: 'Título', label: 'Título', input_html: { autocomplete: 'off' }, error: 'Debe ingresar el título del Correo' %>
+    <%= f.input :body, placeholder: 'Mensaje', label: 'Mensaje', input_html: { autocomplete: 'off' }, error: 'Debe ingresar el contenido del Correo' %>
 
   </div>
 <br><br>

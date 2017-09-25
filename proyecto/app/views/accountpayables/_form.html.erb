@@ -34,7 +34,7 @@
   <div class="row">
     
     <div class="col-xs-6">
-            <%= f.input :profitNumber, as: :integer, placeholder: 'Número', label: 'Número', error: 'El Código debe ser Numérico (6 digitos)'%>
+            <%= f.input :profitNumber, as: :integer, placeholder: 'Número', label: 'Número', input_html: { autocomplete: 'off' }, error: 'El Código debe ser Numérico (6 digitos)'%>
         </div>
     <div class="col-md-6"> 
       <%= f.association :supplier, label: "Proveedor", 
@@ -45,10 +45,11 @@
   <br>
   <div class="row">
     <div class="col-md-6"> 
-      <%= f.input :amountPaid, as: :string, type: "number", label: 'Monto Pagado', error: 'Debe ser Númerico' %>
+      <%= f.input :amountPaid, as: :string, type: "number", label: 'Monto Pagado', input_html: { autocomplete: 'off' }, error: 'Debe ser Númerico' %>
+      <span id="error_discount" style="color:#a94442"></span>
     </div>
     <div class="col-md-6">
-      <%= f.input :descripcion, label: 'Descripción' %>
+      <%= f.input :descripcion, label: 'Descripción', input_html: { autocomplete: 'off' } %>
     </div>
   </div>
     <br>

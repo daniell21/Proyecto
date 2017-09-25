@@ -9,7 +9,7 @@
  <br><br>
  <div class="row">
     <div class="col-md-12">
-      <%= f.input :title, placeholder: 'Título', label: 'Título', error: 'Debe ingresar el Título del Reporte' %>
+      <%= f.input :title, placeholder: 'Título', label: 'Título', input_html: { autocomplete: 'off' }, error: 'Debe ingresar el Título del Reporte' %>
   	</div>
    
    </div>
@@ -17,7 +17,7 @@
   <div class="row">
  
     <div class="col-md-12">
-      <%= f.input :content, placeholder: 'Contenido', label: 'Contenido'%>
+      <%= f.input :content, placeholder: 'Contenido', label: 'Contenido', input_html: { autocomplete: 'off' }%>
     </div>
     
   </div>

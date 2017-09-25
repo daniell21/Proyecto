@@ -36,11 +36,12 @@
     
   <div class="row">
     <div class="col-md-6">
-      <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', error: 'Debe ingresar el nombre de la tarifa '  %>
+      <%= f.input :name, placeholder: 'Nombre', label: 'Nombre', input_html: { autocomplete: 'off' }, error: 'Debe ingresar el nombre de la tarifa '  %>
     </div>
  
     <div class="col-md-6">
-      <%= f.input :amount, as: :string,   placeholder: 'Monto', label: 'Ingrese el Monto', error: 'Este campo debe ser numérico' %>
+      <%= f.input :amount, as: :string,   placeholder: 'Monto', label: 'Ingrese el Monto', input_html: { autocomplete: 'off' }, error: 'Este campo debe ser numérico' %>
+      <span id="error_discount" style="color:#a94442"></span>
     </div>
     
   </div>
