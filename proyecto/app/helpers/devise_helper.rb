@@ -4,15 +4,14 @@ module DeviseHelper
 
     messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
     html = <<-HTML
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <strong>
-       #{pluralize(resource.errors.count, "error")} must be fixed
+    
+      <a href="#" data-dismiss="alert" class="close">×</a>
+        <div class="alert alert-alert">
+      <strong style="color:red;">
       </strong>
       #{messages}
-    </div>
+    </span>
+      </div>
     HTML
 
     html.html_safe
