@@ -13,16 +13,18 @@
 
 <div ALIGN=center>
 <p>
-  <strong>Título:</strong>
-  <%= @report.title %>
+ <h1><%= @report.title %></h1>
+  
 </p>
 <p>
-  <strong>Gráfico:</strong>
- <%= image_tag(@report.chart_url(:thumb).to_s) %>
+
+ <%= image_tag(@report.chart_url(:thumb).to_s, height: '300', width: '600') %>
 </p>
+
+<br><br>
 <p>
-  <strong>Análisis:</strong>
-  <%= @report.content %>
+<h6><%= @report.content, input_html: {align: justify }%></h6>
+  
 </p>
 
 

@@ -5,7 +5,7 @@
   
   <b><%= f.input :massMailings,  label: "Correo Masivo"%></b>
 
-  <%= f.association :client, include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Ciente"%> 
+  <%= f.association :client, label: 'Destinatario', include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Ciente"%> 
   <!--<%= f.input :client, :collection => Client.all, :input_html => { :multiple => true } %>-->
     <%= f.input :title, placeholder: 'Título', label: 'Título', input_html: { autocomplete: 'off' }, error: 'Debe ingresar el título del Correo' %>
     <%= f.input :body, placeholder: 'Mensaje', label: 'Mensaje', input_html: { autocomplete: 'off' }, error: 'Debe ingresar el contenido del Correo' %>
@@ -18,3 +18,27 @@
   </div>
 
 <% end %>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  console.log('Hey There!');
+  $('#client_mail_massMailings').click(function(){
+     
+     if ( $('#client_mail_massMailings').is(':checked') ){
+
+        console.log('entre perra');
+        $('#client_mail_client_id').hide();
+     }else{
+        console.log('no entre perra');
+        $('#client_mail_client_id').show();
+
+
+     }
+
+
+  })
+});
+
+</script>
