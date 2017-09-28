@@ -14,6 +14,8 @@ class Client < ActiveRecord::Base
   validates :rif, presence: true, uniqueness: true , length: { minimum: 9, maximum: 9}
   validates :profitCode, presence: true, length: { minimum: 6 }, uniqueness: true
   validates :localAmount, presence: true
+  before_save :generate_token
+
 
 
 
@@ -29,7 +31,9 @@ class Client < ActiveRecord::Base
  
   
 
-
+def generate_token
+  raise Token.generate_token.to_yaml
+end
 
   #simple search name
  def self.search(search)
