@@ -56,9 +56,13 @@
   <tbody>
     <% @client_mails.each do |client_mail| %>
       <tr>
-        <td><%= client_mail.title %></td>
-        <td><%= (client_mail.client.name) %></td>
-        <td><%= client_mail.date %></td>
+        <td width="26.6%"><%= client_mail.title %></td>
+        <%if client_mail.client.nil?%>
+          <td width="26.6%">Correo Masivo</td>
+        <%else%>
+          <td width="26.6%"><%= (client_mail.client.name) %></td>
+        <%end%>
+        <td width="26.6%"><%= client_mail.date %></td>
         
         <% if can? :show, client_mail %>
           <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Correo"), client_mail %></td>

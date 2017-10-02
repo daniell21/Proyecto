@@ -6,9 +6,10 @@
   </head>
   <body>
 
-   Hola,  <strong><%=@client.name%></strong>
+   Hola,  <strong><%=@client.name unless @client.nil?%></strong>
+   <%@client_mail = ClientMail.last%>
     <p>
-      <%= @client_mail.body %>
+      <%= @client_mail.body%>
     </p>
 
 
@@ -33,10 +34,7 @@
 </p>
 <br>
 <p align="center">
-  <a style="-webkit-border-radius: 6;
-    -moz-border-radius: 6;border-radius: 6px;font-family: Arial;color: #ffffff;
-    font-size: 17px;background: #00004c;padding: 10px 20px 10px 20px;
-    text-decoration: none;" href="https://elemetrica.com/app">Ingresar a Elemétrica</a>
+  <a  href="https://elemetrica.com/app">Ingresar a Elemétrica</a>
 </p>
 
   </body>

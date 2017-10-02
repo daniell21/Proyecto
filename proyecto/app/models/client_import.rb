@@ -44,9 +44,11 @@ class ClientImport
   end
   
 
+
 def load_imported_clients
    spreadsheet = open_spreadsheet
    @p = spreadsheet
+   
    unless @p.nil?
       
       header = spreadsheet.row(1)
@@ -57,7 +59,18 @@ def load_imported_clients
         client =  Client.new if (Client.find_by rif: row["rif"]).nil?
         
         #client.attributes = row.to_hash.slice(*row.to_hash.keys)
-        client.chargeMonthlyFee = row["cobrarMensualidad"]
+        
+        if (row["cobrarMensualidad"] == "Si")
+          cobrar =  true
+        else 
+          cobrar = false
+        end
+        if (row["contribuyenteEspecial"] == "Si")
+          contribuyente =  true
+        else 
+          contribuyente = false
+        end
+        client.chargeMonthlyFee = cobrar
         client.socialReason = row["razonSocial"]
         client.profitCode = row["codigoProfit"]
         client.localAmount = row["cantidadLocales"]
@@ -65,8 +78,9 @@ def load_imported_clients
         client.country = row["pais"]
         client.rif = row["rif"]
         client.comment = row["comentario"]
-        client.specialcontributor = row["contribuyenteEspecial"]
+        client.specialcontributor = contribuyente
         client.state = row["estado"]
+        client.localId = row["localId"]
         client
       end
   end

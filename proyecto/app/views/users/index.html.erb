@@ -49,18 +49,18 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.email %></td>
+          <td width="40%"><%= user.email %></td>
           <%if user.role == "admin"%>
-          <td>Administrador</td>
+          <td width="40%">Administrador</td>
           <%end%>
           <%if user.role == "limited"%>
-          <td>Limitado</td>
+          <td width="40%">Limitado</td>
           <%end%>
           <%if user.role == "restricted"%>
-          <td>Restringido</td>
+          <td width="40%">Restringido</td>
           <%end%>
           <%if user.role == "client"%>
-          <td>Cliente</td>
+          <td width="40%">Cliente</td>
           <%end%>
           <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Usuario"), edit_user_path(user) %></td>
           <td><%= link_to image_tag('/assets/delete.ico',  title: "Eliminar Usuario"), user, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>

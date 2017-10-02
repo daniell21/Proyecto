@@ -1,18 +1,30 @@
 <%= simple_form_for(@client_mail) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-  
   <b><%= f.input :massMailings,  label: "Correo Masivo"%></b>
+  <div class="row" id="destinity">
+        <div class="col-xs-12" >
+          <%= f.association :client, label: 'Destinatario', include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Ciente"%> 
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.input :title, placeholder: 'Título', label: 'Título', input_html: { autocomplete: 'off' }, error: 'Debe ingresar el título del Correo' %>
+        </div>   
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.input :body, placeholder: 'Mensaje', label: 'Mensaje', input_html: { autocomplete: 'off' }, error: 'Debe ingresar el contenido del Correo' %>
+      </div>
+  
+  
 
-  <%= f.association :client, label: 'Destinatario', include_blank: "Seleccionar Cliente", error: "Debe seleccionar un Ciente"%> 
-  <!--<%= f.input :client, :collection => Client.all, :input_html => { :multiple => true } %>-->
-    <%= f.input :title, placeholder: 'Título', label: 'Título', input_html: { autocomplete: 'off' }, error: 'Debe ingresar el título del Correo' %>
-    <%= f.input :body, placeholder: 'Mensaje', label: 'Mensaje', input_html: { autocomplete: 'off' }, error: 'Debe ingresar el contenido del Correo' %>
 
-  </div>
+    
+
+  
 <br><br>
-<div align="right">
+
   <div class="form-actions">
     <%= f.button :submit, "Crear Correo" %>
   </div>
@@ -28,11 +40,11 @@ $(document).ready(function(){
      
      if ( $('#client_mail_massMailings').is(':checked') ){
 
-        console.log('entre perra');
-        $('#client_mail_client_id').hide();
+      
+        $('#destinity').hide();
      }else{
-        console.log('no entre perra');
-        $('#client_mail_client_id').show();
+      
+        $('#destinity').show();
 
 
      }

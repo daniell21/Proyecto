@@ -223,9 +223,9 @@ a:hover {
     a {
     color: darken(white, 15%);
         &.active, &.active:hover, &.active:focus {
-          padding-left: 25px;
-          color: lighten(black, 15%);
-            background-color: #ededed;
+         
+          color: #333 !important;
+            background-color: #ededed!important;
         }
         &:hover, &:focus {
           background-color: darken(#142c54, 5%);
@@ -236,6 +236,7 @@ a:hover {
   background-color: lighten(#142c54, 5%);
     a {
     color: darken(white, 15%);
+
         &.active, &.active:hover, &.active:focus {
           padding-left: 25px;
           color: lighten(black, 15%);
@@ -243,6 +244,9 @@ a:hover {
         }
         &:hover, &:focus {
           background-color: darken(#142c54, 5%);
+          padding: 10px 15px;
+
+    color: #fff;
         }
     }
 }
@@ -399,18 +403,21 @@ select {
     color: #fff !important;
     background-color: #0d1e3a !important;
 }
+
 .nav div li:hover {
     color: #fff !important;
     display: block;
-    padding: 10px 15px;
+   
     background-color: #375484;
     width: 100%;
+    
 }
+
 .nav {
   button {
     color: darken(white, 15%);
         background-color: #193769;
-
+            padding: 10px 15px;
   }
 
   li {
@@ -420,16 +427,24 @@ select {
         color: #fff;
         display: block;
         padding: 10px 15px;
+
       }
     }
   }
   div {
-    li{
+    li a:link{
       color: #fff!important;
         display: block;
         padding: 10px 15px;
-          background-color: #375484;
+          background-color: #324e7b;
+          text-decoration: none;
+          text-align: center!important;
 
+    }
+    a:hover{ 
+          color: #262626; 
+       padding: 10px 15px;
+       background-color: #375484;
     }
   }
 

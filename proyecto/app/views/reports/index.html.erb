@@ -54,9 +54,9 @@
   <tbody>
     <% @reports.each do |report| %>
       <tr>
-        <td><%= report.title %></td>
-        <td><%= report.content %></td>
-        <td><%= report.chart %></td>
+        <td width="26.6%"><%= report.title %></td>
+        <td width="30.6%"><%= truncate(report.content, length: 40) %></td>
+        <td width="22.6%"><%= report.chart %></td>
         <% if can? :show, report %>
           <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Reporte"), report %></td>
         <%end%>

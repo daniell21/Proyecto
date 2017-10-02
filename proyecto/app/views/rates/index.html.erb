@@ -58,10 +58,10 @@
     <% @rates.each do |rate| %>
       <tr>
       
-        <td><%= rate.name %></td>
-        <td><%= number_to_currency(rate.amount, unit: "", separator: ",", delimiter: ".", precision: 2)%></td>
+        <td width="40%"><%= rate.name %></td>
+        <td width="40%"><%= number_to_currency(rate.amount, unit: "", separator: ",", delimiter: ".", precision: 2)%></td>
         <% if can? :show, rate %>
-          <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Tarifa"), rate %></td>
+          <td >  <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Tarifa"), rate %></td>
         <%end%>
         <% if can? :edit, rate %>
           <td><%= link_to image_tag('/assets/pencil.ico',  title: "Editar Tarifa"), edit_rate_path(rate) %></td>

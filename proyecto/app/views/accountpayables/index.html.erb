@@ -77,11 +77,11 @@
     <tbody>
       <% @accountpayables.each do |accountpayable| %>
           <tr>
-            <td><%= accountpayable.profitNumber %></td>
-            <td><%= accountpayable.date %></td>
-            <td><%= accountpayable.supplier.name %></td>
-            <td><%= accountpayable.descripcion %></td>
-            <td><%= number_to_currency(accountpayable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+            <td width="16%"><%= accountpayable.profitNumber %></td>
+            <td width="16%"><%= accountpayable.date %></td>
+            <td width="16%"><%= accountpayable.supplier.name %></td>
+            <td width="16%"><%= accountpayable.descripcion %></td>
+            <td width="16%"><%= number_to_currency(accountpayable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
             <% if can? :show, accountpayable %>
               <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Cuenta"), accountpayable %></td>
             <%end%>

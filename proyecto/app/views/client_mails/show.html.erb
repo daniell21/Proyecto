@@ -22,7 +22,7 @@
 				  <strong>Fecha:</strong>
 				  <%= @client_mail.date %>
 				</p>
-		
+		<%unless @client_mail.client_id.nil?%>
 				<%@client = Client.find(@client_mail.client_id)%>
 			</td>
         	<td>
@@ -31,6 +31,14 @@
 				  <%= @client.name %>
 				</p>
 			</td>
+		<%else%>
+			<td>
+				<p>
+				  <strong>Cliente:</strong>
+				  Correo Masivo
+				</p>
+			</td>
+		<%end%>
         </tr>
         <tr>
         	<td> 

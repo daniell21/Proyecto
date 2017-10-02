@@ -33,7 +33,7 @@ validates :profitNumber, presence: true, uniqueness: true
   before_save :calculateRetentions
   before_save :calculateTotalAmountPerceive
   after_save :send_notification
-  before_save :validateAmountPaid
+
   after_save :setDate
   after_save :setlastPayment
 
@@ -42,14 +42,7 @@ validates :profitNumber, presence: true, uniqueness: true
 
 
   
-  def validateAmountPaid
-    if amountPaid
 
-      self.amountPaid = ActionController::Base.helpers.number_with_precision(amountPaid, :precision => 2)
-      calculateBalance
-    end
-
-  end
  
 
   def validator

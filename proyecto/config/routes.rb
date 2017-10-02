@@ -3,15 +3,11 @@ Rails.application.routes.draw do
   
 
   
-  namespace :api, defaults: {format: 'json'} do
-    namespace :v1 do
-      resources :clients, only: [:index]
-    end
-  end
-
   
+ 
 
-  
+
+  resources :apiusers
 
   resources :reminders
   resources :accountpayable_imports
@@ -56,5 +52,10 @@ Rails.application.routes.draw do
   devise_for :users, {registrations: "registrations"}
   root 'principal#index'
   resources :users
+
+   use_doorkeeper
+  namespace :api, defaults: {format: 'json'} do
+      resources :clients, only: [:index]
+  end
   
 end

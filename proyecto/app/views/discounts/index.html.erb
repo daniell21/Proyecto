@@ -51,8 +51,8 @@
   <tbody>
     <% @discounts.each do |discount| %> 
       <tr >
-        <td><%= discount.name %></td>
-        <td> <%= number_to_currency(discount.percentage, unit: "", separator: ",", delimiter: ".", precision: 2)%></td>
+        <td width="40%"><%= discount.name %></td>
+        <td width="40%"> <%= number_to_currency(discount.percentage, unit: "", separator: ",", delimiter: ".", precision: 2)%></td>
         <% if can? :show, discount %>
           <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Descuento"), discount %></td>
         <%end%>

@@ -11,10 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170928005805) do
+ActiveRecord::Schema.define(version: 20170930152422) do
+
+  create_table "accountpayable_imports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "accountpayables", force: :cascade do |t|
-    t.string   "descripcion"
     t.integer  "supplier_id"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
@@ -22,31 +26,41 @@ ActiveRecord::Schema.define(version: 20170928005805) do
     t.text     "comment"
     t.string   "profitNumber"
     t.decimal  "amountPaid",   precision: 15, scale: 2
+    t.text     "descripcion"
   end
 
   add_index "accountpayables", ["supplier_id"], name: "index_accountpayables_on_supplier_id"
 
+  create_table "accountreceivable_imports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "accountreceivables", force: :cascade do |t|
     t.integer  "client_id"
+    t.text     "descripcion"
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
+    t.integer  "invoicenumber"
     t.date     "date"
+    t.string   "code"
     t.string   "profitCode"
     t.string   "status"
     t.string   "bank"
     t.string   "paymentType"
     t.string   "profitNumber"
     t.string   "document"
+    t.string   "elemetricaAcount"
     t.string   "clientAccount"
     t.string   "checkNumber"
     t.string   "depositNumber"
     t.string   "transferNumberClient"
+    t.integer  "constant_id"
     t.integer  "month"
     t.string   "transferNumber"
     t.boolean  "paid"
     t.integer  "rate_id"
     t.string   "elemetricaAccount"
-    t.decimal  "amountPaid",           precision: 15, scale: 2
     t.decimal  "accountBalance",       precision: 15, scale: 2
     t.decimal  "baseAmount",           precision: 15, scale: 2
     t.decimal  "amountWithoutTax",     precision: 15, scale: 2
@@ -54,9 +68,11 @@ ActiveRecord::Schema.define(version: 20170928005805) do
     t.decimal  "totalRetentions",      precision: 15, scale: 2
     t.decimal  "totalAmountPerceive",  precision: 15, scale: 2
     t.text     "paymentComment"
+    t.decimal  "amountPaid",           precision: 15, scale: 2
   end
 
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
+  add_index "accountreceivables", ["constant_id"], name: "index_accountreceivables_on_constant_id"
   add_index "accountreceivables", ["rate_id"], name: "index_accountreceivables_on_rate_id"
 
   create_table "api_keys", force: :cascade do |t|
@@ -65,13 +81,25 @@ ActiveRecord::Schema.define(version: 20170928005805) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "apiusers", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "client_imports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "client_mails", force: :cascade do |t|
     t.string   "title"
+    t.string   "body"
     t.date     "date"
     t.integer  "client_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.text     "body"
     t.boolean  "massMailings"
   end
 
@@ -120,9 +148,10 @@ ActiveRecord::Schema.define(version: 20170928005805) do
 
   create_table "discounts", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.decimal  "percentage", precision: 5, scale: 2
+    t.integer  "percentage"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.decimal  "amount",     precision: 15, scale: 2
   end
 
   create_table "emails", force: :cascade do |t|
@@ -144,18 +173,52 @@ ActiveRecord::Schema.define(version: 20170928005805) do
   add_index "has_discounts", ["client_id"], name: "index_has_discounts_on_client_id"
   add_index "has_discounts", ["discount_id"], name: "index_has_discounts_on_discount_id"
 
-  create_table "mailreminders", force: :cascade do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "oauth_access_grants", force: :cascade do |t|
+    t.integer  "resource_owner_id", null: false
+    t.integer  "application_id",    null: false
+    t.string   "token",             null: false
+    t.integer  "expires_in",        null: false
+    t.text     "redirect_uri",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "revoked_at"
+    t.string   "scopes"
   end
+
+  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true
+
+  create_table "oauth_access_tokens", force: :cascade do |t|
+    t.integer  "resource_owner_id"
+    t.integer  "application_id"
+    t.string   "token",                               null: false
+    t.string   "refresh_token"
+    t.integer  "expires_in"
+    t.datetime "revoked_at"
+    t.datetime "created_at",                          null: false
+    t.string   "scopes"
+    t.string   "previous_refresh_token", default: "", null: false
+  end
+
+  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
+  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
+  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true
+
+  create_table "oauth_applications", force: :cascade do |t|
+    t.string   "name",                      null: false
+    t.string   "uid",                       null: false
+    t.string   "secret",                    null: false
+    t.text     "redirect_uri",              null: false
+    t.string   "scopes",       default: "", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true
 
   create_table "rates", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.decimal  "amount",     precision: 15, scale: 2
+    t.decimal  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reminders", force: :cascade do |t|
@@ -168,12 +231,14 @@ ActiveRecord::Schema.define(version: 20170928005805) do
   create_table "reports", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
+    t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "chart"
   end
 
   create_table "search_accountpayables", force: :cascade do |t|
+    t.string   "keywords"
     t.date     "date"
     t.string   "descripcion"
     t.datetime "created_at",                            null: false
@@ -204,9 +269,16 @@ ActiveRecord::Schema.define(version: 20170928005805) do
     t.decimal  "amountPaid",           precision: 15, scale: 2
   end
 
+  create_table "search_client_payments", force: :cascade do |t|
+    t.integer  "keywords"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "search_clients", force: :cascade do |t|
     t.integer  "rif"
     t.string   "profitCode"
+    t.string   "email"
     t.string   "state"
     t.string   "socialReason"
     t.string   "discounts"
@@ -220,6 +292,13 @@ ActiveRecord::Schema.define(version: 20170928005805) do
     t.boolean  "specialcontributor"
   end
 
+  create_table "search_discounts", force: :cascade do |t|
+    t.string   "keywords"
+    t.integer  "percentage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "search_suppliers", force: :cascade do |t|
     t.string   "email"
     t.datetime "created_at",   null: false
@@ -230,26 +309,21 @@ ActiveRecord::Schema.define(version: 20170928005805) do
     t.text     "address"
   end
 
-  create_table "suppliers", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.text     "socialReason"
-    t.text     "address"
-    t.string   "email"
-    t.string   "rif"
-    t.text     "comment"
-  end
-
-  create_table "tokens", force: :cascade do |t|
-    t.string   "token"
-    t.datetime "expires_at"
-    t.integer  "user_id"
+  create_table "supplier_imports", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "tokens", ["user_id"], name: "index_tokens_on_user_id"
+  create_table "suppliers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "socialReason"
+    t.text     "address"
+    t.string   "rif"
+    t.text     "comment"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",       null: false

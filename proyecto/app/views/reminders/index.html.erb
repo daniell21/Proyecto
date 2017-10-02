@@ -57,8 +57,8 @@
     <tbody>
       <% @reminders.each do |reminder| %>
         <tr>
-          <td><%= reminder.name %></td>
-          <td><%= "Diaria" if reminder.frecuency == 1 %><%= "Quincenal" if reminder.frecuency == 15 %><%= "Mensual" if reminder.frecuency == 30 %>
+          <td width="40%"><%= reminder.name %></td>
+          <td width="40%"><%= "Diaria" if reminder.frecuency == 1 %><%= "Quincenal" if reminder.frecuency == 15 %><%= "Mensual" if reminder.frecuency == 30 %>
           </td>
           <% if can? :show, reminder %>
             <td> <%= link_to image_tag('/assets/showeye.ico',  title: "Ver Recordatorio"), reminder %></td>

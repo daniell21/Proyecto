@@ -34,12 +34,12 @@ class SuppliersController < ApplicationController
   # POST /suppliers
   # POST /suppliers.json
   def create
-    @supplier = Supplier.new(supplier_params)
+    @supplier = Supplier.new(supplier_params) 
    
   
     respond_to do |format|
       if @supplier.save
-        format.html { redirect_to suppliers_url}
+        format.html { redirect_to @supplier, notice: 'El Proveedor fue Creado Exitosamente.' }
         format.json { render :show, status: :created, location: @supplier }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class SuppliersController < ApplicationController
     #params[:supplier][:top_ids] ||=[]
     respond_to do |format|
       if @supplier.update(supplier_params)
-        format.html { redirect_to @supplier}
+        format.html { redirect_to @supplier, notice: 'El Proveedor fue Actualizado Exitosamente.'}
         format.json { render :show, status: :ok, location: @supplier }
       else
         format.html { render :edit }
@@ -68,7 +68,7 @@ class SuppliersController < ApplicationController
   def destroy
     @supplier.destroy
     respond_to do |format|
-      format.html { redirect_to suppliers_url}
+      format.html { redirect_to suppliers_url, notice: 'El Proveedor fue Eliminado Exitosamente.'}
       format.json { head :no_content }
     end
   end

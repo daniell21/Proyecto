@@ -1,7 +1,8 @@
 class ClientMail < ActiveRecord::Base
   belongs_to :client
-  validates :client_id, presence: true
   validates :title, presence: true
+  validates :body, presence: true
+  validates :client_id, presence: true, if: :emptyMassMailings?
 	#after_create :send_reminder
 	after_create :send_mail
 	after_create :setDate
@@ -11,16 +12,24 @@ class ClientMail < ActiveRecord::Base
 		self.update_column(:date, Time.now.strftime("%Y-%m-%d"))
 		
 	end
+
+
+	def emptyMassMailings?
+		if massMailings
+			return false
+		else
+			return true
+		end
+	end
 	private	
 	
 	def send_mail
 		if massMailings
-
 			c = Client.all
 			c.each do |client|
 				emails = client.email_ids
+
 				emails.each do |email| 
-			
 					e = Email.find(email)
 					ClientMailer.delay.client_mail(self, e.email)
 				end
@@ -34,6 +43,7 @@ class ClientMail < ActiveRecord::Base
 			emails.each do |email| 
 				
 				e = Email.find(email)
+
 				ClientMailer.delay.client_mail(self, e.email)
 
 			end

@@ -58,9 +58,10 @@
 							<button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
 							  Configuración<!--<i class="fa fa-caret-down"></i>-->
 							  </button>
-							  <div id="demoAcc" class="w3-hide  " >
+							  <div id="demoAcc" class="w3-hide" >
 							    
 							    <li style="list-style:none;" ><%= active_link_to 'Descuentos' , discounts_path%></li>
+
 							   <%if (current_user.role == "admin") %>
 							    <li style="list-style:none;" ><%= active_link_to 'Gestión de Roles' , users_path%></li>
 							   <%end%>
@@ -105,11 +106,7 @@ function myAccFunc() {
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
         x.previousElementSibling.className += "w3-theme-l3";
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
-        x.previousElementSibling.className = 
-        x.previousElementSibling.className.replace(" w3-green", "");
-    }
+    } 
 }
 
 

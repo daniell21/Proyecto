@@ -114,18 +114,18 @@
         <%if current_user.role != "client" or (current_user.role == "client" and accounts) %>
 
           <%if current_user.role != "client"%>
-            <td><%= accountreceivable.profitNumber %></td>
-            <td><%= accountreceivable.client.name %></td>
-            <td><%= "Si" if accountreceivable.paid %><%= "No" if !accountreceivable.paid %></td>
-            <td><%= accountreceivable.date %></td>
-            <td><%= Settings.meses[accountreceivable.month]  %></td>
-            <td><%= number_to_currency(accountreceivable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+            <td width="17.3%"><%= accountreceivable.profitNumber %></td>
+            <td width="13.3%"><%= accountreceivable.client.name %></td>
+            <td width="11.3%"><%= "Si" if accountreceivable.paid %><%= "No" if !accountreceivable.paid %></td>
+            <td width="13.3%"><%= accountreceivable.date %></td>
+            <td width="11.3%"><%= Settings.meses[accountreceivable.month]  %></td>
+            <td width="13.3%"><%= number_to_currency(accountreceivable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
           <%else%>
-          <th><%= accountreceivable.profitNumber %></th>
-            <td><%= Settings.meses[accountreceivable.month] %></td>
-            <td><%= "Si" if accountreceivable.paid %><%= "No" if !accountreceivable.paid %></td>
-            <td><%= accountreceivable.date %></td>
-            <td><%= number_to_currency(accountreceivable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+          <td width="17.3%"><%= accountreceivable.profitNumber %></td>
+            <td width="11.3%"><%= Settings.meses[accountreceivable.month] %></td>
+            <td width="11.3%"><%= "Si" if accountreceivable.paid %><%= "No" if !accountreceivable.paid %></td>
+            <td width="13.3%"><%= accountreceivable.date %></td>
+            <td width="13.3%"><%= number_to_currency(accountreceivable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
           <%end%>
           
           
