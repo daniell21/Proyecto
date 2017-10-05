@@ -1,8 +1,13 @@
 class GraphsController < ApplicationController
+
   def index
   	
   	
 
+    
+      redirect_to graphs_show_amountPaid_path
+    
+  
 
 
 

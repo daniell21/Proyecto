@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   root 'principal#index'
   resources :users
 
-   use_doorkeeper
+   
   namespace :api, defaults: {format: 'json'} do
       resources :clients, only: [:index]
   end

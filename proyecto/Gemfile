@@ -25,7 +25,8 @@ gem 'wkhtmltopdf-binary-edge'
 gem 'active_record_union'
 gem "mini_magick"
 gem 'font-awesome-sass', '~> 4.7.0'
-gem 'doorkeeper'
+
+gem 'simple_token_authentication', '~> 1.0' 
 
 
 
