@@ -30,6 +30,7 @@ validates :profitNumber, presence: true, uniqueness: true
   before_save :calculateBaseAmount
   before_save :calculateBasicAmount
   before_save :calculateAmountWithTax
+  before_save :calculateBalance
   before_save :calculateRetentions
   before_save :calculateTotalAmountPerceive
   after_save :send_notification
@@ -170,7 +171,9 @@ validates :profitNumber, presence: true, uniqueness: true
 end
 #Si la variable accountBalance es negativa, significa que pago menos de lo que debia
   def calculateBalance
+    
     self.accountBalance =   amountWithTax - self.amountPaid.to_f
+    
   end
 
   #BANCOS
@@ -286,6 +289,7 @@ end
 def setDate
  
   if self.amountPaid.nil?
+    self.update_column(:paid, false)
   else
       self.update_column(:paid, true)
       self.update_column(:date, Time.now.strftime("%d/%m/%Y %H:%M"))

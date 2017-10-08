@@ -35,8 +35,8 @@ class GraphsController < ApplicationController
   @thirdMountAmountInvoicedvsPaid = Rate.joins(:accountreceivables).where("accountreceivables.status = ? and accountreceivables.month == ?", "Facturada", @thirdMonth).select("('Monto Facturado') as m, sum(rates.amount) as montos").union(Rate.joins(:accountreceivables).where("accountreceivables.paid = ? and accountreceivables.month == ?", true, @thirdMonth).select("('Monto Pagado') as m, sum(accountreceivables.amountPaid) as montos")).collect{|x| [ x.m + " " + ActionController::Base.helpers.number_to_currency(x.montos, unit: "Bs ", separator: ",", delimiter: ".", precision: 2).to_s, x.montos]}
   @secondMountAmountInvoicedvsPaid = Rate.joins(:accountreceivables).where("accountreceivables.status = ? and accountreceivables.month == ?", "Facturada", @secondMonth).select("('Monto Facturado') as m, sum(rates.amount) as montos").union(Rate.joins(:accountreceivables).where("accountreceivables.paid = ? and accountreceivables.month == ?", true, @secondMonth).select("('Monto Pagado') as m, sum(accountreceivables.amountPaid) as montos")).collect{|x| [ x.m + " " + ActionController::Base.helpers.number_to_currency(x.montos, unit: "Bs ", separator: ",", delimiter: ".", precision: 2).to_s, x.montos]}
   @firstMountAmountInvoicedvsPaid = Rate.joins(:accountreceivables).where("accountreceivables.status = ? and accountreceivables.month == ?", "Facturada", @firstMonth).select("('Monto Facturado') as m, sum(rates.amount) as montos").union(Rate.joins(:accountreceivables).where("accountreceivables.paid = ? and accountreceivables.month == ?", true, @firstMonth).select("('Monto Pagado') as m, sum(accountreceivables.amountPaid) as montos")).collect{|x| [ x.m + " " + ActionController::Base.helpers.number_to_currency(x.montos, unit: "Bs ", separator: ",", delimiter: ".", precision: 2).to_s, x.montos]}
-  #Monto facturado vs Monto pagado (Historico)
-                                    
+  
+  #Monto facturado vs Monto pagado (Historico)                                  
   @historicalAmountInvoicedvsPaid = Rate.joins(:accountreceivables).where("accountreceivables.status = ?", "Facturada").select("('Monto Facturado') as m, sum(rates.amount) as montos").union(Rate.joins(:accountreceivables).where("accountreceivables.paid = ?", true,).select("('Monto Pagado') as m, sum(accountreceivables.amountPaid) as montos")).collect{|x| [ x.m + " " + ActionController::Base.helpers.number_to_currency(x.montos, unit: "Bs ", separator: ",", delimiter: ".", precision: 2).to_s, x.montos]}
 
   #Monto facturado vs Monto pagado (Mes Actual)
@@ -46,7 +46,7 @@ class GraphsController < ApplicationController
 
 end
 def show_clientsDebtors
-  @topDebtorsbyAmount = Client.joins("left join accountreceivables on clients.id = accountreceivables.client_id").group("clients.id, accountreceivables.client_id").where('accountreceivables.accountBalance > 0').select("clients.*, (sum(accountreceivables.accountBalance)) as cuenta_accountreceivables").order('cuenta_accountreceivables DESC').limit(10).collect{|x| [x.name + " " + ActionController::Base.helpers.number_to_currency(x.cuenta_accountreceivables, unit: "Bs ", separator: ",", delimiter: ".", precision: 2).to_s, x.cuenta_accountreceivables ]}
+  @topDebtorsbyAmount = Client.joins("left join accountreceivables on clients.id = accountreceivables.client_id").group("clients.id, accountreceivables.client_id").where('accountreceivables.accountBalance < 0').select("clients.*, (sum(accountreceivables.accountBalance)) as cuenta_accountreceivables").order('cuenta_accountreceivables DESC').limit(10).collect{|x| [x.name + " " + ActionController::Base.helpers.number_to_currency(x.cuenta_accountreceivables, unit: "Bs ", separator: ",", delimiter: ".", precision: 2).to_s, (-1 * x.cuenta_accountreceivables) ]}
 
 
   #e. Top clientes deudores (por meses adeudados)
@@ -63,7 +63,11 @@ def show_facilities
 end
 def show_accountTypes
   #Cantidad de cuentas por status
-  @accountreceivables_type = Accountreceivable.group(:status).select("accountreceivables.*, count(accountreceivables.id) as estatus").collect{|x| [x.status + " " + (ActionController::Base.helpers.number_with_precision((((x.estatus).to_f * 100.00)/(Accountreceivable.where("accountreceivables.status IS NOT NULL").count).to_f), :precision => 2)).to_s + "%", x.estatus]}
+  Time.use_zone('Caracas') do
+      @presentMonth = Time.zone.now.month
+  end 
+  @accountreceivables_type = Accountreceivable.group(:status).where('accountreceivables.month == ?', @presentMonth).select("accountreceivables.*, count(accountreceivables.id) as estatus").collect{|x| [x.status + " " + (ActionController::Base.helpers.number_with_precision((((x.estatus).to_f * 100.00)/(Accountreceivable.where("accountreceivables.status IS NOT NULL").count).to_f), :precision => 2)).to_s + "%", x.estatus]}
+
   
 end
 end
