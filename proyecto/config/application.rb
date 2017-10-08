@@ -37,8 +37,8 @@ end
   :address =>             'smtp.gmail.com',
   :domain  =>             'mail.google.com',
   :port    =>              587,
-  :user_name=>            'danieltestrails4@gmail.com',
-  :password=>             'Probando',
+  :user_name=>            'gerencia.elemetrica@gmail.com',
+  :password=>             'elemetrica16',
   :authentication=>       'login',
   enable_starttls_auto: true
 }

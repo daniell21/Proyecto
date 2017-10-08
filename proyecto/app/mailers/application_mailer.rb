@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "danieltestrails4@gmail.com"
+  default from: "gerencia.elemetrica@gmail.com"
   layout 'mailer'
 end

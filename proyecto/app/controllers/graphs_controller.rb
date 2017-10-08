@@ -50,14 +50,14 @@ def show_clientsDebtors
 
 
   #e. Top clientes deudores (por meses adeudados)
-  @topDebtorsbyMonth = Client.joins("left join accountreceivables on clients.id = accountreceivables.client_id").group("clients.id, accountreceivables.client_id").where('accountreceivables.paid == ?', false).select("clients.*, count(accountreceivables.month) as cuenta_accountreceivables").order('cuenta_accountreceivables DESC').limit(10).collect{|x| [x.name+ " " + (x.cuenta_accountreceivables).to_s + " Meses", x.cuenta_accountreceivables]}
+  @topDebtorsbyMonth = Client.joins("left join accountreceivables on clients.id = accountreceivables.client_id").group("clients.id, accountreceivables.client_id").where('accountreceivables.paid == ?', false).select("clients.*, count(accountreceivables.month) as cuenta_accountreceivables").order('cuenta_accountreceivables DESC').limit(10).collect{|x| [x.name+ " " + (x.cuenta_accountreceivables).to_s + " Meses", x.cuenta_accountreceivables, x.rif]}
 
 end
 def show_facilities
   Time.use_zone('Caracas') do
       @presentMonth = Time.zone.now.month
   end 
-  @install = Rate.joins(:accountreceivables).group("rates.id, accountreceivables.rate_id").where('rates.name == ? and accountreceivables.month == ?',"Instalación", @presentMonth).select("rates.*, count(accountreceivables.id) as instalaciones").collect{|x| [x.name, x.instalaciones]}
+  @install = Rate.joins(:accountreceivables).group("rates.id, accountreceivables.rate_id").where('rates.name == ? and accountreceivables.month == ?',"Instalación", @presentMonth).select("rates.*, count(accountreceivables.id) as instalaciones").collect{|x| ["Instalaciones: " + x.instalaciones.to_s, x.instalaciones]}
 
 
 end

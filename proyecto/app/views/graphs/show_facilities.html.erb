@@ -16,7 +16,7 @@
         <div class="row">
         <div align="center">
             <div class="col-sm-3"><label>Monto Facturado Vs  Pagado</label></div>
-            <div class="col-sm-3"><label>Conceptos de pago</label></div>
+            <div class="col-sm-3"><label>Estado de Cuentas</label></div>
             <div class="col-sm-3"><label>Clientes Deudores</label></div>
             <div class="col-sm-3"><label>Instalaciones</label></div>
             </div>
@@ -61,11 +61,41 @@
 		<div class="col-xs-12">
 				<div class="panel" style="width: 986px; background-color: #5e2068; color: #fff; -moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75); box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75)">
         
-      <div class="panel-heading">Cantidad de Instalaciones en el mes en Curso</div>
+      <div class="panel-heading">Número Instalaciones (Mes actual)</div>
 				<div id="orders_chart" style="width: 986px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
 				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @install, label: "Número", xtitle: "Concepto", ytitle: "Cantidad", refresh: 60, legend: true , legend: true  %></div>
 		</div>
 		</div>
+    <div class="col-xs-12"> 
+    <h3>  <%=Settings.meses[@presentMonth]%></h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+            <th>CodigoProfit </th>
+              <th>Cliente</th>
+              <th>Pagada</th>
+              
+              
+            </tr>
+          </thead>
+          <tbody>
+          <%@accountreceivables = Accountreceivable.all%>
+            <% @accountreceivables.each do |accountreceivable| %>
+              <%@rate = Rate.find(accountreceivable.rate_id)%>
+                <tr>
+                <%if accountreceivable.rate.name == "Instalación" and accountreceivable.month == @presentMonth%>
+                  <td><%= accountreceivable.profitNumber %></td>
+                    <td><%= accountreceivable.client.name %></td>
+          
+                    <td><%= "Si" if accountreceivable.paid %><%= "No" if !accountreceivable.paid %></td>
+                <%end%>
+              </tr>
+            <% end %>
+            </tbody>
+        </table>
+
+      </div>
+
 	</div>
 	</div>

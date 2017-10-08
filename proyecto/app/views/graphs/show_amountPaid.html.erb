@@ -10,7 +10,7 @@
         <div class="row">
         <div align="center">
             <div class="col-sm-3"><label>Monto Facturado Vs  Pagado</label></div>
-            <div class="col-sm-3"><label>Conceptos de pago</label></div>
+            <div class="col-sm-3"><label>Estado de Cuentas</label></div>
             <div class="col-sm-3"><label>Clientes Deudores</label></div>
             <div class="col-sm-3"><label>Instalaciones</label></div>
             </div>
@@ -64,7 +64,7 @@
 </div>
 <br><br>
 <div class="select1 box">
-
+<div align="center">
 <div class="row">
 			<div class="col-xs-12">
 				<div class="panel" style="width: 986px; background-color: #142c54; color: #fff; -moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75); box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75)">
@@ -79,12 +79,42 @@
 	
 </div>
 </div>
+<div class="col-xs-12">	
+<h3 align="center">	<%=Settings.meses[@presentMonth]%></h3>	
+				<table class="table table-striped">
+					<thead>
+				    <tr>
+				    	<th>Monto</th>
+				      	<th>Total</th>
+				    </tr>
+					</thead>
+					<tbody>
+					
+				    <% amount = @presentMountAmountInvoicedvsPaid  %>
+				    
+				    	
+				      	<tr>
+				        
+				        	<td>Monto Facturado</td>
+				            <td><%= number_to_currency((amount[0][1]), unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+				        </tr><tr>
+				            <td>Monto Pagado</td>
+				            <td><%= number_to_currency((amount[1][1]), unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+				             
+				      </tr>
+				    
+				  	</tbody>
+				</table>
+
+			</div>
+
+</div>
 </div>
 </div>
 
 
 <div class="select2 box">
-
+<div align="center">
 	<div class="row">
 		<div class="col-xs-4">
 		<div class="panel" style="width: 307px; background-color: #142c54; color: #fff; -moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75); box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75)">
@@ -115,13 +145,99 @@
 		</div>
 		
 	</div>
+	<div class="col-xs-12">	
+	<h3 align="center">	<%=Settings.meses[@firstMonth]%></h3>
+				<table class="table table-striped">
+					<thead>
+				    <tr>
+				    	<th>Monto</th>
+				      	<th>Total</th>
+				    </tr>
+					</thead>
+					<tbody>
+					
+				    <% amount = @firstMountAmountInvoicedvsPaid  %>
+				    
+				    	
+				      	<tr>
+				        
+				        	<td>Monto Facturado</td>
+				            <td><%= number_to_currency((amount[0][1]), unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+				        </tr><tr>
+				            <td>Monto Pagado</td>
+				            <td><%= number_to_currency((amount[1][1]), unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+				             
+				      </tr>
+				    
+				  	</tbody>
+				</table>
 
-	
+			</div>
+			<br><br>
+			<div class="col-xs-12">	
+
+			<h3 align="center">	<%=Settings.meses[@secondMonth]%></h3>
+				<table class="table table-striped">
+					<thead>
+				    <tr>
+				    	<th>Monto</th>
+				      	<th>Total</th>
+				    </tr>
+					</thead>
+					<tbody>
+					
+				    <% amount = @secondMountAmountInvoicedvsPaid  %>
+				    
+				    	
+				      	<tr>
+				        
+				        	<td>Monto Facturado</td>
+				            <td><%= number_to_currency((amount[0][1]), unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+				        </tr><tr>
+				            <td>Monto Pagado</td>
+				            <td><%= number_to_currency((amount[1][1]), unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+				             
+				      </tr>
+				    
+				  	</tbody>
+				</table>
+
+			</div>
+			<br><br>
+			<div class="col-xs-12">
+			<h3 align="center">	<%=Settings.meses[@thirdMonth]%></h3>	
+				<table class="table table-striped">
+					<thead>
+				    <tr>
+				    	<th>Monto</th>
+				      	<th>Total</th>
+				    </tr>
+					</thead>
+					<tbody>
+					
+				    <% amount = @thirdMountAmountInvoicedvsPaid  %>
+				    
+				    	
+				      	<tr>
+				        
+				        	<td>Monto Facturado</td>
+				            <td><%= number_to_currency((amount[0][1]), unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+				        </tr><tr>
+				            <td>Monto Pagado</td>
+				            <td><%= number_to_currency((amount[1][1]), unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+				             
+				      </tr>
+				    
+				  	</tbody>
+				</table>
+
+			</div>
+	</div>
 	</div>
 </div>
 
 	<div class="select3 box">
-
+<div align="center">
 <div class="row">
 			<div class="col-xs-12">
 				<div class="panel" style="width: 986px; background-color: #142c54; color: #fff; -moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75); box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75)">
@@ -133,6 +249,7 @@
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
 				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= column_chart @historicalAmountInvoicedvsPaid, label: "Monto Bs", legend: true, xtitle: "Tipos de Montos", ytitle: "Bolivares" , refresh: 60   %></div>
 	
+</div>
 </div>
 </div>
 </div>

@@ -16,7 +16,7 @@
         <div class="row">
         <div align="center">
             <div class="col-sm-3"><label>Monto Facturado Vs  Pagado</label></div>
-            <div class="col-sm-3"><label>Conceptos de pago</label></div>
+            <div class="col-sm-3"><label>Estado de Cuentas</label></div>
             <div class="col-sm-3"><label>Clientes Deudores</label></div>
             <div class="col-sm-3"><label>Instalaciones</label></div>
             </div>
@@ -76,17 +76,17 @@
 <br><br>
 
 	<div class="select1 box">
-
+	<div align="center">
 	<div class="row">
 		<div class="col-xs-12">
 				<div class="panel" style="width: 986px; background-color: #c24248; color: #fff; -moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75); box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75)">
       <div class="panel-heading">Top 10 Clientes deudores (Por monto adeudado)</div>
 				<div id="orders_chart" style="width: 986px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyAmount, label: "Deuda Bs", legend: true , refresh: 60, donut: true   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyAmount, label: "Deuda Bs", legend: true , refresh: 60  %></div><!--, donut: true -->
 		</div>
 		</div>
-	
+	</div>
 		
 	
 <br><br>
@@ -106,7 +106,6 @@
 				      <th>Pagada</th>
 				      <th>Concepto</th>
 				      
-				      <th>Monto Pagado</th>
 				      
 				    </tr>
 					</thead>
@@ -119,7 +118,6 @@
 				        	<th><%= accountreceivable.profitNumber %></th>
 				            <td><%= accountreceivable.client.name %></td>
 				            <td><%= accountreceivable.month %></td>
-				         	<td><%= accountreceivable.paid%></td>
 				          	<td><%= accountreceivable.date %></td>
 				          	<td><%= accountreceivable.paid %></td>
 				          	<td><%= @rate.name %></td>   
@@ -134,7 +132,7 @@
 		</div>
 	</div>
 	<div class="select2 box">
-
+		<div align="center">
 	<div class="row">
 
 		<div class="col-xs-12">
@@ -142,12 +140,13 @@
       <div class="panel-heading">Top 10 Clientes deudores (Por meses adeudados)</div>
 				<div id="orders_chart" style="width: 986px; height: 300px;
 				-moz-box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);
-				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyMonth, label: "Deuda Bs", legend: true , refresh: 60, donut: true   %></div>
+				box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.75);"><%= pie_chart @topDebtorsbyMonth, label: "Deuda Bs", legend: true , refresh: 60 %></div>
 		</div>
 		</div>
 	
 		
 		
+	</div>
 	</div>
 	</div>
 
