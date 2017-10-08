@@ -90,39 +90,47 @@
 		
 	
 <br><br>
-	
+		
+		
 		
 			<div class="col-xs-12">	
 				<table class="table table-striped">
 					<thead>
 				    <tr>
-				    <th>CodigoProfit </th>
-				    
-				      <th>Cliente</th>
-				    
-				      <th>Mes a Pagar</th>
-				    
-				    <th>Fecha</th>
-				      <th>Pagada</th>
-				      <th>Concepto</th>
-				      
-				      
-				    </tr>
+
+			          <th>RIF</th>
+			          <th>Código</th>
+			          <th>Nombre</th>
+			          <th>Razón Social</th> 
+			          
+			          <th>País</th>
+			          <th>Estado</th>
+			      		<th>Monto Adeudado</th>
+			    </tr>
 					</thead>
 					<tbody>
-					<%@accountreceivables = Accountreceivable.all%>
-				    <% @accountreceivables.each do |accountreceivable| %>
-				    	<%@rate = Rate.find(accountreceivable.rate_id)%>
-				      	<tr>
-				        
-				        	<th><%= accountreceivable.profitNumber %></th>
-				            <td><%= accountreceivable.client.name %></td>
-				            <td><%= accountreceivable.month %></td>
-				          	<td><%= accountreceivable.date %></td>
-				          	<td><%= accountreceivable.paid %></td>
-				          	<td><%= @rate.name %></td>   
-				      </tr>
-				    <% end %>
+					<%clientsbyAmount =  @topDebtorsbyAmount%>
+				    	
+						<%for i in 0..9 do%>
+								<%unless clientsbyAmount[i].nil?%>
+					    	      	<tr>
+					    	      	
+							        	<%client = Client.find_by rif: clientsbyAmount[i][2]%>
+
+							       
+							        	<td width="13.3%"><%= client.rif %></td>
+								        <td width="13.3%"><%= client.code %></td>
+								        <td width="15.3%"><%= client.name %></td>
+								        <td width="16.3%"><%= client.socialReason%></td>
+								        <td width="10.3%"><%= client.country%></td>
+								        <td width="11.3%"><%= client.state%></td>
+								        <td><%=number_to_currency(clientsbyAmount[i][1].to_d, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+							              
+							      	</tr>
+							    <%end%>
+
+						<%end%>
+				    
 				  	</tbody>
 				</table>
 
@@ -148,7 +156,50 @@
 		
 	</div>
 	</div>
-	</div>
+	
+	<div class="col-xs-12">	
+				<table class="table table-striped">
+					<thead>
+				    <tr>
+
+			          <th>RIF</th>
+			          <th>Código</th>
+			          <th>Nombre</th>
+			          <th>Razón Social</th> 
+			          
+			          <th>País</th>
+			          <th>Estado</th>
+			      		<th>Monto Adeudado</th>
+			    </tr>
+					</thead>
+					<tbody>
+					<%clientsbyMonth =  @topDebtorsbyMonth%>
+				    	
+						<%for i in 0..9 do%>
+								<%unless clientsbyMonth[i].nil?%>
+					    	      	<tr>
+					    	      	
+							        	<%client = Client.find_by rif: clientsbyMonth[i][2]%>
+
+							       
+							        	<td width="13.3%"><%= client.rif %></td>
+								        <td width="13.3%"><%= client.code %></td>
+								        <td width="15.3%"><%= client.name %></td>
+								        <td width="16.3%"><%= client.socialReason%></td>
+								        <td width="10.3%"><%= client.country%></td>
+								        <td width="11.3%"><%= client.state%></td>
+								        <td><%=clientsbyMonth[i][1]%></td>
+							              
+							      	</tr>
+							    <%end%>
+
+						<%end%>
+				    
+				  	</tbody>
+				</table>
+
+			</div>
+		</div>
 
 <script type="text/javascript">
 $(document).ready(function(){
