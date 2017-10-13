@@ -66,7 +66,7 @@ def show_accountTypes
   Time.use_zone('Caracas') do
       @presentMonth = Time.zone.now.month
   end 
-  @accountreceivables_type = Accountreceivable.group(:status).where('accountreceivables.month == ?', @presentMonth).select("accountreceivables.*, count(accountreceivables.id) as estatus").collect{|x| [x.status + " " + (ActionController::Base.helpers.number_with_precision((((x.estatus).to_f * 100.00)/(Accountreceivable.where("accountreceivables.status IS NOT NULL").count).to_f), :precision => 2)).to_s + "%", x.estatus]}
+  @accountreceivables_type = Accountreceivable.group(:status).where('accountreceivables.month == ?', @presentMonth).select("accountreceivables.*, count(accountreceivables.id) as estatus").collect{|x| [x.status + ": " + x.estatus.to_s, x.estatus]}
 
   
 end

@@ -36,7 +36,7 @@ validates :profitNumber, presence: true, uniqueness: true
   after_save :send_notification
 
   after_save :setDate
-  after_save :setlastPayment
+  before_save :setlastPayment
 
 
 
@@ -261,29 +261,17 @@ end
     self.update_column(:accountBalance, balance)
   end
 def send_notification
-  if ($user.role == "client")
-      client = Client.find(client_id)
+  unless self.amountPaid.nil?
+    client = Client.find(client_id)
       emails = client.emails
-
+      
       emails.each do |email|
-        print "IMPRIMIIII"
-        print email.email
-          PaymentMailer.delay.new_payment(email.email)
+        
+        
+          PaymentMailer.delay.new_payment(self, client, email.email)
+  end     
+end
 
-      end
-  end
-  #       if client.chargeMonthlyFee
-  #       id = Accountreceivable.last.id + 1
-  #       puts id
-  #       @accountreceivable = Accountreceivable.new
-  #             @accountreceivable.id = id
-  #             @accountreceivable.client_id = client.id
-  #             @accountreceivable.status = "facturada"
-  #             @accountreceivable.concept = "mensualidad"
-  #             @accountreceivable.paid = "no"
-  #             @accountreceivable.month = "enero"
-  #             @accountreceivable.save
-    
 end
 
 def setDate

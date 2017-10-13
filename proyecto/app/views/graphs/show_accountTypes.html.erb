@@ -68,6 +68,35 @@
 
 			</div>
 		</div>
+
+    <div class="col-xs-12"> 
+    <br><br>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Estado</th>
+                <th>Número de Cuentas</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <% accounts = @accountreceivables_type  %>
+            
+              <%for i in 0..2 do%>
+                <%unless accounts[i].nil?%>
+                 
+                  <tr>
+                  <td><%= "Facturada" if accounts[i][0].include? "Facturada" %><%= "Incobrable" if accounts[i][0].include? "Incobrable" %><%= "Anulada" if accounts[i][0].include? "Anulada" %></td>
+                   
+                      <td><%=accounts[i][1]%></td>
+                   </tr>
+                  <%end%>
+            <%end%>
+            </tbody>
+        </table>
+
+      </div>
+      
 	</div>
 					
 
