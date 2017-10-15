@@ -11,4 +11,7 @@ Rate.create(name: 'Pago COmpleto', amount: 0)
 Rate.create(name: 'Reactivación', amount: 0)
 Discount.create(name: 'Fidelidad', percentage: 0)
 Discount.create(name: 'Volumen', percentage: 0)
+Reminder.create(name: 'Pago', frecuency: 30)
+Reminder.create(name: 'Administrativo', frecuency: 30)
+
 
