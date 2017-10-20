@@ -13,7 +13,7 @@ validates :month, presence: true
 validates :bank, presence: true, on: :update
 validates :amountPaid, presence: true, on: :update
 validates :profitCode, presence: true, uniqueness: true
-validates :profitNumber, presence: true, uniqueness: true
+validates :profitNumber, presence: true
 
  validates_numericality_of :amountPaid, :allow_blank => true
  validates_numericality_of :transferNumber, :allow_blank => true
@@ -263,15 +263,11 @@ end
 def send_notification
   unless self.amountPaid.nil?
     client = Client.find(client_id)
-      emails = client.emails
-      
-      emails.each do |email|
-        
-        
-          PaymentMailer.delay.new_payment(self, client, email.email)
-  end     
-end
-
+    emails = client.emails
+    emails.each do |email|      
+        PaymentMailer.delay.new_payment(self, client, email.email)
+    end     
+  end
 end
 
 def setDate

@@ -55,20 +55,21 @@ def load_imported_accountreceivables
         client = Client.find_by rif: row["rifCliente"]
         client = Client.new if (Client.find_by rif: row["rifCliente"]).nil?
         
-        rate = Rate.find_by name: row["concepto"]
-        rate = Rate.new if (Rate.find_by name: row["concepto"]).nil?
+        rate = Rate.find_by name: row["conceptoPago"]
+        rate = Rate.new if (Rate.find_by name: row["conceptoPago"]).nil?
         if row["facturaPagada"] == "Si"
           accountreceivable.paid  = true
         else
           accountreceivable.paid  = false
         end
+
         #accountreceivable.attributes = row.to_hash.slice(*row.to_hash.keys)
         accountreceivable.client_id = client.id
         accountreceivable.rate_id = rate.id
-        accountreceivable.profitNumber = row["numeroProfit"]
+        accountreceivable.profitNumber = row["numeroControlProfit"]
         accountreceivable.profitCode = row["codigoProfit"] 
         accountreceivable.date = row["fecha"]
-        accountreceivable.status = row["estado"]
+        accountreceivable.status = row["estadoCuenta"]
         accountreceivable.paymentType = row["tipoPago"]
         accountreceivable.amountPaid = row["montoPagado"]
         accountreceivable.bank = row["banco"]

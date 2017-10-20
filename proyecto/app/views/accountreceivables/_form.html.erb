@@ -57,6 +57,10 @@
 
               </div>
             <%end%>
+            <div class="col-md-6">
+                  <%= f.input :month, :collection => [['enero',1],['febrero',2],['marzo',3],['abril',4],['mayo',5],['junio',6],['julio',7],['agosto',8],['septiembre',9],['octubre',10],['noviembre',11],['diciembre',12]], label: "Mes a Pagar ", 
+                    include_blank: "Seleccionar Mes",error: 'Debe seleccionar el mes de pago' %>
+              </div> 
           </div>
             
           </div>
@@ -79,32 +83,33 @@
           <!--Esto debe acomodarse-->
           <div class="row"> 
             
-            <div class="col-md-6">
-                  <%= f.input :month, :collection => [['enero',1],['febrero',2],['marzo',3],['abril',4],['mayo',5],['junio',6],['julio',7],['agosto',8],['septiembre',9],['octubre',10],['noviembre',11],['diciembre',12]], label: "Mes a Pagar ", 
-                    include_blank: "Seleccionar Mes",error: 'Debe seleccionar el mes de pago' %>
-              </div> 
+            
            <div class="col-md-6"> 
               <%= f.input :bank, :collection => [["100%BANCO",'100%banco'],['Mercantil','mercantil'],['Banco Provincial','provincial'],['Banesco','banesco'],['Banco Banplus','banplus'],['Banco Bicentenario','bicentenario']], label: 'Banco', 
                   include_blank: "Seleccionar Banco" %>
             </div>
-            
-          </div>
-          <br>
-          <br>
-          <%if (current_user.role != "client") %>
-            <div class="row">
-             <div class="col-xs-6">
+            <div class="col-xs-6">
                 
                 <%= f.association :rate, label: "Concepto de Pago", 
                     include_blank: "Seleccionar Concepto de Pago", error: "Debe seleccionar un Concepto"  %>
 
               </div>
+          </div>
+          <br>
+          <br>
+          <%if (current_user.role != "client") %>
+            <div class="row">
+             
 
               
 
               <div class="col-md-6"> 
                   <%= f.input :status, :collection => [['Facturada','Facturada'],['Anulada','Anulada'],['Incobrable','Incobrable']], label: "Estado de la Cuenta",
                     include_blank: "Seleccionar Estado ", error: 'Debe seleccionar el Estado de la Cuenta' %>
+              </div>
+              <div class="col-md-6"> 
+                <%= f.input :amountPaid, as: :string,  placeholder: 'Monto Pagado', input_html: { autocomplete: 'off' }, label: "Monto Pagado", error: 'Debe ser Numérico' %>
+                <span id="error_discount" style="color:#a94442"></span>
               </div>
             </div>
             <br>
@@ -115,12 +120,11 @@
                   <%= f.input :paymentType, :collection => [['Transferencia','transferencia'],['Deposito','deposito']], label: "Tipo de Pago", 
                   include_blank: "Seleccionar Tipo",error: 'Debe seleccionar el tipo de pago' %>
             </div>
-            
+            <div class="col-md-6"> 
+                <%= f.input :paymentComment, placeholder: 'Agregar Comentarios', label: 'Comentarios' %>
+            </div>
 
-              <div class="col-md-6"> 
-              <%= f.input :amountPaid, as: :string,  placeholder: 'Monto Pagado', input_html: { autocomplete: 'off' }, label: "Monto Pagado", error: 'Debe ser Numérico' %>
-              <span id="error_discount" style="color:#a94442"></span>
-        </div>
+              
               </div> 
             
         
@@ -134,20 +138,19 @@
             <div class="col-md-6"> 
               <%= f.input :transferNumberClient,  as: :integer, placeholder: 'Número Transferencia', label: "Número Transferencia Cliente", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
               </div> 
+          
+              
               <div class="col-md-6"> 
-                <%= f.input :paymentComment, placeholder: 'Agregar Comentarios', label: 'Comentarios' %>
-            </div>
+              <%= f.input :checkNumber,  as: :integer, placeholder: 'Número Cheque', label: "Número de Cheque", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
+              </div> 
+        
             
           </div>
          
           <br>
           <br>
           <div class="row">
-
-
-          
-            
-          
+        
           <%if (current_user.role != "client") %>
             <div class="col-md-6"> 
                 <%= f.input :transferNumber, as: :integer, placeholder: 'Nro Mercantil', label: "Número Transferencia Elemétrica", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
@@ -160,16 +163,7 @@
           <br>
           <br>
           
-          <%if (current_user.role != "client") %>
-            <div class="row">
-              
-              <div class="col-md-6"> 
-              <%= f.input :checkNumber,  as: :integer, placeholder: 'Número Cheque', label: "Número de Cheque", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
-              </div> 
-            </div>
-            <br>
-            <br>
-            <%end%>
+          
 <div ALIGN=right>
         <div class="actions">
         <%= f.button :submit, "Crear Cuenta"%>

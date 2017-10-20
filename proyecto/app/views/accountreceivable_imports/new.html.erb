@@ -1,3 +1,4 @@
+<br>
 <% if flash[:notice] -%>
   <div class = "alert alert-success"><%= flash[:notice] %></div>
 <% end %>
@@ -12,7 +13,46 @@
 
 <p>Un archivo  Excel puede utilizarse para importar registros. La primera fila debe ser el nombre de columna. Se permiten las siguientes columnas.</p>
 
+
+
+
 <ul>
+       <li>
+        <strong>rifCliente</strong> - Tipo texto   
+      </li>
+      <li>
+        <strong>mes</strong> - Tipo texto  
+      </li>
+      <li>
+        <strong>numeroControlProfit</strong> - Tipo texto   
+      </li>
+      <li>
+        <strong>codigoProfit</strong> - Tipo texto   
+      </li>    
+      <li>
+        <strong>banco</strong> - Tipo texto   
+      </li> 
+      <li>
+        <strong>conceptoPago</strong> - Tipo texto   
+      </li> 
+      <li>
+        <strong>estadoCuenta</strong> - Tipo texto  
+      </li>
+      <li>
+        <strong>montoPagado</strong> - Tipo decimal   
+      </li>
+      <li>
+        <strong>tipoPago</strong> - Tipo texto   
+      </li>      
+      <li>
+        <strong>comentarioPago</strong> - Tipo texto 
+      </li>
+
+
+
+</ul>
+
+<!-- <ul>
   <% Accountreceivable.columns.each do |column| %>
     <% if column.name.in? ["rif", *Accountreceivable.attribute_names] %>
       <li>
@@ -21,14 +61,14 @@
       </li>
     <% end %>
   <% end %>
-</ul>
+</ul> -->
 
 <p>Si un <strong>rif</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>
 
 <%= form_for @accountreceivable_import do |f| %>
   <% if @accountreceivable_import.errors.any? %>
     <div id="error_explanation">
-      Errores: <h2><%= pluralize(@accountreceivable_import.errors.count, "error") %>. Por favor corrija los siguienes errores:</h2>
+    <h2><%= pluralize(@accountreceivable_import.errors.count, "errores") %>. Por favor corrija los siguienes errores:</h2>
       <ul>
       <% @accountreceivable_import.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
