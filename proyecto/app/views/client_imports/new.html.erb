@@ -1,4 +1,4 @@
-
+<br>
 <% if flash[:notice] -%>
   <div class = "alert alert-success"><%= flash[:notice] %></div>
 <% end %>
@@ -14,14 +14,44 @@
 <p>Un archivo  Excel puede utilizarse para importar registros. La primera fila debe ser el nombre de columna. Se permiten las siguientes columnas.</p>
 
 <ul>
-  <% Client.columns.each do |column| %>
-    <% if column.name.in? ["rif", *Client.attribute_names] %>
       <li>
-        <strong><%= column.name %></strong> -
-        <%= column.type.to_s.titleize %> type
+        <strong>codigoProfit</strong> - Tipo texto  
       </li>
-    <% end %>
-  <% end %>
+      <li>
+        <strong>rif</strong> - Tipo texto  
+      </li>
+      <li>
+        <strong>nombre</strong> - Tipo texto  
+      </li>
+      <li>
+        <strong>razonSocial</strong> - Tipo texto  
+      </li>
+      <li>
+        <strong>pais</strong> - Tipo texto  
+      </li>
+      <li>
+        <strong>estado</strong> - Tipo texto  
+      </li>
+      <li>
+        <strong>cobrarMensualidad</strong> - (Si o No)  
+      </li>
+      <li>
+        <strong>cantidadLocales</strong> - Tipo Numero Entero  
+      </li>
+      
+      
+      <li>
+        <strong>contribuyenteEspecial</strong> - (Si o No)   
+      </li>
+      <li>
+        <strong>comentario</strong> - Tipo texto  
+      </li>
+      <li>
+        <strong>localId</strong> - Tipo texto  
+      </li>
+      
+
+
 </ul>
 
 <p>Si un <strong>rif</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>
