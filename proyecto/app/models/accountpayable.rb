@@ -3,7 +3,7 @@ class Accountpayable < ActiveRecord::Base
   belongs_to :supplier
   validates :amountPaid, presence: true
   validates :supplier_id, presence: true
-  validates :profitNumber, presence: true, length: { minimum: 6 }, uniqueness: true
+  validates :profitNumber, presence: true, length: { minimum: 6 }
   validates_numericality_of :profitNumber
   validates_numericality_of :amountPaid
   after_save :setDate

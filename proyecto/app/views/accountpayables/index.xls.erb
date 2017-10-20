@@ -9,9 +9,9 @@
       <Row>
         
         <Cell><Data ss:Type="String">numeroProfit</Data></Cell>
-        <Cell><Data ss:Type="String">fecha</Data></Cell>
-        <Cell><Data ss:Type="String">nombreProveedor</Data></Cell>
         <Cell><Data ss:Type="String">rifProveedor</Data></Cell>
+        <Cell><Data ss:Type="String">nombreProveedor</Data></Cell>
+        
         <Cell><Data ss:Type="String">descripcion</Data></Cell>
         <Cell><Data ss:Type="String">montoPagado</Data></Cell>
         <Cell><Data ss:Type="String">comentario</Data></Cell>
@@ -21,9 +21,9 @@
       <Row>
        
         <Cell><Data ss:Type="date"><%= accountpayable.profitNumber %></Data></Cell>
-         <Cell><Data ss:Type="date"><%= accountpayable.date %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= accountpayable.supplier.name %></Data></Cell>
         <Cell><Data ss:Type="String"><%= accountpayable.supplier.rif %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= accountpayable.supplier.name %></Data></Cell>
+        
         <Cell><Data ss:Type="String"><%= accountpayable.descripcion %></Data></Cell>
         <Cell><Data ss:Type="decimal"><%= accountpayable.amountPaid %></Data></Cell>
         <Cell><Data ss:Type="Text"><%= accountpayable.comment %></Data></Cell>

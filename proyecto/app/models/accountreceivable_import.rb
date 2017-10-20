@@ -61,8 +61,7 @@ def load_imported_accountreceivables
           accountreceivable.paid  = true
         else
           accountreceivable.paid  = false
-        end
-
+        end.to_yaml
         #accountreceivable.attributes = row.to_hash.slice(*row.to_hash.keys)
         accountreceivable.client_id = client.id
         accountreceivable.rate_id = rate.id
@@ -73,7 +72,7 @@ def load_imported_accountreceivables
         accountreceivable.paymentType = row["tipoPago"]
         accountreceivable.amountPaid = row["montoPagado"]
         accountreceivable.bank = row["banco"]
-        accountreceivable.month = row["mes"]
+        accountreceivable.month = Settings.mesesn[row["mes"]]
         accountreceivable.paymentComment = row["comentarioPago"]
         accountreceivable
       end 
