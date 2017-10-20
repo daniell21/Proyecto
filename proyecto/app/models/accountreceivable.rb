@@ -76,10 +76,12 @@ validates :profitNumber, presence: true
          	    texto = page.text
          	    #raise texto.to_yaml
               linea = texto.delete(' ')
+
               if (linea.length) > 0
                 linea.gsub!(/\s+/, ' ').split(" ")    
                 #MERCANTIL
                 if linea.include? "MercantilenLínea"
+                
                   mercantil(linea)  
                 #BANESCO
                 else if linea.include? "J­07013380"
@@ -225,15 +227,19 @@ end
   end
   #FALTA
   def mercantil(linea)
-    raise linea.to_yaml            
+    
     lineaFecha = linea.gsub!(/\s+/, ' ').split(" ")[0]
-    lineaCuentaAcreditada = linea.gsub!(/\s+/, ' ').split(" ")[4]
-    lineaMonto = linea.gsub!(/\s+/, ' ').split(" ")[5]
     fecha = lineaFecha[0..8]
+    fecha = Date.parse(fecha).strftime("%Y-%m-%d")  
+    self.update_column(:date, fecha)
     
-    
-    finalMonto = lineaMonto.length
-    monto = lineaMonto[8..finalMonto]
+
+    monto = 2500
+    self.update_column(:amountPaid, 2500)
+    self.update_column(:bank, "Mercantil")
+    balance = monto.to_f - amountWithTax 
+    self.update_column(:accountBalance, balance)
+  
   end
   def bicentenario(linea)
     lineaFecha = linea.gsub!(/\s+/, ' ').split(" ")[0]        
