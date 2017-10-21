@@ -11,53 +11,100 @@
 </div>
 </div>
 
-<p>Un archivo  Excel puede utilizarse para importar registros. La primera fila debe ser el nombre de columna. Se permiten las siguientes columnas.</p>
-
-<ul>
-      <li>
-        <strong>codigoProfit</strong> - Tipo texto  
-      </li>
-      <li>
-        <strong>rif</strong> - Tipo texto  
-      </li>
-      <li>
-        <strong>nombre</strong> - Tipo texto  
-      </li>
-      <li>
-        <strong>razonSocial</strong> - Tipo texto  
-      </li>
-      <li>
-        <strong>pais</strong> - Tipo texto  
-      </li>
-      <li>
-        <strong>estado</strong> - Tipo texto  
-      </li>
-      <li>
-        <strong>cobrarMensualidad</strong> - (Si o No)  
-      </li>
-      <li>
-        <strong>cantidadLocales</strong> - Tipo Numero Entero  
-      </li>
-      
-      
-      <li>
-        <strong>contribuyenteEspecial</strong> - (Si o No)   
-      </li>
-      <li>
-        <strong>comentario</strong> - Tipo texto  
-      </li>
-      <li>
-        <strong>localId</strong> - Tipo texto  
-      </li>
-      
-
-
-</ul>
-
-<p>Si un <strong>rif</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>
-
 <%= form_for @client_import do |f| %>
-  <% if @client_import.errors.any? %>
+  
+
+  
+  
+
+        <div id="menu-element" class="well-separator">
+              
+                <div class="row">
+                <div align="center">
+                    <div class="col-sm-4"><label>Seleccionar Archivo</label></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-2"><label>Importar Clientes</label></div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-4" align="center">
+                  <div class="field">
+                    <%= f.file_field :file %>
+                  </div>
+                  </div>    
+
+                  <div class="col-xs-3"> 
+                  </div>
+                  <div class="col-xs-3">
+
+
+                  </div>
+                  <div class="col-xs-2">
+                  <div align="center">
+                    <div class="buttons"><%= f.submit "Importar", :class => 'btn btn-default btn'   %></div>
+                    
+                  </div>
+
+                  
+                  </div>
+                </div>
+                
+            
+        </div>
+
+
+        <p>En esta sección puedes importar masivamente una lista de clientes contenidos en un archivo excel.</p>
+        <p>No solo puedes importar clientes nuevos, puedes modificar ya existentes manteniendo el rif del cliente que se desea modificar</p>
+        <p> La primera fila del archivo debe ser el nombre de columna. </p>
+        <p>Las columnas deben llamarse tal y como se muestra a continuación:</p>
+
+        <ul>
+              <li>
+                <strong>codigoProfit</strong> - Tipo texto <strong>(campo obligatorio)</strong> 
+              </li>
+              <li>
+                <strong>rif</strong> - Tipo texto  <strong>(campo obligatorio)</strong>
+              </li>
+              <li>
+                <strong>nombre</strong> - Tipo texto  <strong>(campo obligatorio)</strong>
+              </li>
+              <li>
+                <strong>razonSocial</strong> - Tipo texto  <strong>(campo obligatorio)</strong>
+              </li>
+              <li>
+                <strong>pais</strong> - Tipo texto  <strong>(campo obligatorio)</strong>
+              </li>
+              <li>
+                <strong>estado</strong> - Tipo texto <strong>(campo obligatorio)</strong> 
+              </li>
+              <li>
+                <strong>cobrarMensualidad</strong> - (Si o No)  <strong>(campo opcional)</strong>
+              </li>
+              <li>
+                <strong>cantidadLocales</strong> - Tipo Numero Entero  <strong>(campo obligatorio)</strong>
+              </li>
+              
+              
+              <li>
+                <strong>contribuyenteEspecial</strong> - (Si o No)  <strong>(campo obligatorio)</strong>
+              </li>
+              <li>
+                <strong>comentario</strong> - Tipo texto  <strong>(campo opcional)</strong>
+              </li>
+              <li>
+                <strong>localId</strong> - Tipo texto  <strong>(campo obligatorio)</strong>
+              </li>
+              
+
+
+        </ul>
+
+        <p>Si un <strong>rif</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>
+
+
+        <br>
+        <% if @client_import.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@client_import.errors.count, "errores") %> encontrados:</h2>
       <ul>
@@ -67,10 +114,4 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.file_field :file %>
-  </div>
-  <div class="buttons"><%= f.submit "Import" %></div>
 <% end %>
-<br>
