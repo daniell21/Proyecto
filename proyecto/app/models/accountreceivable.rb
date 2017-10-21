@@ -14,7 +14,9 @@ validates :bank, presence: true, on: :update
 validates :amountPaid, presence: true, on: :update
 validates :profitCode, presence: true
 validates :profitNumber, presence: true, uniqueness: true
-
+validates :transferNumber, presence: true, if: :validatorTransfer? 
+validates :checkNumber, presence: true, if: :validatorDeposit?
+validates :depositNumber, presence: true, if: :validatorDeposit?
  validates_numericality_of :amountPaid, :allow_blank => true
  validates_numericality_of :transferNumber, :allow_blank => true
  validates_numericality_of :profitCode
@@ -43,15 +45,30 @@ validates :profitNumber, presence: true, uniqueness: true
 
 
   
-
- 
-
-  def validator
-    deposito = false
-    if self.paymentType == "deposito"
+def emptyMassMailings?
+    if massMailings
+      return false
+    else
       return true
     end
-      return deposito
+  end
+ 
+
+  def validatorTransfer?
+    
+    unless self.paymentType == "transferencia"
+      return false
+    end
+      return true
+    
+  end
+
+  def validatorDeposit?
+    
+    unless self.paymentType == "deposito"
+      return false
+    end
+      return true
     
   end
   

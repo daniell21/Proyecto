@@ -136,12 +136,13 @@
             
             
             <div class="col-md-6"> 
+
               <%= f.input :transferNumberClient,  as: :integer, placeholder: 'Número Transferencia', label: "Número Transferencia Cliente", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
               </div> 
           
               
               <div class="col-md-6"> 
-              <%= f.input :checkNumber,  as: :integer, placeholder: 'Número Cheque', label: "Número de Cheque", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
+              <%= f.input :checkNumber,  as: :integer, placeholder: 'Número Cheque', label: "Número de Cheque (solo Depositos)", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
               </div> 
         
             
@@ -153,10 +154,10 @@
         
           <%if (current_user.role != "client") %>
             <div class="col-md-6"> 
-                <%= f.input :transferNumber, as: :integer, placeholder: 'Nro Mercantil', label: "Número Transferencia Elemétrica", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
+                <%= f.input :transferNumber, as: :integer, placeholder: 'Nro Mercantil', label: "Número Transferencia Elemétrica (solo Transferencias)", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
             </div>
             <div class="col-md-6"> 
-              <%= f.input :depositNumber,  as: :integer, placeholder: 'Número Deposito', label: "Número de Deposito", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
+              <%= f.input :depositNumber,  as: :integer, placeholder: 'Número Deposito', label: "Número de Deposito (solo Depositos)", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
               </div> 
           <%end%>
           </div>
