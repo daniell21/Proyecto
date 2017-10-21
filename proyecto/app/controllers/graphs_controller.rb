@@ -46,7 +46,8 @@ class GraphsController < ApplicationController
 
 end
 def show_clientsDebtors
-  @topDebtorsbyAmount = Client.joins("left join accountreceivables on clients.id = accountreceivables.client_id").group("clients.id, accountreceivables.client_id").where('accountreceivables.accountBalance < 0').select("clients.*, (sum(accountreceivables.accountBalance)) as cuenta_accountreceivables").order('cuenta_accountreceivables DESC').limit(10).collect{|x| [x.name + " " + ActionController::Base.helpers.number_to_currency(x.cuenta_accountreceivables, unit: "Bs ", separator: ",", delimiter: ".", precision: 2).to_s, (-1 * x.cuenta_accountreceivables), x.rif]}
+  @topDebtorsbyAmount = Client.joins("left join accountreceivables on clients.id = accountreceivables.client_id").group("clients.id, accountreceivables.client_id").where('accountreceivables.accountBalance < ? or accountreceivables.paid = ?', 0, false).select("clients.*, (sum(accountreceivables.accountBalance)) as cuenta_accountreceivables").order('cuenta_accountreceivables DESC').limit(10).collect{|x| [x.name + " " + ActionController::Base.helpers.number_to_currency(x.cuenta_accountreceivables, unit: "Bs ", separator: ",", delimiter: ".", precision: 2).to_s, (-1 * x.cuenta_accountreceivables), x.rif]}
+
 
 
   #e. Top clientes deudores (por meses adeudados)

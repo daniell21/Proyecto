@@ -191,7 +191,7 @@ end
 #Si la variable accountBalance es negativa, significa que pago menos de lo que debia
   def calculateBalance
     
-    self.accountBalance =   amountWithTax - self.amountPaid.to_f
+    self.accountBalance =   self.amountPaid.to_f - amountWithTax
     
   end
 
