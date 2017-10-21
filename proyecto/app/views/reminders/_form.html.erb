@@ -4,10 +4,10 @@
   <%= f.error_notification %>
     
   <div class="row">
-  	<div class="col-md-6">
-    <!-- <label>Nombre</label>
-      <%=@reminder.name%> -->
-      <%= f.input :name, placeholder: 'Nombre Recordatorio', label: 'Nombre', error: 'Debe ingresar un nombre' %>
+  	<div class="col-md-6" style = "padding-top: 30px;padding-left: 100px;">
+    <label>Nombre</label>
+      <%=@reminder.name%>
+    
     </div>
     <div class="col-md-6"> 
     	<%= f.input :frecuency, :collection => [['Diaria',1],['Quincenal',15],['Mensual',30]], label: "Frecuencia ",

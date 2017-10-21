@@ -1,12 +1,53 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		
-	</head>
-	<body>
-	<strong>Recuerda hacer tus pagos a tiempo</strong>
-	
-		<p align="center">
+<head>
+
+</head>
+<body>
+
+<p>Facturas Pendientes:</p>
+
+<%accountreceivables = @client.accountreceivables.where(:paid => false)%>
+<table style="width:100%;  border: 1px solid black;
+    border-collapse: collapse;">
+  <tr>
+    <th style=" border: 1px solid black;
+    border-collapse: collapse;">Numero Factura</th>
+    <th style=" border: 1px solid black;
+    border-collapse: collapse;">Mes</th>
+    <th style=" border: 1px solid black;
+    border-collapse: collapse;">Concepto</th>  
+    <th style=" border: 1px solid black;
+    border-collapse: collapse;">Monto Total a Pagar</th> 
+    
+  </tr>  
+  <%unless accountreceivables.nil?%>
+   
+      
+        <% accountreceivables.each do |accountreceivable| %>
+          <tr>
+            <td style=" border: 1px solid black;
+    border-collapse: collapse;"><%= accountreceivable.profitNumber %></td>
+            <td style=" border: 1px solid black;
+    border-collapse: collapse;"><%= Settings.meses[accountreceivable.month] %></td>
+    <td style=" border: 1px solid black;
+    border-collapse: collapse;">
+              <% @rate = Rate.find(accountreceivable.rate_id) %>
+          <%= @rate.name %>:
+          <%= number_to_currency(@rate.amount, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+            </td>
+            <td style=" border: 1px solid black;
+    border-collapse: collapse;"> <%= number_to_currency(accountreceivable.amountWithTax, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%></td>
+            
+          </tr>
+        <% end %>
+      
+
+  
+  <%end%>
+</table>
+<br><br>
+<p align="center">
   <a style="-webkit-border-radius: 6;-moz-border-radius: 6;border-radius: 6px;
     font-family: Arial;color: #ffffff;font-size: 15px;background: #00004c ;
     padding: 10px 20px 10px 20px;text-decoration: none;"
@@ -27,5 +68,5 @@
     font-size: 17px;background: #00004c;padding: 10px 20px 10px 20px;
     text-decoration: none;" href="https://elemetrica.com/app">Ingresar a Elemétrica</a>
 </p>
-	</body>
+</body>
 </html>

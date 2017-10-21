@@ -40,7 +40,7 @@ class ClientMail < ActiveRecord::Base
 			client = Client.find(self.client_id)
 			emails = client.email_ids
 			@client = client
-			ReminderMailer.delay.new_sendreminder(self)
+			ReminderMailer.delay.new_sendreminder(@client)
 			emails.each do |email| 
 				
 				e = Email.find(email)

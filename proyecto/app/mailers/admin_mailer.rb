@@ -7,7 +7,7 @@ class AdminMailer < ApplicationMailer
 	    users = User.all
 	    users.each do |user|
 		    if user.role == "admin"
-		      mail(to: user.email, subject: "Recordatorio Sistema de Cobranza")
+		      mail(to: user.email, subject: "Recordatorios Administracion Sistema de Cobranza")
 		    end
 		end
 			

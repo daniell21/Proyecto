@@ -3,9 +3,12 @@
 <%= f.error_notification %>
 
   <div class="row">
-    <div class="col-xs-6">
-      Usuario <%= f.label :Correo, @user.email %><br>
+    <div class="col-xs-6" style="
+    padding-top: 30px;padding-left: 100px;">
+      <label>Correo</label>
+      <%= @user.email%>
     </div>
+  
   
     <div class="col-xs-6">
       <%= f.input :role, :collection => [['Administrador','admin'],['Limitado','limited'],['Restringido','restricted'], ['Cliente', 'client']], label: "Rol" %>
