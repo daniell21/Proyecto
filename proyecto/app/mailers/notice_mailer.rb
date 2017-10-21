@@ -1,8 +1,9 @@
 class NoticeMailer < ApplicationMailer
 
-	def new_notice(user)
+	def new_notice(user, accountreceivable)
 		@user = user
-				mail(to: user.email , subject: "Nuevo registro de Pago Elemétrica")
+		@accountreceivable = accountreceivable
+		mail(to: user.email , subject: "Nuotificacion Registro de pago " + @accountreceivable.client.name)
 		
 	end 
 end

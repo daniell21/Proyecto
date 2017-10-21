@@ -50,8 +50,7 @@ class ClientMail < ActiveRecord::Base
 			end
 		end
 			AdminMailer.delay.new_adminreminder
-			u = User.last
-			NoticeMailer.delay.new_notice(u)
+			
 
 	end
 # 	def send_reminder

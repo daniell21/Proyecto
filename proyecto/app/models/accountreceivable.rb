@@ -293,7 +293,7 @@ def send_notification
     users = User.all
     users.each do |user|
       if user.role == "admin"
-        NoticeMailer.delay.new_notice(user)     
+        NoticeMailer.delay.new_notice(user, self)     
       end
     end
   end

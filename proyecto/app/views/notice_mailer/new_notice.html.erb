@@ -4,12 +4,146 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>
-    hola
-    </p>
-<p align="center">
-  <b>Nuevo pago registrado</b>
-</p>
+
+<strong>Detalle de Pago: </strong>
 <br>
+<% clientId = @accountreceivable.client.id%>
+<%@client = Client.find(clientId)%>
+  <table width="100%" border="2px" cellspacing="0px" cellpadding="8px" style="margin:0 auto;">
+    <tbody>
+    <tr>
+      <td>
+        <p>
+        </p><div id="accountreceivables">
+         <strong>Local </strong>
+          </div>
+        <p></p>
+      </td>
+      <td>
+        <p>
+          <%=@client.name%>  
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+        </p><div id="accountreceivables">
+        <strong>Mes Pagado</strong>
+         
+          </div>
+        <p></p>
+      </td>
+      <td>
+        <p>
+        <%= Settings.meses[@accountreceivable.month]%>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+        </p><div id="accountreceivables">
+        <strong>Descuentos Aplicados</strong>
+          </div>
+        <p></p>
+      </td>
+      <td>
+        <p>
+          <% @client.discounts.each do |discount|%>
+            <%=discount.name%> - <%=discount.percentage%>%<br>
+            <%end%>
+            
+            <% if @client.specialDiscount%>
+             Especial - 
+             <%= number_to_currency(@client.specialDiscount, unit: "", separator: ",", delimiter: ".", precision: 2) %>%
+            <%end%>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+        </p>
+          <div id="accountreceivables">
+          <strong>Cantidad de Locales</strong>
+          </div>
+      </td>
+      <td>
+        <p>
+          <%= @client.localAmount %>
+        </p>
+      </td>
+    </tr> 
+    <tr>
+      <td>
+        <p>
+        </p><div id="accountreceivables">
+        <strong>Concepto de Pago</strong>
+          </div>
+        <p></p>
+      </td>
+      <td>
+        <p>
+          <% @rate = Rate.find(@accountreceivable.rate_id) %>
+          <%= @rate.name %>
+        </p>
+      </td>
+    </tr> 
+    <tr>
+      <td>
+        <p>
+        </p><div id="accountreceivables">
+         <strong>Monto a Pagar</strong>
+          </div>
+        <p></p>
+      </td>
+      <td>
+        <p>
+          <% amount = @accountreceivable.amountWithTax * @client.localAmount%>
+          <%= number_to_currency(amount, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+        </p><div id="accountreceivables">
+         <strong>Monto Pagado</strong>
+          </div>
+        <p></p>
+      </td>
+      <td>
+        <p>
+          <%= number_to_currency(@accountreceivable.amountPaid, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+        </p>
+      </td>
+    </tr> 
+    <tr>
+      <td>
+        <p>
+        </p><div id="accountreceivables">
+          <%if @accountreceivable.accountBalance > 0%>
+            <strong>Saldo Deudor</strong>
+          <%else%>
+            <strong>Saldo a Favor</strong>
+          <%end%>
+          </div>
+        <p></p>
+      </td>
+      <td>
+        <p>
+          <%if @accountreceivable.accountBalance > 0%>
+            <%= number_to_currency(@accountreceivable.accountBalance, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+          <%else%>
+          <%monto= @accountreceivable.accountBalance * -1%>
+            <%= number_to_currency(monto, unit: "Bs ", separator: ",", delimiter: ".", precision: 2)%>
+          <%end%>
+        </p>
+      </td>
+    </tr>   
+</tbody>
+</table> 
+
   </body>
 </html>
