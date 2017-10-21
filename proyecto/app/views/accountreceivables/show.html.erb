@@ -146,10 +146,7 @@
           <%end%>
             
         </p>
-        <p>
-          <strong>Banco:</strong>
-          <%= @accountreceivable.bank %>
-        </p>
+        
       </td>
       <td>
         <p>
@@ -160,10 +157,11 @@
     </tr>
     <tr>
       <td>
-        <p>
-          <strong>Comentarios:</strong>
-          <%= @accountreceivable.paymentComment %>
+      <p>
+          <strong>Banco:</strong>
+          <%= @accountreceivable.bank %>
         </p>
+        
       </td>
       <td>
         <%if @accountreceivable.clientAccount != '0'%>
@@ -231,7 +229,12 @@
             <%= @accountreceivable.checkNumber %>
           </p>
       </td>
-      <td></td>
+      <td>
+        <p>
+          <strong>Comentarios:</strong>
+          <%= @accountreceivable.paymentComment %>
+        </p>
+      </td>
     </tr>
         <%end%>
 
