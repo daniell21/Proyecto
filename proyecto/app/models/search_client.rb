@@ -8,7 +8,7 @@ class SearchClient < ActiveRecord::Base
 		clients = clients.where(["country LIKE ?",country]) if country.present?
 		clients = clients.where(["rif LIKE ?",rif]) if rif.present?
 		clients = clients.where(["profitCode LIKE ?",profitCode]) if profitCode.present?
-		clients = clients.where(["localAmount LIKE ?",localAmount]) if localAmount.present?
+		clients = clients.where(["localId LIKE ?",localId]) if localId.present?
 		clients = clients.where(["specialDiscount LIKE ?",specialDiscount]) if specialDiscount.present?
 		clients = clients.where(["specialcontributor LIKE ?",specialcontributor]) if specialcontributor.present?
 		clients = clients.where(["state LIKE ?",state]) if state.present?
@@ -20,5 +20,5 @@ class SearchClient < ActiveRecord::Base
 end
 
 
-
+ 
 

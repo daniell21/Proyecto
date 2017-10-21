@@ -1,4 +1,11 @@
+<div class="row">
+<div class="col-xs-1" style="margin-top : 6px;">
+<%= link_to image_tag('/assets/back.ico',  title: "Atrás"), clients_path %>
+</div>
+<div class="col-xs-4" style="margin-left : -30px;">
 <h1>Resultados</h1>
+</div>
+</div>
 
 
 <% if @search_client.search_clients.empty? %>
@@ -18,7 +25,7 @@
         <%= client.code %>
       </p>
     </td>
-    <td>
+    <td> 
       <p> 
         <strong>RIF:</strong>
         <%= client.rif %>
@@ -32,7 +39,12 @@
         <%= client.profitCode %>
       </p>
     </td>
-   
+    <td>
+      <p> 
+        <strong>Id del Local:</strong>
+        <%= client.localId %>
+      </p>
+    </td>
   </tr>
   <tr>
     <td>
@@ -71,7 +83,7 @@
         </td>
         <td>
           <p>
-            <strong>Número de locales:</strong>
+            <strong>INúmero de locales:</strong>
             <%= client.localAmount %>
           </p>
         </td>

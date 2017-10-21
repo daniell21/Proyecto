@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005201758) do
+ActiveRecord::Schema.define(version: 20171021210113) do
 
   create_table "accountpayable_imports", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -74,19 +74,6 @@ ActiveRecord::Schema.define(version: 20171005201758) do
   add_index "accountreceivables", ["client_id"], name: "index_accountreceivables_on_client_id"
   add_index "accountreceivables", ["constant_id"], name: "index_accountreceivables_on_constant_id"
   add_index "accountreceivables", ["rate_id"], name: "index_accountreceivables_on_rate_id"
-
-  create_table "api_keys", force: :cascade do |t|
-    t.string   "access_token"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "apiusers", force: :cascade do |t|
-    t.string   "email"
-    t.string   "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "client_imports", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -173,47 +160,6 @@ ActiveRecord::Schema.define(version: 20171005201758) do
   add_index "has_discounts", ["client_id"], name: "index_has_discounts_on_client_id"
   add_index "has_discounts", ["discount_id"], name: "index_has_discounts_on_discount_id"
 
-  create_table "oauth_access_grants", force: :cascade do |t|
-    t.integer  "resource_owner_id", null: false
-    t.integer  "application_id",    null: false
-    t.string   "token",             null: false
-    t.integer  "expires_in",        null: false
-    t.text     "redirect_uri",      null: false
-    t.datetime "created_at",        null: false
-    t.datetime "revoked_at"
-    t.string   "scopes"
-  end
-
-  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true
-
-  create_table "oauth_access_tokens", force: :cascade do |t|
-    t.integer  "resource_owner_id"
-    t.integer  "application_id"
-    t.string   "token",                               null: false
-    t.string   "refresh_token"
-    t.integer  "expires_in"
-    t.datetime "revoked_at"
-    t.datetime "created_at",                          null: false
-    t.string   "scopes"
-    t.string   "previous_refresh_token", default: "", null: false
-  end
-
-  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
-  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
-  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true
-
-  create_table "oauth_applications", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.string   "uid",                       null: false
-    t.string   "secret",                    null: false
-    t.text     "redirect_uri",              null: false
-    t.string   "scopes",       default: "", null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
-  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true
-
   create_table "rates", force: :cascade do |t|
     t.string   "name"
     t.decimal  "amount"
@@ -282,8 +228,8 @@ ActiveRecord::Schema.define(version: 20171005201758) do
     t.string   "name"
     t.decimal  "specialDiscount",    precision: 15, scale: 2
     t.boolean  "chargeMonthlyFee"
-    t.integer  "localAmount"
     t.boolean  "specialcontributor"
+    t.string   "localId"
   end
 
   create_table "search_suppliers", force: :cascade do |t|

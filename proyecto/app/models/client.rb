@@ -13,7 +13,7 @@ class Client < ActiveRecord::Base
   validates :localId, presence: true
   validates :rif, presence: true, uniqueness: true , length: { minimum: 9, maximum: 9}
   validates :profitCode, presence: true, length: { minimum: 6 }, uniqueness: true
-  validates :localAmount, presence: true
+ 
 
 
 
@@ -21,15 +21,17 @@ class Client < ActiveRecord::Base
 
   
   validates_numericality_of :rif
-  validates_numericality_of :localAmount
   validates_numericality_of :profitCode
   validates_numericality_of :specialDiscount, :allow_blank => true
 
   before_save :calculateCode
+  after_save :setLocalAmount
  
   
-
-
+ 
+def setLocalAmount
+  self.update_column(:localAmount, 1)
+end
 
   #simple search name
  def self.search(search)
