@@ -289,7 +289,13 @@ def send_notification
     emails = client.emails
     emails.each do |email|      
         PaymentMailer.delay.new_payment(self, client, email.email)
-    end     
+    end
+    users = User.all
+    users.each do |user|
+      if user.role == "admin"
+        NoticeMailer.delay.new_notice(user)     
+      end
+    end
   end
 end
 
