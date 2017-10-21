@@ -10,36 +10,81 @@
 </div>
 </div>
 
-<p>Un archivo  Excel puede utilizarse para importar registros. La primera fila debe ser el nombre de columna. Se permiten las siguientes columnas.</p>
+<%= form_for @accountpayable_import do |f| %>
+  
 
-<ul>
+  
+  
+
+        <div id="menu-element" class="well-separator">
+              
+                <div class="row">
+                <div align="center">
+                    <div class="col-sm-4"><label>Seleccionar Archivo</label></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-2"><label>Importar Cuentas</label></div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-4" align="center">
+                  <div class="field">
+                    <%= f.file_field :file %>
+                  </div>
+                  </div>    
+
+                  <div class="col-xs-3"> 
+                  </div>
+                  <div class="col-xs-3">
+
+
+                  </div>
+                  <div class="col-xs-2">
+                  <div align="center">
+                    <div class="buttons"><%= f.submit "Importar", :class => 'btn btn-default btn'   %></div>
+                    
+                  </div>
+
+                  
+                  </div>
+                </div>
+                
+             
+        </div>
+
+        <div align="center">
+          <p>En esta sección puedes importar masivamente una lista de cuentas por pagar contenidas en un archivo excel.</p>
+          <p> La primera fila del archivo debe ser el nombre de columna. </p>
+          <p>Las columnas deben llamarse tal y como se muestra a continuación:</p>
+        </div>  
+        <ul>
       <li>
-        <strong>numeroProfit</strong> - Tipo texto   
+        <strong>numeroProfit</strong> - Tipo texto   <strong>(campo obligatorio)</strong>
       </li>
       <li>
-        <strong>fecha</strong> - Tipo texto   
+        <strong>rifProveedor</strong> - Tipo texto <strong>(campo obligatorio)</strong>  
       </li>
       <li>
-        <strong>rifProveedor</strong> - Tipo texto   
+        <strong>descripcion</strong> - Tipo texto  <strong>(campo opcional)</strong>
       </li>
       <li>
-        <strong>descripcion</strong> - Tipo texto  
+        <strong>montoPagado</strong> - Tipo decimal  <strong>(campo obligatorio)</strong>
       </li>
       <li>
-        <strong>montoPagado</strong> - Tipo decimal  
-      </li>
-      <li>
-        <strong>comentario</strong> - Tipo texto  
+        <strong>comentario</strong> - Tipo texto  <strong>(campo opcional)</strong>
       </li>
 
 
 
 </ul>
+        <div align="center">
+          <p>Si un <strong>numeroProfit</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>
+        </div>
 
-<p>Si un <strong>rif</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>
 
-<%= form_for @accountpayable_import do |f| %>
-  <% if @accountpayable_import.errors.any? %>
+
+        <br>
+       <% if @accountpayable_import.errors.any? %>
     <div id="error_explanation">
       <h2>Se encontraron <%= pluralize(@accountpayable_import.errors.count, "errores") %> en la importación:</h2>
       <ul>
@@ -49,10 +94,4 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.file_field :file %>
-  </div>
-  <div class="buttons"><%= f.submit "Import" %></div>
 <% end %>
-<br>
