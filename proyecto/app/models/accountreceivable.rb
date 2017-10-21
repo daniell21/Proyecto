@@ -13,7 +13,7 @@ validates :month, presence: true
 validates :bank, presence: true, on: :update
 validates :amountPaid, presence: true, on: :update
 validates :profitCode, presence: true
-validates :profitNumber, presence: true
+validates :profitNumber, presence: true, uniqueness: true
 
  validates_numericality_of :amountPaid, :allow_blank => true
  validates_numericality_of :transferNumber, :allow_blank => true

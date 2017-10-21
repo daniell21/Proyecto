@@ -11,20 +11,62 @@
 </div>
 </div>
 
-<p>Un archivo  Excel puede utilizarse para importar registros. La primera fila debe ser el nombre de columna. Se permiten las siguientes columnas.</p>
+<%= form_for @accountreceivable_import do |f| %>
+  
+
+  
+  
+
+        <div id="menu-element" class="well-separator">
+              
+                <div class="row">
+                <div align="center">
+                    <div class="col-sm-4"><label>Seleccionar Archivo</label></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-2"><label>Importar Cuentas</label></div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-4" align="center">
+                  <div class="field">
+                    <%= f.file_field :file %>
+                  </div>
+                  </div>    
+
+                  <div class="col-xs-3"> 
+                  </div>
+                  <div class="col-xs-3">
 
 
+                  </div>
+                  <div class="col-xs-2">
+                  <div align="center">
+                    <div class="buttons"><%= f.submit "Importar", :class => 'btn btn-default btn'   %></div>
+                    
+                  </div>
 
+                  
+                  </div>
+                </div>
+                
+             
+        </div>
 
-<ul>
+        <div align="center">
+          <p>En esta sección puedes importar masivamente una lista de cuentas por cobrar contenidas en un archivo excel.</p>
+          <p> La primera fila del archivo debe ser el nombre de columna. </p>
+          <p>Las columnas deben llamarse tal y como se muestra a continuación:</p>
+        </div>  
+        <ul>
+        <li>
+        <strong>numeroControlProfit</strong> - Tipo texto   
+      </li>
        <li>
         <strong>rifCliente</strong> - Tipo texto   
       </li>
       <li>
         <strong>mes</strong> - Tipo texto  
-      </li>
-      <li>
-        <strong>numeroControlProfit</strong> - Tipo texto   
       </li>
       <li>
         <strong>codigoProfit</strong> - Tipo texto   
@@ -51,22 +93,14 @@
 
 
 </ul>
+        <div align="center">
+          <p>Si un <strong>numeroControlProfit</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>
+        </div>
 
-<!-- <ul>
-  <% Accountreceivable.columns.each do |column| %>
-    <% if column.name.in? ["rif", *Accountreceivable.attribute_names] %>
-      <li>
-        <strong><%= column.name %></strong> -
-        <%= column.type.to_s.titleize %> type
-      </li>
-    <% end %>
-  <% end %>
-</ul> -->
 
-<p>Si un <strong>rif</strong> se suministra se actualizará el registro coincidente en lugar de crear uno nuevo.</p>
 
-<%= form_for @accountreceivable_import do |f| %>
-  <% if @accountreceivable_import.errors.any? %>
+        <br>
+       <% if @accountreceivable_import.errors.any? %>
     <div id="error_explanation">
     <h2><%= pluralize(@accountreceivable_import.errors.count, "errores") %>. Por favor corrija los siguienes errores:</h2>
       <ul>
@@ -76,10 +110,4 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.file_field :file %>
-  </div>
-  <div class="buttons"><%= f.submit "Import" %></div>
 <% end %>
-<br>

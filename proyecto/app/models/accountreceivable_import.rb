@@ -49,9 +49,10 @@ def load_imported_accountreceivables
       
       (2..spreadsheet.last_row).map do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        accountreceivable = Accountreceivable.find_by profitNUmber: row["numeroProfit"]
-        accountreceivable =  Accountreceivable.new if (Accountreceivable.find_by profitNUmber: row["numeroProfit"]).nil?
-
+        accountreceivable = Accountreceivable.find_by profitNumber: row["numeroControlProfit"]
+        accountreceivable =  Accountreceivable.new if (Accountreceivable.find_by profitNumber: row["numeroControlProfit"]).nil?
+      
+        accountreceivable.profitNumber = row["numeroControlProfit"]
         client = Client.find_by rif: row["rifCliente"]
         client = Client.new if (Client.find_by rif: row["rifCliente"]).nil?
         
@@ -61,8 +62,10 @@ def load_imported_accountreceivables
           accountreceivable.paid  = true
         else
           accountreceivable.paid  = false
-        end.to_yaml
+        end
         #accountreceivable.attributes = row.to_hash.slice(*row.to_hash.keys)
+        
+        
         accountreceivable.client_id = client.id
         accountreceivable.rate_id = rate.id
         accountreceivable.profitNumber = row["numeroControlProfit"]
