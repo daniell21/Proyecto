@@ -1,2 +1,0 @@
-class NoticePayment < ApplicationMailer
-end
