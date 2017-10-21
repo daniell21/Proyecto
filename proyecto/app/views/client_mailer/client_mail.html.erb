@@ -6,7 +6,7 @@
   </head>
   <body>
 
-   Hola,  <strong><%=@client.name unless @client.nil?%></strong>
+
    <%@client_mail = ClientMail.last%>
     <p>
       <%= @client_mail.body%>

@@ -2,7 +2,7 @@ class ClientMail < ActiveRecord::Base
   belongs_to :client
   validates :title, presence: true
   validates :body, presence: true
-  validates :client_id, presence: true, if: :emptyMassMailings?
+  validates :client_id, presence: true, if: :emptyMassMailings? 
 	#after_create :send_reminder
 	after_create :send_mail
 	after_create :setDate
@@ -40,6 +40,7 @@ class ClientMail < ActiveRecord::Base
 			client = Client.find(self.client_id)
 			emails = client.email_ids
 			@client = client
+			ReminderMailer.delay.new_sendreminder(self)
 			emails.each do |email| 
 				
 				e = Email.find(email)
