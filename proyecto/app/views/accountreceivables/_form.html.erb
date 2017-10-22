@@ -70,12 +70,12 @@
           <div class="row">
               
               <div class="col-md-6"> 
-                <%= f.input :profitCode, as: :integer, placeholder: 'Código Profit', label: "Número Control Profit", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
+                <%= f.input :profitCode, as: :integer, placeholder: 'Código Profit', label: "Número Control Profit (Mínimo 6 dígitos)", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
               </div> 
 
 
               <div class="col-md-6">  
-                  <%= f.input :profitNumber, as: :integer, placeholder: 'Número  Profit', label: "Número Factura Profit", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
+                  <%= f.input :profitNumber, as: :integer, placeholder: 'Número  Profit', label: "Número Factura Profit (Mínimo 6 dígitos)", input_html: { autocomplete: 'off' }, error: 'Este campo debe ser Númerico' %>
               </div>
               
             </div>

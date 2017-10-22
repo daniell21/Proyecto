@@ -8,15 +8,16 @@ mount_uploader :document, DocumentUploader
 validates :client_id, presence: true
 validates :rate_id, presence: true
 validates :status, presence: true
-validates :paymentType, presence: true, on: :update
+validates :paymentType, presence: true, on: :update 
 validates :month, presence: true
 validates :bank, presence: true, on: :update
 validates :amountPaid, presence: true, on: :update
-validates :profitCode, presence: true
-validates :profitNumber, presence: true, uniqueness: true
-validates :transferNumber, presence: true, if: :validatorTransfer? 
+validates :profitCode, presence: true, length: { minimum: 6 }
+validates :profitNumber, presence: true, uniqueness: true, length: { minimum: 6 }
+
 validates :checkNumber, presence: true, if: :validatorDeposit?
 validates :depositNumber, presence: true, if: :validatorDeposit?
+validates :transferNumberClient, presence: true, if: :validatorTransfer?
  validates_numericality_of :amountPaid, :allow_blank => true
  validates_numericality_of :transferNumber, :allow_blank => true
  validates_numericality_of :profitCode

@@ -75,6 +75,9 @@ def load_imported_accountreceivables
         accountreceivable.paymentType = row["tipoPago"]
         accountreceivable.amountPaid = row["montoPagado"]
         accountreceivable.bank = row["banco"]
+        accountreceivable.checkNumber = row["numeroCheque"]
+        accountreceivable.depositNumber = row["numeroDeposito"]
+        accountreceivable.transferNumber = row["numeroTransferencia"]
         accountreceivable.month = Settings.mesesn[row["mes"]]
         accountreceivable.paymentComment = row["comentarioPago"]
         accountreceivable
