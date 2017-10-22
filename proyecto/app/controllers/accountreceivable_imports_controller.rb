@@ -16,7 +16,7 @@ class AccountreceivableImportsController < ApplicationController
 
     respond_to do |format|
       if @accountreceivable_import.save
-        format.html { redirect_to accountreceivables_path, notice: 'Accountreceivable import was successfully created.' }
+        format.html { redirect_to accountreceivables_path, notice: 'Las Cuentas fueron importadas Correctamente.' }
         format.json { render :show, status: :created, location:accounreceivables_path }
       else
         format.html { render :new }

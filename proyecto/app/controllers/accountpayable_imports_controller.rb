@@ -14,7 +14,7 @@ class AccountpayableImportsController < ApplicationController
 
     respond_to do |format|
       if @accountpayable_import.save
-        format.html { redirect_to accountpayables_path, notice: 'Accountpayable import was successfully created.' }
+        format.html { redirect_to accountpayables_path, notice: 'Las Cuentas fueron importadas Correctamente.' }
         format.json { render :show, status: :created, location: accountpayables_path }
       else
         format.html { render :new }

@@ -14,7 +14,7 @@ class ClientImportsController < ApplicationController
 
     respond_to do |format|
       if @client_import.save
-        format.html { redirect_to clients_path, notice: 'Client import was successfully created.' }
+        format.html { redirect_to clients_path, notice: 'Los Clientes fueron importados correctamente.' }
         format.json { render :show, status: :created, location: clients_path }
       else
         format.html { render :new }

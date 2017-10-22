@@ -13,7 +13,7 @@ class SupplierImportsController < ApplicationController
 
     respond_to do |format|
       if @supplier_import.save
-        format.html { redirect_to suppliers_path, notice: 'Supplier import was successfully created.' }
+        format.html { redirect_to suppliers_path, notice: 'Los Proveedores fueron importados correctamente.' }
         format.json { render :show, status: :created, location: @supplier }
       else
         format.html { render :new }
