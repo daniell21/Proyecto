@@ -7,7 +7,7 @@ class SuppliersController < ApplicationController
   # GET /suppliers.json
   def index
     #@suppliers = Supplier.all
-    @suppliers =  Supplier.order(sort_column + " " + sort_diection).order(:name).search(params[:search]).paginate(:per_page => 5, :page => params[:page]).paginate(:per_page => 5, :page => params[:page])
+    @suppliers =  Supplier.order(sort_column + " " + sort_diection).order(:name).search(params[:search])
     respond_to do |format|
     format.html
     format.json

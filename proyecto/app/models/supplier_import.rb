@@ -54,6 +54,8 @@ class SupplierImport
         supplier.socialReason = row["razonSocial"]
         supplier.email = row["correo"]
         supplier.address = row["direccion"]
+        supplier.comment = row["comentarios"]
+        
         #supplier.attributes = row.to_hash.slice(*row.to_hash.keys)
         supplier
       end
