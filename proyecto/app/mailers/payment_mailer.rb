@@ -5,7 +5,7 @@ class PaymentMailer < ApplicationMailer
 		@client = client
 		@accountreceivable = accountreceivable
 
-				mail(to: email , subject: "registro de Pago Elemétrica")
+				mail(to: email , subject: "Registro de Pago Elemétrica")
 		
 	end 
 end
