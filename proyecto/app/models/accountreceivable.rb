@@ -39,7 +39,7 @@ validates :transferNumberClient, presence: true, if: :validatorTransfer?
   after_save :send_notification
 
   after_save :setDate
-  before_save :setlastPayment
+  after_save :setlastPayment
 
 
 
