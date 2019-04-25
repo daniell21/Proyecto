@@ -1,2 +1,2 @@
-# Proyecto
+# TIG
 Pasantias largas Elemetrica
